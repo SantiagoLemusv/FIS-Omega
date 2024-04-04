@@ -1,8 +1,11 @@
-module com.example.sgb {
+module omega.sgb {
     requires javafx.controls;
     requires javafx.fxml;
 
 
-    opens com.example.sgb to javafx.fxml;
-    exports com.example.sgb;
+    opens omega.sgb to javafx.fxml;
+    exports omega.sgb;
+    opens omega.sgb.control to javafx.fxml;
+    exports omega.sgb.control;
+
 }
