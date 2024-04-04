@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1540.0" stylesheets="@gui/app.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="omega.sgb.control.ControlCrearCuenta">
+   <children>
+      <Pane fx:id="blurPane" prefHeight="800.0" prefWidth="1540.0" />
+      <ImageView fx:id="blur" fitHeight="870.0" fitWidth="1639.0" layoutX="-3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@gui/login_bg2.jpg" />
+         </image>
+         <effect>
+            <BoxBlur height="10.0" iterations="3" width="10.0" />
+         </effect></ImageView>
+      <Pane fx:id="CCPane" layoutX="343.0" layoutY="71.0" prefHeight="658.0" prefWidth="853.0">
+         <children>
+            <Button fx:id="CrearCuentaButton" layoutX="353.0" layoutY="577.0" mnemonicParsing="false" onAction="#CrearCuenta" prefHeight="42.0" prefWidth="123.0" text="Crear Cuenta">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <TextField fx:id="Usuariotxt" layoutX="52.0" layoutY="296.0" prefHeight="42.0" prefWidth="424.0" promptText="Usuario">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="Contraseñatxt" layoutX="52.0" layoutY="433.0" prefHeight="42.0" prefWidth="198.0" promptText="Contraseña">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </PasswordField>
+            <TextField fx:id="Nombretxt" layoutX="52.0" layoutY="226.0" prefHeight="42.0" prefWidth="198.0" promptText="Nombre">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="Apellidotxt" layoutX="278.0" layoutY="226.0" prefHeight="42.0" prefWidth="198.0" promptText="Apellido">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="Cedulatxt" layoutX="52.0" layoutY="366.0" prefHeight="42.0" prefWidth="424.0" promptText="Cedula">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Label fx:id="LabelCC" alignment="CENTER" layoutX="52.0" layoutY="497.0" prefHeight="63.0" prefWidth="424.0" textAlignment="CENTER" textFill="#830009" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="Titulo" layoutX="52.0" layoutY="132.0" prefHeight="51.0" prefWidth="427.0" text="Crea tu Cuenta">
+               <font>
+                  <Font name="Roboto Light" size="35.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="ContraseñatxtConfirm" layoutX="278.0" layoutY="433.0" prefHeight="42.0" prefWidth="198.0" promptText="Confirmar contraseña">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </PasswordField>
+            <Label layoutX="52.0" layoutY="68.0" prefHeight="17.0" prefWidth="424.0" text="SGB">
+               <font>
+                  <Font name="System Bold" size="35.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="206.0" fitWidth="267.0" layoutX="566.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@gui/add_user.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="VolverButton" layoutX="52.0" layoutY="577.0" mnemonicParsing="false" onAction="#ToLoginView" prefHeight="42.0" prefWidth="123.0" text="Volver a Login">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label layoutX="544.0" layoutY="422.0" prefHeight="63.0" prefWidth="250.0" text="Todos los libros que imaginas en un solo lugar" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</Pane>

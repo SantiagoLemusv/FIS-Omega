@@ -1,0 +1,58 @@
+.text-field {
+    /*-fx-background-color: white; /* Color de fondo blanco */
+    -fx-background-color: rgba(255, 255, 255, 0.7);
+    -fx-background-insets: 0; /* Elimina los márgenes de fondo */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 0); /* Sombra */
+    -fx-text-fill: black; /* Color del texto */
+    -fx-font-size: 14px; /* Tamaño de fuente */
+    -fx-font-family: "Arial"; /* Fuente */
+}
+
+/* Estilo para Button */
+.button {
+    -fx-background-color: #7EC8E3; /* Color de fondo azul claro */
+    -fx-text-fill: white; /* Color del texto blanco */
+    -fx-font-size: 14px; /* Tamaño de fuente */
+    -fx-font-family: "Roboto Light";
+}
+.button:hover {
+    -fx-cursor: hand;
+}
+.button:pressed {
+    -fx-cursor: default;
+}
+
+#TipoCuentaBox {
+    -fx-background-color: rgba(255, 255, 255, 0.7);
+    -fx-background-insets: 0; /* Elimina los márgenes de fondo */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 0); /* Sombra */
+    -fx-text-fill: black; /* Color del texto */
+    -fx-font-size: 14px; /* Tamaño de fuente */
+    -fx-font-family: "Roboto Light";
+}
+#TipoCuentaBox:hover {
+    -fx-cursor: hand;
+}
+#TipoCuentaBox:pressed {
+    -fx-cursor: default;
+}
+
+.label{
+    -fx-font-family: "Roboto Light";
+}
+/* Estilo para un Pane específico */
+#loginpane {
+    /*-fx-background-color: white; /* Color de fondo blanco */
+    -fx-background-color: rgba(255, 255, 255, 0.7);
+    -fx-background-radius: 5px; /* Bordes redondeados */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 20, 0.5, 0, 0); /* Sombra */
+}
+#CCPane {
+    /*-fx-background-color: white; /* Color de fondo blanco */
+    -fx-background-color: rgba(255, 255, 255, 0.7);
+    -fx-background-radius: 5px; /* Bordes redondeados */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 20, 0.5, 0, 0); /* Sombra */
+}
+#LabelCC{
+    -fx-font-weight:bold;
+}
