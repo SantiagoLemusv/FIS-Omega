@@ -7,5 +7,9 @@ module omega.sgb {
     exports omega.sgb;
     opens omega.sgb.control to javafx.fxml;
     exports omega.sgb.control;
+    exports omega.sgb.integracion;
+    opens omega.sgb.integracion to javafx.fxml;
+    exports omega.sgb.gui;
+    opens omega.sgb.gui to javafx.fxml;
 
 }

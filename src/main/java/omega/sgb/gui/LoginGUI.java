@@ -1,4 +1,4 @@
-package omega.sgb.control;
+package omega.sgb.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,9 +15,9 @@ import omega.sgb.dominio.Cuenta;
 
 import java.io.IOException;
 
-public class ControlLogin {
+public class LoginGUI {
 
-    public String css = this.getClass().getResource("/omega/sgb/view/gui/app.css").toExternalForm();
+    public String css = this.getClass().getResource("/omega/sgb/gui/gui/app.css").toExternalForm();
     //public Cuenta cuenta = new Cuenta();
     public Cuenta cuenta = new Cuenta();
     private Stage stage;
@@ -51,7 +51,7 @@ public class ControlLogin {
 
     public void toPantallaCrearCuenta(ActionEvent event) throws IOException {
         App app = new App();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/omega/sgb/view/crearcuenta-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/omega/sgb/gui/crearcuenta-view.fxml"));
         //FXMLLoader loader = new FXMLLoader(getClass().getResource("/omega/sgb/view/nada.fxml"));
         root = loader.load();
         stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
@@ -63,7 +63,7 @@ public class ControlLogin {
     }
     public void toPantallaLector(ActionEvent event) throws IOException {
         App app = new App();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/omega/sgb/view/mainlector-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/omega/sgb/gui/mainlector-view.fxml"));
         //FXMLLoader loader = new FXMLLoader(getClass().getResource("/omega/sgb/view/nada.fxml"));
         root = loader.load();
         stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
@@ -75,7 +75,7 @@ public class ControlLogin {
     }
     public void toPantallaBibliotecario(ActionEvent event) throws IOException {
         App app = new App();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/omega/sgb/view/mainbibliotecario-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/omega/sgb/gui/mainbibliotecario-view.fxml"));
         //FXMLLoader loader = new FXMLLoader(getClass().getResource("/omega/sgb/view/nada.fxml"));
         root = loader.load();
         stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());

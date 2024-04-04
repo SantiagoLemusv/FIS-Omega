@@ -1,4 +1,4 @@
-package omega.sgb;
+package omega.sgb.integracion;
 
 public class SQL {
 

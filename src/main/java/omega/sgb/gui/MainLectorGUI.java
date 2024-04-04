@@ -1,4 +1,4 @@
-package omega.sgb.control;
+package omega.sgb.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,8 +15,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ControlMainLector implements Initializable {
-    public String css = this.getClass().getResource("/omega/sgb/view/gui/app.css").toExternalForm();
+public class MainLectorGUI implements Initializable {
+    public String css = this.getClass().getResource("/omega/sgb/gui/gui/app.css").toExternalForm();
     private Stage stage;
     private Scene scene;
     private Parent root;

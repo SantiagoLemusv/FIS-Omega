@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1540.0" stylesheets="@gui/app.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="omega.sgb.control.ControlCrearCuenta">
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1540.0" stylesheets="@gui/app.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="omega.sgb.gui.CrearCuentaGUI">
    <children>
       <Pane fx:id="blurPane" prefHeight="800.0" prefWidth="1540.0" />
       <ImageView fx:id="blur" fitHeight="870.0" fitWidth="1639.0" layoutX="-3.0" pickOnBounds="true" preserveRatio="true">
