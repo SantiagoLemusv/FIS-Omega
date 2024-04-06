@@ -11,7 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import omega.sgb.App;
-import omega.sgb.dominio.Cuenta;
+import omega.sgb.dominio.Persona;
 
 import java.io.IOException;
 
@@ -19,7 +19,7 @@ public class LoginGUI {
 
     public String css = this.getClass().getResource("/omega/sgb/gui/gui/app.css").toExternalForm();
     //public Cuenta cuenta = new Cuenta();
-    public Cuenta cuenta = new Cuenta();
+    public Persona persona = new Persona();
     private Stage stage;
     private Scene scene;
     private Parent root;
