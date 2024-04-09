@@ -9,7 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import omega.sgb.dominio.Cuenta;
+import omega.sgb.dominio.Persona;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,14 +22,14 @@ public class MainLectorGUI implements Initializable {
     private Scene scene;
     private Parent root;
 
-    Cuenta cuenta = new Cuenta();
+    Persona cuenta = new Persona();
 
     @FXML
     Label Titulo;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String Nombre = Cuenta.Nombre;
+        String Nombre = cuenta.getNombre();
         Titulo.setText("Bienvenido "+Nombre+".");
     }
 
@@ -43,29 +44,23 @@ public class MainLectorGUI implements Initializable {
         stage.show();
     }
     public void CerrarSesion(ActionEvent event) throws IOException {
-        cuenta.setUsuario(null);
+        cuenta.setCedula(null);
         cuenta.setNombre(null);
-        cuenta.setApellido(null);
-        cuenta.setContraseña(null);
-        cuenta.setCorreo(null);
-        cuenta.setTipoCuenta(null);
+        cuenta.setContrasenia(null);
+        cuenta.setTipoPersonaId(null);
 
-        String usr = cuenta.getUsuario();
-        String psw = cuenta.getContraseña();
+        Integer usr = cuenta.getCedula();
+        String psw = cuenta.getContrasenia();
         String usn = cuenta.getNombre();
-        String snm = cuenta.getApellido();
-        String cor = cuenta.getCorreo();
-        String tip = cuenta.getTipoCuenta();
+        Integer tip = cuenta.getTipoPersonaId();
         System.out.println("\n\nlogout");
         System.out.println(usr+"<-usr value");
         System.out.println(psw+"<-psw value");
         System.out.println(usn+"<-usn value");
-        System.out.println(snm+"<-snm value");
-        System.out.println(cor+"<-cor value");
         System.out.println(tip+"<-tip value");
 
 
-        if((usr == null && psw == null && usn == null && snm == null && cor == null && tip == null)){
+        if((usr == null && psw == null && usn == null && tip == null)){
             System.out.println("Values nulled");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("login-view.fxml"));
             root = loader.load();
