@@ -1,26 +1,38 @@
 package omega.sgb.dominio;
 
+import java.time.LocalDate;
+
 public class Tarjeta {
+    //Atributos de instancia
     private Integer id;
     private Integer numero;
-    private String fechaVencimiento;
-    private Integer cVV;
+    private LocalDate fechaVencimiento;
     private String entidadBancaria;
-    private Integer personaId;
-    private Integer tipoTarjetaId;
+    private String titular;
+    private Integer tipoTarjetaId;//Debito (1), credito (2)
+    private Persona persona;
 
     //Métodos constructores
     public Tarjeta() {
     }
 
-    public Tarjeta(Integer id, Integer numero, String fechaVencimiento, Integer cVV, String entidadBancaria, Integer personaId, Integer tipoTarjetaId) {
+    public Tarjeta(Integer id, Integer numero, LocalDate fechaVencimiento, String entidadBancaria, String titular, Integer tipoTarjetaId, Persona persona) {
         this.id = id;
         this.numero = numero;
         this.fechaVencimiento = fechaVencimiento;
-        this.cVV = cVV;
         this.entidadBancaria = entidadBancaria;
-        this.personaId = personaId;
+        this.titular = titular;
         this.tipoTarjetaId = tipoTarjetaId;
+        this.persona = persona;
+    }
+
+    public Tarjeta(Integer numero, LocalDate fechaVencimiento, String entidadBancaria, String titular, Integer tipoTarjetaId, Persona persona) {
+        this.numero = numero;
+        this.fechaVencimiento = fechaVencimiento;
+        this.entidadBancaria = entidadBancaria;
+        this.titular = titular;
+        this.tipoTarjetaId = tipoTarjetaId;
+        this.persona = persona;
     }
 
     //Métodos de acceso
@@ -40,20 +52,12 @@ public class Tarjeta {
         this.numero = numero;
     }
 
-    public String getFechaVencimiento() {
+    public LocalDate getFechaVencimiento() {
         return fechaVencimiento;
     }
 
-    public void setFechaVencimiento(String fechaVencimiento) {
+    public void setFechaVencimiento(LocalDate fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
-    }
-
-    public Integer getcVV() {
-        return cVV;
-    }
-
-    public void setcVV(Integer cVV) {
-        this.cVV = cVV;
     }
 
     public String getEntidadBancaria() {
@@ -64,12 +68,12 @@ public class Tarjeta {
         this.entidadBancaria = entidadBancaria;
     }
 
-    public Integer getPersonaId() {
-        return personaId;
+    public String getTitular() {
+        return titular;
     }
 
-    public void setPersonaId(Integer personaId) {
-        this.personaId = personaId;
+    public void setTitular(String titular) {
+        this.titular = titular;
     }
 
     public Integer getTipoTarjetaId() {
@@ -78,5 +82,13 @@ public class Tarjeta {
 
     public void setTipoTarjetaId(Integer tipoTarjetaId) {
         this.tipoTarjetaId = tipoTarjetaId;
+    }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 }

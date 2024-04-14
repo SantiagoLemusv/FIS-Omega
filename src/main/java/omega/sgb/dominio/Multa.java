@@ -1,20 +1,28 @@
 package omega.sgb.dominio;
 
+import java.time.LocalDate;
+
 public class Multa  {
+    //Atributos de instancia
     private Integer id;
-    private Float montoPagar;
-    private String fechaEmision;
-    private Integer prestamoId;
+    private Integer montoPagar;// Es igual a multaValorDia * número de días que el lector no hizo la devolución del libro
+    private LocalDate fechaEmision;//Cuando se genera la multa, que es cuando se vencio el prestamo
+    private Pago pago;
 
     //Métodos constructores
     public Multa() {
     }
-
-    public Multa(Integer id, Float montoPagar, String fechaEmision, Integer prestamoId) {
+    public Multa(Integer id, Integer montoPagar, LocalDate fechaEmision, Pago pago) {
         this.id = id;
         this.montoPagar = montoPagar;
         this.fechaEmision = fechaEmision;
-        this.prestamoId = prestamoId;
+        this.pago = pago;
+    }
+
+    public Multa(Integer montoPagar, LocalDate fechaEmision, Pago pago) {
+        this.montoPagar = montoPagar;
+        this.fechaEmision = fechaEmision;
+        this.pago = pago;
     }
 
     //Métodos de acceso
@@ -26,27 +34,27 @@ public class Multa  {
         this.id = id;
     }
 
-    public Float getMontoPagar() {
+    public Integer getMontoPagar() {
         return montoPagar;
     }
 
-    public void setMontoPagar(Float montoPagar) {
+    public void setMontoPagar(Integer montoPagar) {
         this.montoPagar = montoPagar;
     }
 
-    public String getFechaEmision() {
+    public LocalDate getFechaEmision() {
         return fechaEmision;
     }
 
-    public void setFechaEmision(String fechaEmision) {
+    public void setFechaEmision(LocalDate fechaEmision) {
         this.fechaEmision = fechaEmision;
     }
 
-    public Integer getPrestamoId() {
-        return prestamoId;
+    public Pago getPago() {
+        return pago;
     }
 
-    public void setPrestamoId(Integer prestamoId) {
-        this.prestamoId = prestamoId;
+    public void setPago(Pago pago) {
+        this.pago = pago;
     }
 }
