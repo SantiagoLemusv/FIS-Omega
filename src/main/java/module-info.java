@@ -1,6 +1,7 @@
 module omega.sgb {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
 
 
     opens omega.sgb to javafx.fxml;
