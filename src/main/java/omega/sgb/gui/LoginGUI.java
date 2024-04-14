@@ -6,16 +6,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import omega.sgb.App;
+import omega.sgb.SingletonPantallas;
 import omega.sgb.dominio.Persona;
 
 import java.io.IOException;
 
 public class LoginGUI {
+    private SingletonPantallas sPantallas = SingletonPantallas.getInstance();
 
     public String css = this.getClass().getResource("/omega/sgb/gui/gui/app.css").toExternalForm();
     //public Cuenta cuenta = new Cuenta();
@@ -23,30 +26,46 @@ public class LoginGUI {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    @FXML
-    Label LabelPostQuery;
-    @FXML
-    TextField Usuariotxtbox;
-    @FXML
-    PasswordField Contraseñatxtbox;
 
     @FXML
-    public void IniciarSesion(ActionEvent event) throws IOException {
-        String Usuario = Usuariotxtbox.getText();
-        String Contraseña = Contraseñatxtbox.getText();
-        Boolean LoginKey = false;
-    //  SQL.login(Usuario,Contraseña);
-        if(Usuario.equals("l")&&Contraseña.equals("l")){
-            LabelPostQuery.setText("lector");
-            toPantallaLector(event);
-        }
-        else if(Usuario.equals("b")&&Contraseña.equals("b")){
-            LabelPostQuery.setText("bibliotecario");
-            toPantallaBibliotecario(event);
+    Label lblAutenticacion;
+    @FXML
+    Button btnIrInciarSesionM;
+    @FXML
+    TextField txtCedula;
+    @FXML
+    PasswordField txtContrasena;
+
+    public String getTxtCedula(){
+        return txtCedula.getText();
+    }
+
+    public String getTxtContrasena(){
+        return txtContrasena.getText();
+    }
+    public void setLblAutenticacion(String texto){
+        lblAutenticacion.setText(texto);
+    }
+
+    public void iniciarSesion(ActionEvent event) throws IOException {
+        if(sPantallas.getsControladores().getControladorLogIn().validarCredenciales()){
+            toTipoPantalla(event);
         }
         else{
-            LabelPostQuery.setText("Usuario y/o contraseña incorrectos");
+            sPantallas.getsControladores().getControladorLogIn().mensajeAutenticacion();
+
         }
+
+    }
+
+    public void toTipoPantalla(ActionEvent event) throws IOException {
+        if(sPantallas.getsControladores().getUsuarioActual().getId() == 1){
+            toPantallaBibliotecario(event);
+        }
+        else if (sPantallas.getsControladores().getUsuarioActual().getId() == 2) {
+            toPantallaLector(event);
+        }
+
     }
 
     public void toPantallaCrearCuenta(ActionEvent event) throws IOException {
@@ -61,6 +80,9 @@ public class LoginGUI {
         stage.setMaximized(true);
         stage.show();
     }
+
+
+
     public void toPantallaLector(ActionEvent event) throws IOException {
         App app = new App();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/omega/sgb/gui/mainlector-view.fxml"));
@@ -73,6 +95,7 @@ public class LoginGUI {
         stage.setMaximized(true);
         stage.show();
     }
+
     public void toPantallaBibliotecario(ActionEvent event) throws IOException {
         App app = new App();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/omega/sgb/gui/mainbibliotecario-view.fxml"));

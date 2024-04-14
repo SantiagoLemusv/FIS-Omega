@@ -17,9 +17,9 @@
          <effect>
             <BoxBlur height="10.0" iterations="3" width="10.0" />
          </effect></ImageView>
-      <Pane fx:id="CCPane" layoutX="343.0" layoutY="71.0" prefHeight="658.0" prefWidth="853.0">
+      <Pane fx:id="CCPane" layoutX="344.0" layoutY="46.0" prefHeight="658.0" prefWidth="853.0">
          <children>
-            <Button fx:id="CrearCuentaButton" layoutX="353.0" layoutY="577.0" mnemonicParsing="false" onAction="#CrearCuenta" prefHeight="42.0" prefWidth="123.0" text="Crear Cuenta">
+            <Button fx:id="btnCrearCuentaM" layoutX="566.0" layoutY="556.0" mnemonicParsing="false" onAction="#CrearCuenta" prefHeight="42.0" prefWidth="123.0" text="Crear Cuenta">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -27,41 +27,27 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TextField fx:id="Usuariotxt" layoutX="52.0" layoutY="296.0" prefHeight="42.0" prefWidth="424.0" promptText="Usuario">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextField>
-            <PasswordField fx:id="Contraseñatxt" layoutX="52.0" layoutY="433.0" prefHeight="42.0" prefWidth="198.0" promptText="Contraseña">
+            <PasswordField fx:id="txtContrasena" layoutX="52.0" layoutY="412.0" prefHeight="42.0" prefWidth="198.0" promptText="Contraseña">
                <font>
                   <Font size="14.0" />
                </font>
             </PasswordField>
-            <TextField fx:id="Nombretxt" layoutX="52.0" layoutY="226.0" prefHeight="42.0" prefWidth="198.0" promptText="Nombre">
+            <TextField fx:id="txtNombreCompleto" layoutX="52.0" layoutY="226.0" prefHeight="42.0" prefWidth="198.0" promptText="Nombre Completo">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="Apellidotxt" layoutX="278.0" layoutY="226.0" prefHeight="42.0" prefWidth="198.0" promptText="Apellido">
+            <TextField fx:id="txtCedula" accessibleRoleDescription="Cedula" layoutX="52.0" layoutY="296.0" prefHeight="42.0" prefWidth="424.0" promptText="Cedula">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="Cedulatxt" layoutX="52.0" layoutY="366.0" prefHeight="42.0" prefWidth="424.0" promptText="Cedula">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextField>
-            <Label fx:id="LabelCC" alignment="CENTER" layoutX="52.0" layoutY="497.0" prefHeight="63.0" prefWidth="424.0" textAlignment="CENTER" textFill="#830009" wrapText="true">
-               <font>
-                  <Font size="14.0" />
-               </font></Label>
             <Label fx:id="Titulo" layoutX="52.0" layoutY="132.0" prefHeight="51.0" prefWidth="427.0" text="Crea tu Cuenta">
                <font>
                   <Font name="Roboto Light" size="35.0" />
                </font>
             </Label>
-            <PasswordField fx:id="ContraseñatxtConfirm" layoutX="278.0" layoutY="433.0" prefHeight="42.0" prefWidth="198.0" promptText="Confirmar contraseña">
+            <PasswordField fx:id="txtContrasenaConfirmar" layoutX="52.0" layoutY="476.0" prefHeight="42.0" prefWidth="198.0" promptText="Confirmar contraseña">
                <font>
                   <Font size="14.0" />
                </font>
@@ -76,7 +62,7 @@
                   <Image url="@gui/add_user.png" />
                </image>
             </ImageView>
-            <Button fx:id="VolverButton" layoutX="52.0" layoutY="577.0" mnemonicParsing="false" onAction="#ToLoginView" prefHeight="42.0" prefWidth="123.0" text="Volver a Login">
+            <Button fx:id="btnVolverCrearCuenta" layoutX="311.0" layoutY="556.0" mnemonicParsing="false" onAction="#ToLoginView" prefHeight="42.0" prefWidth="123.0" text="Volver a Login">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -89,6 +75,8 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
+            <Label layoutX="50.0" layoutY="370.0" prefHeight="25.0" prefWidth="261.0" text="Digita una contraseña con mínimo 8 carácteres" />
+            <Label fx:id="lblAutenticacion" layoutX="52.0" layoutY="556.0" prefHeight="42.0" prefWidth="162.0" />
          </children>
       </Pane>
    </children>

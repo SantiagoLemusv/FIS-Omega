@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //No debe tener dependencias a las pantallas
-public class ControlPrestamo {
+public class ControladorPrestamo {
     private List<LibroFisico> carrito= new ArrayList<>();
     private SingletonControladores sControl= SingletonControladores.getInstance();
 
