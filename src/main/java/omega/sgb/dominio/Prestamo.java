@@ -5,18 +5,18 @@ public class Prestamo {
     private String fechaPrestamo;
     private String fechaDevolucion;
     private Integer personaId;
-    private Integer estadoPrestamoId;
+    private Integer estadoPrestamoId; // solo hay 2 valores, 0 no vencido, 1 vencido, 2 cerrado
+    private LibroFisico libro;
 
     //Métodos constructores
     public Prestamo() {
     }
 
-    public Prestamo(Integer id, String fechaPrestamo, String fechaDevolucion, Integer personaId, Integer estadoPrestamoId) {
-        this.id = id;
+    public Prestamo(String fechaPrestamo, String fechaDevolucion, Integer personaId) {
         this.fechaPrestamo = fechaPrestamo;
         this.fechaDevolucion = fechaDevolucion;
         this.personaId = personaId;
-        this.estadoPrestamoId = estadoPrestamoId;
+        this.estadoPrestamoId = 0;
     }
 
     //Métodos de acceso
