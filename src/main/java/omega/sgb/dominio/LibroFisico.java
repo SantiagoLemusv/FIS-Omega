@@ -1,22 +1,30 @@
 package omega.sgb.dominio;
 
 public class LibroFisico {
+    //Atributos de instancia
     private Integer id;
-    private Integer estado;
     private String ubicacion;
-    private Integer libroVirtualId;
-    private Integer prestamoId;
+    private String numeroClasificacion;
+    private LibroVirtual libroVirtual;
+    private Integer estadoLibroFisicoId;//Prestado (0), disponible (1)
 
     //Métodos constructores
     public LibroFisico() {
     }
 
-    public LibroFisico(Integer id, Integer estado, String ubicacion, Integer libroVirtualId, Integer prestamoId) {
+    public LibroFisico(Integer id, String ubicacion, String numeroClasificacion, LibroVirtual libroVirtual, Integer estadoLibroFisicoId) {
         this.id = id;
-        this.estado = estado;
         this.ubicacion = ubicacion;
-        this.libroVirtualId = libroVirtualId;
-        this.prestamoId = prestamoId;
+        this.numeroClasificacion = numeroClasificacion;
+        this.libroVirtual = libroVirtual;
+        this.estadoLibroFisicoId = estadoLibroFisicoId;
+    }
+
+    public LibroFisico(String ubicacion, String numeroClasificacion, LibroVirtual libroVirtual, Integer estadoLibroFisicoId) {
+        this.ubicacion = ubicacion;
+        this.numeroClasificacion = numeroClasificacion;
+        this.libroVirtual = libroVirtual;
+        this.estadoLibroFisicoId = estadoLibroFisicoId;
     }
 
     //Métodos de acceso
@@ -28,14 +36,6 @@ public class LibroFisico {
         this.id = id;
     }
 
-    public Integer getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Integer estado) {
-        this.estado = estado;
-    }
-
     public String getUbicacion() {
         return ubicacion;
     }
@@ -44,19 +44,27 @@ public class LibroFisico {
         this.ubicacion = ubicacion;
     }
 
-    public Integer getLibroVirtualId() {
-        return libroVirtualId;
+    public String getNumeroClasificacion() {
+        return numeroClasificacion;
     }
 
-    public void setLibroVirtualId(Integer libroVirtualId) {
-        this.libroVirtualId = libroVirtualId;
+    public void setNumeroClasificacion(String numeroClasificacion) {
+        this.numeroClasificacion = numeroClasificacion;
     }
 
-    public Integer getPrestamoId() {
-        return prestamoId;
+    public LibroVirtual getLibroVirtual() {
+        return libroVirtual;
     }
 
-    public void setPrestamoId(Integer prestamoId) {
-        this.prestamoId = prestamoId;
+    public void setLibroVirtual(LibroVirtual libroVirtual) {
+        this.libroVirtual = libroVirtual;
+    }
+
+    public Integer getEstadoLibroFisicoId() {
+        return estadoLibroFisicoId;
+    }
+
+    public void setEstadoLibroFisicoId(Integer estadoLibroFisicoId) {
+        this.estadoLibroFisicoId = estadoLibroFisicoId;
     }
 }
