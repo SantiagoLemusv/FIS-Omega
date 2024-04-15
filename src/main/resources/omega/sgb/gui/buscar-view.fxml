@@ -1,14 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="omega.sgb.gui.BusquedaGUI"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="omega.sgb.gui.BusquedaGUI">
+   <children>
+      <Pane prefHeight="800.0" prefWidth="1350.0">
+         <children>
+            <ImageView fitHeight="800.0" fitWidth="1470.0" layoutX="-57.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@gui/login_bg2.jpg" />
+               </image>
+               <effect>
+                  <ColorAdjust brightness="-0.18" contrast="0.09" saturation="-0.35" />
+               </effect></ImageView>
+            <Label layoutX="47.0" layoutY="232.0" prefHeight="106.0" prefWidth="599.0" text="Digite el titulo del libro que desea consultar:">
+               <font>
+                  <Font size="30.0" />
+               </font></Label>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="1186.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@gui/Usuario.png" />
+               </image>
+               <effect>
+                  <ColorAdjust brightness="0.22" contrast="0.38" hue="-0.25" saturation="-0.45" />
+               </effect></ImageView>
+            <Label layoutX="47.0" layoutY="48.0" prefHeight="82.0" prefWidth="590.0" text="Menu de busqueda de libro">
+               <font>
+                  <Font name="System Bold Italic" size="40.0" />
+               </font>
+            </Label>
+            <Separator layoutY="166.0" prefHeight="0.0" prefWidth="1350.0" />
+            <TextField fx:id="txtBusquedaLibroM" layoutX="47.0" layoutY="360.0" prefHeight="43.0" prefWidth="372.0" promptText="Digite cualquier tecla" text="Ingrese el titulo.">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <Button fx:id="btnBuscarLibroVolverPantallaBusqueda" layoutX="448.0" layoutY="360.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="100.0" text="Buscar" />
+            <Button fx:id="btnVolverMenuPrincipal" layoutX="47.0" layoutY="545.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="222.0" text="Volver al menu principal">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
+            <ImageView fitHeight="137.0" fitWidth="266.0" layoutX="855.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@gui/carrito2.png" />
+               </image>
+               <effect>
+                  <ColorAdjust brightness="0.02" contrast="0.28" hue="0.02" saturation="-0.45" />
+               </effect>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
 </AnchorPane>
