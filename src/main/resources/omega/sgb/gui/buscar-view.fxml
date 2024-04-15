@@ -21,7 +21,7 @@
                <font>
                   <Font size="30.0" />
                </font></Label>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="1186.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="1177.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@gui/Usuario.png" />
                </image>
@@ -44,7 +44,7 @@
                <font>
                   <Font size="18.0" />
                </font></Button>
-            <ImageView fitHeight="137.0" fitWidth="266.0" layoutX="855.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="293.0" layoutX="823.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@gui/carrito2.png" />
                </image>
