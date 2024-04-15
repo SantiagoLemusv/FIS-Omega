@@ -17,7 +17,7 @@
                <effect>
                   <BoxBlur>
                      <input>
-                        <ColorAdjust brightness="0.28" contrast="-0.32" />
+                        <ColorAdjust brightness="0.37" contrast="-0.39" saturation="-0.02" />
                      </input></BoxBlur>
                </effect>
             </ImageView>
@@ -45,26 +45,16 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Label layoutX="116.0" layoutY="455.0" prefHeight="78.0" prefWidth="327.0" text="Cerrar Sesion">
+            <Label layoutX="116.0" layoutY="509.0" prefHeight="78.0" prefWidth="327.0" text="Cerrar Sesion">
                <font>
                   <Font size="48.0" />
                </font>
             </Label>
-            <Button fx:id="btCerrarSesionVolverPantallaPrincipal" layoutX="116.0" layoutY="541.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="101.0" text="Logout">
+            <Button fx:id="btCerrarSesionVolverPantallaPrincipal" layoutX="116.0" layoutY="608.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="101.0" text="Logout">
                <font>
                   <Font size="48.0" />
                </font>
             </Button>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="558.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@gui/libroAzul.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="558.0" layoutY="438.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@gui/logout.png" />
-               </image>
-            </ImageView>
          </children></Pane>
    </children>
 </AnchorPane>
