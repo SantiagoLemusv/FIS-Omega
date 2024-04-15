@@ -9,7 +9,6 @@ import java.util.List;
 //No debe tener dependencias a las pantallas
 public class ControladorPrestamo {
     private List<LibroFisico> carrito= new ArrayList<>();
-    private SingletonControladores sControl= SingletonControladores.getInstance();
 
     public void agregarLibroCarrito(LibroFisico libro){
         carrito.add(libro);

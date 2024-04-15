@@ -12,13 +12,13 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import omega.sgb.App;
+import omega.sgb.SingletonControladores;
 import omega.sgb.SingletonPantallas;
 import omega.sgb.dominio.Persona;
 
 import java.io.IOException;
 
 public class LoginGUI {
-    private SingletonPantallas sPantallas = SingletonPantallas.getInstance();
 
     public String css = this.getClass().getResource("/omega/sgb/gui/gui/app.css").toExternalForm();
     //public Cuenta cuenta = new Cuenta();
@@ -48,21 +48,21 @@ public class LoginGUI {
     }
 
     public void iniciarSesion(ActionEvent event) throws IOException {
-        if(sPantallas.getsControladores().getControladorLogIn().validarCredenciales()){
+        if(SingletonControladores.getInstanceLogIn().validarCredenciales()){
             toTipoPantalla(event);
         }
         else{
-            sPantallas.getsControladores().getControladorLogIn().mensajeAutenticacion();
+            SingletonControladores.getInstanceLogIn().mensajeAutenticacion();
 
         }
 
     }
 
     public void toTipoPantalla(ActionEvent event) throws IOException {
-        if(sPantallas.getsControladores().getUsuarioActual().getId() == 1){
+        if(SingletonControladores.getUsuarioActual().getId() == 1){
             toPantallaBibliotecario(event);
         }
-        else if (sPantallas.getsControladores().getUsuarioActual().getId() == 2) {
+        else if (SingletonControladores.getUsuarioActual().getId() == 2) {
             toPantallaLector(event);
         }
 

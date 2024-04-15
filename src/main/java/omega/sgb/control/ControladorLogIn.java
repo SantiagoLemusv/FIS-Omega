@@ -11,11 +11,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ControladorLogIn {
-    private SingletonPantallas sPantallas = SingletonPantallas.getInstance();
 
     public Boolean validarCredenciales() {
-        String cedula = sPantallas.getLogin().getTxtCedula();
-        String contrasena = sPantallas.getLogin().getTxtContrasena();
+        String cedula = SingletonPantallas.getInstanceLogin().getTxtCedula();
+        String contrasena = SingletonPantallas.getInstanceLogin().getTxtContrasena();
         Integer numCedula = Integer.parseInt(cedula);
         try (Connection connection = SQL.getConexion()) {
             String sql = "SELECT ID, TIPOPERSONAID, NOMBRE FROM PERSONA WHERE CEDULA = ? AND CONTRASENA = ?";
@@ -25,11 +24,11 @@ public class ControladorLogIn {
 
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     if (resultSet.next()) {
-                        sPantallas.getsControladores().getUsuarioActual().setId(resultSet.getInt("ID"));
-                        sPantallas.getsControladores().getUsuarioActual().setTipoPersonaId(resultSet.getInt("TIPOPERSONAID"));
-                        sPantallas.getsControladores().getUsuarioActual().setNombre(resultSet.getString("NOMBRE"));
-                        sPantallas.getsControladores().getUsuarioActual().setCedula(numCedula);
-                        sPantallas.getsControladores().getUsuarioActual().setContrasenia(contrasena);
+                        SingletonControladores.getUsuarioActual().setId(resultSet.getInt("ID"));
+                        SingletonControladores.getUsuarioActual().setTipoPersonaId(resultSet.getInt("TIPOPERSONAID"));
+                        SingletonControladores.getUsuarioActual().setNombre(resultSet.getString("NOMBRE"));
+                        SingletonControladores.getUsuarioActual().setCedula(numCedula);
+                        SingletonControladores.getUsuarioActual().setContrasenia(contrasena);
                         return true;
                     }
                 }
@@ -43,7 +42,7 @@ public class ControladorLogIn {
 
 
     public void mensajeAutenticacion(){
-        sPantallas.getLogin().setLblAutenticacion("El usuario o contraseña no son válidas");
+        SingletonPantallas.getInstanceLogin().setLblAutenticacion("El usuario o contraseña no son válidas");
     }
 
 }
