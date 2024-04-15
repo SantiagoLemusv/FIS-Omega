@@ -40,7 +40,7 @@
                <font>
                   <Font size="48.0" />
                </font></Label>
-            <Button layoutX="116.0" layoutY="364.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="101.0" text="Buscar">
+            <Button fx:id="btnBuscarLibroVolverPantallaBuscarLibro" layoutX="116.0" layoutY="364.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="101.0" text="Buscar">
                <font>
                   <Font size="18.0" />
                </font>
@@ -50,7 +50,7 @@
                   <Font size="48.0" />
                </font>
             </Label>
-            <Button layoutX="116.0" layoutY="541.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="101.0" text="Logout">
+            <Button fx:id="btCerrarSesionVolverPantallaPrincipal" layoutX="116.0" layoutY="541.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="101.0" text="Logout">
                <font>
                   <Font size="48.0" />
                </font>
