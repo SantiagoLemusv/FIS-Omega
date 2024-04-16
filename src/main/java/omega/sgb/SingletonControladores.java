@@ -6,7 +6,7 @@ import omega.sgb.dominio.Persona;
 
 public class SingletonControladores {
     private static SingletonControladores myself;
-    private static Persona usuarioActual;
+    private static Persona usuarioActual = new Persona();
     private static ControladorPrestamo controladorPrestamo;
     private static ControladorLogIn controladorLogIn;
     public static Persona getUsuarioActual() {

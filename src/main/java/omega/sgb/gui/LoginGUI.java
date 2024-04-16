@@ -20,13 +20,6 @@ import java.io.IOException;
 
 public class LoginGUI {
 
-    public String css = this.getClass().getResource("/omega/sgb/gui/gui/app.css").toExternalForm();
-    //public Cuenta cuenta = new Cuenta();
-    public Persona persona = new Persona();
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-
     @FXML
     Label lblAutenticacion;
     @FXML

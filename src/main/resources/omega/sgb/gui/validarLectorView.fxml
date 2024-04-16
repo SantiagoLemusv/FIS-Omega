@@ -18,7 +18,7 @@
          </effect></ImageView>
       <Pane prefHeight="835.0" prefWidth="1315.0">
          <children>
-            <TextField alignment="TOP_LEFT" layoutX="221.0" layoutY="238.0" prefHeight="46.0" prefWidth="448.0" promptText="Identificacion del lector.">
+            <TextField fx:id="txtCedulaLector" alignment="TOP_LEFT" layoutX="221.0" layoutY="238.0" prefHeight="46.0" prefWidth="448.0" promptText="Identificacion del lector.">
                <font>
                   <Font size="24.0" />
                </font>
@@ -53,7 +53,7 @@
                   <Font name="System Bold" size="36.0" />
                </font>
             </Label>
-            <Button fx:id="btnConsultarUsuarioM" layoutX="221.0" layoutY="344.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="149.0" text="Consultar">
+            <Button fx:id="btnConsultarLector" layoutX="221.0" layoutY="344.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="149.0" text="Consultar">
                <font>
                   <Font size="24.0" />
                </font>
@@ -63,12 +63,12 @@
                   <Font name="System Bold" size="36.0" />
                </font>
             </Label>
-            <Label layoutX="360.0" layoutY="483.0" prefHeight="45.0" prefWidth="268.0" text="Correcto / Conflictuado">
+            <Label fx:id="lblEstadoLector" layoutX="360.0" layoutY="483.0" prefHeight="45.0" prefWidth="268.0" text="Correcto / Conflictuado">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="260.0" layoutY="613.0" prefHeight="45.0" prefWidth="321.0" text="Conflictuado">
+            <Label fx:id="lblConflictosLector" layoutX="260.0" layoutY="613.0" prefHeight="45.0" prefWidth="321.0" text="Conflictuado">
                <font>
                   <Font size="24.0" />
                </font>
@@ -83,17 +83,17 @@
                   <Font name="System Bold" size="36.0" />
                </font>
             </Label>
-            <Button layoutX="766.0" layoutY="729.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="247.0" text="Confirmar prestamo">
+            <Button fx:id="btnConfirmarPrestamo" layoutX="766.0" layoutY="729.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="247.0" text="Confirmar prestamo">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Label layoutX="420.0" layoutY="733.0" prefHeight="44.0" prefWidth="215.0" text="Exitoso / Fallido">
+            <Label fx:id="lblEstadoPrestamo" layoutX="420.0" layoutY="733.0" prefHeight="44.0" prefWidth="215.0" text="Exitoso / Fallido">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Button fx:id="btnVolverPantalla" layoutX="1131.0" layoutY="729.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="116.0" text="Volver">
+            <Button fx:id="btnVolver" layoutX="1131.0" layoutY="729.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="116.0" text="Volver">
                <font>
                   <Font size="24.0" />
                </font>
