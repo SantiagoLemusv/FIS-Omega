@@ -10,31 +10,31 @@ public class LibroVirtual {
     private Integer cantidad;//número de libros físicos que existen
     private String autor;
     private Integer duracionPrestamo;//Por cuantos días se presta el libro
-    private Integer valorMultaDia;//No tiene setValorMultaDia
+    private Integer multaValorDia;//No tiene setValorMultaDia
     private List<LibroFisico> librosFisicos;
 
     //Métodos constructores
     public LibroVirtual() {
     }
 
-    public LibroVirtual(Integer id, String isbn, String titulo, Integer cantidad, String autor, Integer duracionPrestamo, Integer valorMultaDia, List<LibroFisico> librosFisicos) {
+    public LibroVirtual(Integer id, String isbn, String titulo, Integer cantidad, String autor, Integer duracionPrestamo, Integer multaValorDia, List<LibroFisico> librosFisicos) {
         this.id = id;
         this.isbn = isbn;
         this.titulo = titulo;
         this.cantidad = cantidad;
         this.autor = autor;
         this.duracionPrestamo = duracionPrestamo;
-        this.valorMultaDia = valorMultaDia;
+        this.multaValorDia = multaValorDia;
         this.librosFisicos = librosFisicos;
     }
 
-    public LibroVirtual(String isbn, String titulo, Integer cantidad, String autor, Integer duracionPrestamo, Integer valorMultaDia, List<LibroFisico> librosFisicos) {
+    public LibroVirtual(String isbn, String titulo, Integer cantidad, String autor, Integer duracionPrestamo, Integer multaValorDia, List<LibroFisico> librosFisicos) {
         this.isbn = isbn;
         this.titulo = titulo;
         this.cantidad = cantidad;
         this.autor = autor;
         this.duracionPrestamo = duracionPrestamo;
-        this.valorMultaDia = valorMultaDia;
+        this.multaValorDia = multaValorDia;
         this.librosFisicos = librosFisicos;
     }
 
@@ -87,8 +87,12 @@ public class LibroVirtual {
         this.duracionPrestamo = duracionPrestamo;
     }
 
-    public Integer getValorMultaDia() {
-        return valorMultaDia;
+    public Integer getMultaValorDia() {
+        return multaValorDia;
+    }
+
+    public void setMultaValorDia(Integer multaValorDia) {
+        this.multaValorDia = multaValorDia;
     }
 
     public List<LibroFisico> getLibrosFisicos() {

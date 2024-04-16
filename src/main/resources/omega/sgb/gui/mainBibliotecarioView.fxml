@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="835.0" prefWidth="1315.0" stylesheets="@gui/app.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="835.0" prefWidth="1315.0" stylesheets="@gui/app.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="omega.sgb.gui.MainBibliotecarioGUI">
    <children>
       <Pane prefHeight="835.0" prefWidth="1315.0">
          <children>
@@ -70,8 +70,8 @@
                         <ColorAdjust brightness="-0.05" contrast="0.45" />
                      </effect>
                   </ImageView>
-                  <Button fx:id="btnCarrito" layoutX="1086.0" layoutY="35.0" mnemonicParsing="false" prefHeight="141.0" prefWidth="177.0" />
-                  <ImageView fitHeight="141.0" fitWidth="269.0" layoutX="1032.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="btnCarrito" layoutX="1086.0" layoutY="35.0" mnemonicParsing="false" onAction="#mBtnCarrito" prefHeight="141.0" prefWidth="177.0" />
+                  <ImageView fitHeight="141.0" fitWidth="269.0" layoutX="804.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@gui/carrito2.png" />
                      </image>

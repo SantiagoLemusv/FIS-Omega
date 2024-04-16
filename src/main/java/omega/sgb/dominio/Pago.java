@@ -6,7 +6,7 @@ import java.util.List;
 public class Pago {
     //Atributos de instancia
     private Integer id;
-    private LocalDate fecha;//Cuando se realizo el pago
+    private String fecha;//Cuando se realizo el pago
     private Integer montoTotal;//Suma de los montos de las multas
     private Tarjeta tarjeta;
     private List<Multa> multas;
@@ -15,7 +15,7 @@ public class Pago {
     public Pago() {
     }
 
-    public Pago(Integer id, LocalDate fecha, Integer montoTotal, Tarjeta tarjeta, List<Multa> multas) {
+    public Pago(Integer id, String fecha, Integer montoTotal, Tarjeta tarjeta, List<Multa> multas) {
         this.id = id;
         this.fecha = fecha;
         this.montoTotal = montoTotal;
@@ -23,7 +23,7 @@ public class Pago {
         this.multas = multas;
     }
 
-    public Pago(LocalDate fecha, Integer montoTotal, Tarjeta tarjeta, List<Multa> multas) {
+    public Pago(String fecha, Integer montoTotal, Tarjeta tarjeta, List<Multa> multas) {
         this.fecha = fecha;
         this.montoTotal = montoTotal;
         this.tarjeta = tarjeta;
@@ -39,11 +39,11 @@ public class Pago {
         this.id = id;
     }
 
-    public LocalDate getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

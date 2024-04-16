@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class Prestamo {
     //Atributos de instancia
     private Integer id;
-    private LocalDate fechaPrestamo;
-    private LocalDate fechaDevolucion;
+    private String fechaPrestamo;
+    private String fechaDevolucion;
     private Persona persona;
     private Integer estadoPrestamoId;//Activo (1), vencido (2)
     private LibroFisico libro;
@@ -16,7 +16,7 @@ public class Prestamo {
     public Prestamo() {
     }
 
-    public Prestamo(Integer id, LocalDate fechaPrestamo, LocalDate fechaDevolucion, Persona persona, Integer estadoPrestamoId, LibroFisico libro, Multa multa) {
+    public Prestamo(Integer id, String fechaPrestamo, String fechaDevolucion, Persona persona, Integer estadoPrestamoId, LibroFisico libro, Multa multa) {
         this.id = id;
         this.fechaPrestamo = fechaPrestamo;
         this.fechaDevolucion = fechaDevolucion;
@@ -26,7 +26,7 @@ public class Prestamo {
         this.multa = multa;
     }
 
-    public Prestamo(LocalDate fechaPrestamo, LocalDate fechaDevolucion, Persona persona, Integer estadoPrestamoId, LibroFisico libro, Multa multa) {
+    public Prestamo(String fechaPrestamo, String fechaDevolucion, Persona persona, Integer estadoPrestamoId, LibroFisico libro, Multa multa) {
         this.fechaPrestamo = fechaPrestamo;
         this.fechaDevolucion = fechaDevolucion;
         this.persona = persona;
@@ -44,19 +44,19 @@ public class Prestamo {
         this.id = id;
     }
 
-    public LocalDate getFechaPrestamo() {
+    public String getFechaPrestamo() {
         return fechaPrestamo;
     }
 
-    public void setFechaPrestamo(LocalDate fechaPrestamo) {
+    public void setFechaPrestamo(String fechaPrestamo) {
         this.fechaPrestamo = fechaPrestamo;
     }
 
-    public LocalDate getFechaDevolucion() {
+    public String getFechaDevolucion() {
         return fechaDevolucion;
     }
 
-    public void setFechaDevolucion(LocalDate fechaDevolucion) {
+    public void setFechaDevolucion(String fechaDevolucion) {
         this.fechaDevolucion = fechaDevolucion;
     }
 

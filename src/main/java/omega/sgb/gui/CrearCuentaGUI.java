@@ -50,7 +50,7 @@ public class CrearCuentaGUI {
     }
 
     public void mBtnLoginView(ActionEvent event) throws IOException {
-        SingletonPantallas.toLogInSingleton(event);
+        SingletonPantallas.toLogInViewSingleton(event);
     }
     public void mBtnCrearCuenta(){
 

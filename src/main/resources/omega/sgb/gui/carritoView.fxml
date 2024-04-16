@@ -59,7 +59,7 @@
                         <Font size="24.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnSolicitar" layoutX="909.0" layoutY="667.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="245.0" text="Solicitar">
+                  <Button fx:id="btnSolicitar" layoutX="909.0" layoutY="667.0" mnemonicParsing="false" onAction="#mBtnFinalizarPrestamo" prefHeight="51.0" prefWidth="245.0" text="Solicitar">
                      <font>
                         <Font size="24.0" />
                      </font>

@@ -42,14 +42,14 @@ public class LoginGUI {
     }
     public void mTipoPantalla(ActionEvent event) throws IOException {
         if(SingletonControladores.getUsuarioActual().getTipoPersonaId() == 1){ //Bibliotecario
-            SingletonPantallas.toMainBibliotecarioSingleton(event);
+            SingletonPantallas.toMainBibliotecarioViewSingleton(event);
         } else if (SingletonControladores.getUsuarioActual().getTipoPersonaId() == 2) { //Lector
-            SingletonPantallas.toMainLectorSingleton(event);
+            SingletonPantallas.toMainLectorViewSingleton(event);
         }else{
             lblAutenticacion.setText("El usuario no tiene tipo");
         }
     }
     public void mBtnCrearCuenta(ActionEvent event) throws IOException {
-        SingletonPantallas.toCrearCuentaSingleton(event);
+        SingletonPantallas.toCrearCuentaViewSingleton(event);
     }
 }

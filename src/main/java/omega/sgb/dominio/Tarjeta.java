@@ -6,7 +6,7 @@ public class Tarjeta {
     //Atributos de instancia
     private Integer id;
     private Integer numero;
-    private LocalDate fechaVencimiento;
+    private String fechaVencimiento;
     private String entidadBancaria;
     private String titular;
     private Integer tipoTarjetaId;//Debito (1), credito (2)
@@ -16,7 +16,7 @@ public class Tarjeta {
     public Tarjeta() {
     }
 
-    public Tarjeta(Integer id, Integer numero, LocalDate fechaVencimiento, String entidadBancaria, String titular, Integer tipoTarjetaId, Persona persona) {
+    public Tarjeta(Integer id, Integer numero, String fechaVencimiento, String entidadBancaria, String titular, Integer tipoTarjetaId, Persona persona) {
         this.id = id;
         this.numero = numero;
         this.fechaVencimiento = fechaVencimiento;
@@ -26,7 +26,7 @@ public class Tarjeta {
         this.persona = persona;
     }
 
-    public Tarjeta(Integer numero, LocalDate fechaVencimiento, String entidadBancaria, String titular, Integer tipoTarjetaId, Persona persona) {
+    public Tarjeta(Integer numero, String fechaVencimiento, String entidadBancaria, String titular, Integer tipoTarjetaId, Persona persona) {
         this.numero = numero;
         this.fechaVencimiento = fechaVencimiento;
         this.entidadBancaria = entidadBancaria;
@@ -52,11 +52,11 @@ public class Tarjeta {
         this.numero = numero;
     }
 
-    public LocalDate getFechaVencimiento() {
+    public String getFechaVencimiento() {
         return fechaVencimiento;
     }
 
-    public void setFechaVencimiento(LocalDate fechaVencimiento) {
+    public void setFechaVencimiento(String fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
     }
 

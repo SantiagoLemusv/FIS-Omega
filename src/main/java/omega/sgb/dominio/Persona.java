@@ -1,5 +1,6 @@
 package omega.sgb.dominio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Persona {
@@ -9,7 +10,8 @@ public class Persona {
     private String nombre;
     private String contrasena;
     private Integer tipoPersonaId;//Bibliotecario (1), lector (2)
-    private List<Prestamo> prestamos;
+    private List<Prestamo> prestamos = new ArrayList<Prestamo>();
+    private List<LibroFisico> carrito = new ArrayList<LibroFisico>();
 
     //Métodos constructores
     public Persona() {
@@ -79,6 +81,14 @@ public class Persona {
 
     public void setPrestamos(List<Prestamo> prestamos) {
         this.prestamos = prestamos;
+    }
+
+    public List<LibroFisico> getCarrito() {
+        return carrito;
+    }
+
+    public void setCarrito(List<LibroFisico> carrito) {
+        this.carrito = carrito;
     }
 }
 
