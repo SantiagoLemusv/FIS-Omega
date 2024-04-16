@@ -99,7 +99,7 @@
                </image>
             </ImageView>
             <Button fx:id="btncarrito" layoutX="1015.0" layoutY="38.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="113.0" />
-            <ImageView fitHeight="93.0" fitWidth="177.0" layoutX="977.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="100.0" fitWidth="180.0" layoutX="974.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@gui/carrito2.png" />
                </image>
