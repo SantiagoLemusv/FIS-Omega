@@ -18,7 +18,7 @@
                   <ColorAdjust brightness="-0.18" contrast="0.09" saturation="-0.35" />
                </effect>
             </ImageView>
-            <Pane prefHeight="800.0" prefWidth="1350.0">
+            <Pane prefHeight="800.0" prefWidth="1422.0">
                <children>
                   <Label layoutX="47.0" layoutY="232.0" prefHeight="106.0" prefWidth="599.0" text="Digite el titulo del libro que desea consultar:">
                      <font>
@@ -38,7 +38,7 @@
                         <Font name="System Bold Italic" size="40.0" />
                      </font>
                   </Label>
-                  <Separator layoutY="166.0" prefHeight="0.0" prefWidth="1350.0">
+                  <Separator layoutY="166.0" prefHeight="3.0" prefWidth="1422.0">
                      <effect>
                         <ColorAdjust brightness="-1.0" />
                      </effect></Separator>
