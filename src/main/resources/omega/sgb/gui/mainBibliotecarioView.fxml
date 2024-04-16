@@ -56,10 +56,28 @@
                         <Image url="@gui/logout.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="177.0" fitWidth="245.0" layoutX="144.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="177.0" fitWidth="245.0" layoutX="159.0" layoutY="427.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@gui/libro2.png" />
                      </image>
+                  </ImageView>
+                  <Button fx:id="btnCasa" layoutX="104.0" layoutY="33.0" mnemonicParsing="false" prefHeight="145.0" prefWidth="177.0" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="117.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@gui/Casita.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="-0.05" contrast="0.45" />
+                     </effect>
+                  </ImageView>
+                  <Button fx:id="btnCarrito" layoutX="1086.0" layoutY="35.0" mnemonicParsing="false" prefHeight="141.0" prefWidth="177.0" />
+                  <ImageView fitHeight="141.0" fitWidth="269.0" layoutX="1032.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@gui/carrito2.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust contrast="-0.23" hue="0.02" saturation="1.0" />
+                     </effect>
                   </ImageView>
                </children>
             </Pane>

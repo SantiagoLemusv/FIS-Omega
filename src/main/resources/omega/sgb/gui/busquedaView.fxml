@@ -74,6 +74,17 @@
                      <effect>
                         <ColorAdjust brightness="-1.0" />
                      </effect></Separator>
+                  <Button fx:id="btnCasa" layoutX="1286.0" layoutY="21.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="150.0" />
+                  <ImageView fitHeight="144.0" fitWidth="150.0" layoutX="1289.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@gui/Casita.png" />
+                     </image></ImageView>
+                  <Button fx:id="btnCarrito" layoutX="1085.0" layoutY="21.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="150.0" />
+                  <ImageView fitHeight="136.0" fitWidth="247.0" layoutX="1031.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@gui/carrito2.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
          </children>

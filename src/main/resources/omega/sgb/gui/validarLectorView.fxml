@@ -34,20 +34,12 @@
                </font>
             </Label>
             <Label />
-            <Label layoutX="710.0" layoutY="66.0" prefHeight="45.0" prefWidth="390.0" text="Verificar el estado del usuario">
+            <Label layoutX="595.0" layoutY="78.0" prefHeight="45.0" prefWidth="390.0" text="Verificar el estado del usuario">
                <font>
                   <Font name="System Italic" size="30.0" />
                </font>
             </Label>
             <VBox prefHeight="200.0" prefWidth="100.0" />
-            <ImageView fitHeight="124.0" fitWidth="146.0" layoutX="1177.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@gui/Usuario.png" />
-               </image>
-               <effect>
-                  <ColorAdjust brightness="0.42" contrast="0.68" hue="-0.16" saturation="1.0" />
-               </effect>
-            </ImageView>
             <Label alignment="CENTER" layoutX="766.0" layoutY="227.0" prefHeight="44.0" prefWidth="247.0" text="Lista de libros">
                <font>
                   <Font name="System Bold" size="36.0" />
@@ -100,6 +92,18 @@
             </Button>
             <ListView fx:id="listViewLibros" layoutX="766.0" layoutY="295.0" prefHeight="377.0" prefWidth="473.0" />
             <Separator layoutY="159.0" prefHeight="17.0" prefWidth="1315.0" />
+            <Button fx:id="btncasita" layoutX="1169.0" layoutY="39.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="116.0" />
+            <ImageView fitHeight="113.0" fitWidth="132.0" layoutX="1170.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@gui/Casita.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btncarrito" layoutX="1015.0" layoutY="38.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="113.0" />
+            <ImageView fitHeight="100.0" fitWidth="180.0" layoutX="974.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@gui/carrito2.png" />
+               </image>
+            </ImageView>
          </children></Pane>
    </children>
 </AnchorPane>
