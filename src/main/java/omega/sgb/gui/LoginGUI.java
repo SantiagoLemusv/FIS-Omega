@@ -35,77 +35,28 @@ public class LoginGUI {
     TextField txtCedula;
     @FXML
     PasswordField txtContrasena;
-
-    public String getTxtCedula(){
-        return txtCedula.getText();
-    }
-
-    public String getTxtContrasena(){
-        return txtContrasena.getText();
-    }
-    public void setLblAutenticacion(String texto){
-        lblAutenticacion.setText(texto);
-    }
-
-    public void iniciarSesion(ActionEvent event) throws IOException {
-        if(SingletonControladores.getInstanceLogIn().validarCredenciales()){
-            toTipoPantalla(event);
+    public void mBtnIniciarSesion(ActionEvent event) throws IOException {
+        String cedula = txtCedula.getText();
+        String contrasena = txtContrasena.getText();
+        if(SingletonControladores.getInstanceLogIn().validarCredenciales(cedula, contrasena)){
+            lblAutenticacion.setText("El usuario es válido");
+            mTipoPantalla(event);
         }
         else{
-            SingletonControladores.getInstanceLogIn().mensajeAutenticacion();
-
+            lblAutenticacion.setText("Usuario o contraseña no válidos");
         }
 
     }
-
-    public void toTipoPantalla(ActionEvent event) throws IOException {
-        if(SingletonControladores.getUsuarioActual().getId() == 1){
-            toPantallaBibliotecario(event);
+    public void mTipoPantalla(ActionEvent event) throws IOException {
+        if(SingletonControladores.getUsuarioActual().getTipoPersonaId() == 1){ //Bibliotecario
+            SingletonPantallas.toMainBibliotecarioSingleton(event);
+        } else if (SingletonControladores.getUsuarioActual().getTipoPersonaId() == 2) { //Lector
+            SingletonPantallas.toMainLectorSingleton(event);
+        }else{
+            lblAutenticacion.setText("El usuario no tiene tipo");
         }
-        else if (SingletonControladores.getUsuarioActual().getId() == 2) {
-            toPantallaLector(event);
-        }
-
     }
-
-    public void toPantallaCrearCuenta(ActionEvent event) throws IOException {
-        App app = new App();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/omega/sgb/gui/crearcuenta-view.fxml"));
-        //FXMLLoader loader = new FXMLLoader(getClass().getResource("/omega/sgb/view/nada.fxml"));
-        root = loader.load();
-        stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
-        scene = new Scene(root);
-        scene.getStylesheets().add(css);
-        stage.setScene(scene);
-        stage.setMaximized(true);
-        stage.show();
-    }
-
-
-
-    public void toPantallaLector(ActionEvent event) throws IOException {
-        App app = new App();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/omega/sgb/gui/mainlector-view.fxml"));
-        //FXMLLoader loader = new FXMLLoader(getClass().getResource("/omega/sgb/view/nada.fxml"));
-        root = loader.load();
-        stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
-        scene = new Scene(root);
-        scene.getStylesheets().add(css);
-        stage.setScene(scene);
-        stage.setMaximized(true);
-        stage.show();
-    }
-
-    public void toPantallaBibliotecario(ActionEvent event) throws IOException {
-        App app = new App();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/omega/sgb/gui/mainbibliotecario-view.fxml"));
-        //FXMLLoader loader = new FXMLLoader(getClass().getResource("/omega/sgb/view/nada.fxml"));
-        root = loader.load();
-        stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
-        scene = new Scene(root);
-        scene.getStylesheets().add(css);
-        stage.setScene(scene);
-        stage.setMaximized(true);
-        stage.show();
+    public void mBtnCrearCuenta(ActionEvent event) throws IOException {
+        SingletonPantallas.toCrearCuentaSingleton(event);
     }
 }
