@@ -8,60 +8,75 @@
 
 <AnchorPane fx:id="btnVolverPantallaBuscar" prefHeight="800.0" prefWidth="1450.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="omega.sgb.gui.BusquedaGUI">
    <children>
-      <ImageView fitHeight="800.0" fitWidth="1438.0" layoutX="-946.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@gui/login_bg2.jpg" />
-         </image>
-         <effect>
-            <ColorAdjust brightness="-0.47" contrast="0.12" />
-         </effect></ImageView>
-      <Label fx:id="nombreLibro" layoutX="130.0" layoutY="73.0" text="El Padrino">
-         <font>
-            <Font name="System Italic" size="48.0" />
-         </font></Label>
-      <ImageView fitHeight="556.0" fitWidth="353.0" layoutX="60.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@gui/imagenLibro.png" />
-         </image></ImageView>
-      <Label layoutX="516.0" layoutY="73.0" text="Origen">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
-      <Label fx:id="txtAutorLibro" layoutX="516.0" layoutY="167.0" prefHeight="53.0" prefWidth="395.0" text="Autor: Mario Puzo">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
-      <Label fx:id="txtISBNLibro" layoutX="516.0" layoutY="268.0" prefHeight="53.0" prefWidth="395.0" text="ISBN: 123456">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
-      <Label fx:id="txtCantidadDisponible" layoutX="516.0" layoutY="373.0" prefHeight="53.0" prefWidth="395.0" text="Cantidad disponible: 2">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
-      <Label fx:id="txtUbicacionLibro" layoutX="516.0" layoutY="475.0" prefHeight="53.0" prefWidth="699.0" text="Ubicacion: Bogota - Piso - 1 - M5RTL">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
-      <Label fx:id="txtEstadoLibro" layoutX="516.0" layoutY="584.0" prefHeight="53.0" prefWidth="699.0" text="Estado: Disponible">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
-      <Button fx:id="btAgregarLibroVolverPantallaCarrito" layoutX="618.0" layoutY="710.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="134.0" text="Agregar">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnVolverPantallaBuscar2" layoutX="1010.0" layoutY="710.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="134.0" text="Volver">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
+      <Pane prefHeight="800.0" prefWidth="1450.0">
+         <children>
+            <ImageView fitHeight="818.0" fitWidth="1450.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@gui/login_bg2.jpg" />
+               </image>
+               <effect>
+                  <ColorAdjust brightness="0.57" contrast="-0.06" hue="0.05" saturation="0.07" />
+               </effect>
+            </ImageView>
+            <Pane prefHeight="800.0" prefWidth="1450.0">
+               <children>
+                  <Label fx:id="nombreLibro" layoutX="68.0" layoutY="44.0" text="El Padrino">
+                     <font>
+                        <Font name="System Italic" size="48.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="529.0" layoutY="53.0" text="Origen">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="txtAutorLibro" layoutX="529.0" layoutY="182.0" prefHeight="53.0" prefWidth="395.0" text="Autor: Mario Puzo">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="txtISBNLibro" layoutX="529.0" layoutY="285.0" prefHeight="53.0" prefWidth="395.0" text="ISBN: 123456">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="txtCantidadDisponible" layoutX="529.0" layoutY="376.0" prefHeight="53.0" prefWidth="395.0" text="Cantidad disponible: 2">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="txtUbicacionLibro" layoutX="529.0" layoutY="472.0" prefHeight="53.0" prefWidth="699.0" text="Ubicacion: Bogota - Piso - 1 - M5RTL">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="txtEstadoLibro" layoutX="529.0" layoutY="572.0" prefHeight="53.0" prefWidth="699.0" text="Estado: Disponible">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btAgregarLibroVolverPantallaCarrito" layoutX="1087.0" layoutY="712.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="134.0" text="Agregar">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnVolverPantallaBuscar2" layoutX="592.0" layoutY="712.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="134.0" text="Volver">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="556.0" fitWidth="353.0" layoutX="68.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@gui/imagenLibro.png" />
+                     </image>
+                  </ImageView>
+                  <Separator layoutX="467.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="808.0" prefWidth="19.0">
+                     <effect>
+                        <ColorAdjust brightness="-1.0" />
+                     </effect></Separator>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
