@@ -15,7 +15,7 @@ import java.util.List;
 public class ControladorPrestamo {
     private List<LibroFisico> carrito= new ArrayList<>();
 
-    /*public Boolean consultarLector(String cedula) {
+    public Boolean consultarLector(String cedula) {
         try (Connection connection = SQL.getConexion()) {
             String sql = "SELECT ESTADOPRESTAMOID FROM ESTADOPRESTAMO WHERE AND CONTRASENA = ?";
             System.out.println("ejecutó query");
@@ -25,11 +25,6 @@ public class ControladorPrestamo {
 
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     if (resultSet.next()) {
-                        SingletonControladores.getUsuarioActual().setId(resultSet.getInt("ID"));
-                        SingletonControladores.getUsuarioActual().setTipoPersonaId(resultSet.getInt("TIPOPERSONAID"));
-                        SingletonControladores.getUsuarioActual().setNombre(resultSet.getString("NOMBRE"));
-                        SingletonControladores.getUsuarioActual().setCedula(numCedula);
-                        SingletonControladores.getUsuarioActual().setContrasenia(contrasena);
                         return true;
                     }
                 }
@@ -39,12 +34,12 @@ public class ControladorPrestamo {
         }
 
         return false;
-    }*/
+    }
 
     public void agregarLibroCarrito(LibroFisico libro){
         carrito.add(libro);
     }
-    public void realizarPrestamo(){
+    public void confirmarPrestamo(){
     }
 
 

@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import omega.sgb.SingletonControladores;
 
 public class PrestamoGUI {
     @FXML
@@ -26,10 +27,17 @@ public class PrestamoGUI {
     ListView listViewLibros;
 
     public void mConsultarLector(ActionEvent event){
-
+        String cedulaLector = txtCedulaLector.getText();
+        if(SingletonControladores.getInstancePrestamo().consultarLector(cedulaLector)){
+            lblEstadoLector.setText("Estado lector correcto");
+        }else{
+            lblEstadoLector.setText("El lector tiene conflictos");
+        }
     }
     public void mConfirmarPrestamo(ActionEvent event){
+        if(lblEstadoLector.getText() == "Estado lector correcto"){
 
+        }
     }
     public void mVolverCarrito(ActionEvent event){
 
