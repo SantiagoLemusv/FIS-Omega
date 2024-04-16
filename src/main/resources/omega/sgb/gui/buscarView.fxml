@@ -25,14 +25,6 @@
                         <Font size="30.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="1177.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@gui/Usuario.png" />
-                     </image>
-                     <effect>
-                        <ColorAdjust brightness="0.22" contrast="0.38" hue="-0.25" saturation="-0.45" />
-                     </effect>
-                  </ImageView>
                   <Label layoutX="47.0" layoutY="48.0" prefHeight="82.0" prefWidth="590.0" text="Menu de busqueda de libro">
                      <font>
                         <Font name="System Bold Italic" size="40.0" />
@@ -56,13 +48,21 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <ImageView fitHeight="150.0" fitWidth="293.0" layoutX="823.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="btncarrito" layoutX="1032.0" layoutY="23.0" mnemonicParsing="false" prefHeight="123.0" prefWidth="141.0" />
+                  <ImageView fitHeight="112.0" fitWidth="214.0" layoutX="988.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@gui/carrito2.png" />
                      </image>
                      <effect>
                         <ColorAdjust brightness="0.02" contrast="0.28" hue="0.02" saturation="-0.45" />
                      </effect>
+                  </ImageView>
+                  <Button fx:id="btnCasa" layoutX="1251.0" layoutY="23.0" mnemonicParsing="false" prefHeight="123.0" prefWidth="141.0" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="718.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="123.0" fitWidth="130.0" layoutX="1260.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@gui/Casita.png" />
+                     </image>
                   </ImageView>
                </children>
             </Pane>
