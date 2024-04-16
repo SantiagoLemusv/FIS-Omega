@@ -56,7 +56,7 @@
                         <Image url="@gui/logout.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="177.0" fitWidth="245.0" layoutX="144.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="177.0" fitWidth="245.0" layoutX="159.0" layoutY="427.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@gui/libro2.png" />
                      </image>
