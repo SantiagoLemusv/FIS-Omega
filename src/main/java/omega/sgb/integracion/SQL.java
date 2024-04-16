@@ -4,24 +4,13 @@ import java.sql.*;
 
 
 public class SQL {
+    // Datos de conexión a la base de datos (modifica según tu configuración)
+    private static final String URL = "jdbc:oracle:thin:@orion.javeriana.edu.co:1521/LAB";
+    private static final String USUARIO = "is819920";
+    private static final String CONTRASENA = "Zyqb4HO0x1BG57S";
 
-    public static Connection getConexion(){
-        String conexionUrl = "jdbc:sqlserver://localhost:1433;"
-                + "database=SGB_Omega_BD"
-                + "user=x"
-                + "password=1232;"
-                + "loginTimeOut=30;";
-
-        try{
-            Connection con = DriverManager.getConnection(conexionUrl);
-            return con;
-        } catch(SQLException ex){
-            System.out.println(ex.toString());
-            return null;
-        }
+    // Método para obtener una conexión a la base de datos
+    public static Connection getConexion() throws SQLException {
+        return DriverManager.getConnection(URL, USUARIO, CONTRASENA);
     }
-
-
-
-
 }

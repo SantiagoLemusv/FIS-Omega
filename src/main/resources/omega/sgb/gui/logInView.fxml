@@ -16,7 +16,7 @@
             </ImageView>
             <Pane fx:id="loginpane" layoutX="584.0" layoutY="173.0" prefHeight="455.0" prefWidth="372.0" stylesheets="@gui/app.css">
                <children>
-                   <Button fx:id="btnIrInciarSesionM" layoutX="45.0" layoutY="347.0" onAction="#iniciarSesion" prefHeight="36.0" prefWidth="283.0" text="Iniciar Sesion" />
+                   <Button fx:id="btnInciarSesion" layoutX="45.0" layoutY="347.0" onAction="#mBtnIniciarSesion" prefHeight="36.0" prefWidth="283.0" text="Iniciar Sesion" />
 
                             <Label fx:id="lblAutenticacion" alignment="CENTER" contentDisplay="CENTER" layoutX="45.0" layoutY="283.0" prefHeight="52.0" prefWidth="283.0" textFill="830009">
                      <font>
@@ -32,7 +32,7 @@
                         <Font size="14.0" />
                      </font>
                   </PasswordField>
-                  <Hyperlink layoutX="107.0" layoutY="403.0" onAction="#toPantallaCrearCuenta" text="¿No tienes cuenta? Crea una" underline="true" />
+                  <Hyperlink fx:id="btnCrearCuenta" layoutX="107.0" layoutY="403.0" onAction="#mBtnCrearCuenta" text="¿No tienes cuenta? Crea una" underline="true" />
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="45.0" layoutY="108.0" prefHeight="36.0" prefWidth="283.0" text="Bienvenido al SGB" textAlignment="CENTER">
                      <font>
                         <Font name="Arial" size="20.0" />

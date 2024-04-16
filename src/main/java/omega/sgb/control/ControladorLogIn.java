@@ -12,14 +12,13 @@ import java.sql.SQLException;
 
 public class ControladorLogIn {
 
-    public Boolean validarCredenciales() {
-        String cedula = SingletonPantallas.getInstanceLogin().getTxtCedula();
-        String contrasena = SingletonPantallas.getInstanceLogin().getTxtContrasena();
+    public Boolean validarCredenciales(String cedula, String contrasena) {
         Integer numCedula = Integer.parseInt(cedula);
         try (Connection connection = SQL.getConexion()) {
             String sql = "SELECT ID, TIPOPERSONAID, NOMBRE FROM PERSONA WHERE CEDULA = ? AND CONTRASENA = ?";
+            System.out.println("ejecutó query");
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setString(1, cedula);
+                preparedStatement.setInt(1, numCedula);
                 preparedStatement.setString(2, contrasena);
 
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -39,10 +38,4 @@ public class ControladorLogIn {
 
         return false;
     }
-
-
-    public void mensajeAutenticacion(){
-        SingletonPantallas.getInstanceLogin().setLblAutenticacion("El usuario o contraseña no son válidas");
-    }
-
 }

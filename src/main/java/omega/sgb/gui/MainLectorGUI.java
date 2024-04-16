@@ -60,17 +60,6 @@ public class MainLectorGUI implements Initializable {
         System.out.println(tip+"<-tip value");
 
 
-        if((usr == null && psw == null && usn == null && tip == null)){
-            System.out.println("Values nulled");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("login-view.fxml"));
-            root = loader.load();
-            stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
-            scene = new Scene(root);
-            scene.getStylesheets().add(css);
-            stage.setScene(scene);
-            stage.setMaximized(true);
-            stage.show();
-            System.out.println("Logout true\n\n");
-        }
+
     }
 }

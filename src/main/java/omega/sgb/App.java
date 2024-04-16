@@ -9,24 +9,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class App extends Application {
-    //configuracion visual del CSS
-    public String css = this.getClass().getResource("/omega/sgb/gui/gui/app.css").toExternalForm();
-    //public String css = this.getClass().getResource("/omega/sgb/view/gui/nada.css").toExternalForm();
-
-
     @Override
     public void start(Stage stage) throws IOException {
-        //Carga y establece la vista principal del programa
-        Parent root = FXMLLoader.load(getClass().getResource("/omega/sgb/gui/login-view.fxml"));
-
-        Scene scene = new Scene(root);
-
-        //carga el estilo del css correspondiente
-        scene.getStylesheets().add(css);
-        stage.setTitle("SGB");
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/omega/sgb/gui/logInView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        stage.setTitle("Hello!");
         stage.setScene(scene);
-        stage.centerOnScreen();
-        stage.setMaximized(true);
         stage.show();
     }
 
