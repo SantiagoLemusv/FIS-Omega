@@ -15,7 +15,7 @@ import java.util.List;
 public class ControladorPrestamo {
     private List<LibroFisico> carrito= new ArrayList<>();
 
-    public Boolean consultarLector(String cedula) {
+    /*public Boolean consultarLector(String cedula) {
         try (Connection connection = SQL.getConexion()) {
             String sql = "SELECT ESTADOPRESTAMOID FROM ESTADOPRESTAMO WHERE AND CONTRASENA = ?";
             System.out.println("ejecutó query");
@@ -34,7 +34,7 @@ public class ControladorPrestamo {
         }
 
         return false;
-    }
+    }*/
 
     public void agregarLibroCarrito(LibroFisico libro){
         carrito.add(libro);
