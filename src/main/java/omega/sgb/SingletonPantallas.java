@@ -10,12 +10,13 @@ import omega.sgb.gui.*;
 
 import java.io.IOException;
 
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class SingletonPantallas {
     private static LoginGUI login;
     private static CrearCuentaGUI crearCuenta;
-    private static BusquedaGUI busqueda;
+    private static BuscarLibroGUI busqueda;
     private static MainLectorGUI mainLector;
     private static MainBibliotecarioGUI mainBibliotecario;
 
@@ -23,37 +24,37 @@ public class SingletonPantallas {
 
     //Instancias singleton------------------------------------
 
-    public static BusquedaGUI getInstanceBusqueda() {
+    public static BuscarLibroGUI getInstanceBusqueda() throws SQLException {
         if (busqueda == null) {
-            busqueda = new BusquedaGUI();
+            busqueda = new BuscarLibroGUI(SingletonControladores.getInstanceBusquedaLibro());
         }
         return busqueda;
     }
 
-    public static CrearCuentaGUI getInstanceCrearCuenta() {
+    public static CrearCuentaGUI getInstanceCrearCuenta() throws SQLException {
         if (crearCuenta == null) {
-            crearCuenta = new CrearCuentaGUI();
+            crearCuenta = new CrearCuentaGUI(SingletonControladores.getInstanceLogIn());
         }
         return crearCuenta;
     }
 
-    public static LoginGUI getInstanceLogin() {
+    public static LoginGUI getInstanceLogin() throws SQLException {
         if (login == null) {
-            login = new LoginGUI();
+            login = new LoginGUI(SingletonControladores.getInstanceLogIn());
         }
         return login;
     }
 
-    public static MainBibliotecarioGUI getInstanceMainBibliotecario() {
+    public static MainBibliotecarioGUI getInstanceMainBibliotecario() throws SQLException {
         if (mainBibliotecario == null) {
-            mainBibliotecario = new MainBibliotecarioGUI();
+            mainBibliotecario = new MainBibliotecarioGUI(SingletonControladores.getInstanceUsuario());
         }
         return mainBibliotecario;
     }
 
-    public static MainLectorGUI getInstanceMainLector() {
+    public static MainLectorGUI getInstanceMainLector() throws SQLException {
         if (mainLector == null) {
-            mainLector = new MainLectorGUI();
+            mainLector = new MainLectorGUI(SingletonControladores.getInstanceUsuario());
         }
         return mainLector;
     }

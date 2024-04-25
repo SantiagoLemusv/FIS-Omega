@@ -8,13 +8,21 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import omega.sgb.SingletonControladores;
 import omega.sgb.SingletonPantallas;
+import omega.sgb.control.ControladorLogIn;
+import omega.sgb.control.ControladorPrestamo;
 import omega.sgb.dominio.LibroFisico;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ValidarLectorGUI {
+    private ControladorPrestamo controladorPrestamo;
+    public ValidarLectorGUI(ControladorPrestamo controladorPrestamo) {
+        this.controladorPrestamo = controladorPrestamo;
+    }
+
     @FXML
     TextField txtCedulaLector;
     @FXML
@@ -32,9 +40,9 @@ public class ValidarLectorGUI {
     @FXML
     ListView listViewLibros;
 
-    public void mConsultarLector(ActionEvent event){
+    public void mConsultarLector(ActionEvent event) throws SQLException {
         String cedulaLector = txtCedulaLector.getText();
-        if(SingletonControladores.getInstancePrestamo().consultarLector(cedulaLector)){
+        if(controladorPrestamo.consultarLector(cedulaLector)){
             lblEstadoLector.setText("El lector tiene conflictos");
         }else{
             lblEstadoLector.setText("Estado lector correcto");
@@ -42,10 +50,10 @@ public class ValidarLectorGUI {
     }
     public void mConfirmarPrestamo(ActionEvent event){
         if(lblEstadoLector.getText() == "Estado lector correcto"){
-            LibroFisico libroPrueba = SingletonControladores.getInstancePrestamo().agregarLibroCarrito();//cambiar, esto es quemado
+            LibroFisico libroPrueba = controladorPrestamo.agregarLibroCarrito();//cambiar, esto es quemado
             List<LibroFisico> listaPrueba = new ArrayList<LibroFisico>();
             listaPrueba.add(libroPrueba);
-            SingletonControladores.getInstancePrestamo().confirmarPrestamo(listaPrueba);
+            controladorPrestamo.confirmarPrestamo(listaPrueba);
 
         }
     }

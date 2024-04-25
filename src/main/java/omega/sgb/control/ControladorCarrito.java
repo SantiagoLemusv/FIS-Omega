@@ -12,11 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ControladorCarrito {
+    private Connection connection;
+    public ControladorCarrito(Connection conexionGeneral) throws SQLException {
+        this.connection = conexionGeneral;
+    }
     private List<LibroFisico> librosFisicosTotal = new ArrayList<LibroFisico>();
 
-    public void obtenerIdLibros() {
+    public void obtenerIdLibros() throws SQLException {
         List<Integer> idLibros = new ArrayList<Integer>();
-        try (Connection connection = SQL.getConexion()) {
             String sql = "SELECT ID FROM LIBROFISICO";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -27,15 +30,10 @@ public class ControladorCarrito {
                     }
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         llenarListaLibrosFisicos(idLibros);
     }
 
-    public void llenarListaLibrosFisicos(List<Integer> idLibros) {
-
-        try (Connection connection = SQL.getConexion()) {
+    public void llenarListaLibrosFisicos(List<Integer> idLibros) throws SQLException {
             String sql = "SELECT UBICACION, NUMEROCLASIFICACION, LIBROVIRTUALID, ESTADOLIBROFISICOID FROM LIBROFISICO WHERE ID = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 for (int id : idLibros) { // Iterate through the idLibros list
@@ -55,9 +53,6 @@ public class ControladorCarrito {
                     }
                 }//cierra for
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
 }

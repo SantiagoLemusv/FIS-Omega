@@ -19,10 +19,15 @@ import java.util.List;
 
 //No debe tener dependencias a las pantallas
 public class ControladorPrestamo {
-    public Boolean consultarLector(String cedula) {
+
+    private Connection connection;
+    public ControladorPrestamo(Connection conexionGeneral) throws SQLException {
+        this.connection = conexionGeneral;
+    }
+
+    public Boolean consultarLector(String cedula) throws SQLException {
         System.out.println("ENTRA CONSULTAR");
         Integer numCedula = Integer.parseInt(cedula);
-        try (Connection connection = SQL.getConexion()) {
             String sql =
                     "SELECT PR.ESTADOPRESTAMOID"+
                     "FROM PRESTAMO PR"+
@@ -39,9 +44,6 @@ public class ControladorPrestamo {
                     }
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
         return false;
     }

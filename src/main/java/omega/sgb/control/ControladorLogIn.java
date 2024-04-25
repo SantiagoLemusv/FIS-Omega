@@ -11,10 +11,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ControladorLogIn {
+    private Connection connection;
+    public ControladorLogIn(Connection conexionGeneral) throws SQLException {
+        this.connection = conexionGeneral;
+    }
 
-    public Boolean validarCredenciales(String cedula, String contrasena) {
+    public Boolean validarCredenciales(String cedula, String contrasena) throws SQLException {
         Integer numCedula = Integer.parseInt(cedula);
-        try (Connection connection = SQL.getConexion()) {
             String sql = "SELECT ID, TIPOPERSONAID, NOMBRE FROM PERSONA WHERE CEDULA = ? AND CONTRASENA = ?";
             System.out.println("ejecutó query");
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -23,19 +26,19 @@ public class ControladorLogIn {
 
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     if (resultSet.next()) {
+                        if (resultSet.getInt("TIPOPERSONAID") == 1) {
+                            SingletonControladores.crearUsuarioActualBibliotecario();
+                        } else if (resultSet.getInt("TIPOPERSONAID") == 2) {
+                            SingletonControladores.crearUsuarioActualLector();
+                        }
                         SingletonControladores.getUsuarioActual().setId(resultSet.getInt("ID"));
-                        SingletonControladores.getUsuarioActual().setTipoPersonaId(resultSet.getInt("TIPOPERSONAID"));
                         SingletonControladores.getUsuarioActual().setNombre(resultSet.getString("NOMBRE"));
                         SingletonControladores.getUsuarioActual().setCedula(numCedula);
-                        SingletonControladores.getUsuarioActual().setContrasenia(contrasena);
+                        SingletonControladores.getUsuarioActual().setContrasena(contrasena);
                         return true;
                     }
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
         return false;
     }
 

@@ -9,6 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import omega.sgb.control.ControladorLogIn;
+import omega.sgb.control.ControladorUsuario;
 import omega.sgb.dominio.Persona;
 
 
@@ -17,12 +19,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainLectorGUI implements Initializable {
-    public String css = this.getClass().getResource("/omega/sgb/gui/gui/app.css").toExternalForm();
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-
-    Persona cuenta = new Persona();
+    private ControladorUsuario controladorUsuario;
+    public MainLectorGUI(ControladorUsuario controladorUsuario) {
+        this.controladorUsuario = controladorUsuario;
+    }
 
     @FXML
     Label Titulo;
@@ -50,7 +50,7 @@ public class MainLectorGUI implements Initializable {
         cuenta.setTipoPersonaId(null);
 
         Integer usr = cuenta.getCedula();
-        String psw = cuenta.getContrasenia();
+        String psw = cuenta.getContrasena();
         String usn = cuenta.getNombre();
         Integer tip = cuenta.getTipoPersonaId();
         System.out.println("\n\nlogout");
@@ -58,8 +58,5 @@ public class MainLectorGUI implements Initializable {
         System.out.println(psw+"<-psw value");
         System.out.println(usn+"<-usn value");
         System.out.println(tip+"<-tip value");
-
-
-
     }
 }

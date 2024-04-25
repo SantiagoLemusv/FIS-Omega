@@ -3,35 +3,28 @@ package omega.sgb.dominio;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Persona {
+public abstract class Persona {
     //Atributos de instancia
     private Integer id;
     private Integer cedula;
     private String nombre;
     private String contrasena;
-    private Integer tipoPersonaId;//Bibliotecario (1), lector (2)
-    private List<Prestamo> prestamos = new ArrayList<Prestamo>();
-    private List<LibroFisico> carrito = new ArrayList<LibroFisico>();
 
     //Métodos constructores
     public Persona() {
     }
 
-    public Persona(Integer id, Integer cedula, String nombre, String contrasena, Integer tipoPersonaId, List<Prestamo> prestamos) {
+    public Persona(Integer id, Integer cedula, String nombre, String contrasena) {
         this.id = id;
         this.cedula = cedula;
         this.nombre = nombre;
         this.contrasena = contrasena;
-        this.tipoPersonaId = tipoPersonaId;
-        this.prestamos = prestamos;
     }
 
-    public Persona(Integer cedula, String nombre, String contrasena, Integer tipoPersonaId, List<Prestamo> prestamos) {
+    public Persona(Integer cedula, String nombre, String contrasena) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.contrasena = contrasena;
-        this.tipoPersonaId = tipoPersonaId;
-        this.prestamos = prestamos;
     }
     //Métodos de acceso
 
@@ -59,36 +52,18 @@ public class Persona {
         this.nombre = nombre;
     }
 
-    public String getContrasenia() {
+    public String getContrasena() {
         return contrasena;
     }
 
-    public void setContrasenia(String contrasenia) {
+    public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
 
-    public Integer getTipoPersonaId() {
-        return tipoPersonaId;
-    }
+    // Getters y setters para el atributo 'carrito'
+    public abstract List<LibroFisico> getCarrito();
 
-    public void setTipoPersonaId(Integer tipoPersonaId) {
-        this.tipoPersonaId = tipoPersonaId;
-    }
-
-    public List<Prestamo> getPrestamos() {
-        return prestamos;
-    }
-
-    public void setPrestamos(List<Prestamo> prestamos) {
-        this.prestamos = prestamos;
-    }
-
-    public List<LibroFisico> getCarrito() {
-        return carrito;
-    }
-
-    public void setCarrito(List<LibroFisico> carrito) {
-        this.carrito = carrito;
-    }
+    // Getters y setters para el atributo 'prestamos'
+    public abstract List<Prestamo> getPrestamos();
 }
 

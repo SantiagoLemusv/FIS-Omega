@@ -10,12 +10,18 @@ import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import omega.sgb.SingletonPantallas;
+import omega.sgb.control.ControladorLogIn;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CrearCuentaGUI {
+    private ControladorLogIn controladorLogIn;
+    public CrearCuentaGUI(ControladorLogIn controladorLogIn) {
+        this.controladorLogIn = controladorLogIn;
+    }
+
     @FXML
     Button btnCrearCuentaM;
     @FXML

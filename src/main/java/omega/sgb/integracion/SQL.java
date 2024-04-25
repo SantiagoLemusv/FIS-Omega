@@ -10,7 +10,13 @@ public class SQL {
     private static final String CONTRASENA = "Zyqb4HO0x1BG57S";
 
     // Método para obtener una conexión a la base de datos
-    public static Connection getConexion() throws SQLException {
-        return DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+    public static Connection getConexion() {
+        try {
+            return DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+        } catch (SQLException e) {
+            getConexion();
+        }
+        return null;
     }
+
 }
