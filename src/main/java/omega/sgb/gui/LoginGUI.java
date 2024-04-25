@@ -17,9 +17,9 @@ import java.sql.SQLException;
 
 public class LoginGUI {
 
-    private ControladorLogIn controladorLogIn;
-    public LoginGUI(){}
-    public LoginGUI(ControladorLogIn controladorLogIn) {
+    private ControladorLogIn controladorLogIn = SingletonControladores.getInstanceLogIn();
+    public LoginGUI() throws SQLException {}
+    public LoginGUI(ControladorLogIn controladorLogIn) throws SQLException {
         this.controladorLogIn = controladorLogIn;
     }
 

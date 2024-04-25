@@ -68,7 +68,7 @@ public class ControladorPrestamo {
         SingletonControladores.getUsuarioActual().getCarrito().add(libroTemp1);
         return libroTemp1;
     }
-    public void confirmarPrestamo(List<LibroFisico> carritoLibros){
+    public void confirmarPrestamo(List<LibroFisico> carritoLibros) throws SQLException {
         for(LibroFisico libroAct : carritoLibros){
             Prestamo prestamoAux = crearPrestamo(libroAct);
             SingletonControladores.getUsuarioActual().getPrestamos().add(prestamoAux);
@@ -88,52 +88,34 @@ public class ControladorPrestamo {
     }
 
 
-    public void actualizarPrestamoBD(Prestamo prestamoAct) {
-        Connection connection = null; // Declare connection variable outside try-catch block
-        try {
-            connection = SQL.getConexion(); // Get connection within try block
-            connection.setAutoCommit(false); // ... (remaining code within try block)
+    public void actualizarPrestamoBD(Prestamo prestamoAct) throws SQLException {
+        // Remove the line creating a new connection
+        // Connection connection = null;
 
-            // Actualizar tabla EstadoPrestamo
-            String updateEstadoPrestamoSql = "INSERT INTO PRESTAMO (FECHAPRESTAMO, FECHADEVOLUCION, PERSONAID, LIBROFISICOID, " +
-                                                                    "ESTADOPRESTAMOID, MULTAID)" +
-                                             "VALUES (?, ?, ?, ?, ?, ?)";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(updateEstadoPrestamoSql)) {
-                preparedStatement.setString(1, prestamoAct.getFechaPrestamo());
-                preparedStatement.setString(2, prestamoAct.getFechaDevolucion());
-                preparedStatement.setInt(3, prestamoAct.getPersona().getId());
-                preparedStatement.setInt(4, prestamoAct.getLibro().getId());
-                preparedStatement.setInt(5, prestamoAct.getEstadoPrestamoId()); //1 activo, 2 vencido, 3 devuelto
-                preparedStatement.setInt(6, 0); // Set MULTAID correctly
-                preparedStatement.executeUpdate();
-            }
+        connection.setAutoCommit(false); // ... (remaining code within try block)
 
-            // (Opcional) Actualizar tablas adicionales según su lógica - modifique la consulta y los parámetros en consecuencia
-            // String updateAnotherTableSql = "...";
-            // ... (prepare y ejecute la actualización para otra tabla)
-
-            connection.commit(); // Confirma los cambios si todas las actualizaciones son exitosas
-            System.out.println("Préstamo actualizado exitosamente");
-        } catch (SQLException e) {
-            try {
-                if (connection != null) {
-                    connection.rollback(); // Rollback if connection exists
-                }
-                System.out.println("Error al actualizar préstamo. Se revierte la transacción.");
-            } catch (SQLException e2) {
-                e2.printStackTrace();
-            }
-            e.printStackTrace();
-        } finally {
-            if (connection != null) {
-                try {
-                    connection.close(); // Close connection in finally block
-                } catch (SQLException e3) {
-                    e3.printStackTrace();
-                }
-            }
+        // Actualizar tabla EstadoPrestamo
+        String updateEstadoPrestamoSql = "INSERT INTO PRESTAMO (FECHAPRESTAMO, FECHADEVOLUCION, PERSONAID, LIBROFISICOID, " +
+                "ESTADOPRESTAMOID, MULTAID)" +
+                "VALUES (?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(updateEstadoPrestamoSql)) {
+            preparedStatement.setString(1, prestamoAct.getFechaPrestamo());
+            preparedStatement.setString(2, prestamoAct.getFechaDevolucion());
+            preparedStatement.setInt(3, prestamoAct.getPersona().getId());
+            preparedStatement.setInt(4, prestamoAct.getLibro().getId());
+            preparedStatement.setInt(5, prestamoAct.getEstadoPrestamoId()); //1 activo, 2 vencido, 3 devuelto
+            preparedStatement.setInt(6, 0); // Set MULTAID correctly
+            preparedStatement.executeUpdate();
         }
-    }
 
+        // (Opcional) Actualizar tablas adicionales según su lógica - modifique la consulta y los parámetros en consecuencia
+        // String updateAnotherTableSql = "...";
+        // ... (prepare y ejecute la actualización para otra tabla)
+
+        connection.commit(); // Confirma los cambios si todas las actualizaciones son exitosas
+        System.out.println("Préstamo actualizado exitosamente");
+
+        // No need for a finally block to close the connection as it's managed externally
+    }
 
 }

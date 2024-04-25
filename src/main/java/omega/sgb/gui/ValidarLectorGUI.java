@@ -49,7 +49,7 @@ public class ValidarLectorGUI {
             lblEstadoLector.setText("Estado lector correcto");
         }
     }
-    public void mConfirmarPrestamo(ActionEvent event){
+    public void mConfirmarPrestamo(ActionEvent event) throws SQLException {
         if(lblEstadoLector.getText() == "Estado lector correcto"){
             LibroFisico libroPrueba = controladorPrestamo.agregarLibroCarrito();//cambiar, esto es quemado
             List<LibroFisico> listaPrueba = new ArrayList<LibroFisico>();
