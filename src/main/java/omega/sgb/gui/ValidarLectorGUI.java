@@ -19,6 +19,7 @@ import java.util.List;
 
 public class ValidarLectorGUI {
     private ControladorPrestamo controladorPrestamo;
+    public ValidarLectorGUI(){}
     public ValidarLectorGUI(ControladorPrestamo controladorPrestamo) {
         this.controladorPrestamo = controladorPrestamo;
     }

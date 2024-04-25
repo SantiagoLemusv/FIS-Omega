@@ -11,6 +11,7 @@ import java.io.IOException;
 
 public class MainBibliotecarioGUI {
     private ControladorUsuario controladorUsuario;
+    public MainBibliotecarioGUI(){}
     public MainBibliotecarioGUI(ControladorUsuario controladorUsuario) {
         this.controladorUsuario = controladorUsuario;
     }

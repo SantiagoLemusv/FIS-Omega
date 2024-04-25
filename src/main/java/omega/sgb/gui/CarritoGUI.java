@@ -11,6 +11,7 @@ import java.io.IOException;
 
 public class CarritoGUI {
     private ControladorCarrito controladorCarrito;
+    public CarritoGUI(){}
     public CarritoGUI(ControladorCarrito controladorCarrito) {
         this.controladorCarrito = controladorCarrito;
     }

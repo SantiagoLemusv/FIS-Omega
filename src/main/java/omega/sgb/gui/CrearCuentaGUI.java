@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
 
 public class CrearCuentaGUI {
     private ControladorLogIn controladorLogIn;
+    public CrearCuentaGUI(){}
     public CrearCuentaGUI(ControladorLogIn controladorLogIn) {
         this.controladorLogIn = controladorLogIn;
     }

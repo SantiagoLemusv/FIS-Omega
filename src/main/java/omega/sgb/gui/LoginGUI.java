@@ -26,6 +26,7 @@ import java.sql.SQLException;
 public class LoginGUI {
 
     private ControladorLogIn controladorLogIn;
+    public LoginGUI(){}
     public LoginGUI(ControladorLogIn controladorLogIn) {
         this.controladorLogIn = controladorLogIn;
     }

@@ -4,6 +4,7 @@ import omega.sgb.control.ControladorBusquedaLibro;
 
 public class BuscarLibroGUI {
     private ControladorBusquedaLibro controladorBusquedaLibro;
+    public BuscarLibroGUI(){}
     public BuscarLibroGUI(ControladorBusquedaLibro controladorBusquedaLibro) {
         this.controladorBusquedaLibro = controladorBusquedaLibro;
     }
