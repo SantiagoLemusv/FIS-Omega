@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class SingletonControladores {
-    private static Connection conexionGeneral = SQL.getConexion();
+    private static Connection conexionGeneral = null;
     private static SingletonControladores myself;
     private static Persona usuarioActual;
 
@@ -20,7 +20,9 @@ public class SingletonControladores {
     private static ControladorBusquedaLibro controladorBusquedaLibro;
     private static ControladorUsuario controladorUsuario;
 
-
+    public static void setConexionGeneral(Connection conexionGeneral) {
+        SingletonControladores.conexionGeneral = conexionGeneral;
+    }
 
     //Crear el tipo de persona necesario
     public static void crearUsuarioActualLector(){
