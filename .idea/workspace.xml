@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49ae955a-122f-4820-9f4c-82b1b60ce348" name="Changes" comment="Prestamo funcionando con usuario correspondiente">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="49ae955a-122f-4820-9f4c-82b1b60ce348" name="Changes" comment="Prestamo funcionando con usuario correspondiente" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,7 +60,7 @@
       <recent name="C:\Users\JuanDo2603\OneDrive - Pontificia Universidad Javeriana\Estudio\Javeriana\Quinto semestre\Fundamentos\Proyecto\Entrega 2\.idea\library" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.AppH2">
+  <component name="RunManager" selected="Application.AppOracle">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="omega.sgb.App" />
       <module name="SGB" />
@@ -124,8 +122,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.AppH2" />
         <item itemvalue="Application.AppOracle" />
+        <item itemvalue="Application.AppH2" />
         <item itemvalue="Application.App" />
         <item itemvalue="JAR Application.ojdbc8.jar" />
       </list>
@@ -156,6 +154,7 @@
       <workItem from="1714495622274" duration="844000" />
       <workItem from="1714506621739" duration="1717000" />
       <workItem from="1714511240948" duration="568000" />
+      <workItem from="1714513696861" duration="338000" />
     </task>
     <task id="LOCAL-00001" summary="Conexion base de datos Oracle funcionando&#10;Singleton hace todos los cambios de pantallas&#10;Lógica GUI login y crear cuenta check">
       <option name="closed" value="true" />
