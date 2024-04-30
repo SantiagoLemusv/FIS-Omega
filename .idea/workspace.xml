@@ -5,6 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49ae955a-122f-4820-9f4c-82b1b60ce348" name="Changes" comment="Correciones entrega 2 v2">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/omega/sgb/AppH2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/omega/sgb/AppH2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/omega/sgb/control/ControladorLogIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/omega/sgb/control/ControladorLogIn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/omega/sgb/control/ControladorPrestamo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/omega/sgb/control/ControladorPrestamo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/omega/sgb/gui/LoginGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/omega/sgb/gui/LoginGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/omega/sgb/gui/ValidarLectorGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/omega/sgb/gui/ValidarLectorGUI.java" afterDir="false" />
@@ -47,7 +50,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "features",
-    "last_opened_file_path": "C:/Users/JuanDo2603/OneDrive - Pontificia Universidad Javeriana/Estudio/Javeriana/Quinto semestre/Fundamentos/Proyecto/Entrega 2",
+    "last_opened_file_path": "C:/Users/JuanDo2603/OneDrive - Pontificia Universidad Javeriana/Estudio/Javeriana/Quinto semestre/Fundamentos/Proyecto/Entrega 2.1",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -64,18 +67,7 @@
       <recent name="C:\Users\JuanDo2603\OneDrive - Pontificia Universidad Javeriana\Estudio\Javeriana\Quinto semestre\Fundamentos\Proyecto\Entrega 2\.idea\library" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.AppOracle">
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.AppH2">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="omega.sgb.App" />
       <module name="SGB" />
@@ -136,10 +128,21 @@
       <option name="JAR_PATH" value="$PROJECT_DIR$/.idea/library/ojdbc8.jar" />
       <method v="2" />
     </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.AppOracle" />
         <item itemvalue="Application.AppH2" />
+        <item itemvalue="Application.AppOracle" />
         <item itemvalue="Application.App" />
         <item itemvalue="JAR Application.ojdbc8.jar" />
       </list>
@@ -161,6 +164,12 @@
       <workItem from="1714056141791" duration="1320000" />
       <workItem from="1714080390552" duration="2153000" />
       <workItem from="1714083162653" duration="1513000" />
+      <workItem from="1714106799689" duration="94000" />
+      <workItem from="1714106986455" duration="46000" />
+      <workItem from="1714107142680" duration="94000" />
+      <workItem from="1714151984535" duration="769000" />
+      <workItem from="1714413548140" duration="2160000" />
+      <workItem from="1714421401843" duration="10769000" />
     </task>
     <task id="LOCAL-00001" summary="Conexion base de datos Oracle funcionando&#10;Singleton hace todos los cambios de pantallas&#10;Lógica GUI login y crear cuenta check">
       <option name="closed" value="true" />

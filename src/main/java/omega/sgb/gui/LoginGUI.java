@@ -26,7 +26,7 @@ public class LoginGUI {
     @FXML
     Label lblAutenticacion;
     @FXML
-    Button btnIrInciarSesionM;
+    Button btnInciarSesion;
     @FXML
     TextField txtCedula;
     @FXML
