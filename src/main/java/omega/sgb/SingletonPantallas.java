@@ -64,13 +64,23 @@ public class SingletonPantallas {
         Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/crearCuentaView.fxml")));
         Scene InicioScene = new Scene(InicioParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.centerOnScreen();
+        window.setScene(InicioScene);
+        window.show();
+    }
+    public static void toEstadoUsuarioViewSingleton(ActionEvent event) throws IOException {
+        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/estadoUsuarioViewALT.fxml")));
+        Scene InicioScene = new Scene(InicioParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.centerOnScreen();
         window.setScene(InicioScene);
         window.show();
     }
     public static void toBuscarLibroViewSingleton(ActionEvent event) throws IOException {
-        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/buscarLibroView.fxml")));
+        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/buscarLibroViewALT.fxml")));
         Scene InicioScene = new Scene(InicioParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.centerOnScreen();
         window.setScene(InicioScene);
         window.show();
     }
@@ -78,6 +88,7 @@ public class SingletonPantallas {
         Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/resultadoLibroView.fxml")));
         Scene InicioScene = new Scene(InicioParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.centerOnScreen();
         window.setScene(InicioScene);
         window.show();
     }
@@ -85,6 +96,7 @@ public class SingletonPantallas {
         Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/logInView.fxml")));
         Scene InicioScene = new Scene(InicioParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.centerOnScreen();
         window.setScene(InicioScene);
         window.show();
     }
@@ -92,6 +104,7 @@ public class SingletonPantallas {
         Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/mainBibliotecarioView.fxml")));
         Scene InicioScene = new Scene(InicioParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.centerOnScreen();
         window.setScene(InicioScene);
         window.show();
     }
@@ -99,6 +112,7 @@ public class SingletonPantallas {
         Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/mainLectorView.fxml")));
         Scene InicioScene = new Scene(InicioParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.centerOnScreen();
         window.setScene(InicioScene);
         window.show();
     }
@@ -106,14 +120,27 @@ public class SingletonPantallas {
         Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/validarLectorView.fxml")));
         Scene InicioScene = new Scene(InicioParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.centerOnScreen();
         window.setScene(InicioScene);
         window.show();
     }
     public static void toCarritoViewSingleton(ActionEvent event) throws IOException {
-        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/carritoView.fxml")));
+        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/carritoViewALT.fxml")));
         Scene InicioScene = new Scene(InicioParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.centerOnScreen();
         window.setScene(InicioScene);
         window.show();
+    }
+    public static void toPagoViewSingleton(ActionEvent event) throws IOException {
+        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/pagoView.fxml")));
+        Scene InicioScene = new Scene(InicioParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.centerOnScreen();
+        window.setScene(InicioScene);
+        window.show();
+    }
+    public static void openExitViewSingleton(ActionEvent event) throws IOException{
+
     }
 }

@@ -91,4 +91,5 @@ public class Prestamo {
     public void setMulta(Multa multa) {
         this.multa = multa;
     }
+
 }

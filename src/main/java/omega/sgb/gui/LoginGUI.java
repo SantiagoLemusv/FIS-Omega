@@ -29,16 +29,24 @@ public class LoginGUI {
     @FXML
     PasswordField txtContrasena;
     public void mBtnIniciarSesion(ActionEvent event) throws IOException {
+        /*
         String cedula = txtCedula.getText();
         String contrasena = txtContrasena.getText();
         if(SingletonControladores.getInstanceLogIn().validarCredenciales(cedula, contrasena)){
+            System.out.println("ENTRO");
             lblAutenticacion.setText("El usuario es válido");
             mTipoPantalla(event);
         }
         else{
             lblAutenticacion.setText("Usuario o contraseña no válidos");
         }
-
+         */
+        SingletonPantallas.toEstadoUsuarioViewSingleton(event);
+         /*
+        SingletonPantallas.toEstadoUsuarioViewSingleton(event);
+        SingletonPantallas.toMainBibliotecarioViewSingleton(event);
+        SingletonPantallas.toMainLectorViewSingleton(event);
+          */
     }
     public void mTipoPantalla(ActionEvent event) throws IOException {
         if(SingletonControladores.getUsuarioActual().getTipoPersonaId() == 1){ //Bibliotecario
