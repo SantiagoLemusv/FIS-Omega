@@ -1,4 +1,5 @@
 package omega.sgb.control;
+import java.sql.Blob;
 
 import java.sql.Connection;
 

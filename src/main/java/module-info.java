@@ -2,6 +2,7 @@ module omega.sgb {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires java.desktop;
 
 
     opens omega.sgb to javafx.fxml;

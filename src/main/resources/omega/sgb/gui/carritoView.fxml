@@ -21,7 +21,7 @@
                      </font>
                   </Label>
                   <Separator layoutX="7.0" layoutY="138.0" prefHeight="14.0" prefWidth="1420.0" />
-                  <ListView fx:id="listaLibros" layoutX="42.0" layoutY="185.0" prefHeight="409.0" prefWidth="799.0" />
+                  <ListView fx:id="listaLibros" layoutX="42.0" layoutY="185.0" onEditStart="#agregarImagenPrueba" prefHeight="409.0" prefWidth="799.0" />
                   <Button fx:id="btnCasa" layoutX="1291.0" layoutY="14.0" mnemonicParsing="false" prefHeight="127.0" prefWidth="136.0" />
                   <ImageView fitHeight="127.0" fitWidth="136.0" layoutX="1296.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -34,22 +34,22 @@
                         <Image url="@gui/carrito2.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="btnEliminar1" layoutX="910.0" layoutY="200.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="121.0" text="Eliminar">
+                  <Button fx:id="btnEliminar1" layoutX="910.0" layoutY="200.0" mnemonicParsing="false" onAction="#agregarImagenPrueba" prefHeight="44.0" prefWidth="121.0" text="Eliminar">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnEliminar2" layoutX="910.0" layoutY="304.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="121.0" text="Eliminar">
+                  <Button fx:id="btnEliminar2" layoutX="910.0" layoutY="304.0" mnemonicParsing="false" onAction="#agregarImagenPrueba" prefHeight="44.0" prefWidth="121.0" text="Eliminar">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnEliminar3" layoutX="910.0" layoutY="400.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="121.0" text="Eliminar">
+                  <Button fx:id="btnEliminar3" layoutX="910.0" layoutY="400.0" mnemonicParsing="false" onAction="#agregarImagenPrueba" prefHeight="44.0" prefWidth="121.0" text="Eliminar">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnEliminar4" layoutX="910.0" layoutY="515.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="121.0" text="Eliminar">
+                  <Button fx:id="btnEliminar4" layoutX="910.0" layoutY="515.0" mnemonicParsing="false" onAction="#agregarImagenPrueba" prefHeight="44.0" prefWidth="121.0" text="Eliminar">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -64,6 +64,7 @@
                         <Font size="24.0" />
                      </font>
                   </Button>
+                  <ImageView fx:id="imagenPrueba" fitHeight="150.0" fitWidth="200.0" layoutX="1063.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </Pane>
          </children>

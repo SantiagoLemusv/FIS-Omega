@@ -4,6 +4,7 @@ import omega.sgb.control.*;
 import omega.sgb.dominio.Persona;
 import omega.sgb.dominio.PersonaBibliotecario;
 import omega.sgb.dominio.PersonaLector;
+import omega.sgb.integracion.Imagen;
 import omega.sgb.integracion.SQL;
 
 import java.sql.Connection;
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 
 public class SingletonControladores {
     private static Connection conexionGeneral = null;
+    private static Imagen imagenProcesar = new Imagen();
     private static SingletonControladores myself;
     private static Persona usuarioActual;
 
@@ -22,6 +24,14 @@ public class SingletonControladores {
 
     public static void setConexionGeneral(Connection conexionGeneral) {
         SingletonControladores.conexionGeneral = conexionGeneral;
+    }
+
+    public static Imagen getImagenProcesar() {
+        return imagenProcesar;
+    }
+
+    public static void setImagenProcesar(Imagen imagenProcesar) {
+        SingletonControladores.imagenProcesar = imagenProcesar;
     }
 
     //Crear el tipo de persona necesario
