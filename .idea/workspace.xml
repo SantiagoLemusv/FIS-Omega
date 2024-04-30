@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49ae955a-122f-4820-9f4c-82b1b60ce348" name="Changes" comment="Prestamo funcionando con usuario correspondiente">
-      <change afterPath="$PROJECT_DIR$/src/main/java/omega/sgb/integracion/Imagen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/omega/sgb/SingletonControladores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/omega/sgb/SingletonControladores.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/omega/sgb/control/ControladorBusquedaLibro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/omega/sgb/control/ControladorBusquedaLibro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/omega/sgb/control/ControladorCarrito.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/omega/sgb/control/ControladorCarrito.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/omega/sgb/gui/CarritoGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/omega/sgb/gui/CarritoGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/omega/sgb/gui/carritoView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/omega/sgb/gui/carritoView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +78,6 @@
     </configuration>
     <configuration name="AppH2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="omega.sgb.AppH2" />
-      <module name="SGB" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="omega.sgb.*" />
