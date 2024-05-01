@@ -28,6 +28,7 @@ public class ControladorLogIn {
                         SingletonControladores.getUsuarioActual().setNombre(resultSet.getString("NOMBRE"));
                         SingletonControladores.getUsuarioActual().setCedula(numCedula);
                         SingletonControladores.getUsuarioActual().setContrasenia(contrasena);
+
                         return true;
                     }
                 }

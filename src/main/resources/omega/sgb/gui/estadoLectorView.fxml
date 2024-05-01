@@ -88,30 +88,12 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#mBtnCarrito" prefHeight="39.0" prefWidth="196.0" style="-fx-background-color: white;" text="Carrito" textFill="#7ec8e3">
-                     <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@gui/carrito3.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <padding>
-                        <Insets left="40.0" />
-                     </padding>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </Button>
                   <Separator prefWidth="200.0" />
                </children>
             </VBox>
             <VBox alignment="BOTTOM_CENTER" prefHeight="488.0" prefWidth="196.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="147.0" style="-fx-background-color: #7ec8e3;" text="Cerrar sesion" textFill="WHITE">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#mBtnCerrarSesion" prefHeight="26.0" prefWidth="147.0" style="-fx-background-color: #7ec8e3;" text="Cerrar sesion" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

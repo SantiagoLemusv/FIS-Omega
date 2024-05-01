@@ -29,9 +29,23 @@ public class LoginGUI {
     @FXML
     PasswordField txtContrasena;
     public void mBtnIniciarSesion(ActionEvent event) throws IOException {
-        /*
+
         String cedula = txtCedula.getText();
         String contrasena = txtContrasena.getText();
+        int id = 1;
+        int personaid = 1;
+        String Nombre = "Prueba Nombre";
+
+
+        Integer numCedula = Integer.parseInt(cedula);
+        SingletonControladores.getUsuarioActual().setId(id);
+        SingletonControladores.getUsuarioActual().setTipoPersonaId(personaid);
+        SingletonControladores.getUsuarioActual().setNombre(Nombre);
+        SingletonControladores.getUsuarioActual().setCedula(numCedula);
+        SingletonControladores.getUsuarioActual().setContrasenia(contrasena);
+
+        mTipoPantalla(event);
+        /*
         if(SingletonControladores.getInstanceLogIn().validarCredenciales(cedula, contrasena)){
             System.out.println("ENTRO");
             lblAutenticacion.setText("El usuario es válido");
@@ -41,7 +55,8 @@ public class LoginGUI {
             lblAutenticacion.setText("Usuario o contraseña no válidos");
         }
          */
-        SingletonPantallas.toEstadoUsuarioViewSingleton(event);
+
+        //SingletonPantallas.toEstadoUsuarioViewSingleton(event);
          /*
         SingletonPantallas.toEstadoUsuarioViewSingleton(event);
         SingletonPantallas.toMainBibliotecarioViewSingleton(event);
@@ -50,9 +65,9 @@ public class LoginGUI {
     }
     public void mTipoPantalla(ActionEvent event) throws IOException {
         if(SingletonControladores.getUsuarioActual().getTipoPersonaId() == 1){ //Bibliotecario
-            SingletonPantallas.toMainBibliotecarioViewSingleton(event);
+            SingletonPantallas.toEstadoUsuarioViewSingleton(event);
         } else if (SingletonControladores.getUsuarioActual().getTipoPersonaId() == 2) { //Lector
-            SingletonPantallas.toMainLectorViewSingleton(event);
+            SingletonPantallas.toEstadoUsuarioViewSingleton(event);
         }else{
             lblAutenticacion.setText("El usuario no tiene tipo");
         }

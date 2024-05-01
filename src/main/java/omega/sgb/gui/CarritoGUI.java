@@ -12,17 +12,6 @@ public class CarritoGUI {
     @FXML
     Button btnSolicitar;
 
-    public void mBtnMenuPrincipal(ActionEvent event) throws IOException {
-        mTipoPantalla(event);
-    }
-    public void mTipoPantalla(ActionEvent event) throws IOException {
-        if(SingletonControladores.getUsuarioActual().getTipoPersonaId() == 1){ //Bibliotecario
-            SingletonPantallas.toMainBibliotecarioViewSingleton(event);
-        } else if (SingletonControladores.getUsuarioActual().getTipoPersonaId() == 2) { //Lector
-            SingletonPantallas.toMainLectorViewSingleton(event);
-        }
-    }
-
     public void mBtnMiPerfil(ActionEvent event) throws IOException {
         SingletonPantallas.toEstadoUsuarioViewSingleton(event);
     }
@@ -33,11 +22,8 @@ public class CarritoGUI {
         SingletonPantallas.toCarritoViewSingleton(event);
     }
     public void mBtnCerrarSesion(ActionEvent event) throws IOException {
-
+        SingletonPantallas.toLogInViewSingleton(event);
     }
-
-
-
     public void mBtnFinalizarPrestamo(ActionEvent event) throws IOException {
         SingletonPantallas.toValidarLectorViewSingleton(event);
     }
