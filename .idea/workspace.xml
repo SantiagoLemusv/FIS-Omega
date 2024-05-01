@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49ae955a-122f-4820-9f4c-82b1b60ce348" name="Changes" comment="Correciones entrega 2 v2">
-      <change beforePath="$PROJECT_DIR$/src/main/java/omega/sgb/control/ControladorPrestamo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/omega/sgb/control/ControladorPrestamo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/omega/sgb/gui/LoginGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/omega/sgb/gui/LoginGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/omega/sgb/gui/ValidarLectorGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/omega/sgb/gui/ValidarLectorGUI.java" afterDir="false" />
-    </list>
+    <list default="true" id="49ae955a-122f-4820-9f4c-82b1b60ce348" name="Changes" comment="Prestamo funcionando con usuario correspondiente" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,41 +37,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "features",
-    "last_opened_file_path": "C:/Users/JuanDo2603/OneDrive - Pontificia Universidad Javeriana/Estudio/Javeriana/Quinto semestre/Fundamentos/Proyecto/Entrega 2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;features&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/JuanDo2603/OneDrive - Pontificia Universidad Javeriana/Estudio/Javeriana/Quinto semestre/Fundamentos/Proyecto/Entrega 2.1&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\JuanDo2603\OneDrive - Pontificia Universidad Javeriana\Estudio\Javeriana\Quinto semestre\Fundamentos\Proyecto\Entrega 2\.idea\library" />
     </key>
   </component>
   <component name="RunManager" selected="Application.AppOracle">
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="omega.sgb.App" />
       <module name="SGB" />
@@ -91,7 +76,6 @@
     </configuration>
     <configuration name="AppH2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="omega.sgb.AppH2" />
-      <module name="SGB" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="omega.sgb.*" />
@@ -161,6 +145,16 @@
       <workItem from="1714056141791" duration="1320000" />
       <workItem from="1714080390552" duration="2153000" />
       <workItem from="1714083162653" duration="1513000" />
+      <workItem from="1714106799689" duration="94000" />
+      <workItem from="1714106986455" duration="46000" />
+      <workItem from="1714107142680" duration="94000" />
+      <workItem from="1714151984535" duration="769000" />
+      <workItem from="1714413548140" duration="2160000" />
+      <workItem from="1714421401843" duration="13103000" />
+      <workItem from="1714495622274" duration="844000" />
+      <workItem from="1714506621739" duration="1717000" />
+      <workItem from="1714511240948" duration="568000" />
+      <workItem from="1714513696861" duration="338000" />
     </task>
     <task id="LOCAL-00001" summary="Conexion base de datos Oracle funcionando&#10;Singleton hace todos los cambios de pantallas&#10;Lógica GUI login y crear cuenta check">
       <option name="closed" value="true" />
@@ -210,7 +204,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714082995233</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Prestamo funcionando con usuario correspondiente">
+      <option name="closed" value="true" />
+      <created>1714444469551</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1714444469551</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,6 +234,7 @@
     <MESSAGE value="Declarar préstamo GUI" />
     <MESSAGE value="Casi prestamo, transicion pantallas lista" />
     <MESSAGE value="Correciones entrega 2 v2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correciones entrega 2 v2" />
+    <MESSAGE value="Prestamo funcionando con usuario correspondiente" />
+    <option name="LAST_COMMIT_MESSAGE" value="Prestamo funcionando con usuario correspondiente" />
   </component>
 </project>

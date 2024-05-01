@@ -1,13 +1,8 @@
 package omega.sgb.control;
 
-import omega.sgb.SingletonControladores;
 import omega.sgb.dominio.LibroFisico;
-import omega.sgb.integracion.SQL;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +48,23 @@ public class ControladorCarrito {
                     }
                 }//cierra for
             }
+    }
+
+    public Blob getImagenLibroById() throws SQLException {
+        String sql =
+                "SELECT IMG.IMAGEN " +
+                        "FROM IMAGENLIBRO IMG " +
+                        "INNER JOIN LIBROVIRTUAL LV ON IMG.ID = LV.IMAGENID " +
+                        "WHERE LV.ID = 4";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getBlob("IMAGEN"); // Get the BLOB data
+                }
+            }
+        }
+        return null; // Return null if no image found
     }
 
 }
