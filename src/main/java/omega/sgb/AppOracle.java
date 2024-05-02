@@ -24,7 +24,7 @@ public class AppOracle extends Application {
     }
 
     public static void main(String[] args) {
-        SingletonControladores.setConexionGeneral(SQL.getConexion(URL,USUARIO,CONTRASENA));
+        SingletonControladores.setConexionGeneral(SQL.getConexion(URL,USUARIO,CONTRASENA,0));
         launch();
     }
 }

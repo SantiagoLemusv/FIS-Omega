@@ -4,13 +4,17 @@ import java.sql.*;
 
 
 public class SQL {
-
     // Método para obtener una conexión a la base de datos
-    public static Connection getConexion(String url, String usuario, String contrasena) {
+    public static Connection getConexion(String url, String usuario, String contrasena, int cont) {
         try {
             return DriverManager.getConnection(url, usuario, contrasena);
         } catch (SQLException e) {
-            getConexion(url, usuario, contrasena);
+            while(cont<3){
+                System.out.println("Fallo en la conexión");
+                cont=cont+1;
+                getConexion(url, usuario, contrasena, cont+1);
+            }
+
         }
         return null;
     }
