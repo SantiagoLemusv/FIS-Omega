@@ -26,5 +26,7 @@ public class ResultadosGUI {
     public void mBtnBuscar(ActionEvent event) throws IOException {
         SingletonPantallas.toResultadoLibroViewSingleton(event);
     }
-
+    public void mBtnVerDetalles(ActionEvent event) throws IOException{
+        SingletonPantallas.toDetallesLibroViewSingleton(event);
+    }
 }

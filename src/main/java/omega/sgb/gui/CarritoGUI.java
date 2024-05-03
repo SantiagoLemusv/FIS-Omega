@@ -27,4 +27,7 @@ public class CarritoGUI {
     public void mBtnFinalizarPrestamo(ActionEvent event) throws IOException {
         SingletonPantallas.toValidarLectorViewSingleton(event);
     }
+    public void mBtnEliminarLibro(ActionEvent event) throws IOException {
+        //al libro seleccionado con el click lo elimina
+    }
 }

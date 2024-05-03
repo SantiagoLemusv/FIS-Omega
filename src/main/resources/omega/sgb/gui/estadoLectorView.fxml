@@ -33,20 +33,6 @@
                </HBox.margin>
             </Label>
             <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <HBox alignment="CENTER_LEFT" prefHeight="14.0" prefWidth="200.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="34.0" prefWidth="145.0" text="Nombre Completo">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="33.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@gui/usuario2.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
          </children>
       </HBox>
    </top>
@@ -117,7 +103,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
          <children>
-            <HBox prefHeight="646.0" prefWidth="964.0">
+            <HBox prefHeight="646.0" prefWidth="964.0" VBox.vgrow="SOMETIMES">
                <children>
                   <VBox prefHeight="610.0" prefWidth="278.0">
                      <HBox.margin>
@@ -131,7 +117,7 @@
                                     <Image url="@gui/usuario120.png" />
                                  </image>
                               </ImageView>
-                              <Label alignment="CENTER" prefHeight="33.0" prefWidth="259.0" text="Nombre Completo">
+                              <Label fx:id="txtNombre" alignment="CENTER" prefHeight="33.0" prefWidth="259.0" text="Nombre Completo">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
@@ -140,7 +126,7 @@
                                  </font>
                               </Label>
                               <Separator prefWidth="200.0" />
-                              <Label prefHeight="18.0" prefWidth="259.0" style="-fx-background-color: #f7f7f7; -fx-background-radius: 10;" text="Cedula" textFill="#8c8c8c">
+                              <Label fx:id="txtCedula" prefHeight="18.0" prefWidth="259.0" style="-fx-background-color: #f7f7f7; -fx-background-radius: 10;" text="Cedula" textFill="#8c8c8c">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -151,7 +137,7 @@
                                     <Insets left="15.0" />
                                  </padding>
                               </Label>
-                              <Label prefHeight="18.0" prefWidth="498.0" style="-fx-background-color: #f7f7f7; -fx-background-radius: 10;" text="Tipo de Cuenta" textFill="#8c8c8c">
+                              <Label fx:id="txtTipoCuenta" prefHeight="18.0" prefWidth="498.0" style="-fx-background-color: #f7f7f7; -fx-background-radius: 10;" text="Tipo de Cuenta" textFill="#8c8c8c">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -172,12 +158,12 @@
                         </VBox>
                      </children>
                   </VBox>
-                  <VBox prefHeight="610.0" prefWidth="320.0">
+                  <VBox prefHeight="610.0" prefWidth="320.0" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
                      <children>
-                        <VBox prefHeight="614.0" prefWidth="320.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+                        <VBox prefHeight="614.0" prefWidth="320.0" style="-fx-background-color: white; -fx-background-radius: 20;" VBox.vgrow="ALWAYS">
                            <children>
                               <Label alignment="CENTER" prefHeight="18.0" prefWidth="498.0" text="Prestamos Activos">
                                  <font>
@@ -185,14 +171,14 @@
                                  </font>
                               </Label>
                               <Separator prefWidth="200.0" />
-                              <ListView prefHeight="607.0" prefWidth="320.0" style="-fx-background-radius: 20; -fx-background-color: rgba(255, 255, 255, 0);" />
+                              <ListView fx:id="ListPrestamos" prefHeight="607.0" prefWidth="320.0" style="-fx-background-radius: 20; -fx-background-color: rgba(255, 255, 255, 0);" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                      </children>
                   </VBox>
-                  <VBox prefHeight="610.0" prefWidth="315.0">
+                  <VBox prefHeight="610.0" prefWidth="315.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <VBox prefHeight="614.0" prefWidth="315.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+                        <VBox prefHeight="614.0" prefWidth="315.0" style="-fx-background-color: white; -fx-background-radius: 20;" VBox.vgrow="SOMETIMES">
                            <children>
                               <Label alignment="CENTER" prefHeight="18.0" prefWidth="498.0" text="Multas">
                                  <font>
@@ -200,7 +186,10 @@
                                  </font>
                               </Label>
                               <Separator prefWidth="200.0" />
-                              <ListView prefHeight="531.0" prefWidth="269.0" style="-fx-background-radius: 20; -fx-background-color: rgba(255, 255, 255, 0);" />
+                              <ListView fx:id="ListMultas" prefHeight="531.0" prefWidth="269.0" style="-fx-background-radius: 20; -fx-background-color: rgba(255, 255, 255, 0);" VBox.vgrow="SOMETIMES">
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor></ListView>
                               <HBox alignment="CENTER" prefHeight="50.0" prefWidth="315.0" style="-fx-background-radius: 20;">
                                  <children>
                                     <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#mBtnIraPago" prefHeight="26.0" prefWidth="146.0" style="-fx-background-color: #7ec8e3;" text="Ir a pago" textFill="WHITE">

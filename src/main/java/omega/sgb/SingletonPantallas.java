@@ -118,6 +118,24 @@ public class SingletonPantallas {
             window.show();
         }
     }
+    public static void toDetallesLibroViewSingleton(ActionEvent event) throws IOException {
+        if(SingletonControladores.getUsuarioActual().getTipoPersonaId() == 1){ //Bibliotecario
+            Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/resultadoLibroView.fxml")));
+            Scene InicioScene = new Scene(InicioParent);
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            window.centerOnScreen();
+            window.setScene(InicioScene);
+            window.show();
+        } else {
+            Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/resultadoLibroView.fxml")));
+            Scene InicioScene = new Scene(InicioParent);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.centerOnScreen();
+            window.setScene(InicioScene);
+            window.show();
+        }
+    }
+
     public static void toLogInViewSingleton(ActionEvent event) throws IOException {
         Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/logInView.fxml")));
         Scene InicioScene = new Scene(InicioParent);
@@ -144,6 +162,15 @@ public class SingletonPantallas {
     }
     public static void toPagoViewSingleton(ActionEvent event) throws IOException {
         Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/pagoView.fxml")));
+        Scene InicioScene = new Scene(InicioParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.centerOnScreen();
+        window.setScene(InicioScene);
+        window.show();
+    }
+
+    public static void toAgregarMetododePagoViewSingleton(ActionEvent event) throws IOException {
+        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/agregarMetodoPagoView.fxml")));
         Scene InicioScene = new Scene(InicioParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.centerOnScreen();

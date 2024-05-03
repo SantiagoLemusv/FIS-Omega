@@ -53,5 +53,16 @@ public class ValidarLectorGUI {
         SingletonPantallas.toCarritoViewSingleton(event);
     }
 
-
+    public void mBtnMiPerfil(ActionEvent event) throws IOException {
+        SingletonPantallas.toEstadoUsuarioViewSingleton(event);
+    }
+    public void mBtnBusqueda(ActionEvent event) throws IOException {
+        SingletonPantallas.toBuscarLibroViewSingleton(event);
+    }
+    public void mBtnCarrito(ActionEvent event) throws IOException {
+        SingletonPantallas.toCarritoViewSingleton(event);
+    }
+    public void mBtnCerrarSesion(ActionEvent event) throws IOException {
+        SingletonPantallas.toLogInViewSingleton(event);
+    }
 }
