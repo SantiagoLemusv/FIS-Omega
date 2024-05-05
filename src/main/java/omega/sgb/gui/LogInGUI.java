@@ -15,11 +15,11 @@ import omega.sgb.dominio.PersonaLector;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class LoginGUI {
+public class LogInGUI {
 
-    private ControladorLogIn controladorLogIn = SingletonControladores.getInstanceLogIn();
-    public LoginGUI() throws SQLException {}
-    public LoginGUI(ControladorLogIn controladorLogIn) throws SQLException {
+    private ControladorLogIn controladorLogIn = SingletonControladores.getInstanceControladorLogIn();
+    public LogInGUI() throws SQLException {}
+    public LogInGUI(ControladorLogIn controladorLogIn) throws SQLException {
         this.controladorLogIn = controladorLogIn;
     }
 

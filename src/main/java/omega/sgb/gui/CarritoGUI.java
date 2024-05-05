@@ -18,7 +18,7 @@ import java.sql.SQLException;
 import javax.imageio.ImageIO;
 
 public class CarritoGUI {
-    private ControladorCarrito controladorCarrito = SingletonControladores.getInstanceCarrito();
+    private ControladorCarrito controladorCarrito = SingletonControladores.getInstanceControladorCarrito();
     public CarritoGUI() throws SQLException {}
     public CarritoGUI(ControladorCarrito controladorCarrito) throws SQLException {
         this.controladorCarrito = controladorCarrito;

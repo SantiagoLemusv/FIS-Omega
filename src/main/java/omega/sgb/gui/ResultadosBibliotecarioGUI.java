@@ -5,11 +5,10 @@ import omega.sgb.control.ControladorBusquedaLibro;
 
 import java.sql.SQLException;
 
-public class ResultadoLibroGUI {
-
+public class ResultadosBibliotecarioGUI {
     private ControladorBusquedaLibro controladorBusquedaLibro = SingletonControladores.getInstanceControladorBusquedaLibro();
-    public ResultadoLibroGUI() throws SQLException {}
-    public ResultadoLibroGUI(ControladorBusquedaLibro controladorBusquedaLibro) throws SQLException {
+    public ResultadosBibliotecarioGUI() throws SQLException {}
+    public ResultadosBibliotecarioGUI(ControladorBusquedaLibro controladorBusquedaLibro) throws SQLException {
         this.controladorBusquedaLibro = controladorBusquedaLibro;
     }
 }

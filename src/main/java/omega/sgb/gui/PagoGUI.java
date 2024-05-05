@@ -7,12 +7,20 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import omega.sgb.SingletonControladores;
 import omega.sgb.SingletonPantallas;
+import omega.sgb.control.ControladorEstadoUsuario;
+import omega.sgb.control.ControladorPago;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class PagoGUI implements Initializable {
+    private ControladorPago controladorPago = SingletonControladores.getInstanceControladorPago();
+    public PagoGUI() throws SQLException {}
+    public PagoGUI(ControladorPago controladorPago) throws SQLException {
+        this.controladorPago = controladorPago;
+    }
     @FXML
     Label txtCedula;
     @FXML

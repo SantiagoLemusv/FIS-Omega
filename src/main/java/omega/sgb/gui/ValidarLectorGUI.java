@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ValidarLectorGUI {
-    private ControladorPrestamo controladorPrestamo = SingletonControladores.getInstancePrestamo();
+    private ControladorPrestamo controladorPrestamo = SingletonControladores.getInstanceControladorPrestamo();
     private PersonaLector lectorActual = new PersonaLector();
     public ValidarLectorGUI() throws SQLException {}
     public ValidarLectorGUI(ControladorPrestamo controladorPrestamo) throws SQLException {
