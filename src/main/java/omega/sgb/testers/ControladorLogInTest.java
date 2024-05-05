@@ -1,7 +1,8 @@
-package omega.sgb.test;
+package omega.sgb.testers;
 
 import omega.sgb.SingletonControladores;
 import omega.sgb.control.ControladorLogIn;
+import omega.sgb.integracion.SQL;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,13 +11,16 @@ import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ControladorLogInTester {
-    private InicializarBD   inicializarBD = SingletonControladores.getInicializarBD();
+public class ControladorLogInTest {
+    private static final String URL = "jdbc:oracle:thin:@orion.javeriana.edu.co:1521/LAB"; //cambiar a la conexion de H2
+    private static final String USUARIO = "is819920";//cambiar a la conexion de H2
+    private static final String CONTRASENA = "Zyqb4HO0x1BG57S";//cambiar a la conexion de H2
     private ControladorLogIn controladorLogIn;
     @BeforeEach
     void init() throws SQLException, FileNotFoundException {
+        InicializarBD inicializarBD = new InicializarBD(SQL.getConexion(URL, USUARIO, CONTRASENA, 0));
         inicializarBD.initDB();
-        controladorLogIn = SingletonControladores.getInstanceLogIn();
+        controladorLogIn = SingletonControladores.getInstanceControladorLogIn();
     }
     //Verifica que sean números, con un mínimo de 8 y máximo 10
     @Test
