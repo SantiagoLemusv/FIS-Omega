@@ -7,12 +7,20 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import omega.sgb.SingletonControladores;
 import omega.sgb.SingletonPantallas;
+import omega.sgb.control.ControladorEstadoUsuario;
+import omega.sgb.control.ControladorPago;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class PagoGUI implements Initializable {
+    private ControladorPago controladorPago = SingletonControladores.getInstanceControladorPago();
+    public PagoGUI() throws SQLException {}
+    public PagoGUI(ControladorPago controladorPago) throws SQLException {
+        this.controladorPago = controladorPago;
+    }
     @FXML
     Label txtCedula;
     @FXML
@@ -39,10 +47,10 @@ public class PagoGUI implements Initializable {
     }
 
     public void mBtnMiPerfil(ActionEvent event) throws IOException {
-        SingletonPantallas.toEstadoUsuarioViewSingleton(event);
+        SingletonPantallas.toEstadoLectorViewSingleton(event);
     }
     public void mBtnBusqueda(ActionEvent event) throws IOException {
-        SingletonPantallas.toBuscarLibroViewSingleton(event);
+        SingletonPantallas.toBuscarLibroLectorViewSingleton(event);
     }
     public void mBtnCerrarSesion(ActionEvent event) throws IOException {
         SingletonPantallas.toLogInViewSingleton(event);
@@ -50,13 +58,13 @@ public class PagoGUI implements Initializable {
     public void mBtnIraPago(ActionEvent event) throws IOException {
         SingletonPantallas.toPagoViewSingleton(event);
     }
-    public void mBtnConfPago(ActionEvent event) throws IOException{
+    public void mBtnConfirmarPago(ActionEvent event) throws IOException{
         /*
         Codigo que se asegure que se selecciona un metodo de pago, que hay multas por pagar etc.
          */
-        SingletonPantallas.toEstadoUsuarioViewSingleton(event);
+        SingletonPantallas.toEstadoLectorViewSingleton(event);
     }
     public void mBtnNuevoMetodoPago(ActionEvent event) throws IOException{
-        SingletonPantallas.toAgregarMetododePagoViewSingleton(event);
+        SingletonPantallas.toAgregarMetodoPagoViewSingleton(event);
     }
 }

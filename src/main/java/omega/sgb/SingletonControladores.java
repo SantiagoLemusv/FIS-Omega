@@ -6,7 +6,6 @@ import omega.sgb.dominio.PersonaBibliotecario;
 import omega.sgb.dominio.PersonaLector;
 import omega.sgb.integracion.Imagen;
 import omega.sgb.integracion.SQL;
-import omega.sgb.test.InicializarBD;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -22,7 +21,6 @@ public class SingletonControladores {
     private static ControladorCarrito controladorCarrito;
     private static ControladorBusquedaLibro controladorBusquedaLibro;
     private static ControladorUsuario controladorUsuario;
-    private static InicializarBD inicializarBD;
 
     public static void setConexionGeneral(Connection conexionGeneral) {
         SingletonControladores.conexionGeneral = conexionGeneral;
@@ -83,13 +81,5 @@ public class SingletonControladores {
             controladorUsuario = new ControladorUsuario(conexionGeneral);
         }
         return controladorUsuario;
-    }
-
-    public static InicializarBD getInicializarBD (){
-        if(inicializarBD == null) {
-            inicializarBD = new InicializarBD(conexionGeneral);
-        }
-        return inicializarBD;
-
     }
 }

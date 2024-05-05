@@ -1,24 +1,25 @@
 package omega.sgb.gui;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import omega.sgb.SingletonControladores;
 import omega.sgb.SingletonPantallas;
+import omega.sgb.control.ControladorPago;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.sql.SQLException;
 
-public class AgregarMetododePagoGUI {
+public class AgregarMetodoPagoGUI {
+    private ControladorPago controladorPago = SingletonControladores.getInstanceControladorPago();
+    public AgregarMetodoPagoGUI() throws SQLException {}
+    public AgregarMetodoPagoGUI(ControladorPago controladorPago) throws SQLException {
+        this.controladorPago = controladorPago;
+    }
 
     public void mBtnMiPerfil(ActionEvent event) throws IOException {
-        SingletonPantallas.toEstadoUsuarioViewSingleton(event);
+        SingletonPantallas.toEstadoLectorViewSingleton(event);
     }
     public void mBtnBusqueda(ActionEvent event) throws IOException {
-        SingletonPantallas.toBuscarLibroViewSingleton(event);
+        SingletonPantallas.toBuscarLibroLectorViewSingleton(event);
     }
     public void mBtnCerrarSesion(ActionEvent event) throws IOException {
         SingletonPantallas.toLogInViewSingleton(event);

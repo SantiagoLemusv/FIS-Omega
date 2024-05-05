@@ -14,52 +14,153 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 public class SingletonPantallas {
-    private static LoginGUI login;
-    private static CrearCuentaGUI crearCuenta;
-    private static BuscarLibroGUI busqueda;
-    private static MainLectorGUI mainLector;
-    private static MainBibliotecarioGUI mainBibliotecario;
+    private static AgregarMetodoPagoGUI agregarMetodoDePagoGUI;
+    private static BuscarLibroBibliotecarioGUI buscarLibroBibliotecarioGUI;
+    private static BuscarLibroLectorGUI buscarLibroLectorGUI;
+    private static CarritoGUI carritoGui;
+    private static CrearCuentaGUI crearCuentaGUI;
+    private static EstadoBibliotecarioGUI estadoBibliotecarioGUI;
+    private static EstadoLectorGUI estadoLectorGUI;
+    private static LogInGUI logInGUI;
+    private static PagoGUI pagoGUI;
+    private static ResultadoLibroGUI resultadoLibroGUI;
+    private static ResultadosBibliotecarioGUI resultadosBibliotecarioGUI;
+    private static ResultadosLectorGUI resultadosLectorGUI;
+    private static ValidarLectorGUI validarLectorGUI;
 
 
 
-    //Instancias singleton------------------------------------
-
-    public static BuscarLibroGUI getInstanceBusqueda() throws SQLException {
-        if (busqueda == null) {
-            busqueda = new BuscarLibroGUI(SingletonControladores.getInstanceBusquedaLibro());
+    //Instancias singleton GUI------------------------------------
+    public static AgregarMetodoPagoGUI getInstanceAgregarMetodoDePagoGUI() throws SQLException {
+        if (agregarMetodoDePagoGUI == null) {
+            agregarMetodoDePagoGUI = new AgregarMetodoPagoGUI(SingletonControladores.getInstanceControladorPago());
         }
-        return busqueda;
+        return agregarMetodoDePagoGUI;
     }
 
-    public static CrearCuentaGUI getInstanceCrearCuenta() throws SQLException {
-        if (crearCuenta == null) {
-            crearCuenta = new CrearCuentaGUI(SingletonControladores.getInstanceLogIn());
+    public static BuscarLibroBibliotecarioGUI getInstanceBuscarLibroBibliotecarioGUI() throws SQLException {
+        if (buscarLibroBibliotecarioGUI == null) {
+            buscarLibroBibliotecarioGUI = new BuscarLibroBibliotecarioGUI(SingletonControladores.getInstanceControladorBusquedaLibro());
         }
-        return crearCuenta;
+        return buscarLibroBibliotecarioGUI;
     }
 
-    public static LoginGUI getInstanceLogin() throws SQLException {
-        if (login == null) {
-            login = new LoginGUI(SingletonControladores.getInstanceLogIn());
+    public static BuscarLibroLectorGUI getInstanceBuscarLibroLectorGUI() throws SQLException {
+        if (buscarLibroLectorGUI == null) {
+            buscarLibroLectorGUI = new BuscarLibroLectorGUI(SingletonControladores.getInstanceControladorBusquedaLibro());
         }
-        return login;
+        return buscarLibroLectorGUI;
     }
 
-    public static MainBibliotecarioGUI getInstanceMainBibliotecario() throws SQLException {
-        if (mainBibliotecario == null) {
-            mainBibliotecario = new MainBibliotecarioGUI(SingletonControladores.getInstanceUsuario());
+    public static CarritoGUI getInstanceCarritoGUI() throws SQLException {
+        if (carritoGui == null) {
+            carritoGui = new CarritoGUI(SingletonControladores.getInstanceControladorCarrito());
         }
-        return mainBibliotecario;
+        return carritoGui;
     }
 
-    public static MainLectorGUI getInstanceMainLector() throws SQLException {
-        if (mainLector == null) {
-            mainLector = new MainLectorGUI(SingletonControladores.getInstanceUsuario());
+    public static CrearCuentaGUI crearCuentaGUI() throws SQLException {
+        if (crearCuentaGUI == null) {
+            crearCuentaGUI = new CrearCuentaGUI(SingletonControladores.getInstanceControladorLogIn());
         }
-        return mainLector;
+        return crearCuentaGUI;
     }
+
+    public static EstadoBibliotecarioGUI getInstanceEstadoBibliotecarioGUI() throws SQLException {
+        if (estadoBibliotecarioGUI == null) {
+            estadoBibliotecarioGUI = new EstadoBibliotecarioGUI(SingletonControladores.getInstanceControladorEstadoUsuario());
+        }
+        return estadoBibliotecarioGUI;
+    }
+
+    public static EstadoLectorGUI getInstanceEstadoLectorGUI() throws SQLException {
+        if (estadoLectorGUI == null) {
+            estadoLectorGUI = new EstadoLectorGUI(SingletonControladores.getInstanceControladorEstadoUsuario());
+        }
+        return estadoLectorGUI;
+    }
+
+    public static LogInGUI getInstanceLogInGUI() throws SQLException {
+        if (logInGUI == null) {
+            logInGUI = new LogInGUI(SingletonControladores.getInstanceControladorLogIn());
+        }
+        return logInGUI;
+    }
+
+    public static PagoGUI getInstancePagoGUI() throws SQLException {
+        if (pagoGUI == null) {
+            pagoGUI = new PagoGUI(SingletonControladores.getInstanceControladorPago());
+        }
+        return pagoGUI;
+    }
+
+    public static ResultadoLibroGUI getInstanceResultadoLibroGUI() throws SQLException {
+        if (resultadoLibroGUI == null) {
+            resultadoLibroGUI = new ResultadoLibroGUI(SingletonControladores.getInstanceControladorBusquedaLibro());
+        }
+        return resultadoLibroGUI;
+    }
+
+    public static ResultadosBibliotecarioGUI getInstanceResultadosBibliotecarioGUI() throws SQLException {
+        if (resultadosBibliotecarioGUI == null) {
+            resultadosBibliotecarioGUI = new ResultadosBibliotecarioGUI(SingletonControladores.getInstanceControladorBusquedaLibro());
+        }
+        return resultadosBibliotecarioGUI;
+    }
+
+    public static ResultadosLectorGUI getInstanceResultadosLectorGUI() throws SQLException {
+        if (resultadosLectorGUI == null) {
+            resultadosLectorGUI = new ResultadosLectorGUI(SingletonControladores.getInstanceControladorBusquedaLibro());
+        }
+        return resultadosLectorGUI;
+    }
+
+    public static ValidarLectorGUI getInstanceValidarLectorGUI() throws SQLException {
+        if (validarLectorGUI == null) {
+            validarLectorGUI = new ValidarLectorGUI(SingletonControladores.getInstanceControladorPrestamo());
+        }
+        return validarLectorGUI;
+    }
+
+
 
     //Creaciones pantallas--------------------------------------------------
+    public static void toAgregarMetodoPagoViewSingleton(ActionEvent event) throws IOException {
+        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/agregarMetodoPagoView.fxml")));
+        Scene InicioScene = new Scene(InicioParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.centerOnScreen();
+        window.setScene(InicioScene);
+        window.show();
+    }
+
+    public static void toBuscarLibroBibliotecarioViewSingleton(ActionEvent event) throws IOException {
+        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/buscarLibroBibliotecarioView.fxml")));
+        Scene InicioScene = new Scene(InicioParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.centerOnScreen();
+        window.setScene(InicioScene);
+        window.show();
+    }
+
+    public static void toBuscarLibroLectorViewSingleton(ActionEvent event) throws IOException {
+        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/buscarLibroLectorView.fxml")));
+        Scene InicioScene = new Scene(InicioParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.centerOnScreen();
+        window.setScene(InicioScene);
+        window.show();
+    }
+
+    public static void toCarritoViewSingleton(ActionEvent event) throws IOException {
+        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/carritoView.fxml")));
+        Scene InicioScene = new Scene(InicioParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.centerOnScreen();
+        window.setScene(InicioScene);
+        window.show();
+    }
+
     public static void toCrearCuentaViewSingleton(ActionEvent event) throws IOException {
         Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/crearCuentaView.fxml")));
         Scene InicioScene = new Scene(InicioParent);
@@ -68,77 +169,23 @@ public class SingletonPantallas {
         window.setScene(InicioScene);
         window.show();
     }
-    public static void toEstadoUsuarioViewSingleton(ActionEvent event) throws IOException {
-        System.out.println("clase del usuario actual: "+SingletonControladores.getUsuarioActual().getClass());
-        if(SingletonControladores.getUsuarioActual().getClass().toString().equals("class omega.sgb.dominio.PersonaBibliotecario")){ //Bibliotecario
-            Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/estadoBibliotecarioView.fxml")));
-            Scene InicioScene = new Scene(InicioParent);
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-            window.centerOnScreen();
-            window.setScene(InicioScene);
-            window.show();
-        } else { //Lector
-            Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/estadoLectorView.fxml")));
-            Scene InicioScene = new Scene(InicioParent);
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-            window.centerOnScreen();
-            window.setScene(InicioScene);
-            window.show();
-        }
+
+    public static void toEstadoBibliotecarioViewSingleton(ActionEvent event) throws IOException {
+        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/estadoBibliotecarioView.fxml")));
+        Scene InicioScene = new Scene(InicioParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.centerOnScreen();
+        window.setScene(InicioScene);
+        window.show();
     }
-    public static void toBuscarLibroViewSingleton(ActionEvent event) throws IOException {
-        System.out.println("clase del usuario actual: "+SingletonControladores.getUsuarioActual().getClass());
-        if(SingletonControladores.getUsuarioActual().getClass().toString().equals("class omega.sgb.dominio.PersonaBibliotecario")){ //Bibliotecario
-            Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/buscarLibroBibliotecarioView.fxml")));
-            Scene InicioScene = new Scene(InicioParent);
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-            window.centerOnScreen();
-            window.setScene(InicioScene);
-            window.show();
-        } else {
-            Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/buscarLibroLectorView.fxml")));
-            Scene InicioScene = new Scene(InicioParent);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.centerOnScreen();
-            window.setScene(InicioScene);
-            window.show();
-        }
-    }
-    public static void toResultadoLibroViewSingleton(ActionEvent event) throws IOException {
-        System.out.println("clase del usuario actual: "+SingletonControladores.getUsuarioActual().getClass());
-        if(SingletonControladores.getUsuarioActual().getClass().toString().equals("class omega.sgb.dominio.PersonaBibliotecario")){ //Bibliotecario
-            Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/resultadosBibliotecarioView.fxml")));
-            Scene InicioScene = new Scene(InicioParent);
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-            window.centerOnScreen();
-            window.setScene(InicioScene);
-            window.show();
-        } else {
-            Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/resultadosLectorView.fxml")));
-            Scene InicioScene = new Scene(InicioParent);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.centerOnScreen();
-            window.setScene(InicioScene);
-            window.show();
-        }
-    }
-    public static void toDetallesLibroViewSingleton(ActionEvent event) throws IOException {
-        System.out.println("clase del usuario actual: "+SingletonControladores.getUsuarioActual().getClass());
-        if(SingletonControladores.getUsuarioActual().getClass().toString().equals("class omega.sgb.dominio.PersonaBibliotecario")){ //Bibliotecario
-            Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/resultadoLibroView.fxml")));
-            Scene InicioScene = new Scene(InicioParent);
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-            window.centerOnScreen();
-            window.setScene(InicioScene);
-            window.show();
-        } else {
-            Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/resultadoLibroView.fxml")));
-            Scene InicioScene = new Scene(InicioParent);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.centerOnScreen();
-            window.setScene(InicioScene);
-            window.show();
-        }
+
+    public static void toEstadoLectorViewSingleton(ActionEvent event) throws IOException {
+        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/estadoLectorView.fxml")));
+        Scene InicioScene = new Scene(InicioParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.centerOnScreen();
+        window.setScene(InicioScene);
+        window.show();
     }
 
     public static void toLogInViewSingleton(ActionEvent event) throws IOException {
@@ -149,22 +196,7 @@ public class SingletonPantallas {
         window.setScene(InicioScene);
         window.show();
     }
-    public static void toValidarLectorViewSingleton(ActionEvent event) throws IOException {
-        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/validarLectorView.fxml")));
-        Scene InicioScene = new Scene(InicioParent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.centerOnScreen();
-        window.setScene(InicioScene);
-        window.show();
-    }
-    public static void toCarritoViewSingleton(ActionEvent event) throws IOException {
-        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/carritoView.fxml")));
-        Scene InicioScene = new Scene(InicioParent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.centerOnScreen();
-        window.setScene(InicioScene);
-        window.show();
-    }
+
     public static void toPagoViewSingleton(ActionEvent event) throws IOException {
         Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/pagoView.fxml")));
         Scene InicioScene = new Scene(InicioParent);
@@ -174,8 +206,35 @@ public class SingletonPantallas {
         window.show();
     }
 
-    public static void toAgregarMetododePagoViewSingleton(ActionEvent event) throws IOException {
-        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/agregarMetodoPagoView.fxml")));
+    public static void toResultadoLibroViewSingleton(ActionEvent event) throws IOException {
+        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/resultadoLibroView.fxml")));
+        Scene InicioScene = new Scene(InicioParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.centerOnScreen();
+        window.setScene(InicioScene);
+        window.show();
+    }
+
+    public static void toResultadosBibliotecarioViewSingleton(ActionEvent event) throws IOException {
+        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/resultadosBibliotecarioView.fxml")));
+        Scene InicioScene = new Scene(InicioParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.centerOnScreen();
+        window.setScene(InicioScene);
+        window.show();
+    }
+
+    public static void toResultadosLectorViewSingleton(ActionEvent event) throws IOException {
+        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/resultadosLectorView.fxml")));
+        Scene InicioScene = new Scene(InicioParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.centerOnScreen();
+        window.setScene(InicioScene);
+        window.show();
+    }
+
+    public static void toValidarLectorViewSingleton(ActionEvent event) throws IOException {
+        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/validarLectorView.fxml")));
         Scene InicioScene = new Scene(InicioParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.centerOnScreen();

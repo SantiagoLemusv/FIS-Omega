@@ -5,15 +5,22 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import omega.sgb.SingletonControladores;
 import omega.sgb.SingletonPantallas;
+import omega.sgb.control.ControladorBusquedaLibro;
+import omega.sgb.control.ControladorEstadoUsuario;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class EstadoUsuarioGUI implements Initializable {
+public class EstadoBibliotecarioGUI implements Initializable {
+    private ControladorEstadoUsuario controladorEstadoUsuario = SingletonControladores.getInstanceControladorEstadoUsuario();
+    public EstadoBibliotecarioGUI() throws SQLException {}
+    public EstadoBibliotecarioGUI(ControladorEstadoUsuario controladorEstadoUsuario) throws SQLException {
+        this.controladorEstadoUsuario = controladorEstadoUsuario;
+    }
 
     @FXML
     Label txtCedula;
@@ -41,18 +48,15 @@ public class EstadoUsuarioGUI implements Initializable {
     }
 
     public void mBtnMiPerfil(ActionEvent event) throws IOException {
-        SingletonPantallas.toEstadoUsuarioViewSingleton(event);
+        SingletonPantallas.toEstadoBibliotecarioViewSingleton(event);
     }
     public void mBtnBusqueda(ActionEvent event) throws IOException {
-        SingletonPantallas.toBuscarLibroViewSingleton(event);
+        SingletonPantallas.toBuscarLibroBibliotecarioViewSingleton(event);
     }
     public void mBtnCarrito(ActionEvent event) throws IOException {
         SingletonPantallas.toCarritoViewSingleton(event);
     }
     public void mBtnCerrarSesion(ActionEvent event) throws IOException {
         SingletonPantallas.toLogInViewSingleton(event);
-    }
-    public void mBtnIraPago(ActionEvent event) throws IOException {
-        SingletonPantallas.toPagoViewSingleton(event);
     }
 }

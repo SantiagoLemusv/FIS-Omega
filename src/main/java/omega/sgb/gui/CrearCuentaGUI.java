@@ -9,17 +9,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import omega.sgb.SingletonControladores;
 import omega.sgb.SingletonPantallas;
 import omega.sgb.control.ControladorLogIn;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CrearCuentaGUI {
-    private ControladorLogIn controladorLogIn;
-    public CrearCuentaGUI(){}
-    public CrearCuentaGUI(ControladorLogIn controladorLogIn) {
+    private ControladorLogIn controladorLogIn = SingletonControladores.getInstanceControladorLogIn();
+    public CrearCuentaGUI() throws SQLException {}
+    public CrearCuentaGUI(ControladorLogIn controladorLogIn) throws SQLException {
         this.controladorLogIn = controladorLogIn;
     }
 

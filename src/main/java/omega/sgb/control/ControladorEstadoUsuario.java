@@ -2,9 +2,9 @@ package omega.sgb.control;
 
 import java.sql.Connection;
 
-public class ControladorUsuario {
+public class ControladorEstadoUsuario {
     private Connection connection;
-    public ControladorUsuario(Connection conexionGeneral) {
+    public ControladorEstadoUsuario(Connection conexionGeneral) {
         this.connection = conexionGeneral;
     }
 }

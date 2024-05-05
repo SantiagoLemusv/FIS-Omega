@@ -15,11 +15,11 @@ import omega.sgb.dominio.PersonaLector;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class LoginGUI {
+public class LogInGUI {
 
-    private ControladorLogIn controladorLogIn = SingletonControladores.getInstanceLogIn();
-    public LoginGUI() throws SQLException {}
-    public LoginGUI(ControladorLogIn controladorLogIn) throws SQLException {
+    private ControladorLogIn controladorLogIn = SingletonControladores.getInstanceControladorLogIn();
+    public LogInGUI() throws SQLException {}
+    public LogInGUI(ControladorLogIn controladorLogIn) throws SQLException {
         this.controladorLogIn = controladorLogIn;
     }
 
@@ -45,9 +45,9 @@ public class LoginGUI {
     }
     public void mTipoPantalla(ActionEvent event) throws IOException {
         if(SingletonControladores.getUsuarioActual() instanceof PersonaBibliotecario){ //Bibliotecario
-            SingletonPantallas.toBuscarLibroViewSingleton(event);
+            SingletonPantallas.toEstadoBibliotecarioViewSingleton(event);
         } else if (SingletonControladores.getUsuarioActual() instanceof PersonaLector) { //Lector
-            SingletonPantallas.toEstadoUsuarioViewSingleton(event);
+            SingletonPantallas.toEstadoLectorViewSingleton(event);
         }else{
             lblAutenticacion.setText("El usuario no tiene tipo");
         }
