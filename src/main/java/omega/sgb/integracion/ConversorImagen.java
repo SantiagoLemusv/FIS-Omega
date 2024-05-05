@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
 
-public class Imagen {
+public class ConversorImagen {
     public Image blobToImage(Blob imagenBlob) throws IOException, SQLException {
         if (imagenBlob == null) {
             return null;

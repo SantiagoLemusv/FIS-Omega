@@ -1,5 +1,7 @@
 package omega.sgb.dominio;
 
+import javafx.scene.image.ImageView;
+
 import java.util.List;
 
 public class LibroVirtual {
@@ -9,6 +11,7 @@ public class LibroVirtual {
     private String titulo;
     private Integer cantidad;//número de libros físicos que existen
     private String autor;
+    private ImageView imagenLibro;
     private Integer duracionPrestamo;//Por cuantos días se presta el libro
     private Integer multaValorDia;//No tiene setValorMultaDia
     private List<LibroFisico> librosFisicos;
@@ -28,11 +31,12 @@ public class LibroVirtual {
         this.librosFisicos = librosFisicos;
     }
 
-    public LibroVirtual(String isbn, String titulo, Integer cantidad, String autor, Integer duracionPrestamo, Integer multaValorDia, List<LibroFisico> librosFisicos) {
+    public LibroVirtual(String isbn, String titulo, Integer cantidad, String autor, ImageView imagenLibro,Integer duracionPrestamo, Integer multaValorDia, List<LibroFisico> librosFisicos) {
         this.isbn = isbn;
         this.titulo = titulo;
         this.cantidad = cantidad;
         this.autor = autor;
+        this.imagenLibro = imagenLibro;
         this.duracionPrestamo = duracionPrestamo;
         this.multaValorDia = multaValorDia;
         this.librosFisicos = librosFisicos;
@@ -77,6 +81,14 @@ public class LibroVirtual {
 
     public void setAutor(String autor) {
         this.autor = autor;
+    }
+
+    public ImageView getImagenLibro() {
+        return imagenLibro;
+    }
+
+    public void setImagenLibro(ImageView imagenLibro) {
+        this.imagenLibro = imagenLibro;
     }
 
     public Integer getDuracionPrestamo() {

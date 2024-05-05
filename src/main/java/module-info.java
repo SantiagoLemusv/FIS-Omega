@@ -1,4 +1,5 @@
 module omega.sgb {
+    opens omega.sgb.dominio to javafx.base;
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
