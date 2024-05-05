@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="omega.sgb.gui.CarritoGUI">
+<BorderPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="omega.sgb.gui.BusquedaGUI">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
@@ -25,15 +26,29 @@
                </font>
             </Label>
             <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="29.0" prefWidth="1.0" />
-            <Label prefHeight="34.0" prefWidth="145.0" text="Carrito" textFill="#7ec8e3">
+            <Label prefHeight="34.0" prefWidth="145.0" text="Busqueda" textFill="#7ec8e3">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
                <HBox.margin>
-                  <Insets left="14.0" />
+                  <Insets left="10.0" />
                </HBox.margin>
             </Label>
             <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <HBox alignment="CENTER_LEFT" prefHeight="14.0" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="34.0" prefWidth="145.0" text="Nombre Usuario">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="33.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@gui/usuario2.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
          </children>
       </HBox>
    </top>
@@ -71,24 +86,6 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
-                  </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#mBtnCarrito" prefHeight="39.0" prefWidth="196.0" style="-fx-background-color: white;" text="Carrito" textFill="#7ec8e3">
-                     <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@gui/carrito3.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <padding>
-                        <Insets left="40.0" />
-                     </padding>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -117,57 +114,62 @@
       </VBox>
    </left>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white; -fx-background-radius: 20;" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </BorderPane.margin>
+      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="34.0" prefWidth="189.0" text="Carrito">
-               <font>
-                  <Font name="System Bold" size="21.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </Label>
-            <Separator prefWidth="200.0" />
-            <TableView prefHeight="522.0" prefWidth="964.0" style="-fx-background-color: transparent;" VBox.vgrow="SOMETIMES">
-              <columns>
-                <TableColumn prefWidth="127.99996948242188" text="Portada" />
-                <TableColumn prefWidth="123.199951171875" text="Titulo" />
-                  <TableColumn prefWidth="121.60000610351562" text="ISBN" />
-              </columns>
-            </TableView>
-            <HBox prefHeight="38.0" prefWidth="964.0">
+            <VBox alignment="TOP_CENTER" prefHeight="650.0" prefWidth="1030.0" style="-fx-background-color: white; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#mBtnFinalizarPrestamo" prefHeight="26.0" prefWidth="147.0" style="-fx-background-color: #7ec8e3;" text="Solicitar" textFill="WHITE">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="5.0" right="20.0" top="5.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#mBtnEliminarLibro" prefHeight="26.0" prefWidth="147.0" style="-fx-background-color: #7ec8e3;" text="Eliminar Seleccionado" textFill="WHITE">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets bottom="5.0" top="5.0" />
-                     </HBox.margin>
-                  </Button>
+                  <HBox prefHeight="18.0" prefWidth="964.0">
+                     <children>
+                        <Label prefHeight="31.0" prefWidth="111.0" text="Resultados">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField prefHeight="34.0" prefWidth="264.0" promptText="Titulo">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#mBtnBuscar" prefHeight="33.0" prefWidth="39.0" style="-fx-background-color: #7ec8e3;" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="28.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@gui/lupa_blanca.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <TableView prefHeight="578.0" prefWidth="964.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                    <columns>
+                      <TableColumn prefWidth="128.00001525878906" text="Portada" />
+                      <TableColumn prefWidth="151.199951171875" text="Titulo" />
+                        <TableColumn prefWidth="136.0" text="ISBN" />
+                    </columns>
+                  </TableView>
                </children>
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" top="5.0" />
-               </VBox.margin>
-            </HBox>
+               <HBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </HBox.margin>
+            </VBox>
          </children>
-      </VBox>
+      </HBox>
    </center>
 </BorderPane>
