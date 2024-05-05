@@ -38,11 +38,8 @@ public class EstadoLectorGUI implements Initializable {
 
         txtCedula.setText(String.valueOf(SingletonControladores.getUsuarioActual().getCedula()));
 
-        if(SingletonControladores.getUsuarioActual().getClass().toString().equals("PerosnaBibliotecario")){
-            txtTipoCuenta.setText("Bibliotecario");
-        }else {
-            txtTipoCuenta.setText("Lector");
-        }
+        txtTipoCuenta.setText("Lector");
+
     }
 
 

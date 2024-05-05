@@ -19,7 +19,7 @@
          </effect></ImageView>
       <Pane fx:id="CCPane" layoutX="344.0" layoutY="46.0" prefHeight="658.0" prefWidth="853.0">
          <children>
-            <Button fx:id="btnCrearCuenta" layoutX="566.0" layoutY="556.0" mnemonicParsing="false" onAction="#mBtnCrearCuenta" prefHeight="42.0" prefWidth="123.0" text="Crear Cuenta">
+            <Button fx:id="btnCrearCuenta" layoutX="250.0" layoutY="556.0" mnemonicParsing="false" onAction="#mBtnCrearCuenta" prefHeight="42.0" prefWidth="123.0" text="Crear Cuenta">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -62,7 +62,7 @@
                   <Image url="@gui/add_user.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnVolverLogInView" layoutX="311.0" layoutY="556.0" mnemonicParsing="false" onAction="#mBtnLoginView" prefHeight="42.0" prefWidth="123.0" text="Volver a Login">
+            <Button fx:id="btnVolverLogInView" layoutX="52.0" layoutY="556.0" mnemonicParsing="false" onAction="#mBtnLoginView" prefHeight="42.0" prefWidth="123.0" text="Volver a Login">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
