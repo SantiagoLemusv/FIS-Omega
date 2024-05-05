@@ -25,6 +25,6 @@ public class BuscarLibroLectorGUI {
         SingletonPantallas.toLogInViewSingleton(event);
     }
     public void mBtnBuscar(ActionEvent event) throws IOException {
-        SingletonPantallas.toResultadoLibroViewSingleton(event);
+        SingletonPantallas.toResultadosLectorViewSingleton(event);
     }
 }
