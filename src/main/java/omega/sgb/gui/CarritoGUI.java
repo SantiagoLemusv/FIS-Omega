@@ -40,4 +40,20 @@ public class CarritoGUI {
 
     }*/
 
-}
+        public void mBtnMiPerfil(ActionEvent event) throws IOException {
+            SingletonPantallas.toEstadoBibliotecarioViewSingleton(event);
+        }
+        public void mBtnBusqueda(ActionEvent event) throws IOException {
+            SingletonPantallas.toBuscarLibroBibliotecarioViewSingleton(event);
+        }
+        public void mBtnCarrito(ActionEvent event) throws IOException {
+            SingletonPantallas.toCarritoViewSingleton(event);
+        }
+        public void mBtnCerrarSesion(ActionEvent event) throws IOException {
+            SingletonPantallas.toLogInViewSingleton(event);
+        }
+        public void mBtnEliminarLibro(ActionEvent event) throws IOException {
+            //al libro seleccionado con el click lo elimina
+        }
+    }
+
