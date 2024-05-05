@@ -11,9 +11,7 @@ import omega.sgb.SingletonControladores;
 import omega.sgb.SingletonPantallas;
 import omega.sgb.control.ControladorBusquedaLibro;
 import omega.sgb.dominio.LibroVirtual;
-
-import javax.swing.text.TabableView;
-import javax.swing.text.html.ImageView;
+import javafx.scene.image.ImageView;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -26,6 +24,8 @@ public class ResultadosBibliotecarioGUI {
     TableColumn<LibroVirtual, String> colTitulo;
     @FXML
     TableColumn<LibroVirtual, String> colAutor;
+    @FXML
+    ImageView imagenPrueba;
     private ControladorBusquedaLibro controladorBusquedaLibro = SingletonControladores.getInstanceControladorBusquedaLibro();
 
     private ObservableList<LibroVirtual> listaLibrosFisicos = FXCollections.observableArrayList();
@@ -64,7 +64,14 @@ public class ResultadosBibliotecarioGUI {
     }
 
     public void mInicializarTablaLibros(){
+        System.out.println("boton lupita bibliotecario");
         listaLibrosFisicos.addAll(controladorBusquedaLibro.getListaLibrosVirtuales());
+        if(listaLibrosFisicos.isEmpty()){
+            System.out.println("lista vacia");
+        }else{
+            System.out.println("lista con datos");
+        }
+        imagenPrueba.setImage(listaLibrosFisicos.get(0).getImagenLibro());
         colPortada.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         colTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         colAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));

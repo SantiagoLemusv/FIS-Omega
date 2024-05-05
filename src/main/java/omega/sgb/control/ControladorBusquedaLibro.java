@@ -49,8 +49,7 @@ public class ControladorBusquedaLibro {
                 // Obtener la imagen desde el blob y asignarla a imagenLibro
                 Blob imagenBlob = resultSet.getBlob("IMAGENLIBRO");
                 Image imagenAux = conversorImagen.blobToImage(imagenBlob);
-                ImageView imagenView = new ImageView(imagenAux);
-                libroAux.setImagenLibro(imagenView);
+                libroAux.setImagenLibro(imagenAux);
             }
 
             // Cerrar recursos
