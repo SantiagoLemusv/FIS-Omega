@@ -3,6 +3,8 @@ module omega.sgb {
     requires javafx.fxml;
     requires java.sql;
     requires java.desktop;
+    requires org.junit.jupiter.api;
+    requires com.h2database;
 
 
     opens omega.sgb to javafx.fxml;
