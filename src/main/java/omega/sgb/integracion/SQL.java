@@ -12,7 +12,7 @@ public class SQL {
             while(cont<3){
                 System.out.println("Fallo en la conexión");
                 cont=cont+1;
-                getConexion(url, usuario, contrasena, cont+1);
+                getConexion(url, usuario, contrasena, cont);
             }
 
         }

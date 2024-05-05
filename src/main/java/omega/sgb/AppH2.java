@@ -7,12 +7,15 @@ import javafx.stage.Stage;
 import omega.sgb.integracion.SQL;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class AppH2 extends Application {
-    // Datos de conexión a la base de datos (modifica según tu configuración)
-    private static final String URL = "jdbc:oracle:thin:@orion.javeriana.edu.co:1521/LAB"; //cambiar a la conexion de H2
-    private static final String USUARIO = "is819920";//cambiar a la conexion de H2
-    private static final String CONTRASENA = "Zyqb4HO0x1BG57S";//cambiar a la conexion de H2
+    private static final String URL = "jdbc:h2:~/test";
+    private static final String USUARIO = "omega";
+    private static final String CONTRASENA = "";
+
 
     @Override
     public void start(Stage stage) throws IOException {
