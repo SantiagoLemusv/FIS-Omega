@@ -47,10 +47,10 @@ public class PagoGUI implements Initializable {
     }
 
     public void mBtnMiPerfil(ActionEvent event) throws IOException {
-        SingletonPantallas.toEstadoUsuarioViewSingleton(event);
+        SingletonPantallas.toEstadoLectorViewSingleton(event);
     }
     public void mBtnBusqueda(ActionEvent event) throws IOException {
-        SingletonPantallas.toBuscarLibroViewSingleton(event);
+        SingletonPantallas.toBuscarLibroLectorViewSingleton(event);
     }
     public void mBtnCerrarSesion(ActionEvent event) throws IOException {
         SingletonPantallas.toLogInViewSingleton(event);
@@ -58,13 +58,13 @@ public class PagoGUI implements Initializable {
     public void mBtnIraPago(ActionEvent event) throws IOException {
         SingletonPantallas.toPagoViewSingleton(event);
     }
-    public void mBtnConfPago(ActionEvent event) throws IOException{
+    public void mBtnConfirmarPago(ActionEvent event) throws IOException{
         /*
         Codigo que se asegure que se selecciona un metodo de pago, que hay multas por pagar etc.
          */
-        SingletonPantallas.toEstadoUsuarioViewSingleton(event);
+        SingletonPantallas.toEstadoLectorViewSingleton(event);
     }
     public void mBtnNuevoMetodoPago(ActionEvent event) throws IOException{
-        SingletonPantallas.toAgregarMetododePagoViewSingleton(event);
+        SingletonPantallas.toAgregarMetodoPagoViewSingleton(event);
     }
 }

@@ -48,18 +48,15 @@ public class EstadoBibliotecarioGUI implements Initializable {
     }
 
     public void mBtnMiPerfil(ActionEvent event) throws IOException {
-        SingletonPantallas.toEstadoUsuarioViewSingleton(event);
+        SingletonPantallas.toEstadoBibliotecarioViewSingleton(event);
     }
     public void mBtnBusqueda(ActionEvent event) throws IOException {
-        SingletonPantallas.toBuscarLibroViewSingleton(event);
+        SingletonPantallas.toBuscarLibroBibliotecarioViewSingleton(event);
     }
     public void mBtnCarrito(ActionEvent event) throws IOException {
         SingletonPantallas.toCarritoViewSingleton(event);
     }
     public void mBtnCerrarSesion(ActionEvent event) throws IOException {
         SingletonPantallas.toLogInViewSingleton(event);
-    }
-    public void mBtnIraPago(ActionEvent event) throws IOException {
-        SingletonPantallas.toPagoViewSingleton(event);
     }
 }

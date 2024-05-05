@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.CornerRadii;
 import javafx.stage.Stage;
 import omega.sgb.gui.*;
 
@@ -15,7 +14,7 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 public class SingletonPantallas {
-    private static AgregarMetodoDePagoGUI agregarMetodoDePagoGUI;
+    private static AgregarMetodoPagoGUI agregarMetodoDePagoGUI;
     private static BuscarLibroBibliotecarioGUI buscarLibroBibliotecarioGUI;
     private static BuscarLibroLectorGUI buscarLibroLectorGUI;
     private static CarritoGUI carritoGui;
@@ -32,9 +31,9 @@ public class SingletonPantallas {
 
 
     //Instancias singleton GUI------------------------------------
-    public static AgregarMetodoDePagoGUI getInstanceAgregarMetodoDePagoGUI() throws SQLException {
+    public static AgregarMetodoPagoGUI getInstanceAgregarMetodoDePagoGUI() throws SQLException {
         if (agregarMetodoDePagoGUI == null) {
-            agregarMetodoDePagoGUI = new AgregarMetodoDePagoGUI(SingletonControladores.getInstanceControladorPago());
+            agregarMetodoDePagoGUI = new AgregarMetodoPagoGUI(SingletonControladores.getInstanceControladorPago());
         }
         return agregarMetodoDePagoGUI;
     }

@@ -33,11 +33,11 @@ public class CarritoGUI {
         SingletonPantallas.toValidarLectorViewSingleton(event);
     }
 
-    public void agregarImagenPrueba(ActionEvent event) throws SQLException, IOException {
+    /*public void agregarImagenPrueba(ActionEvent event) throws SQLException, IOException {
         Blob imagenBlob = controladorCarrito.getImagenLibroById();
 
         imagenPrueba.setImage(SingletonControladores.getImagenProcesar().blobToImage(imagenBlob));
 
-    }
+    }*/
 
 }

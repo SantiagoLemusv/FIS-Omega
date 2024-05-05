@@ -45,9 +45,9 @@ public class LogInGUI {
     }
     public void mTipoPantalla(ActionEvent event) throws IOException {
         if(SingletonControladores.getUsuarioActual() instanceof PersonaBibliotecario){ //Bibliotecario
-            SingletonPantallas.toBuscarLibroViewSingleton(event);
+            SingletonPantallas.toEstadoBibliotecarioViewSingleton(event);
         } else if (SingletonControladores.getUsuarioActual() instanceof PersonaLector) { //Lector
-            SingletonPantallas.toEstadoUsuarioViewSingleton(event);
+            SingletonPantallas.toEstadoLectorViewSingleton(event);
         }else{
             lblAutenticacion.setText("El usuario no tiene tipo");
         }
