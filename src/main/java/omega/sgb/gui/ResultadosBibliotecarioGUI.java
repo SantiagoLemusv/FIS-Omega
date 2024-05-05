@@ -30,7 +30,7 @@ public class ResultadosBibliotecarioGUI {
         SingletonPantallas.toPagoViewSingleton(event);
     }
     public void mBtnBuscar(ActionEvent event) throws IOException {
-        SingletonPantallas.toResultadoLibroViewSingleton(event);
+        SingletonPantallas.toResultadosBibliotecarioViewSingleton(event);
     }
     public void mBtnVerDetalles(ActionEvent event) throws IOException{
         SingletonPantallas.toResultadoLibroViewSingleton(event);

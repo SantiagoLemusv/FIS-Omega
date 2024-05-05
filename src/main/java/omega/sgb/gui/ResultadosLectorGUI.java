@@ -29,7 +29,7 @@ public class ResultadosLectorGUI {
         SingletonPantallas.toPagoViewSingleton(event);
     }
     public void mBtnBuscar(ActionEvent event) throws IOException {
-        SingletonPantallas.toResultadoLibroViewSingleton(event);
+        SingletonPantallas.toResultadosLectorViewSingleton(event);
     }
     public void mBtnVerDetalles(ActionEvent event) throws IOException{
         SingletonPantallas.toResultadoLibroViewSingleton(event);
