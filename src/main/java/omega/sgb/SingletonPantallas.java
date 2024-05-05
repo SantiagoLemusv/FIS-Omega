@@ -69,7 +69,7 @@ public class SingletonPantallas {
         window.show();
     }
     public static void toEstadoUsuarioViewSingleton(ActionEvent event) throws IOException {
-        if(SingletonControladores.getUsuarioActual().getClass().equals("PersonaBibliotecario")){ //Bibliotecario
+        if(SingletonControladores.getUsuarioActual().getClass().toString().equals("PerosnaBibliotecario")){ //Bibliotecario
             Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/estadoBibliotecarioView.fxml")));
             Scene InicioScene = new Scene(InicioParent);
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -86,7 +86,7 @@ public class SingletonPantallas {
         }
     }
     public static void toBuscarLibroViewSingleton(ActionEvent event) throws IOException {
-        if(SingletonControladores.getUsuarioActual().getClass().equals("PersonaBibliotecario")){ //Bibliotecario
+        if(SingletonControladores.getUsuarioActual().getClass().toString().equals("PerosnaBibliotecario")){ //Bibliotecario
             Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/buscarLibroBibliotecarioView.fxml")));
             Scene InicioScene = new Scene(InicioParent);
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -103,7 +103,7 @@ public class SingletonPantallas {
         }
     }
     public static void toResultadoLibroViewSingleton(ActionEvent event) throws IOException {
-        if(SingletonControladores.getUsuarioActual().getClass().equals("PersonaBibliotecario")){ //Bibliotecario
+        if(SingletonControladores.getUsuarioActual().getClass().toString().equals("PerosnaBibliotecario")){ //Bibliotecario
             Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/resultadosBibliotecarioView.fxml")));
             Scene InicioScene = new Scene(InicioParent);
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -120,7 +120,7 @@ public class SingletonPantallas {
         }
     }
     public static void toDetallesLibroViewSingleton(ActionEvent event) throws IOException {
-        if(SingletonControladores.getUsuarioActual().getClass().equals("PersonaBibliotecario")){ //Bibliotecario
+        if(SingletonControladores.getUsuarioActual().getClass().toString().equals("PerosnaBibliotecario")){ //Bibliotecario
             Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/resultadoLibroView.fxml")));
             Scene InicioScene = new Scene(InicioParent);
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();

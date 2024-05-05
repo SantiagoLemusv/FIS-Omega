@@ -31,7 +31,7 @@ public class PagoGUI implements Initializable {
 
         txtCedula.setText(String.valueOf(SingletonControladores.getUsuarioActual().getCedula()));
 
-        if(SingletonControladores.getUsuarioActual().getClass().equals("PersonaBibliotecario")){
+        if(SingletonControladores.getUsuarioActual().getClass().toString().equals("PerosnaBibliotecario")){
             txtTipoCuenta.setText("Bibliotecario");
         }else {
             txtTipoCuenta.setText("Lector");
