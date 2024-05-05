@@ -33,7 +33,7 @@ public class EstadoUsuarioGUI implements Initializable {
 
         txtCedula.setText(String.valueOf(SingletonControladores.getUsuarioActual().getCedula()));
 
-        if(SingletonControladores.getUsuarioActual().getTipoPersonaId() == 1){
+        if(SingletonControladores.getUsuarioActual().getClass().toString().equals("PerosnaBibliotecario")){
             txtTipoCuenta.setText("Bibliotecario");
         }else {
             txtTipoCuenta.setText("Lector");
