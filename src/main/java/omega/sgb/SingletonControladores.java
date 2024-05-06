@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class SingletonControladores {
     private static SingletonControladores myself;
     private static Connection conexionGeneral = null;
-    private static ConversorImagen conversorImagen;
+    private static ConversorImagen conversorImagen = new ConversorImagen();
     private static Persona usuarioActual;
     private static ControladorBusquedaLibro controladorBusquedaLibro;
     private static ControladorCarrito controladorCarrito;
@@ -24,10 +24,6 @@ public class SingletonControladores {
 
     public static void setConexionGeneral(Connection conexionGeneral) {
         SingletonControladores.conexionGeneral = conexionGeneral;
-    }
-
-    public static void setConversorImagen(ConversorImagen conversorImagen) {
-        SingletonControladores.conversorImagen = conversorImagen;
     }
 
 

@@ -12,7 +12,7 @@ public class LibroVirtual {
     private String titulo;
     private Integer cantidad;//número de libros físicos que existen
     private String autor;
-    private Image imagenLibro;
+    private ImageView imagenLibro;
     private Integer duracionPrestamo;//Por cuantos días se presta el libro
     private Integer multaValorDia;//No tiene setValorMultaDia
     private List<LibroFisico> librosFisicos;
@@ -32,7 +32,7 @@ public class LibroVirtual {
         this.librosFisicos = librosFisicos;
     }
 
-    public LibroVirtual(String isbn, String titulo, Integer cantidad, String autor, Image imagenLibro,Integer duracionPrestamo, Integer multaValorDia, List<LibroFisico> librosFisicos) {
+    public LibroVirtual(String isbn, String titulo, Integer cantidad, String autor, ImageView imagenLibro,Integer duracionPrestamo, Integer multaValorDia, List<LibroFisico> librosFisicos) {
         this.isbn = isbn;
         this.titulo = titulo;
         this.cantidad = cantidad;
@@ -84,11 +84,11 @@ public class LibroVirtual {
         this.autor = autor;
     }
 
-    public Image getImagenLibro() {
+    public ImageView getImagenLibro() {
         return imagenLibro;
     }
 
-    public void setImagenLibro(Image imagenLibro) {
+    public void setImagenLibro(ImageView imagenLibro) {
         this.imagenLibro = imagenLibro;
     }
 

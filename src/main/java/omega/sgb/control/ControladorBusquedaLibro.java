@@ -31,13 +31,19 @@ public class ControladorBusquedaLibro {
 
     public void buscarLibros(String tituloLibro) {
         try {
-            // Preparar la consulta SQL para buscar libros por título o autor
-            String sql = "SELECT * FROM LibroVirtual";
+            // Prepare the SQL with a placeholder for the title search term
+            String sql = "SELECT * FROM LIBROVIRTUAL WHERE LOWER(TITULO) LIKE LOWER(?)";
             PreparedStatement statement = connection.prepareStatement(sql);
+
+            // Set the search term parameter using a case-insensitive search
+            statement.setString(1, tituloLibro + "%");
+
             ResultSet resultSet = statement.executeQuery();
 
+            listaLibrosVirtuales.clear(); // Clear the list before adding new results
+
             while (resultSet.next()) {
-                // Crear un objeto LibroVirtual con los datos de la fila actual
+                // Create a LibroVirtual object and populate data
                 LibroVirtual libroAux = new LibroVirtual();
                 libroAux.setId(resultSet.getInt("ID"));
                 libroAux.setIsbn(resultSet.getString("ISBN"));
@@ -46,18 +52,27 @@ public class ControladorBusquedaLibro {
                 libroAux.setAutor(resultSet.getString("AUTOR"));
                 libroAux.setMultaValorDia(resultSet.getInt("MULTAVALORDIA"));
                 libroAux.setDuracionPrestamo(resultSet.getInt("DURACIONPRESTAMO"));
-                // Obtener la imagen desde el blob y asignarla a imagenLibro
+
+                // Get the image from the blob (assuming conversion logic remains the same)
                 Blob imagenBlob = resultSet.getBlob("IMAGENLIBRO");
-                Image imagenAux = conversorImagen.blobToImage(imagenBlob);
-                libroAux.setImagenLibro(imagenAux);
+                libroAux.setImagenLibro(conversorImagen.blobToImageView(imagenBlob));
+
+                listaLibrosVirtuales.add(libroAux);
             }
 
-            // Cerrar recursos
+            // Close resources
             resultSet.close();
             statement.close();
+
+            System.out.println("Búsqueda finalizada.");
+            if (listaLibrosVirtuales.isEmpty()) {
+                System.out.println("Ningún libro encontrado con el título especificado.");
+            } else {
+                System.out.println(listaLibrosVirtuales.size() + " libros encontrados.");
+            }
         } catch (SQLException | IOException e) {
             e.printStackTrace();
-            // Manejar la excepción apropiadamente en tu aplicación
         }
     }
+
 }

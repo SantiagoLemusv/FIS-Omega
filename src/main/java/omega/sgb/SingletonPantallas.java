@@ -23,7 +23,7 @@ public class SingletonPantallas {
     private static EstadoLectorGUI estadoLectorGUI;
     private static LogInGUI logInGUI;
     private static PagoGUI pagoGUI;
-    private static ResultadoLibroGUI resultadoLibroGUI;
+    private static ResultadoLibroBibliotecarioGUI resultadoLibroBibliotecarioGUI;
     private static ResultadosBibliotecarioGUI resultadosBibliotecarioGUI;
     private static ResultadosLectorGUI resultadosLectorGUI;
     private static ValidarLectorGUI validarLectorGUI;
@@ -94,11 +94,11 @@ public class SingletonPantallas {
         return pagoGUI;
     }
 
-    public static ResultadoLibroGUI getInstanceResultadoLibroGUI() throws SQLException {
-        if (resultadoLibroGUI == null) {
-            resultadoLibroGUI = new ResultadoLibroGUI(SingletonControladores.getInstanceControladorBusquedaLibro());
+    public static ResultadoLibroBibliotecarioGUI getInstanceResultadoLibroGUI() throws SQLException {
+        if (resultadoLibroBibliotecarioGUI == null) {
+            resultadoLibroBibliotecarioGUI = new ResultadoLibroBibliotecarioGUI(SingletonControladores.getInstanceControladorBusquedaLibro());
         }
-        return resultadoLibroGUI;
+        return resultadoLibroBibliotecarioGUI;
     }
 
     public static ResultadosBibliotecarioGUI getInstanceResultadosBibliotecarioGUI() throws SQLException {
@@ -207,7 +207,7 @@ public class SingletonPantallas {
     }
 
     public static void toResultadoLibroViewSingleton(ActionEvent event) throws IOException {
-        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/resultadoLibroView.fxml")));
+        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/resultadoLibroBibliotecarioView.fxml")));
         Scene InicioScene = new Scene(InicioParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.centerOnScreen();

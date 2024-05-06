@@ -123,7 +123,7 @@
                               <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="txtTitulo" prefHeight="34.0" prefWidth="264.0" promptText="Titulo">
+                        <TextField fx:id="txtFieldTitulo" prefHeight="34.0" prefWidth="264.0" promptText="Titulo">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -152,11 +152,11 @@
                      </children>
                   </HBox>
                   <Separator prefWidth="200.0" />
-                  <TableView fx:id="tableViewResultadosLibros" prefHeight="510.0" prefWidth="964.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                  <TableView fx:id="tableViewResultadosLibros" prefHeight="469.0" prefWidth="537.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
                     <columns>
-                      <TableColumn fx:id="colPortada" prefWidth="128.00001525878906" text="Portada" />
-                      <TableColumn fx:id="colTitulo" prefWidth="151.199951171875" text="Titulo" />
-                       <TableColumn fx:id="colAutor" prefWidth="136.0" text="Autor" />
+                      <TableColumn fx:id="colPortada" prefWidth="154.39996337890625" text="Portada" />
+                      <TableColumn fx:id="colTitulo" prefWidth="126.4000244140625" text="Titulo" />
+                       <TableColumn fx:id="colAutor" prefWidth="129.40005493164062" text="Autor" />
                     </columns>
                   </TableView>
                   <Button fx:id="btnVerDetalles" alignment="CENTER" mnemonicParsing="false" onAction="#mBtnVerDetalles" prefHeight="26.0" prefWidth="147.0" style="-fx-background-color: #7ec8e3;" text="Ver detalles" textFill="WHITE">
