@@ -1,9 +1,16 @@
 package omega.sgb.gui;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import omega.sgb.SingletonControladores;
 import omega.sgb.SingletonPantallas;
 import omega.sgb.control.ControladorBusquedaLibro;
+import omega.sgb.dominio.LibroVirtual;
 
 import java.io.IOException;
 import java.sql.SQLException;

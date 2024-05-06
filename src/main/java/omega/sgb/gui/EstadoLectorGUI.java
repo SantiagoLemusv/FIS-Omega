@@ -52,7 +52,7 @@ public class EstadoLectorGUI implements Initializable {
     public void mBtnCerrarSesion(ActionEvent event) throws IOException {
         SingletonPantallas.toLogInViewSingleton(event);
     }
-    public void mBtnIraPago(ActionEvent event) throws IOException {
+    public void mBtnIrPago(ActionEvent event) throws IOException {
         SingletonPantallas.toPagoViewSingleton(event);
     }
 

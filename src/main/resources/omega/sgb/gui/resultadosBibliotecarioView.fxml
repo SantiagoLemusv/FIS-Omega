@@ -131,7 +131,7 @@
                               <Insets left="10.0" top="10.0" />
                            </HBox.margin>
                         </TextField>
-                        <Button fx:id="btnLupa" mnemonicParsing="false" onAction="#mInicializarTablaLibros" prefHeight="33.0" prefWidth="39.0" style="-fx-background-color: #7ec8e3;" textFill="WHITE">
+                        <Button fx:id="btnLupa" mnemonicParsing="false" onAction="#mBtnLupa" prefHeight="33.0" prefWidth="39.0" style="-fx-background-color: #7ec8e3;" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -157,7 +157,7 @@
                       <TableColumn fx:id="colPortada" prefWidth="154.39996337890625" text="Portada" />
                       <TableColumn fx:id="colTitulo" prefWidth="126.4000244140625" text="Titulo" />
                        <TableColumn fx:id="colAutor" prefWidth="129.40005493164062" text="Autor" />
-                        <TableColumn fx:id="colCantidad" prefWidth="112.20001220703125" text="Copias disponibles" />
+                        <TableColumn fx:id="colCopias" prefWidth="112.20001220703125" text="Copias disponibles" />
                     </columns>
                   </TableView>
                   <Label fx:id="lblLibroDisponible" text="Este libro está agotado, por favor elija otro libro." visible="false" />

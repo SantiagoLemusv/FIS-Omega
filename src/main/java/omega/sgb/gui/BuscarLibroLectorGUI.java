@@ -19,7 +19,7 @@ public class BuscarLibroLectorGUI {
         SingletonPantallas.toEstadoLectorViewSingleton(event);
     }
     public void mBtnBusqueda(ActionEvent event) throws IOException {
-        SingletonPantallas.toBuscarLibroLectorViewSingleton(event);
+        SingletonPantallas.toResultadosLectorViewSingleton(event);
     }
     public void mBtnCerrarSesion(ActionEvent event) throws IOException {
         SingletonPantallas.toLogInViewSingleton(event);

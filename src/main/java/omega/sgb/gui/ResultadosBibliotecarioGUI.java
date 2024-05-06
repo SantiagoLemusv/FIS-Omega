@@ -25,7 +25,7 @@ public class ResultadosBibliotecarioGUI {
     @FXML
     TableColumn<LibroVirtual, String> colAutor;
     @FXML
-    TableColumn<LibroVirtual, Integer> colCantidad;
+    TableColumn<LibroVirtual, Integer> colCopias;
     @FXML
     TextField txtFieldTitulo;
     @FXML
@@ -60,18 +60,16 @@ public class ResultadosBibliotecarioGUI {
             controladorBusquedaLibro.setLibroSeleccionado(libroSeleccionado);
             SingletonPantallas.toResultadoLibroBibliotecarioViewSingleton(event);
         }
-
     }
 
-    public void mInicializarTablaLibros(){
+    public void mBtnLupa(){
         tableViewResultadosLibros.getItems().clear();
         controladorBusquedaLibro.buscarLibrosFisicos(txtFieldTitulo.getText());
         observableLibrosVirtuales.addAll(controladorBusquedaLibro.getListaLibrosVirtuales());
         colPortada.setCellValueFactory(new PropertyValueFactory<>("imagenLibro"));
         colTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         colAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));
-        //colCantidad.setCellValueFactory(new PropertyValueFactory<>("numLibrosDisponibles"));
-        colCantidad.setCellValueFactory(cellData ->
+        colCopias.setCellValueFactory(cellData ->
                 new SimpleIntegerProperty(cellData.getValue().getLibrosFisicosDisponibles().size()).asObject());
         tableViewResultadosLibros.setItems(observableLibrosVirtuales);
     }

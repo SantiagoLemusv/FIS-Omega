@@ -145,7 +145,7 @@
                               <Insets left="10.0" top="10.0" />
                            </HBox.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" onAction="#mBtnBusqueda" prefHeight="33.0" prefWidth="39.0" style="-fx-background-color: #7ec8e3;" textFill="WHITE">
+                        <Button fx:id="btnLupa" mnemonicParsing="false" onAction="#mBtnBusqueda" prefHeight="33.0" prefWidth="39.0" style="-fx-background-color: #7ec8e3;" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
