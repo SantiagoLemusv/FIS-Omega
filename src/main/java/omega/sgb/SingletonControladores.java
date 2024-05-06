@@ -4,7 +4,7 @@ import omega.sgb.control.*;
 import omega.sgb.dominio.Persona;
 import omega.sgb.dominio.PersonaBibliotecario;
 import omega.sgb.dominio.PersonaLector;
-import omega.sgb.integracion.Imagen;
+import omega.sgb.integracion.ConversorImagen;
 import omega.sgb.testers.InicializarBD;
 
 import java.sql.Connection;
@@ -13,10 +13,8 @@ import java.sql.SQLException;
 public class SingletonControladores {
     private static SingletonControladores myself;
     private static Connection conexionGeneral = null;
-    private static Imagen procesadorImagen = new Imagen();
+    private static ConversorImagen conversorImagen = new ConversorImagen();
     private static Persona usuarioActual;
-    private static InicializarBD inicializarBD;
-
     private static ControladorBusquedaLibro controladorBusquedaLibro;
     private static ControladorCarrito controladorCarrito;
     private static ControladorEstadoUsuario controladorEstadoUsuario;
@@ -26,14 +24,6 @@ public class SingletonControladores {
 
     public static void setConexionGeneral(Connection conexionGeneral) {
         SingletonControladores.conexionGeneral = conexionGeneral;
-    }
-
-    public static void setProcesadorImagen(Imagen procesadorImagen) {
-        SingletonControladores.procesadorImagen = procesadorImagen;
-    }
-
-    public static void setInicializarBD(InicializarBD inicializarBD){
-        SingletonControladores.inicializarBD = inicializarBD;
     }
 
 
@@ -54,7 +44,7 @@ public class SingletonControladores {
     //Traer Controladores-------------------------------------------------------------------------
     public static ControladorBusquedaLibro getInstanceControladorBusquedaLibro() throws SQLException {
         if (controladorBusquedaLibro == null) {
-            controladorBusquedaLibro = new ControladorBusquedaLibro(conexionGeneral);
+            controladorBusquedaLibro = new ControladorBusquedaLibro(conexionGeneral, conversorImagen);
         }
         return controladorBusquedaLibro;
     }

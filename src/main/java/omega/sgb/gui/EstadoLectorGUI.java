@@ -49,9 +49,6 @@ public class EstadoLectorGUI implements Initializable {
     public void mBtnBusqueda(ActionEvent event) throws IOException {
         SingletonPantallas.toBuscarLibroLectorViewSingleton(event);
     }
-    public void mBtnCarrito(ActionEvent event) throws IOException {
-        SingletonPantallas.toCarritoViewSingleton(event);
-    }
     public void mBtnCerrarSesion(ActionEvent event) throws IOException {
         SingletonPantallas.toLogInViewSingleton(event);
     }

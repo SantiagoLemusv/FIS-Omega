@@ -44,11 +44,9 @@ public class EstadoBibliotecarioGUI implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         txtNombre.setText(SingletonControladores.getUsuarioActual().getNombre());
-
+        //txtNombreCompleto.setText(SingletonControladores.getUsuarioActual().getNombre());
         txtCedula.setText(String.valueOf(SingletonControladores.getUsuarioActual().getCedula()));
-
         txtTipoCuenta.setText("Bibliotecario");
     }
 
