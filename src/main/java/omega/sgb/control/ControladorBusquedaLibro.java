@@ -19,6 +19,7 @@ public class ControladorBusquedaLibro {
     private Connection connection;
     private ConversorImagen conversorImagen;
     List<LibroVirtual> listaLibrosVirtuales = new ArrayList<>();
+    LibroVirtual libroSeleccionado;
 
     public ControladorBusquedaLibro(Connection conexionGeneral, ConversorImagen conversorImagen) {
         this.connection = conexionGeneral;
@@ -29,7 +30,15 @@ public class ControladorBusquedaLibro {
         return listaLibrosVirtuales;
     }
 
-    public void buscarLibros(String tituloLibro) {
+    public LibroVirtual getLibroSeleccionado() {
+        return libroSeleccionado;
+    }
+
+    public void setLibroSeleccionado(LibroVirtual libroSeleccionado) {
+        this.libroSeleccionado = libroSeleccionado;
+    }
+
+    public void buscarLibrosFisicos(String tituloLibro) {
         try {
             // Prepare the SQL with a placeholder for the title search term
             String sql = "SELECT * FROM LIBROVIRTUAL WHERE LOWER(TITULO) LIKE LOWER(?)";

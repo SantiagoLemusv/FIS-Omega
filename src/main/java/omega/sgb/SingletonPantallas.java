@@ -206,8 +206,17 @@ public class SingletonPantallas {
         window.show();
     }
 
-    public static void toResultadoLibroViewSingleton(ActionEvent event) throws IOException {
+    public static void toResultadoLibroBibliotecarioViewSingleton(ActionEvent event) throws IOException {
         Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/resultadoLibroBibliotecarioView.fxml")));
+        Scene InicioScene = new Scene(InicioParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.centerOnScreen();
+        window.setScene(InicioScene);
+        window.show();
+    }
+
+    public static void toResultadoLibroLectorViewSingleton(ActionEvent event) throws IOException {
+        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/resultadoLibroLectorView.fxml")));
         Scene InicioScene = new Scene(InicioParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.centerOnScreen();

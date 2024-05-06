@@ -176,7 +176,7 @@
                               <Insets bottom="70.0" left="30.0" right="30.0" top="70.0" />
                            </HBox.margin>
                            <children>
-                              <ImageView fitHeight="455.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imageViewLibroSeleccionado" fitHeight="455.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </VBox>
                         <Separator orientation="VERTICAL" prefHeight="200.0" />
@@ -200,7 +200,7 @@
                                                       </Label>
                                                    </children>
                                                 </HBox>
-                                                <Label fx:id="txtnombreLibro" prefHeight="33.0" prefWidth="143.0" text="nombreLibro">
+                                                <Label fx:id="lblTitulo" prefHeight="35.0" prefWidth="473.0" text="nombreLibro">
                                                    <font>
                                                       <Font size="24.0" />
                                                    </font>
@@ -225,7 +225,7 @@
                                                       </Label>
                                                    </children>
                                                 </HBox>
-                                                <Label fx:id="txtnombreAutor" prefHeight="35.0" prefWidth="162.0" text="nombreAutor">
+                                                <Label fx:id="lblAutor" prefHeight="35.0" prefWidth="465.0" text="nombreAutor">
                                                    <font>
                                                       <Font size="24.0" />
                                                    </font>
@@ -250,7 +250,7 @@
                                                       </Label>
                                                    </children>
                                                 </HBox>
-                                                <ComboBox fx:id="comboBoxNumCopias" prefHeight="35.0" prefWidth="200.0" promptText="Seleccione la copia" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-radius: 10; -fx-border-radius: 10;" />
+                                                <ComboBox fx:id="cmbBoxCopias" prefHeight="35.0" prefWidth="200.0" promptText="Seleccione la copia" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-radius: 10; -fx-border-radius: 10;" />
                                              </children>
                                           </HBox>
                                        </children>
@@ -268,7 +268,7 @@
                                                       </Label>
                                                    </children>
                                                 </HBox>
-                                                <Label fx:id="txtnumeroISBN" prefHeight="35.0" prefWidth="191.0" text="numeroISBN">
+                                                <Label fx:id="lblISBN" prefHeight="35.0" prefWidth="468.0" text="numeroISBN">
                                                    <HBox.margin>
                                                       <Insets left="10.0" />
                                                    </HBox.margin>
@@ -293,7 +293,7 @@
                                                       </Label>
                                                    </children>
                                                 </HBox>
-                                                <Label fx:id="txtnumeroCantidad" text="numeroCantidad">
+                                                <Label fx:id="lblCantidad" prefHeight="35.0" prefWidth="445.0" text="numeroCantidad">
                                                    <HBox.margin>
                                                       <Insets left="10.0" />
                                                    </HBox.margin>
@@ -318,7 +318,7 @@
                                                       </Label>
                                                    </children>
                                                 </HBox>
-                                                <Label fx:id="txtestadoLibro" text="estadoLibro">
+                                                <Label fx:id="lblEstadoLibro" prefHeight="35.0" prefWidth="460.0" text="estadoLibro">
                                                    <font>
                                                       <Font size="24.0" />
                                                    </font>

@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -27,6 +28,8 @@ public class ResultadosBibliotecarioGUI {
     TableColumn<LibroVirtual, String> colAutor;
     @FXML
     TextField txtFieldTitulo;
+    @FXML
+    Button btnVerDetalles;
     private ControladorBusquedaLibro controladorBusquedaLibro = SingletonControladores.getInstanceControladorBusquedaLibro();
     private ObservableList<LibroVirtual> listaLibrosFisicos = FXCollections.observableArrayList();
     public ResultadosBibliotecarioGUI() throws SQLException {}
@@ -46,20 +49,16 @@ public class ResultadosBibliotecarioGUI {
     public void mBtnCerrarSesion(ActionEvent event) throws IOException {
         SingletonPantallas.toLogInViewSingleton(event);
     }
-    public void mBtnVerDetalles(ActionEvent event){
+    public void mBtnVerDetalles(ActionEvent event) throws IOException {
+        controladorBusquedaLibro.setLibroSeleccionado(tableViewResultadosLibros.getSelectionModel().getSelectedItem());
+        SingletonPantallas.toResultadoLibroBibliotecarioViewSingleton(event);
 
     }
 
     public void mInicializarTablaLibros(){
-        System.out.println(txtFieldTitulo.getText());
         tableViewResultadosLibros.getItems().clear();
-        controladorBusquedaLibro.buscarLibros(txtFieldTitulo.getText());
+        controladorBusquedaLibro.buscarLibrosFisicos(txtFieldTitulo.getText());
         listaLibrosFisicos.addAll(controladorBusquedaLibro.getListaLibrosVirtuales());
-        if(listaLibrosFisicos.isEmpty()){
-            System.out.println("lista vacia");
-        }else{
-            System.out.println("lista con datos");
-        }
         colPortada.setCellValueFactory(new PropertyValueFactory<>("imagenLibro"));
         colTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         colAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));

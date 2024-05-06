@@ -29,6 +29,6 @@ public class ResultadosLectorGUI {
         SingletonPantallas.toResultadosLectorViewSingleton(event);
     }
     public void mBtnVerDetalles(ActionEvent event) throws IOException{
-        SingletonPantallas.toResultadoLibroViewSingleton(event);
+        SingletonPantallas.toResultadoLibroBibliotecarioViewSingleton(event);
     }
 }
