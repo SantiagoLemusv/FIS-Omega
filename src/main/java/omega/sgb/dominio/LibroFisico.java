@@ -6,7 +6,7 @@ public class LibroFisico {
     private String ubicacion;
     private String numeroClasificacion;
     private LibroVirtual libroVirtual;
-    private Integer estadoLibroFisicoId;//Prestado (0), disponible (1)
+    private Integer estadoLibroFisicoId;//Disponible (1), Prestado (2)
 
     //Métodos constructores
     public LibroFisico() {

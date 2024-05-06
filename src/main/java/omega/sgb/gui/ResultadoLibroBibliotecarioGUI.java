@@ -1,5 +1,7 @@
 package omega.sgb.gui;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -11,6 +13,7 @@ import omega.sgb.control.ControladorBusquedaLibro;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class ResultadoLibroBibliotecarioGUI {
     @FXML
@@ -39,8 +42,12 @@ public class ResultadoLibroBibliotecarioGUI {
         lblTitulo.setText(controladorBusquedaLibro.getLibroSeleccionado().getTitulo());
         lblAutor.setText(controladorBusquedaLibro.getLibroSeleccionado().getAutor());
         lblISBN.setText(controladorBusquedaLibro.getLibroSeleccionado().getIsbn());
-        String cant = String.valueOf(controladorBusquedaLibro.getLibroSeleccionado().getCantidad());
+        String cant = String.valueOf(controladorBusquedaLibro.getLibroSeleccionado().getCantidadCopias());
         lblCantidad.setText(cant);
+
+        ObservableList<String> observableUbicaciones = FXCollections.observableArrayList(
+                controladorBusquedaLibro.combinarPisoConClasificacion(controladorBusquedaLibro.getLibroSeleccionado().getLibrosFisicosDisponibles()));
+        cmbBoxCopias.setItems(observableUbicaciones);
         lblEstadoLibro.setText("estado prueba");
     }
     public void mBtnMiPerfil(ActionEvent event) throws IOException {

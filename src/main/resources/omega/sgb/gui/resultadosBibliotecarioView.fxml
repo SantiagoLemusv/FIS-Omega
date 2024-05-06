@@ -157,8 +157,10 @@
                       <TableColumn fx:id="colPortada" prefWidth="154.39996337890625" text="Portada" />
                       <TableColumn fx:id="colTitulo" prefWidth="126.4000244140625" text="Titulo" />
                        <TableColumn fx:id="colAutor" prefWidth="129.40005493164062" text="Autor" />
+                        <TableColumn fx:id="colCantidad" prefWidth="112.20001220703125" text="Copias disponibles" />
                     </columns>
                   </TableView>
+                  <Label fx:id="lblLibroDisponible" text="Este libro está agotado, por favor elija otro libro." visible="false" />
                   <Button fx:id="btnVerDetalles" alignment="CENTER" mnemonicParsing="false" onAction="#mBtnVerDetalles" prefHeight="26.0" prefWidth="147.0" style="-fx-background-color: #7ec8e3;" text="Ver detalles" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />

@@ -1,18 +1,13 @@
 package omega.sgb.control;
 
-import javafx.collections.ObservableList;
-import javafx.scene.control.ListView;
 import omega.sgb.SingletonControladores;
-import omega.sgb.SingletonPantallas;
 import omega.sgb.dominio.LibroFisico;
 import omega.sgb.dominio.LibroVirtual;
 import omega.sgb.dominio.PersonaLector;
 import omega.sgb.dominio.Prestamo;
 import omega.sgb.integracion.FechaActual;
-import omega.sgb.integracion.SQL;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 //No debe tener dependencias a las pantallas
@@ -74,7 +69,7 @@ public class ControladorPrestamo {
         libroVirtualTemp1.setId(1);
         libroVirtualTemp1.setIsbn("1541675453");
         libroVirtualTemp1.setTitulo("Lady Masacre");
-        libroVirtualTemp1.setCantidad(1);
+        libroVirtualTemp1.setCantidadCopias(1);
         libroVirtualTemp1.setAutor("Mario Mendoza");
         libroVirtualTemp1.setMultaValorDia(2500);
         libroVirtualTemp1.setDuracionPrestamo(15);

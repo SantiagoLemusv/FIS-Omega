@@ -307,18 +307,18 @@
                                     </VBox>
                                     <VBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="539.0">
                                        <children>
-                                          <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                          <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="648.0">
                                              <children>
                                                 <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="95.0">
                                                    <children>
-                                                      <Label prefHeight="40.0" prefWidth="84.0" text="Estado:">
+                                                      <Label prefHeight="40.0" prefWidth="143.0" text="Estado:">
                                                          <font>
                                                             <Font name="System Bold Italic" size="24.0" />
                                                          </font>
                                                       </Label>
                                                    </children>
                                                 </HBox>
-                                                <Label fx:id="lblEstadoLibro" prefHeight="35.0" prefWidth="460.0" text="estadoLibro">
+                                                <Label fx:id="lblEstadoLibro" prefHeight="35.0" prefWidth="296.0" text="estadoLibro">
                                                    <font>
                                                       <Font size="24.0" />
                                                    </font>

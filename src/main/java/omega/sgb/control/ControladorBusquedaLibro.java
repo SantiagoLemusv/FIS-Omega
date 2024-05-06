@@ -1,13 +1,10 @@
 package omega.sgb.control;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import omega.sgb.SingletonControladores;
+import omega.sgb.dominio.LibroFisico;
 import omega.sgb.dominio.LibroVirtual;
 import omega.sgb.integracion.ConversorImagen;
 
 import java.io.IOException;
 import java.sql.Blob;
-import javax.imageio.ImageIO;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Connection;
@@ -57,7 +54,7 @@ public class ControladorBusquedaLibro {
                 libroAux.setId(resultSet.getInt("ID"));
                 libroAux.setIsbn(resultSet.getString("ISBN"));
                 libroAux.setTitulo(resultSet.getString("TITULO"));
-                libroAux.setCantidad(resultSet.getInt("CANTIDAD"));
+                libroAux.setCantidadCopias(resultSet.getInt("CANTIDAD"));
                 libroAux.setAutor(resultSet.getString("AUTOR"));
                 libroAux.setMultaValorDia(resultSet.getInt("MULTAVALORDIA"));
                 libroAux.setDuracionPrestamo(resultSet.getInt("DURACIONPRESTAMO"));
@@ -65,7 +62,8 @@ public class ControladorBusquedaLibro {
                 // Get the image from the blob (assuming conversion logic remains the same)
                 Blob imagenBlob = resultSet.getBlob("IMAGENLIBRO");
                 libroAux.setImagenLibro(conversorImagen.blobToImageView(imagenBlob));
-
+                libroAux.setLibrosFisicosDisponibles(traerLibrosFisicos(libroAux, 1));
+                libroAux.setLibrosFisicosAgotados(traerLibrosFisicos(libroAux, 2));
                 listaLibrosVirtuales.add(libroAux);
             }
 
@@ -73,7 +71,7 @@ public class ControladorBusquedaLibro {
             resultSet.close();
             statement.close();
 
-            System.out.println("Búsqueda finalizada.");
+            System.out.println("Búsqueda libros virtuales finalizada.");
             if (listaLibrosVirtuales.isEmpty()) {
                 System.out.println("Ningún libro encontrado con el título especificado.");
             } else {
@@ -84,4 +82,72 @@ public class ControladorBusquedaLibro {
         }
     }
 
+    public List<LibroFisico> traerLibrosFisicos(LibroVirtual libroVirtual, Integer disponibilidad) {
+        List<LibroFisico> listaLibrosFisicos = new ArrayList<>();
+        try {
+            // Prepare the SQL with a placeholder for the title search term
+            String sql = "SELECT * FROM LIBROFISICO WHERE LIBROVIRTUALID = ? AND ESTADOLIBROFISICOID = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            statement.setInt(1, libroVirtual.getId());
+            statement.setInt(2, disponibilidad);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            listaLibrosFisicos.clear(); // Clear the list before adding new results
+
+            while (resultSet.next()) {
+                // Create a LibroVirtual object and populate data
+                LibroFisico libroAux = new LibroFisico();
+                libroAux.setId(resultSet.getInt("ID"));
+                libroAux.setUbicacion(resultSet.getString("UBICACION"));
+                libroAux.setNumeroClasificacion(resultSet.getString("NUMEROCLASIFICACION"));
+                libroAux.setLibroVirtual(libroVirtual);
+                libroAux.setEstadoLibroFisicoId(resultSet.getInt("ESTADOLIBROFISICOID"));
+
+                listaLibrosFisicos.add(libroAux);
+            }
+
+            // Close resources
+            resultSet.close();
+            statement.close();
+
+            System.out.println("Búsqueda libros fisicos finalizada.");
+            if (listaLibrosFisicos.isEmpty()) {
+                System.out.println("Ningún libro fisico encontrado con el título especificado.");
+            } else {
+                System.out.println(listaLibrosVirtuales.size() + " libros fisicos encontrados.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listaLibrosFisicos;
+    }
+
+    public List<String> getPisosLibrosFisicos(List<LibroFisico> librosFisicos){
+        List<String> pisosLibrosFisicos = new ArrayList<>();
+        for(LibroFisico libroActual : librosFisicos){
+            pisosLibrosFisicos.add(libroActual.getUbicacion());
+        }
+        return pisosLibrosFisicos;
+    }
+
+    public List<String> getNumClasificacionLibrosFisicos(List<LibroFisico> librosFisicos){
+        List<String> numClasificacionLibrosFisicos = new ArrayList<>();
+        for(LibroFisico libroActual : librosFisicos){
+            numClasificacionLibrosFisicos.add(libroActual.getNumeroClasificacion());
+        }
+        return numClasificacionLibrosFisicos;
+    }
+
+    public List<String> combinarPisoConClasificacion (List<LibroFisico> librosFisicos){
+        List<String> listaPisos = getPisosLibrosFisicos(librosFisicos);
+        List<String> listaClasificacion = getNumClasificacionLibrosFisicos(librosFisicos);
+        List<String> listaCombinada = new ArrayList<>();
+        for (int i = 0; i < listaPisos.size() && i < listaClasificacion.size(); i++) {
+            String combinado = listaPisos.get(i) + " , " + listaClasificacion.get(i);
+            listaCombinada.add(combinado);
+        }
+        return listaCombinada;
+    }
 }
