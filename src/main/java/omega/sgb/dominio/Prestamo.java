@@ -1,12 +1,13 @@
 package omega.sgb.dominio;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Prestamo {
     //Atributos de instancia
     private Integer id;
-    private String fechaPrestamo;
-    private String fechaDevolucion;
+    private Date fechaPrestamo;
+    private Date fechaDevolucion;
     private Persona persona;
     private Integer estadoPrestamoId;//Activo (1), vencido (2)
     private LibroFisico libro;
@@ -19,7 +20,7 @@ public class Prestamo {
     public Prestamo() {
     }
 
-    public Prestamo(Integer id, String fechaPrestamo, String fechaDevolucion, Persona persona, Integer estadoPrestamoId, LibroFisico libro, Multa multa) {
+    public Prestamo(Integer id, Date fechaPrestamo, Date fechaDevolucion, Persona persona, Integer estadoPrestamoId, LibroFisico libro, Multa multa) {
         this.id = id;
         this.fechaPrestamo = fechaPrestamo;
         this.fechaDevolucion = fechaDevolucion;
@@ -29,7 +30,7 @@ public class Prestamo {
         this.multa = multa;
     }
 
-    public Prestamo(String fechaPrestamo, String fechaDevolucion, Persona persona, Integer estadoPrestamoId, LibroFisico libro, Multa multa) {
+    public Prestamo(Date fechaPrestamo, Date fechaDevolucion, Persona persona, Integer estadoPrestamoId, LibroFisico libro, Multa multa) {
         this.fechaPrestamo = fechaPrestamo;
         this.fechaDevolucion = fechaDevolucion;
         this.persona = persona;
@@ -47,19 +48,19 @@ public class Prestamo {
         this.id = id;
     }
 
-    public String getFechaPrestamo() {
+    public Date getFechaPrestamo() {
         return fechaPrestamo;
     }
 
-    public void setFechaPrestamo(String fechaPrestamo) {
+    public void setFechaPrestamo(Date fechaPrestamo) {
         this.fechaPrestamo = fechaPrestamo;
     }
 
-    public String getFechaDevolucion() {
+    public Date getFechaDevolucion() {
         return fechaDevolucion;
     }
 
-    public void setFechaDevolucion(String fechaDevolucion) {
+    public void setFechaDevolucion(Date fechaDevolucion) {
         this.fechaDevolucion = fechaDevolucion;
     }
 
