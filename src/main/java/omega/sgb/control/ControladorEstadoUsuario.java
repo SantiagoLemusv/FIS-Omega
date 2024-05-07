@@ -15,8 +15,6 @@ import java.util.List;
 public class ControladorEstadoUsuario {
     private Connection connection;
     private ProcesarFecha procesarFecha;
-    private List<Prestamo> listaPrestamos;
-    private List<Multa> listaMultas;
     public ControladorEstadoUsuario(Connection conexionGeneral, ProcesarFecha procesarFecha) {
         this.connection = conexionGeneral;
         this.procesarFecha = procesarFecha;
@@ -46,13 +44,9 @@ public class ControladorEstadoUsuario {
                 prestamoAux.setLibro(traerLibroFisico(resultSet.getInt("LIBROFISICOID")));
                 prestamoAux.setEstadoPrestamoId(resultSet.getInt("ESTADOPRESTAMOID"));
                 Integer idMulta = resultSet.getInt("MULTAID");
+                prestamoAux.setMulta(traerMulta(idMulta));
+                SingletonControladores.getUsuarioActual().getPrestamos().add(prestamoAux);
 
-                /////////////////////////////////////////////
-                if(idMulta != null){
-
-                    /////////////////////////////////////////////
-                }
-                listaPrestamos.add(prestamoAux);
             }
 
             // Close resources
@@ -73,14 +67,12 @@ public class ControladorEstadoUsuario {
 
             ResultSet resultSet = statement.executeQuery();
 
-            SingletonControladores.getUsuarioActual().getPrestamos().clear(); // Clear the list before adding new results
-
             if (resultSet.next()) {
                 LibroFisico libroFisico = new LibroFisico();
                 libroFisico.setId(resultSet.getInt("ID"));
                 libroFisico.setUbicacion(resultSet.getString("UBICACION"));
                 libroFisico.setNumeroClasificacion(resultSet.getString("NUMEROCLASIFICACION"));
-                //libroFisico.setLibroVirtual(traerLibroVirtual(resultSet.getInt("LIBROVIRTUALID")));
+                libroFisico.setLibroVirtual(traerLibroVirtual(resultSet.getInt("LIBROVIRTUALID")));
                 libroFisico.setEstadoLibroFisicoId(resultSet.getInt("ESTADOLIBROFISICOID"));
                 return libroFisico;
             }
@@ -94,13 +86,94 @@ public class ControladorEstadoUsuario {
         return null;
     }
 
-    /*public LibroVirtual traerLibroVirtual (Integer idLibroVirtual){
+    public LibroVirtual traerLibroVirtual (Integer idLibroVirtual){
+        try {
+            // Prepare the SQL with a placeholder for the title search term
+            String sql = "SELECT * FROM LIBROVIRTUAL WHERE ID = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
 
-    }*/
+            statement.setInt(1, idLibroVirtual);
 
-    public void traerMultas(){
-        List<Multa> listaMultas = new ArrayList<>();
+            ResultSet resultSet = statement.executeQuery();
 
+            if (resultSet.next()) {
+                LibroVirtual libroVirtual = new LibroVirtual();
+                libroVirtual.setId(resultSet.getInt("ID"));
+                libroVirtual.setIsbn(resultSet.getString("ISBN"));
+                libroVirtual.setTitulo(resultSet.getString("TITULO"));
+                libroVirtual.setCantidadCopias(resultSet.getInt("CANTIDAD"));
+                libroVirtual.setAutor(resultSet.getString("AUTOR"));
+                libroVirtual.setMultaValorDia(resultSet.getInt("MULTAVALORDIA"));
+                libroVirtual.setDuracionPrestamo(resultSet.getInt("DURACIONPRESTAMO"));
 
+                /*// Get the image from the blob (assuming conversion logic remains the same)
+                Blob imagenBlob = resultSet.getBlob("IMAGENLIBRO");
+                libroVirtual.setImagenLibro(conversorImagen.blobToImageView(imagenBlob));
+                */
+                return libroVirtual;
+            }
+
+            // Close resources
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Multa traerMulta(Integer idMulta){
+        try {
+            // Prepare the SQL with a placeholder for the title search term
+            String sql = "SELECT * FROM MULTA WHERE ID = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            statement.setInt(1, idMulta);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                Multa multaAux = new Multa();
+                multaAux.setId(resultSet.getInt("ID"));
+                multaAux.setMontoPagar(resultSet.getInt("MONTOPAGAR"));
+                Date fechaSqlAux;
+                fechaSqlAux = resultSet.getDate("FECHAEMISION");
+                multaAux.setFechaEmision(procesarFecha.fechaSqlToFechaJava(fechaSqlAux));
+                multaAux.setPago(null);
+                multaAux.setDiasPasados(resultSet.getInt("DIASPASADOS"));
+
+                SingletonControladores.getUsuarioActual().getMultas().add(multaAux);
+                return multaAux;
+            }
+
+            // Close resources
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<String> listaStringPrestamos(List<Prestamo> listaPrestamos){
+        List<String> listaString = new ArrayList<>();
+        for(Prestamo prestamoAct : listaPrestamos){
+            String aux;
+            aux = prestamoAct.getLibro().getLibroVirtual().getTitulo() + prestamoAct.getFechaDevolucion();
+            listaString.add(aux);
+        }
+        return listaString;
+    }
+
+    public List<String> listaStringMulta(List<Prestamo> listaPrestamos){
+        List<String> listaString = new ArrayList<>();
+        for(Prestamo prestamoAct : listaPrestamos){
+            if(prestamoAct.getMulta() != null){
+                String aux;
+                aux = prestamoAct.getLibro().getLibroVirtual().getTitulo() + prestamoAct.getMulta().getDiasPasados();
+                listaString.add(aux);
+            }
+        }
+        return listaString;
     }
 }

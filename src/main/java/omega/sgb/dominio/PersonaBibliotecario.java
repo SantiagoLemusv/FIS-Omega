@@ -11,6 +11,11 @@ public class PersonaBibliotecario extends Persona{
         this.carrito = new ArrayList<>();
     }
 
+    @Override
+    public List<Multa> getMultas() {
+        return null;
+    }
+
     public PersonaBibliotecario(Integer id, Integer cedula, String nombre, String contrasena, List<LibroFisico> carrito) {
         super(id, cedula, nombre, contrasena);
         this.carrito = carrito;

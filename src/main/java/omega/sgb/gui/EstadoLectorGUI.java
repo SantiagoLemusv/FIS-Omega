@@ -1,5 +1,7 @@
 package omega.sgb.gui;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,15 +29,24 @@ public class EstadoLectorGUI implements Initializable {
     @FXML
     Label txtNombre;
     @FXML
-    ListView<String> ListPrestamos;
+    ListView<String> listViewPrestamos;
     @FXML
-    ListView<String> ListMultas;
+    ListView<String> listViewMultas;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         txtNombre.setText(SingletonControladores.getUsuarioActual().getNombre());
         txtCedula.setText(String.valueOf(SingletonControladores.getUsuarioActual().getCedula()));
         txtTipoCuenta.setText("Lector");
+        controladorEstadoUsuario.traerPrestamos();
+        ObservableList<String> observablePrestamos = FXCollections.observableArrayList(
+                controladorEstadoUsuario.listaStringPrestamos(SingletonControladores.getUsuarioActual().getPrestamos()));
+
+        ObservableList<String> observableMultas = FXCollections.observableArrayList(
+                controladorEstadoUsuario.listaStringMulta(SingletonControladores.getUsuarioActual().getPrestamos()));
+
+        listViewPrestamos.setItems(observablePrestamos);
+        listViewMultas.setItems(observableMultas);
 
     }
 
