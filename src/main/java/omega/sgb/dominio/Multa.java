@@ -1,26 +1,27 @@
 package omega.sgb.dominio;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Multa  {
     //Atributos de instancia
     private Integer id;
     private Integer montoPagar;// Es igual a multaValorDia * número de días que el lector no hizo la devolución del libro
-    private String fechaEmision;//Cuando se genera la multa, que es cuando se vencio el prestamo
+    private Date fechaEmision;//Cuando se genera la multa, que es cuando se vencio el prestamo
     private Pago pago;
 
     //Métodos constructores
     public Multa() {
     }
 
-    public Multa(Integer id, Integer montoPagar, String fechaEmision, Pago pago) {
+    public Multa(Integer id, Integer montoPagar, Date fechaEmision, Pago pago) {
         this.id = id;
         this.montoPagar = montoPagar;
         this.fechaEmision = fechaEmision;
         this.pago = pago;
     }
 
-    public Multa(Integer montoPagar, String fechaEmision, Pago pago) {
+    public Multa(Integer montoPagar, Date fechaEmision, Pago pago) {
         this.montoPagar = montoPagar;
         this.fechaEmision = fechaEmision;
         this.pago = pago;
@@ -44,11 +45,11 @@ public class Multa  {
         this.montoPagar = montoPagar;
     }
 
-    public String getFechaEmision() {
+    public Date getFechaEmision() {
         return fechaEmision;
     }
 
-    public void setFechaEmision(String fechaEmision) {
+    public void setFechaEmision(Date fechaEmision) {
         this.fechaEmision = fechaEmision;
     }
 

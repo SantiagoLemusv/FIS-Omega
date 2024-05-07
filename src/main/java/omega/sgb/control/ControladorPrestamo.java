@@ -129,14 +129,9 @@ public class ControladorPrestamo {
             preparedStatement.executeUpdate();
         }
 
-        // (Opcional) Actualizar tablas adicionales según su lógica - modifique la consulta y los parámetros en consecuencia
-        // String updateAnotherTableSql = "...";
-        // ... (prepare y ejecute la actualización para otra tabla)
-
         connection.commit(); // Confirma los cambios si todas las actualizaciones son exitosas
         System.out.println("Préstamo actualizado exitosamente");
 
-        // No need for a finally block to close the connection as it's managed externally
     }
 
 }
