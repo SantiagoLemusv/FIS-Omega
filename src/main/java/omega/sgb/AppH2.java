@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class AppH2 extends Application {
-    private static final String URL = "jdbc:h2:~/test";
+    private static final String URL = "jdbc:h2:./test";
     private static final String USUARIO = "omega";
     private static final String CONTRASENA = "";
 
