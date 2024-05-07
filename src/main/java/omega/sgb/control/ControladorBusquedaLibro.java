@@ -16,7 +16,8 @@ public class ControladorBusquedaLibro {
     private Connection connection;
     private ConversorImagen conversorImagen;
     List<LibroVirtual> listaLibrosVirtuales = new ArrayList<>();
-    LibroVirtual libroSeleccionado;
+    LibroVirtual libroVirtualSeleccionado = new LibroVirtual();
+    LibroFisico libroFisicoSeleccionado = new LibroFisico();
 
     public ControladorBusquedaLibro(Connection conexionGeneral, ConversorImagen conversorImagen) {
         this.connection = conexionGeneral;
@@ -27,12 +28,28 @@ public class ControladorBusquedaLibro {
         return listaLibrosVirtuales;
     }
 
-    public LibroVirtual getLibroSeleccionado() {
-        return libroSeleccionado;
+    public LibroVirtual getLibroVirtualSeleccionado() {
+        return libroVirtualSeleccionado;
     }
 
-    public void setLibroSeleccionado(LibroVirtual libroSeleccionado) {
-        this.libroSeleccionado = libroSeleccionado;
+    public void setLibroVirtualSeleccionado(LibroVirtual libroSeleccionado) {
+        this.libroVirtualSeleccionado = libroSeleccionado;
+    }
+
+    public LibroFisico getLibroFisicoSeleccionado() {
+        return libroFisicoSeleccionado;
+    }
+
+    public void setLibroFisicoSeleccionado(String clasificacion) {
+        System.out.println("entro a fisicoooooooooooooooooooo "+clasificacion);
+        LibroFisico libroNuevo = new LibroFisico();
+        for(LibroFisico libroFisico : libroVirtualSeleccionado.getLibrosFisicosTotales()){
+            if(libroFisico.getNumeroClasificacion().equals(clasificacion)){
+                System.out.println("entro a ifffffffffffffffff");
+                libroNuevo = libroFisico;
+            }
+        }
+        this.libroFisicoSeleccionado = libroNuevo;
     }
 
     public void buscarLibrosFisicos(String tituloLibro) {
@@ -64,6 +81,7 @@ public class ControladorBusquedaLibro {
                 libroAux.setImagenLibro(conversorImagen.blobToImageView(imagenBlob));
                 libroAux.setLibrosFisicosDisponibles(traerLibrosFisicos(libroAux, 1));
                 libroAux.setLibrosFisicosAgotados(traerLibrosFisicos(libroAux, 2));
+                libroAux.setLibrosFisicosTotales();
                 listaLibrosVirtuales.add(libroAux);
             }
 
@@ -145,7 +163,7 @@ public class ControladorBusquedaLibro {
         List<String> listaClasificacion = getNumClasificacionLibrosFisicos(librosFisicos);
         List<String> listaCombinada = new ArrayList<>();
         for (int i = 0; i < listaPisos.size() && i < listaClasificacion.size(); i++) {
-            String combinado = listaPisos.get(i) + " , " + listaClasificacion.get(i);
+            String combinado = listaPisos.get(i) + "," + listaClasificacion.get(i);
             listaCombinada.add(combinado);
         }
         return listaCombinada;

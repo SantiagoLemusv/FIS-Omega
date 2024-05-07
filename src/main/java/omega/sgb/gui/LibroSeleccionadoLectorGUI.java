@@ -37,17 +37,30 @@ public class LibroSeleccionadoLectorGUI {
     }
     @FXML
     void initialize(){
-        imageViewLibroSeleccionado.setImage(controladorBusquedaLibro.getLibroSeleccionado().getImagenLibro().getImage());
-        lblTitulo.setText(controladorBusquedaLibro.getLibroSeleccionado().getTitulo());
-        lblAutor.setText(controladorBusquedaLibro.getLibroSeleccionado().getAutor());
-        lblISBN.setText(controladorBusquedaLibro.getLibroSeleccionado().getIsbn());
-        String cant = String.valueOf(controladorBusquedaLibro.getLibroSeleccionado().getCantidadCopias());
+        imageViewLibroSeleccionado.setImage(controladorBusquedaLibro.getLibroVirtualSeleccionado().getImagenLibro().getImage());
+        lblTitulo.setText(controladorBusquedaLibro.getLibroVirtualSeleccionado().getTitulo());
+        lblAutor.setText(controladorBusquedaLibro.getLibroVirtualSeleccionado().getAutor());
+        lblISBN.setText(controladorBusquedaLibro.getLibroVirtualSeleccionado().getIsbn());
+        String cant = String.valueOf(controladorBusquedaLibro.getLibroVirtualSeleccionado().getCantidadCopias());
         lblCantidad.setText(cant);
-
         ObservableList<String> observableUbicaciones = FXCollections.observableArrayList(
-                controladorBusquedaLibro.combinarPisoConClasificacion(controladorBusquedaLibro.getLibroSeleccionado().getLibrosFisicosDisponibles()));
+                controladorBusquedaLibro.combinarPisoConClasificacion(controladorBusquedaLibro.getLibroVirtualSeleccionado().getLibrosFisicosTotales()));
         cmbBoxCopias.setItems(observableUbicaciones);
-        lblEstadoLibro.setText("estado prueba");
+    }
+    public void mCmbBox(ActionEvent event){
+        String ubicacionCompleta = (String) cmbBoxCopias.getValue();
+        String[] splitStrings = ubicacionCompleta.split(",");
+        String valueAfterComma = splitStrings[1];
+
+        controladorBusquedaLibro.setLibroFisicoSeleccionado(valueAfterComma);
+        System.out.println("libroooooo"+controladorBusquedaLibro.getLibroFisicoSeleccionado().getId());
+        if(controladorBusquedaLibro.getLibroFisicoSeleccionado().getEstadoLibroFisicoId().equals(1)){
+            lblEstadoLibro.setText("Libro disponible");
+        }else if (controladorBusquedaLibro.getLibroFisicoSeleccionado().getEstadoLibroFisicoId().equals(2)) {
+            lblEstadoLibro.setText("Libro prestado");
+        }else if (controladorBusquedaLibro.getLibroFisicoSeleccionado().getEstadoLibroFisicoId().equals(3)) {
+            lblEstadoLibro.setText("Libro reservado");
+        }
     }
     public void mBtnMiPerfil(ActionEvent event) throws IOException {
         SingletonPantallas.toEstadoBibliotecarioViewSingleton(event);

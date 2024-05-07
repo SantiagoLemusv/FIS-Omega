@@ -250,7 +250,7 @@
                                                       </Label>
                                                    </children>
                                                 </HBox>
-                                                <ComboBox fx:id="cmbBoxCopias" prefHeight="35.0" prefWidth="200.0" promptText="Seleccione la copia" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-radius: 10; -fx-border-radius: 10;" />
+                                                <ComboBox fx:id="cmbBoxCopias" onAction="#mCmbBox" prefHeight="35.0" prefWidth="200.0" promptText="Seleccione la copia" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-radius: 10; -fx-border-radius: 10;" />
                                              </children>
                                           </HBox>
                                        </children>
@@ -318,7 +318,7 @@
                                                       </Label>
                                                    </children>
                                                 </HBox>
-                                                <Label fx:id="lblEstadoLibro" prefHeight="35.0" prefWidth="296.0" text="estadoLibro">
+                                                <Label fx:id="lblEstadoLibro" prefHeight="35.0" prefWidth="296.0">
                                                    <font>
                                                       <Font size="24.0" />
                                                    </font>

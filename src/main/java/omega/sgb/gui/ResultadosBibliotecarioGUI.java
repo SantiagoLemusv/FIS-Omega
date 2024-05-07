@@ -25,7 +25,9 @@ public class ResultadosBibliotecarioGUI {
     @FXML
     TableColumn<LibroVirtual, String> colAutor;
     @FXML
-    TableColumn<LibroVirtual, Integer> colCopias;
+    TableColumn<LibroVirtual, Integer> colCopiasDisponibles;
+    @FXML
+    TableColumn<LibroVirtual, Integer> colCopiasTotales;
     @FXML
     TextField txtFieldTitulo;
     @FXML
@@ -54,12 +56,8 @@ public class ResultadosBibliotecarioGUI {
     public void mBtnVerDetalles(ActionEvent event) throws IOException {
         lblLibroDisponible.setVisible(false);
         LibroVirtual libroSeleccionado = tableViewResultadosLibros.getSelectionModel().getSelectedItem();
-        if(libroSeleccionado.getLibrosFisicosDisponibles().isEmpty()){
-            lblLibroDisponible.setVisible(true);
-        }else{
-            controladorBusquedaLibro.setLibroSeleccionado(libroSeleccionado);
-            SingletonPantallas.toLibroSeleccionadoBibliotecarioViewSingleton(event);
-        }
+        controladorBusquedaLibro.setLibroVirtualSeleccionado(libroSeleccionado);
+        SingletonPantallas.toLibroSeleccionadoBibliotecarioViewSingleton(event);
     }
 
     public void mBtnLupa(){
@@ -69,8 +67,10 @@ public class ResultadosBibliotecarioGUI {
         colPortada.setCellValueFactory(new PropertyValueFactory<>("imagenLibro"));
         colTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         colAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));
-        colCopias.setCellValueFactory(cellData ->
+        colCopiasDisponibles.setCellValueFactory(cellData ->
                 new SimpleIntegerProperty(cellData.getValue().getLibrosFisicosDisponibles().size()).asObject());
+        colCopiasTotales.setCellValueFactory(cellData ->
+                new SimpleIntegerProperty(cellData.getValue().getLibrosFisicosTotales().size()).asObject());
         tableViewResultadosLibros.setItems(observableLibrosVirtuales);
     }
 }

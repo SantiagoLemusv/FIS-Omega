@@ -139,7 +139,8 @@
                       <TableColumn fx:id="colPortada" prefWidth="128.00001525878906" text="Portada" />
                       <TableColumn fx:id="colTitulo" prefWidth="151.199951171875" text="Titulo" />
                         <TableColumn fx:id="colAutor" prefWidth="136.0" text="Autor" />
-                        <TableColumn fx:id="colCopias" prefWidth="114.79998779296875" text="Copias disponibles" />
+                        <TableColumn fx:id="colCopiasDisponibles" prefWidth="114.79998779296875" text="Copias disponibles" />
+                        <TableColumn fx:id="colCopiasTotales" prefWidth="107.5999755859375" text="Copias totales" />
                     </columns>
                   </TableView>
                   <Label fx:id="lblLibroDisponible" text="Este libro está agotado, por favor elija otro libro." visible="false" />

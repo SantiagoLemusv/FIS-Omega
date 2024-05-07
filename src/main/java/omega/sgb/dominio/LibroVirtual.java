@@ -2,6 +2,7 @@ package omega.sgb.dominio;
 
 import javafx.scene.image.ImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LibroVirtual {
@@ -16,6 +17,7 @@ public class LibroVirtual {
     private Integer multaValorDia;//No tiene setValorMultaDia
     private List<LibroFisico> librosFisicosDisponibles;
     private List<LibroFisico> librosFisicosAgotados;
+    private List<LibroFisico> librosFisicosTotales;
 
     //Métodos constructores
     public LibroVirtual() {
@@ -124,5 +126,16 @@ public class LibroVirtual {
 
     public void setLibrosFisicosAgotados(List<LibroFisico> librosFisicosAgotados) {
         this.librosFisicosAgotados = librosFisicosAgotados;
+    }
+
+    public List<LibroFisico> getLibrosFisicosTotales() {
+        return librosFisicosTotales;
+    }
+
+    public void setLibrosFisicosTotales() {
+        List<LibroFisico> nuevaLista = new ArrayList<>();
+        nuevaLista.addAll(librosFisicosAgotados);
+        nuevaLista.addAll(librosFisicosDisponibles);
+        this.librosFisicosTotales = nuevaLista;
     }
 }
