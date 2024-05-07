@@ -4,11 +4,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import omega.sgb.integracion.SQL;
+import omega.sgb.integracion.DataBaseConnectionManager;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class AppH2 extends Application {
@@ -23,13 +21,13 @@ public class AppH2 extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(AppH2.class.getResource("/omega/sgb/gui/logInView.fxml"));
         System.out.println("Carga pantalla");
         Scene scene = new Scene(fxmlLoader.load(), 600, 600);
-        stage.setTitle("Hello!");
+        stage.setTitle("SGB  :)");
         stage.setScene(scene);
         stage.show();
     }
 
-    public static void main(String[] args) {
-        SingletonControladores.setConexionGeneral(SQL.getConexion(URL,USUARIO,CONTRASENA,0));
+    public static void main(String[] args) throws SQLException {
+        SingletonControladores.setConexionGeneral(DataBaseConnectionManager.getConnectionH2(URL,USUARIO,CONTRASENA));
         launch();
     }
 }

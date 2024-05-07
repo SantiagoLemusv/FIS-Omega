@@ -11,6 +11,9 @@ public class Prestamo {
     private Integer estadoPrestamoId;//Activo (1), vencido (2)
     private LibroFisico libro;
     private Multa multa;
+    //Logica prestamo. Si son 15 dias de prestamo cuenta desde el dia que lo pide
+    //Ejemplo, si lo pidio el 1 del mes, debe devolverlo maximo el 15 del mes
+    //A partir del 16, el sistema crea la multa
 
     //Métodos constructores
     public Prestamo() {

@@ -139,7 +139,7 @@
                               <Insets top="20.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField prefHeight="34.0" prefWidth="310.0" promptText="Titulo">
+                        <TextField fx:id="txtFieldTitulo" prefHeight="34.0" prefWidth="310.0" promptText="Titulo">
                            <VBox.margin>
                               <Insets bottom="20.0" left="70.0" right="70.0" top="20.0" />
                            </VBox.margin>
@@ -147,7 +147,7 @@
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <Button mnemonicParsing="false" onAction="#mBtnBuscar" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #7ec8e3;" text="Buscar" textFill="WHITE">
+                        <Button fx:id="btnBuscarLibro" mnemonicParsing="false" onAction="#mBtnBuscarLibro" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #7ec8e3;" text="Buscar" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>

@@ -1,4 +1,4 @@
-package omega.sgb.testers;
+package omega.sgb.integracion;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -6,10 +6,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import org.h2.tools.RunScript;
-public class InicializarBD {
+public class InicializadorBD {
     private Connection connection;
 
-    public InicializarBD(Connection connection) {
+    public InicializadorBD(Connection connection) {
         this.connection = connection;
     }
 

@@ -1,19 +1,44 @@
 package omega.sgb.gui;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import omega.sgb.SingletonControladores;
 import omega.sgb.SingletonPantallas;
 import omega.sgb.control.ControladorBusquedaLibro;
-
+import omega.sgb.dominio.LibroVirtual;
+import javafx.scene.image.ImageView;
 import java.io.IOException;
 import java.sql.SQLException;
 
 public class ResultadosBibliotecarioGUI {
+    @FXML
+    TableView<LibroVirtual> tableViewResultadosLibros;
+    @FXML
+    TableColumn<LibroVirtual, ImageView> colPortada;
+    @FXML
+    TableColumn<LibroVirtual, String> colTitulo;
+    @FXML
+    TableColumn<LibroVirtual, String> colAutor;
+    @FXML
+    TableColumn<LibroVirtual, Integer> colCopias;
+    @FXML
+    TextField txtFieldTitulo;
+    @FXML
+    Button btnVerDetalles;
+    @FXML
+    Label lblLibroDisponible;
     private ControladorBusquedaLibro controladorBusquedaLibro = SingletonControladores.getInstanceControladorBusquedaLibro();
+    private ObservableList<LibroVirtual> observableLibrosVirtuales = FXCollections.observableArrayList();
     public ResultadosBibliotecarioGUI() throws SQLException {}
     public ResultadosBibliotecarioGUI(ControladorBusquedaLibro controladorBusquedaLibro) throws SQLException {
         this.controladorBusquedaLibro = controladorBusquedaLibro;
     }
+
     public void mBtnMiPerfil(ActionEvent event) throws IOException {
         SingletonPantallas.toEstadoBibliotecarioViewSingleton(event);
     }
@@ -26,13 +51,26 @@ public class ResultadosBibliotecarioGUI {
     public void mBtnCerrarSesion(ActionEvent event) throws IOException {
         SingletonPantallas.toLogInViewSingleton(event);
     }
-    public void mBtnIraPago(ActionEvent event) throws IOException {
-        SingletonPantallas.toPagoViewSingleton(event);
+    public void mBtnVerDetalles(ActionEvent event) throws IOException {
+        lblLibroDisponible.setVisible(false);
+        LibroVirtual libroSeleccionado = tableViewResultadosLibros.getSelectionModel().getSelectedItem();
+        if(libroSeleccionado.getLibrosFisicosDisponibles().isEmpty()){
+            lblLibroDisponible.setVisible(true);
+        }else{
+            controladorBusquedaLibro.setLibroSeleccionado(libroSeleccionado);
+            SingletonPantallas.toResultadoLibroBibliotecarioViewSingleton(event);
+        }
     }
-    public void mBtnBuscar(ActionEvent event) throws IOException {
-        SingletonPantallas.toResultadosBibliotecarioViewSingleton(event);
-    }
-    public void mBtnVerDetalles(ActionEvent event) throws IOException{
-        SingletonPantallas.toResultadoLibroViewSingleton(event);
+
+    public void mBtnLupa(){
+        tableViewResultadosLibros.getItems().clear();
+        controladorBusquedaLibro.buscarLibrosFisicos(txtFieldTitulo.getText());
+        observableLibrosVirtuales.addAll(controladorBusquedaLibro.getListaLibrosVirtuales());
+        colPortada.setCellValueFactory(new PropertyValueFactory<>("imagenLibro"));
+        colTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+        colAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));
+        colCopias.setCellValueFactory(cellData ->
+                new SimpleIntegerProperty(cellData.getValue().getLibrosFisicosDisponibles().size()).asObject());
+        tableViewResultadosLibros.setItems(observableLibrosVirtuales);
     }
 }

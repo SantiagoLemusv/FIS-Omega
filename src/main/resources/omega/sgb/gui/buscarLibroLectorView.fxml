@@ -129,7 +129,7 @@
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <Button mnemonicParsing="false" onAction="#mBtnBuscar" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #7ec8e3;" text="Buscar" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#mBtnBusqueda" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #7ec8e3;" text="Buscar" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>

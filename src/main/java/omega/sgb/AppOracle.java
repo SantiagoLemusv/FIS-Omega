@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import omega.sgb.integracion.SQL;
+import omega.sgb.integracion.DataBaseConnectionManager;
 
 import java.io.IOException;
 
@@ -18,13 +18,13 @@ public class AppOracle extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AppOracle.class.getResource("/omega/sgb/gui/logInView.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        stage.setTitle("SGB  :)");
         stage.setScene(scene);
         stage.show();
     }
 
     public static void main(String[] args) {
-        SingletonControladores.setConexionGeneral(SQL.getConexion(URL,USUARIO,CONTRASENA,0));
+        SingletonControladores.setConexionGeneral(DataBaseConnectionManager.getConnectionOracle(URL,USUARIO,CONTRASENA,0));
         launch();
     }
 }
