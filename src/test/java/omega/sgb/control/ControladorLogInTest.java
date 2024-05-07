@@ -1,8 +1,7 @@
-package omega.sgb.testers;
+package omega.sgb.control;
 
 import omega.sgb.SingletonControladores;
-import omega.sgb.control.ControladorLogIn;
-import omega.sgb.integracion.SQL;
+import omega.sgb.integracion.DataBaseConnectionManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,14 +10,14 @@ import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ControladorLogInTest {
+class ControladorLogInTest {
     private static final String URL = "jdbc:oracle:thin:@orion.javeriana.edu.co:1521/LAB"; //cambiar a la conexion de H2
     private static final String USUARIO = "is819920";//cambiar a la conexion de H2
     private static final String CONTRASENA = "Zyqb4HO0x1BG57S";//cambiar a la conexion de H2
     private ControladorLogIn controladorLogIn;
     @BeforeEach
     void init() throws SQLException, FileNotFoundException {
-        InicializarBD inicializarBD = new InicializarBD(SQL.getConexion(URL, USUARIO, CONTRASENA, 0));
+        omega.sgb.integracion.InicializadorBD inicializarBD = new omega.sgb.integracion.InicializadorBD(DataBaseConnectionManager.getConnectionH2(URL, USUARIO, CONTRASENA));
         inicializarBD.initDB();
         controladorLogIn = SingletonControladores.getInstanceControladorLogIn();
     }
@@ -49,8 +48,5 @@ public class ControladorLogInTest {
         String contrasena = "lavidaesbella25";
         assertFalse(controladorLogIn.validarCredenciales(cedula,contrasena));
     }
-
-
-
 
 }

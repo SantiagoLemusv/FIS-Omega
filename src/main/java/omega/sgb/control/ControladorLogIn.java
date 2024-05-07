@@ -1,9 +1,6 @@
 package omega.sgb.control;
 
-import omega.sgb.SingletonPantallas;
 import omega.sgb.SingletonControladores;
-import omega.sgb.dominio.Persona;
-import omega.sgb.integracion.SQL;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
