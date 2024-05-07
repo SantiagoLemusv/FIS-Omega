@@ -9,6 +9,7 @@ public class Multa  {
     private Integer montoPagar;// Es igual a multaValorDia * número de días que el lector no hizo la devolución del libro
     private Date fechaEmision;//Cuando se genera la multa, que es cuando se vencio el prestamo
     private Pago pago;
+    private Integer diasPasados;
 
     //Métodos constructores
     public Multa() {
@@ -59,5 +60,13 @@ public class Multa  {
 
     public void setPago(Pago pago) {
         this.pago = pago;
+    }
+
+    public Integer getDiasPasados() {
+        return diasPasados;
+    }
+
+    public void setDiasPasados(Integer diasPasados) {
+        this.diasPasados = diasPasados;
     }
 }
