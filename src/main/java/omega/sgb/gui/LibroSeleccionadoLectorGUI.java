@@ -13,9 +13,8 @@ import omega.sgb.control.ControladorBusquedaLibro;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
-public class ResultadoLibroBibliotecarioGUI {
+public class LibroSeleccionadoLectorGUI {
     @FXML
     ImageView imageViewLibroSeleccionado;
     @FXML
@@ -31,9 +30,9 @@ public class ResultadoLibroBibliotecarioGUI {
     @FXML
     ComboBox cmbBoxCopias;
     private ControladorBusquedaLibro controladorBusquedaLibro = SingletonControladores.getInstanceControladorBusquedaLibro();
-    public ResultadoLibroBibliotecarioGUI() throws SQLException {
+    public LibroSeleccionadoLectorGUI() throws SQLException {
     }
-    public ResultadoLibroBibliotecarioGUI(ControladorBusquedaLibro controladorBusquedaLibro) throws SQLException {
+    public LibroSeleccionadoLectorGUI(ControladorBusquedaLibro controladorBusquedaLibro) throws SQLException {
         this.controladorBusquedaLibro = controladorBusquedaLibro;
     }
     @FXML
@@ -55,9 +54,6 @@ public class ResultadoLibroBibliotecarioGUI {
     }
     public void mBtnBusqueda(ActionEvent event) throws IOException {
         SingletonPantallas.toBuscarLibroBibliotecarioViewSingleton(event);
-    }
-    public void mBtnCarrito(ActionEvent event) throws IOException {
-        SingletonPantallas.toCarritoViewSingleton(event);
     }
     public void mBtnCerrarSesion(ActionEvent event) throws IOException {
         SingletonPantallas.toLogInViewSingleton(event);

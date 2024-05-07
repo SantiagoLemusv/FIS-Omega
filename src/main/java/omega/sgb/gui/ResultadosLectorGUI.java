@@ -54,7 +54,7 @@ public class ResultadosLectorGUI {
             lblLibroDisponible.setVisible(true);
         }else{
             controladorBusquedaLibro.setLibroSeleccionado(libroSeleccionado);
-            SingletonPantallas.toResultadoLibroLectorViewSingleton(event);
+            SingletonPantallas.toLibroSeleccionadoLectorViewSingleton(event);
         }
     }
 
