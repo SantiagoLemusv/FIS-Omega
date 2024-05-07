@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1540.0" stylesheets="@gui/app.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="omega.sgb.gui.CrearCuentaGUI">
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1540.0" stylesheets="@../../../../../../../FIS-Commits/src/main/resources/omega/sgb/gui/gui/app.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="omega.sgb.gui.CrearCuentaGUI">
    <children>
       <Pane fx:id="blurPane" prefHeight="800.0" prefWidth="1540.0" />
       <ImageView fx:id="blur" fitHeight="870.0" fitWidth="1639.0" layoutX="-3.0" pickOnBounds="true" preserveRatio="true">
@@ -20,7 +20,7 @@
             <BoxBlur height="10.0" iterations="3" width="10.0" />
          </effect>
          <image>
-            <Image url="@gui/login_bg2.jpg" />
+            <Image url="@../../../../../../../FIS-Commits/src/main/resources/omega/sgb/gui/gui/login_bg2.jpg" />
          </image></ImageView>
       <Pane fx:id="CCPane" layoutX="344.0" layoutY="46.0" prefHeight="658.0" prefWidth="853.0">
          <children>
@@ -64,7 +64,7 @@
             </Label>
             <ImageView fitHeight="206.0" fitWidth="267.0" layoutX="566.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@gui/add_user.png" />
+                  <Image url="@../../../../../../../FIS-Commits/src/main/resources/omega/sgb/gui/gui/add_user.png" />
                </image>
             </ImageView>
             <Button fx:id="btnVolverLogInView" layoutX="50.0" layoutY="556.0" mnemonicParsing="false" onAction="#mBtnLoginView" prefHeight="42.0" prefWidth="123.0" text="Volver a Login">

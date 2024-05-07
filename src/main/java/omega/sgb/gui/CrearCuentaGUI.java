@@ -26,7 +26,7 @@ public class CrearCuentaGUI {
     }
 
     @FXML
-    Button btnCrearCuentaM;
+    Button btnCrearCuenta;
     @FXML
     TextField txtNombreCompleto;
     @FXML

@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="omega.sgb.gui.ResultadosGUI">
+<BorderPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="omega.sgb.gui.ResultadosBibliotecarioGUI">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
@@ -43,7 +34,7 @@
          <children>
             <VBox prefHeight="272.0" prefWidth="196.0" spacing="10.0">
                <children>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#mBtnMiPerfil" prefHeight="39.0" prefWidth="196.0" style="-fx-background-color: white;" text="Mi Perfil" textFill="#7ec8e3">
+                  <Button fx:id="btnMiPerfil" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#mBtnMiPerfil" prefHeight="39.0" prefWidth="196.0" style="-fx-background-color: white;" text="Mi Perfil" textFill="#7ec8e3">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -58,7 +49,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#mBtnBusqueda" prefHeight="39.0" prefWidth="196.0" style="-fx-background-color: white;" text="Busqueda" textFill="#7ec8e3">
+                  <Button fx:id="btnBusqueda" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#mBtnBusqueda" prefHeight="39.0" prefWidth="196.0" style="-fx-background-color: white;" text="Busqueda" textFill="#7ec8e3">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -76,7 +67,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#mBtnCarrito" prefHeight="39.0" prefWidth="196.0" style="-fx-background-color: white;" text="Carrito" textFill="#7ec8e3">
+                  <Button fx:id="btnCarrito" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#mBtnCarrito" prefHeight="39.0" prefWidth="196.0" style="-fx-background-color: white;" text="Carrito" textFill="#7ec8e3">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -99,7 +90,7 @@
             </VBox>
             <VBox alignment="BOTTOM_CENTER" prefHeight="488.0" prefWidth="196.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#mBtnCerrarSesion" prefHeight="26.0" prefWidth="147.0" style="-fx-background-color: #7ec8e3;" text="Cerrar sesion" textFill="WHITE">
+                  <Button fx:id="btnCerrarSesion" alignment="CENTER" mnemonicParsing="false" onAction="#mBtnCerrarSesion" prefHeight="26.0" prefWidth="147.0" style="-fx-background-color: #7ec8e3;" text="Cerrar sesion" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -132,7 +123,7 @@
                               <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="txtTitulo" prefHeight="34.0" prefWidth="264.0" promptText="Titulo">
+                        <TextField fx:id="txtFieldTitulo" prefHeight="34.0" prefWidth="264.0" promptText="Titulo">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -140,7 +131,7 @@
                               <Insets left="10.0" top="10.0" />
                            </HBox.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" onAction="#mBtnBuscar" prefHeight="33.0" prefWidth="39.0" style="-fx-background-color: #7ec8e3;" textFill="WHITE">
+                        <Button fx:id="btnLupa" mnemonicParsing="false" onAction="#mBtnLupa" prefHeight="33.0" prefWidth="39.0" style="-fx-background-color: #7ec8e3;" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -161,14 +152,16 @@
                      </children>
                   </HBox>
                   <Separator prefWidth="200.0" />
-                  <TableView prefHeight="510.0" prefWidth="964.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                  <TableView fx:id="tableViewResultadosLibros" prefHeight="469.0" prefWidth="537.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
                     <columns>
-                      <TableColumn fx:id="colPortada" prefWidth="128.00001525878906" text="Portada" />
-                      <TableColumn fx:id="colTitulo" prefWidth="151.199951171875" text="Titulo" />
-                        <TableColumn fx:id="colISBN" prefWidth="136.0" text="ISBN" />
+                      <TableColumn fx:id="colPortada" prefWidth="154.39996337890625" text="Portada" />
+                      <TableColumn fx:id="colTitulo" prefWidth="126.4000244140625" text="Titulo" />
+                       <TableColumn fx:id="colAutor" prefWidth="129.40005493164062" text="Autor" />
+                        <TableColumn fx:id="colCopias" prefWidth="112.20001220703125" text="Copias disponibles" />
                     </columns>
                   </TableView>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#mBtnVerDetalles" prefHeight="26.0" prefWidth="147.0" style="-fx-background-color: #7ec8e3;" text="Ver detalles" textFill="WHITE">
+                  <Label fx:id="lblLibroDisponible" text="Este libro está agotado, por favor elija otro libro." visible="false" />
+                  <Button fx:id="btnVerDetalles" alignment="CENTER" mnemonicParsing="false" onAction="#mBtnVerDetalles" prefHeight="26.0" prefWidth="147.0" style="-fx-background-color: #7ec8e3;" text="Ver detalles" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -184,6 +177,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </HBox.margin>
             </VBox>
+            <ImageView fx:id="imagenPrueba" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </HBox>
    </center>

@@ -1,9 +1,9 @@
 module omega.sgb {
+    opens omega.sgb.dominio to javafx.base;
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
     requires java.desktop;
-    requires org.junit.jupiter.api;
     requires com.h2database;
 
 

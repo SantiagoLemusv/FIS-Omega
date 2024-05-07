@@ -1,5 +1,7 @@
 package omega.sgb.dominio;
 
+import javafx.scene.image.ImageView;
+
 import java.util.List;
 
 public class LibroVirtual {
@@ -7,35 +9,40 @@ public class LibroVirtual {
     private Integer id;
     private String isbn;
     private String titulo;
-    private Integer cantidad;//número de libros físicos que existen
+    private Integer cantidadCopias;//número de libros físicos que existen
     private String autor;
+    private ImageView imagenLibro;
     private Integer duracionPrestamo;//Por cuantos días se presta el libro
     private Integer multaValorDia;//No tiene setValorMultaDia
-    private List<LibroFisico> librosFisicos;
+    private List<LibroFisico> librosFisicosDisponibles;
+    private List<LibroFisico> librosFisicosAgotados;
 
     //Métodos constructores
     public LibroVirtual() {
     }
 
-    public LibroVirtual(Integer id, String isbn, String titulo, Integer cantidad, String autor, Integer duracionPrestamo, Integer multaValorDia, List<LibroFisico> librosFisicos) {
+    public LibroVirtual(Integer id, String isbn, String titulo, Integer cantidadCopias, String autor, Integer duracionPrestamo, Integer multaValorDia, List<LibroFisico> librosFisicosDisponibles, List<LibroFisico> librosFisicosAgotados) {
         this.id = id;
         this.isbn = isbn;
         this.titulo = titulo;
-        this.cantidad = cantidad;
+        this.cantidadCopias = cantidadCopias;
         this.autor = autor;
         this.duracionPrestamo = duracionPrestamo;
         this.multaValorDia = multaValorDia;
-        this.librosFisicos = librosFisicos;
+        this.librosFisicosDisponibles = librosFisicosDisponibles;
+        this.librosFisicosAgotados = librosFisicosAgotados;
     }
 
-    public LibroVirtual(String isbn, String titulo, Integer cantidad, String autor, Integer duracionPrestamo, Integer multaValorDia, List<LibroFisico> librosFisicos) {
+    public LibroVirtual(String isbn, String titulo, Integer cantidadCopias, String autor, ImageView imagenLibro, Integer duracionPrestamo, Integer multaValorDia, List<LibroFisico> librosFisicosDisponibles, List<LibroFisico> librosFisicosAgotados) {
         this.isbn = isbn;
         this.titulo = titulo;
-        this.cantidad = cantidad;
+        this.cantidadCopias = cantidadCopias;
         this.autor = autor;
+        this.imagenLibro = imagenLibro;
         this.duracionPrestamo = duracionPrestamo;
         this.multaValorDia = multaValorDia;
-        this.librosFisicos = librosFisicos;
+        this.librosFisicosDisponibles = librosFisicosDisponibles;
+        this.librosFisicosAgotados = librosFisicosAgotados;
     }
 
     //Métodos de acceso
@@ -63,12 +70,12 @@ public class LibroVirtual {
         this.titulo = titulo;
     }
 
-    public Integer getCantidad() {
-        return cantidad;
+    public Integer getCantidadCopias() {
+        return cantidadCopias;
     }
 
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
+    public void setCantidadCopias(Integer cantidadCopias) {
+        this.cantidadCopias = cantidadCopias;
     }
 
     public String getAutor() {
@@ -77,6 +84,14 @@ public class LibroVirtual {
 
     public void setAutor(String autor) {
         this.autor = autor;
+    }
+
+    public ImageView getImagenLibro() {
+        return imagenLibro;
+    }
+
+    public void setImagenLibro(ImageView imagenLibro) {
+        this.imagenLibro = imagenLibro;
     }
 
     public Integer getDuracionPrestamo() {
@@ -95,11 +110,19 @@ public class LibroVirtual {
         this.multaValorDia = multaValorDia;
     }
 
-    public List<LibroFisico> getLibrosFisicos() {
-        return librosFisicos;
+    public List<LibroFisico> getLibrosFisicosDisponibles() {
+        return librosFisicosDisponibles;
     }
 
-    public void setLibrosFisicos(List<LibroFisico> librosFisicos) {
-        this.librosFisicos = librosFisicos;
+    public void setLibrosFisicosDisponibles(List<LibroFisico> librosFisicosDisponibles) {
+        this.librosFisicosDisponibles = librosFisicosDisponibles;
+    }
+
+    public List<LibroFisico> getLibrosFisicosAgotados() {
+        return librosFisicosAgotados;
+    }
+
+    public void setLibrosFisicosAgotados(List<LibroFisico> librosFisicosAgotados) {
+        this.librosFisicosAgotados = librosFisicosAgotados;
     }
 }

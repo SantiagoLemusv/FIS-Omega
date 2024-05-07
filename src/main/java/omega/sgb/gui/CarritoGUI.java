@@ -7,15 +7,9 @@ import javafx.scene.image.ImageView;
 import omega.sgb.SingletonControladores;
 import omega.sgb.SingletonPantallas;
 import omega.sgb.control.ControladorCarrito;
-import omega.sgb.control.ControladorLogIn;
-import omega.sgb.integracion.Imagen;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.sql.Blob;
 import java.sql.SQLException;
-import javax.imageio.ImageIO;
 
 public class CarritoGUI {
     private ControladorCarrito controladorCarrito = SingletonControladores.getInstanceControladorCarrito();

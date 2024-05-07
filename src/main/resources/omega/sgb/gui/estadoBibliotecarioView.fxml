@@ -26,20 +26,6 @@
                </HBox.margin>
             </Label>
             <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <HBox alignment="CENTER_LEFT" prefHeight="14.0" prefWidth="200.0">
-               <children>
-                  <Label fx:id="lblNombreCompleto" alignment="CENTER" prefHeight="34.0" prefWidth="145.0" text="Nombre Completo">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="33.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@gui/usuario2.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
          </children>
       </HBox>
    </top>

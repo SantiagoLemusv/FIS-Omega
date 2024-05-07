@@ -44,16 +44,10 @@ public class EstadoBibliotecarioGUI implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         txtNombre.setText(SingletonControladores.getUsuarioActual().getNombre());
-
+        //txtNombreCompleto.setText(SingletonControladores.getUsuarioActual().getNombre());
         txtCedula.setText(String.valueOf(SingletonControladores.getUsuarioActual().getCedula()));
-
-        if(SingletonControladores.getUsuarioActual().getClass().toString().equals("PerosnaBibliotecario")){
-            txtTipoCuenta.setText("Bibliotecario");
-        }else {
-            txtTipoCuenta.setText("Lector");
-        }
+        txtTipoCuenta.setText("Bibliotecario");
     }
 
     public void mBtnMiPerfil(ActionEvent event) throws IOException {
