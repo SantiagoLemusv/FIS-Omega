@@ -43,7 +43,7 @@ public class ValidarLectorGUI {
     @FXML
     ListView listViewLibros;
 
-    public void mConsultarLector(ActionEvent event) throws SQLException {
+    /*public void mConsultarLector(ActionEvent event) throws SQLException {
         String cedulaLector = txtCedulaLector.getText();
         Integer numCedula = Integer.parseInt(cedulaLector);
         lectorActual.setCedula(numCedula);
@@ -53,13 +53,13 @@ public class ValidarLectorGUI {
             lblEstadoLector.setText("Estado lector correcto");
             lectorActual.setId(controladorPrestamo.getIdLectorActual(numCedula));
         }
-    }
+    }*/
     public void mConfirmarPrestamo(ActionEvent event) throws SQLException {
         if(lblEstadoLector.getText() == "Estado lector correcto"){
             LibroFisico libroPrueba = controladorPrestamo.agregarLibroCarrito();//cambiar, esto es quemado
             List<LibroFisico> listaPrueba = new ArrayList<LibroFisico>();
             listaPrueba.add(libroPrueba);
-            controladorPrestamo.confirmarPrestamo(listaPrueba, lectorActual);
+            //controladorPrestamo.confirmarPrestamo(listaPrueba, lectorActual);
 
         }
     }
