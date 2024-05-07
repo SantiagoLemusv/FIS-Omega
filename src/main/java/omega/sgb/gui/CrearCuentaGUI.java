@@ -61,7 +61,16 @@ public class CrearCuentaGUI {
     public void mBtnLoginView(ActionEvent event) throws IOException {
         SingletonPantallas.toLogInViewSingleton(event);
     }
-    public void mBtnCrearCuenta(){
-
+    public void mBtnCrearCuenta(ActionEvent event) throws SQLException, IOException {
+        String cedula = txtCedula.getText();
+        String contrasena = txtContrasena.getText();
+        String nombreCompleto = txtNombreCompleto.getText();
+        String contrasenaConfirmar = txtContrasenaConfirmar.getText();
+        if(controladorLogIn.nuevoUsuarioCrear(cedula, contrasena, contrasenaConfirmar, nombreCompleto)){
+            lblAutenticacion.setText("El usuario se ha registrado");
+            SingletonPantallas.toEstadoLectorViewSingleton(event);
+        }else{
+            lblAutenticacion.setText("El usuario no se pudo registrar");
+        }
     }
 }
