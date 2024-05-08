@@ -1,14 +1,26 @@
 package omega.sgb.gui;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import omega.sgb.SingletonControladores;
 import omega.sgb.SingletonPantallas;
 import omega.sgb.control.ControladorPago;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class AgregarMetodoPagoGUI {
+public class AgregarMetodoPagoGUI implements Initializable {
+
+    @FXML
+    Label lblNombreU;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        lblNombreU.setText(SingletonControladores.getUsuarioActual().getNombre());
+    }
     private ControladorPago controladorPago = SingletonControladores.getInstanceControladorPago();
     public AgregarMetodoPagoGUI() throws SQLException {}
     public AgregarMetodoPagoGUI(ControladorPago controladorPago) throws SQLException {

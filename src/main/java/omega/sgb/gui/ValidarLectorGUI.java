@@ -2,6 +2,7 @@ package omega.sgb.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -14,11 +15,13 @@ import omega.sgb.dominio.LibroFisico;
 import omega.sgb.dominio.PersonaLector;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class ValidarLectorGUI {
+public class ValidarLectorGUI implements Initializable {
     private ControladorPrestamo controladorPrestamo = SingletonControladores.getInstanceControladorPrestamo();
     private PersonaLector lectorActual = new PersonaLector();
     public ValidarLectorGUI() throws SQLException {}
@@ -42,7 +45,12 @@ public class ValidarLectorGUI {
     Button btnVolver;
     @FXML
     ListView listViewLibros;
-
+    @FXML
+    Label lblNombreU;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        lblNombreU.setText(SingletonControladores.getUsuarioActual().getNombre());
+    }
     public void mConsultarLector(ActionEvent event) throws SQLException {
         String cedulaLector = txtCedulaLector.getText();
         Integer numCedula = Integer.parseInt(cedulaLector);

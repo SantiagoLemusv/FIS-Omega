@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -12,10 +13,12 @@ import omega.sgb.SingletonPantallas;
 import omega.sgb.control.ControladorBusquedaLibro;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class ResultadoLibroBibliotecarioGUI {
+public class ResultadoLibroBibliotecarioGUI implements Initializable {
     @FXML
     ImageView imageViewLibroSeleccionado;
     @FXML
@@ -30,14 +33,11 @@ public class ResultadoLibroBibliotecarioGUI {
     Label lblEstadoLibro;
     @FXML
     ComboBox cmbBoxCopias;
-    private ControladorBusquedaLibro controladorBusquedaLibro = SingletonControladores.getInstanceControladorBusquedaLibro();
-    public ResultadoLibroBibliotecarioGUI() throws SQLException {
-    }
-    public ResultadoLibroBibliotecarioGUI(ControladorBusquedaLibro controladorBusquedaLibro) throws SQLException {
-        this.controladorBusquedaLibro = controladorBusquedaLibro;
-    }
     @FXML
-    void initialize(){
+    Label lblNombreU;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        lblNombreU.setText(SingletonControladores.getUsuarioActual().getNombre());
         imageViewLibroSeleccionado.setImage(controladorBusquedaLibro.getLibroSeleccionado().getImagenLibro().getImage());
         lblTitulo.setText(controladorBusquedaLibro.getLibroSeleccionado().getTitulo());
         lblAutor.setText(controladorBusquedaLibro.getLibroSeleccionado().getAutor());
@@ -49,6 +49,16 @@ public class ResultadoLibroBibliotecarioGUI {
                 controladorBusquedaLibro.combinarPisoConClasificacion(controladorBusquedaLibro.getLibroSeleccionado().getLibrosFisicosDisponibles()));
         cmbBoxCopias.setItems(observableUbicaciones);
         lblEstadoLibro.setText("estado prueba");
+    }
+    private ControladorBusquedaLibro controladorBusquedaLibro = SingletonControladores.getInstanceControladorBusquedaLibro();
+    public ResultadoLibroBibliotecarioGUI() throws SQLException {
+    }
+    public ResultadoLibroBibliotecarioGUI(ControladorBusquedaLibro controladorBusquedaLibro) throws SQLException {
+        this.controladorBusquedaLibro = controladorBusquedaLibro;
+    }
+    @FXML
+    void initialize(){
+
     }
     public void mBtnMiPerfil(ActionEvent event) throws IOException {
         SingletonPantallas.toEstadoBibliotecarioViewSingleton(event);

@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import omega.sgb.SingletonControladores;
@@ -13,9 +14,11 @@ import omega.sgb.control.ControladorBusquedaLibro;
 import omega.sgb.dominio.LibroVirtual;
 import javafx.scene.image.ImageView;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class ResultadosBibliotecarioGUI {
+public class ResultadosBibliotecarioGUI implements Initializable {
     @FXML
     TableView<LibroVirtual> tableViewResultadosLibros;
     @FXML
@@ -32,6 +35,12 @@ public class ResultadosBibliotecarioGUI {
     Button btnVerDetalles;
     @FXML
     Label lblLibroDisponible;
+    @FXML
+    Label lblNombreU;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        lblNombreU.setText(SingletonControladores.getUsuarioActual().getNombre());
+    }
     private ControladorBusquedaLibro controladorBusquedaLibro = SingletonControladores.getInstanceControladorBusquedaLibro();
     private ObservableList<LibroVirtual> observableLibrosVirtuales = FXCollections.observableArrayList();
     public ResultadosBibliotecarioGUI() throws SQLException {}
