@@ -43,11 +43,6 @@ public class ControladorLogIn {
 
     public boolean nuevoUsuarioCrear(String cedula, String contrasena, String contrasenaConfirmar, String nombreCompleto) throws SQLException {
         Integer numCedula = Integer.parseInt(cedula);
-        boolean camposValidos = validarCampos(cedula, contrasena, contrasenaConfirmar, nombreCompleto);
-
-        if(!camposValidos){
-            return false;
-        }
 
         String sqlValidarExistencia = "SELECT COUNT(*) FROM PERSONA WHERE CEDULA = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlValidarExistencia)) {
@@ -77,31 +72,5 @@ public class ControladorLogIn {
         }
     }
 
-    private boolean validarCampos(String cedula, String contrasena, String contrasenaConfirmar,String nombreCompleto) {
-        // Validar campos vacíos
-        if (cedula.isEmpty() || contrasena.isEmpty() || nombreCompleto.isEmpty()) {
-            return false;
-        }
 
-        // Validar longitud de la contraseña (mínimo 8 caracteres)
-        if (contrasena.length() < 8) {
-            return false;
-        }
-
-        //Validar que la contraseña se escribio correctamente
-        if(!contrasena.equals(contrasenaConfirmar)){
-            return false;
-        }
-
-        // Validar caracteres incorrectos en la contraseña
-        Pattern pattern = Pattern.compile("^[a-zA-Z0-9]*$");
-        Matcher matcher = pattern.matcher(contrasena);
-        if (!matcher.matches()) {
-            return false;
-        }
-
-        // Otras validaciones adicionales...
-
-        return true;
-    }
 }

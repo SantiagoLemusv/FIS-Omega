@@ -37,6 +37,18 @@ public class CrearCuentaGUI {
     PasswordField txtContrasena;
     @FXML
     Label lblAutenticacion;
+    @FXML
+    Label lblErrorNombreCompleto;
+
+    @FXML
+    Label lblErrorCedula;
+
+    @FXML
+    Label lblErrorContrasena;
+
+    @FXML
+    Label lblErrorConfirmarContrasena;
+
 
     public String getTxtCedula() {
         return txtCedula.getText();
@@ -61,16 +73,94 @@ public class CrearCuentaGUI {
     public void mBtnLoginView(ActionEvent event) throws IOException {
         SingletonPantallas.toLogInViewSingleton(event);
     }
+
+    private boolean validarCampos (){
+        String cedula = txtCedula.getText();
+        String contrasena = txtContrasena.getText();
+        String nombreCompleto = txtNombreCompleto.getText();
+        String contrasenaConfirmar = txtContrasenaConfirmar.getText();
+
+        //patrones de verificacion
+        Pattern patternContrasena = Pattern.compile("^(?=.*[A-Z])(?=.*\\d).*$");
+        Pattern patternNumerico = Pattern.compile("^[0-9]*$");
+        Pattern patternAlfabetico = Pattern.compile("^[a-zA-Z ]*$");
+        Matcher matcherContrasena = patternContrasena.matcher("");
+        Matcher matcherNumerico = patternNumerico.matcher("");
+        Matcher matcherAlfabetico = patternAlfabetico.matcher("");
+
+        //Limpiar campos y variables necesarias
+        lblErrorNombreCompleto.setText("");
+        lblErrorCedula.setText("");
+        lblErrorContrasena.setText("");
+        lblErrorConfirmarContrasena.setText("");
+        boolean cumple=true;
+
+        //Revisa campos vacios y patrones
+        //Revison nombre
+        if(nombreCompleto.isEmpty()){
+            cumple= false;
+            lblErrorNombreCompleto.setText("Por favor llene este campo");
+        } else{
+            matcherAlfabetico.reset(nombreCompleto);
+        } if (!matcherAlfabetico.matches()) {
+            cumple= false;
+            lblErrorNombreCompleto.setText("El nombre no debe contener caracteres especiales ni numeros");
+        }
+
+        //Revision cedula
+        if(cedula.isEmpty()){
+            cumple= false;
+            lblErrorCedula.setText("Por favor llene este campo");
+        } else{
+            matcherNumerico.reset(cedula);
+        } if (!matcherNumerico.matches()) {
+            cumple= false;
+            lblErrorCedula.setText("El campo solo debe contener números");
+        }
+
+        //Revision contrasena
+        if(contrasena.isEmpty()){
+            cumple= false;
+            lblErrorContrasena.setText("Por favor llene este campo");
+        } else{
+            if (contrasena.length()<8) {
+                cumple= false;
+                lblErrorContrasena.setText("La contraseña debe contener al menos 8 caracteres");
+            } else{
+                matcherContrasena.reset(contrasena);
+                if (!matcherContrasena.matches()) {
+                    cumple = false;
+                    lblErrorContrasena.setText("La contraseña debe contener mayusculas y números");
+                }
+            }
+        }
+
+        //Revision confirmarcontrasena
+        if (contrasenaConfirmar.isEmpty()) {
+            cumple=false;
+            lblErrorConfirmarContrasena.setText("Por favor llene este campo");
+        } else if (!contrasena.equals(contrasenaConfirmar)) {
+            cumple=false;
+            lblErrorConfirmarContrasena.setText("La contraseña no coincide");
+        }
+
+        return cumple;
+    }
     public void mBtnCrearCuenta(ActionEvent event) throws SQLException, IOException {
         String cedula = txtCedula.getText();
         String contrasena = txtContrasena.getText();
         String nombreCompleto = txtNombreCompleto.getText();
         String contrasenaConfirmar = txtContrasenaConfirmar.getText();
-        if(controladorLogIn.nuevoUsuarioCrear(cedula, contrasena, contrasenaConfirmar, nombreCompleto)){
+
+
+         //Confirmacion del registro
+        if(validarCampos()){
+            controladorLogIn.nuevoUsuarioCrear(cedula, contrasena, contrasenaConfirmar, nombreCompleto);
             lblAutenticacion.setText("El usuario se ha registrado");
             SingletonPantallas.toEstadoLectorViewSingleton(event);
         }else{
             lblAutenticacion.setText("El usuario no se pudo registrar");
         }
+
     }
 }
