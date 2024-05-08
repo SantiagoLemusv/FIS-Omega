@@ -6,11 +6,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 public class ControladorLogIn {
-    private Connection connection;
+    private final Connection connection;
     public ControladorLogIn(Connection conexionGeneral) throws SQLException {
         this.connection = conexionGeneral;
     }
