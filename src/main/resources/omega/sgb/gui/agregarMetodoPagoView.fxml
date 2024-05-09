@@ -128,7 +128,7 @@
                <children>
                   <VBox prefHeight="453.0" prefWidth="587.0" HBox.hgrow="NEVER">
                      <children>
-                        <VBox prefHeight="306.0" prefWidth="587.0" style="-fx-background-color: white; -fx-background-radius: 20;" VBox.vgrow="NEVER">
+                        <VBox prefHeight="383.0" prefWidth="587.0" style="-fx-background-color: white; -fx-background-radius: 20;">
                            <children>
                               <Label prefHeight="34.0" prefWidth="222.0" text="Agregar Nueva Tarjeta">
                                  <font>
@@ -138,7 +138,7 @@
                                     <Insets left="20.0" top="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <VBox alignment="BOTTOM_CENTER" prefHeight="151.0" prefWidth="565.0">
+                              <VBox alignment="BOTTOM_CENTER" prefHeight="307.0" prefWidth="547.0" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
                                  </VBox.margin>
@@ -152,11 +152,12 @@
                                           </Label>
                                        </children>
                                     </HBox>
-                                    <TextField prefHeight="26.0" prefWidth="554.0" promptText="0000 0000 0000 0000">
+                                    <TextField fx:id="txtNumeroTarjeta" prefHeight="26.0" prefWidth="554.0" promptText="0000 0000 0000 0000">
                                        <VBox.margin>
-                                          <Insets bottom="10.0" />
+                                          <Insets />
                                        </VBox.margin>
                                     </TextField>
+                                    <Label fx:id="lblErrorNumeroTarjeta" prefHeight="18.0" prefWidth="550.0" textFill="#940808" />
                                     <HBox prefHeight="0.0" prefWidth="547.0" spacing="25.0">
                                        <children>
                                           <Label prefHeight="18.0" prefWidth="102.0" text="CVV">
@@ -167,51 +168,63 @@
                                           <Label prefHeight="18.0" prefWidth="104.0" text="Fecha Vencimiento" />
                                           <Label prefHeight="18.0" prefWidth="105.0" text="Nombre" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
                                     </HBox>
                                     <HBox prefHeight="0.0" prefWidth="547.0" spacing="25.0">
                                        <children>
-                                          <TextField prefHeight="26.0" prefWidth="104.0" promptText="000">
+                                          <TextField fx:id="txtCVV" prefHeight="26.0" prefWidth="104.0" promptText="000">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
                                           </TextField>
-                                          <TextField prefHeight="26.0" prefWidth="107.0" promptText="MM/YY">
+                                          <TextField fx:id="txtFechaVencimiento" prefHeight="26.0" prefWidth="107.0" promptText="MM/YY">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
                                           </TextField>
-                                          <TextField prefHeight="26.0" prefWidth="293.0" promptText="Nombre del titular" />
+                                          <TextField fx:id="txtNombreTitular" prefHeight="26.0" prefWidth="293.0" promptText="Nombre del titular" />
                                        </children>
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
                                     </HBox>
+                                    <HBox prefHeight="51.0" prefWidth="547.0" spacing="25.0">
+                                       <children>
+                                          <Label fx:id="lblErrorCVV" prefHeight="57.0" prefWidth="103.0" textFill="#940808" wrapText="true" />
+                                          <Label fx:id="lblErrorFechaVencimiento" alignment="TOP_LEFT" prefHeight="45.0" prefWidth="103.0" textFill="#940808" wrapText="true" />
+                                          <Label fx:id="lblErrorNombreTitular" prefHeight="41.0" prefWidth="292.0" textFill="#940808" wrapText="true" />
+                                       </children>
+                                    </HBox>
                                     <HBox prefHeight="0.0" prefWidth="547.0" spacing="25.0">
                                        <children>
-                                          <Label prefHeight="18.0" prefWidth="127.0" text="Entidad Bancaria">
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                             <padding>
-                                                <Insets top="10.0" />
-                                             </padding>
-                                          </Label>
+                                          <Label fx:id="lblErrorNumeroTarjeta1" prefHeight="18.0" prefWidth="550.0" text="Entidad Bancaria" />
                                        </children>
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="36.0" prefHeight="0.0" prefWidth="547.0" spacing="25.0">
                                        <children>
-                                          <TextField prefHeight="26.0" prefWidth="232.0" promptText="Nombre">
+                                          <TextField fx:id="txtNombre" prefHeight="26.0" prefWidth="232.0" promptText="Nombre">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
                                           </TextField>
-                                          <ComboBox prefWidth="150.0" promptText="Tipo de Tarjeta" />
+                                          <ComboBox fx:id="cbxTipoTarjeta" prefWidth="150.0" promptText="Tipo de Tarjeta" />
                                        </children>
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
                                     </HBox>
+                                    <HBox prefHeight="48.0" prefWidth="547.0" spacing="25.0">
+                                       <children>
+                                          <Label fx:id="lblErrorNombre" prefHeight="39.0" prefWidth="234.0" textFill="#940808" wrapText="true" />
+                                          <Label fx:id="lblErrorTipoTarjeta" prefHeight="18.0" prefWidth="103.0" textFill="#940808" />
+                                       </children>
+                                    </HBox>
                                  </children>
+                                 <padding>
+                                    <Insets bottom="20.0" />
+                                 </padding>
                               </VBox>
                               <Separator prefWidth="200.0">
                                  <VBox.margin>
