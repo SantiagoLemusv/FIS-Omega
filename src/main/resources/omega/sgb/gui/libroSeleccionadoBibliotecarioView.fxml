@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="omega.sgb.gui.LibroSeleccionadoBibliotecarioGUI">
+<BorderPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="omega.sgb.gui.ResultadoLibroBibliotecarioGUI">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
@@ -26,17 +34,23 @@
                </HBox.margin>
             </Label>
             <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <HBox alignment="CENTER_LEFT" prefHeight="14.0" prefWidth="200.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="260.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="34.0" prefWidth="145.0" text="Nombre Usuario">
+                  <Label fx:id="lblNombreU" alignment="CENTER_RIGHT" prefHeight="34.0" prefWidth="218.0" text="Nombre Usuario" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
                   </Label>
                   <ImageView fitHeight="33.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@gui/usuario2.png" />
                      </image>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
                   </ImageView>
                </children>
             </HBox>
@@ -250,7 +264,7 @@
                                                       </Label>
                                                    </children>
                                                 </HBox>
-                                                <ComboBox fx:id="cmbBoxCopias" onAction="#mCmbBox" prefHeight="35.0" prefWidth="200.0" promptText="Seleccione la copia" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-radius: 10; -fx-border-radius: 10;" />
+                                                <ComboBox fx:id="cmbBoxCopias" prefHeight="35.0" prefWidth="200.0" promptText="Seleccione la copia" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-radius: 10; -fx-border-radius: 10;" />
                                              </children>
                                           </HBox>
                                        </children>
@@ -318,7 +332,7 @@
                                                       </Label>
                                                    </children>
                                                 </HBox>
-                                                <Label fx:id="lblEstadoLibro" prefHeight="35.0" prefWidth="296.0">
+                                                <Label fx:id="lblEstadoLibro" prefHeight="35.0" prefWidth="296.0" text="estadoLibro">
                                                    <font>
                                                       <Font size="24.0" />
                                                    </font>

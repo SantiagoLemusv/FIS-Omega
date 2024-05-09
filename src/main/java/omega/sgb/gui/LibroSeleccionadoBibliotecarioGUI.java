@@ -10,11 +10,9 @@ import javafx.scene.image.ImageView;
 import omega.sgb.SingletonControladores;
 import omega.sgb.SingletonPantallas;
 import omega.sgb.control.ControladorBusquedaLibro;
-import omega.sgb.dominio.LibroFisico;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class LibroSeleccionadoBibliotecarioGUI {
@@ -46,8 +44,9 @@ public class LibroSeleccionadoBibliotecarioGUI {
         lblISBN.setText(controladorBusquedaLibro.getLibroVirtualSeleccionado().getIsbn());
         String cant = String.valueOf(controladorBusquedaLibro.getLibroVirtualSeleccionado().getCantidadCopias());
         lblCantidad.setText(cant);
+
         ObservableList<String> observableUbicaciones = FXCollections.observableArrayList(
-                controladorBusquedaLibro.combinarPisoConClasificacion(controladorBusquedaLibro.getLibroVirtualSeleccionado().getLibrosFisicosTotales()));
+                controladorBusquedaLibro.combinarPisoConClasificacion(controladorBusquedaLibro.getLibroSeleccionado().getLibrosFisicosDisponibles()));
         cmbBoxCopias.setItems(observableUbicaciones);
     }
     public void mCmbBox(ActionEvent event){

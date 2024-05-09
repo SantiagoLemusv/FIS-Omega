@@ -1,15 +1,26 @@
 package omega.sgb.gui;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import omega.sgb.SingletonControladores;
 import omega.sgb.SingletonPantallas;
 import omega.sgb.control.ControladorBusquedaLibro;
 import omega.sgb.control.ControladorLogIn;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class BuscarLibroLectorGUI {
+public class BuscarLibroLectorGUI implements Initializable {
+    @FXML
+    Label lblNombreU;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        lblNombreU.setText(SingletonControladores.getUsuarioActual().getNombre());
+    }
     private ControladorBusquedaLibro controladorBusquedaLibro = SingletonControladores.getInstanceControladorBusquedaLibro();
     public BuscarLibroLectorGUI() throws SQLException {}
     public BuscarLibroLectorGUI(ControladorBusquedaLibro controladorBusquedaLibro) throws SQLException {

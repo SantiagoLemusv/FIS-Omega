@@ -6,20 +6,27 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ControladorLogInTest {
-    private static final String URL = "jdbc:oracle:thin:@orion.javeriana.edu.co:1521/LAB"; //cambiar a la conexion de H2
-    private static final String USUARIO = "is819920";//cambiar a la conexion de H2
-    private static final String CONTRASENA = "Zyqb4HO0x1BG57S";//cambiar a la conexion de H2
+    private static final String URL = "jdbc:h2:./test";
+    private static final String USUARIO = "omega";
+    private static final String CONTRASENA = "";
+
     private ControladorLogIn controladorLogIn;
+
     @BeforeEach
     void init() throws SQLException, FileNotFoundException {
-        omega.sgb.integracion.InicializadorBD inicializarBD = new omega.sgb.integracion.InicializadorBD(DataBaseConnectionManager.getConnectionH2(URL, USUARIO, CONTRASENA));
+        Connection connectionH2 = DataBaseConnectionManager.getConnectionH2(URL, USUARIO, CONTRASENA);
+        omega.sgb.integracion.InicializadorBD inicializarBD = new omega.sgb.integracion.InicializadorBD(
+                connectionH2);
         inicializarBD.initDB();
+        SingletonControladores.setConexionGeneral(connectionH2);
         controladorLogIn = SingletonControladores.getInstanceControladorLogIn();
+
     }
     //Verifica que sean números, con un mínimo de 8 y máximo 10
     @Test
