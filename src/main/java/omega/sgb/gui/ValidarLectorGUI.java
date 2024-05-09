@@ -23,7 +23,6 @@ import java.util.ResourceBundle;
 
 public class ValidarLectorGUI implements Initializable {
     private ControladorPrestamo controladorPrestamo = SingletonControladores.getInstanceControladorPrestamo();
-    private PersonaLector lectorActual = new PersonaLector();
     public ValidarLectorGUI() throws SQLException {}
     public ValidarLectorGUI(ControladorPrestamo controladorPrestamo) throws SQLException {
         this.controladorPrestamo = controladorPrestamo;
@@ -54,12 +53,11 @@ public class ValidarLectorGUI implements Initializable {
     public void mConsultarLector(ActionEvent event) throws SQLException {
         String cedulaLector = txtCedulaLector.getText();
         Integer numCedula = Integer.parseInt(cedulaLector);
-        lectorActual.setCedula(numCedula);
-        if(controladorPrestamo.consultarLector(lectorActual)){
+        controladorPrestamo.setLectorActual(numCedula);
+        if(controladorPrestamo.consultarLector()){
             lblEstadoLector.setText("El lector tiene conflictos");
         }else{
             lblEstadoLector.setText("Estado lector correcto");
-            lectorActual.setId(controladorPrestamo.getIdLectorActual(numCedula));
         }
     }
     public void mConfirmarPrestamo(ActionEvent event) throws SQLException {
@@ -67,7 +65,7 @@ public class ValidarLectorGUI implements Initializable {
             LibroFisico libroPrueba = controladorPrestamo.agregarLibroCarrito();//cambiar, esto es quemado
             List<LibroFisico> listaPrueba = new ArrayList<LibroFisico>();
             listaPrueba.add(libroPrueba);
-            controladorPrestamo.confirmarPrestamo(listaPrueba, lectorActual);
+            controladorPrestamo.confirmarPrestamo(listaPrueba);
 
         }
     }

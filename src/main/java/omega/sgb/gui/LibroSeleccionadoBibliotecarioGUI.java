@@ -46,7 +46,7 @@ public class LibroSeleccionadoBibliotecarioGUI {
         lblCantidad.setText(cant);
 
         ObservableList<String> observableUbicaciones = FXCollections.observableArrayList(
-                controladorBusquedaLibro.combinarPisoConClasificacion(controladorBusquedaLibro.getLibroSeleccionado().getLibrosFisicosDisponibles()));
+                controladorBusquedaLibro.combinarPisoConClasificacion(controladorBusquedaLibro.getLibroVirtualSeleccionado().getLibrosFisicosTotales()));
         cmbBoxCopias.setItems(observableUbicaciones);
     }
     public void mCmbBox(ActionEvent event){

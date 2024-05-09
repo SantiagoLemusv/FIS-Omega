@@ -159,12 +159,17 @@ public class ControladorBusquedaLibro {
     }
 
     public List<String> combinarPisoConClasificacion (List<LibroFisico> librosFisicos){
+        System.out.println("\n"+"entra combina combo box");
         List<String> listaPisos = getPisosLibrosFisicos(librosFisicos);
         List<String> listaClasificacion = getNumClasificacionLibrosFisicos(librosFisicos);
         List<String> listaCombinada = new ArrayList<>();
         for (int i = 0; i < listaPisos.size() && i < listaClasificacion.size(); i++) {
             String combinado = listaPisos.get(i) + "," + listaClasificacion.get(i);
             listaCombinada.add(combinado);
+        }
+        for(int i = 0; i<listaCombinada.size(); i++){
+            System.out.println("listaaaaaaaaaaaaaaaaaaaaaaaaaaa comoboooooooooooooo");
+            System.out.println(listaCombinada.get(i));
         }
         return listaCombinada;
     }
