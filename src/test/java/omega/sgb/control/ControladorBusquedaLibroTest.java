@@ -1,40 +1,64 @@
 package omega.sgb.control;
 
 import org.junit.jupiter.api.Test;
+import omega.sgb.SingletonControladores;
+import omega.sgb.integracion.DataBaseConnectionManager;
+import org.junit.jupiter.api.BeforeEach;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+
 class ControladorBusquedaLibroTest {
 
+    private static final String URL = "jdbc:h2:./test";
+    private static final String USUARIO = "omega";
+    private static final String CONTRASENA = "";
+
+    private ControladorBusquedaLibro controladorBusquedaLibro;
+
+    @BeforeEach
+    void init() throws SQLException, FileNotFoundException {
+        Connection connectionH2 = DataBaseConnectionManager.getConnectionH2(URL, USUARIO, CONTRASENA);
+        omega.sgb.integracion.InicializadorBD inicializarBD = new omega.sgb.integracion.InicializadorBD(
+                connectionH2);
+        inicializarBD.initDB();
+        SingletonControladores.setConexionGeneral(connectionH2);
+        controladorBusquedaLibro = SingletonControladores.getInstanceControladorBusquedaLibro();
+
+    }
+
+
     @Test
-    void getListaLibrosVirtuales() {
+    public void buscarLibroPorTituloExitoso() throws SQLException, IOException {
+
+        /*String tituloLibroBuscado = "El Padrino";
+
+
+
+        // Cuando (When)
+        List<LibroVirtual> libroFissEncontrados  = controladorBusquedaLibro.buscarLibrosFisicos(tituloLibroBuscado);
+
+        // Entonces (Then)
+        // Verificar que la lista no esté vacía
+        assertFalse(librosEncontrados.isEmpty());
+
+        // Verificar que el primer libro encontrado tenga el título buscado
+        LibroVirtual libroVirtual = librosEncontrados.get(0);
+        assertEquals(tituloLibroBuscado, libroVirtual.getTitulo(), "El título del primer libro debería coincidir con el buscado");
+        */
+
     }
 
     @Test
-    void getLibroSeleccionado() {
+    public void buscarLibroPorTituloFallido() throws SQLException{
     }
 
-    @Test
-    void setLibroSeleccionado() {
-    }
 
-    @Test
-    void buscarLibrosFisicos() {
-    }
 
-    @Test
-    void traerLibrosFisicos() {
-    }
 
-    @Test
-    void getPisosLibrosFisicos() {
-    }
-
-    @Test
-    void getNumClasificacionLibrosFisicos() {
-    }
-
-    @Test
-    void combinarPisoConClasificacion() {
-    }
 }
