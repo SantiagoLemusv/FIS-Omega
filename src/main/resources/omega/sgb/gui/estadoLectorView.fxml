@@ -151,7 +151,8 @@
                         </VBox>
                         <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="307.0" prefWidth="278.0" spacing="10.0" style="-fx-background-radius: 20; -fx-background-color: white;">
                            <children>
-                              <ImageView fitHeight="181.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true">
+                              <Label fx:id="lblLibroSeleccionado" text="Libro seleccionado" />
+                              <ImageView fx:id="imageViewLibroReservado" fitHeight="181.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@gui/imagenLibro.png" />
                                  </image>
@@ -195,7 +196,7 @@
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="lblEstado" alignment="BOTTOM_LEFT" contentDisplay="CENTER" prefHeight="0.0" prefWidth="174.0" text="Reservado">
+                                    <Label fx:id="lblEstadoLibro" alignment="BOTTOM_LEFT" contentDisplay="CENTER" prefHeight="0.0" prefWidth="174.0" text="Reservado">
                                        <font>
                                           <Font size="16.0" />
                                        </font>

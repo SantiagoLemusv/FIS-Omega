@@ -7,9 +7,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import omega.sgb.SingletonControladores;
 import omega.sgb.SingletonPantallas;
 import omega.sgb.control.ControladorEstadoUsuario;
+import omega.sgb.dominio.LibroFisico;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,9 +35,30 @@ public class EstadoLectorGUI implements Initializable {
     ListView<String> listViewPrestamos;
     @FXML
     ListView<String> listViewMultas;
+    @FXML
+    Label lblLibroSeleccionado;
+    @FXML
+    ImageView imageViewLibroReservado;
+    @FXML
+    Label lblTituloLibro;
+    @FXML
+    Label lblAutorLibro;
+    @FXML
+    Label lblEstadoLibro;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if(controladorEstadoUsuario.traerLibroReservado() != null){
+            LibroFisico libroReservado = controladorEstadoUsuario.traerLibroReservado();
+            imageViewLibroReservado.setImage(libroReservado.getLibroVirtual().getImagenLibro().getImage());
+            lblTituloLibro.setText(libroReservado.getLibroVirtual().getTitulo());
+            lblAutorLibro.setText(libroReservado.getLibroVirtual().getAutor());
+            if(libroReservado.getEstadoLibroFisicoId() == 3) {
+                lblEstadoLibro.setText("Libro reservado");
+            }
+        }else{
+            lblLibroSeleccionado.setText("No tiene libros reservados");
+        }
         txtNombre.setText(SingletonControladores.getUsuarioActual().getNombre());
         txtCedula.setText(String.valueOf(SingletonControladores.getUsuarioActual().getCedula()));
         txtTipoCuenta.setText("Lector");

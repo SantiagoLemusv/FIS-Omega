@@ -59,7 +59,7 @@ public class SingletonControladores {
 
     public static ControladorEstadoUsuario getInstanceControladorEstadoUsuario() throws SQLException {
         if (controladorEstadoUsuario == null) {
-            controladorEstadoUsuario = new ControladorEstadoUsuario(conexionGeneral, procesarFecha);
+            controladorEstadoUsuario = new ControladorEstadoUsuario(conexionGeneral, procesarFecha, conversorImagen);
         }
         return controladorEstadoUsuario;
     }
