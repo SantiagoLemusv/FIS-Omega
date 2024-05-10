@@ -15,6 +15,7 @@ import java.util.List;
 public class ControladorBusquedaLibro {
     private Connection connection;
     private ConversorImagen conversorImagen;
+    private String tituloLibroBusquedaGrande;
     List<LibroVirtual> listaLibrosVirtuales = new ArrayList<>();
     LibroVirtual libroVirtualSeleccionado = new LibroVirtual();
     LibroFisico libroFisicoSeleccionado = new LibroFisico();
@@ -22,6 +23,14 @@ public class ControladorBusquedaLibro {
     public ControladorBusquedaLibro(Connection conexionGeneral, ConversorImagen conversorImagen) {
         this.connection = conexionGeneral;
         this.conversorImagen = conversorImagen;
+    }
+
+    public String getTituloLibroBusquedaGrande() {
+        return tituloLibroBusquedaGrande;
+    }
+
+    public void setTituloLibroBusquedaGrande(String tituloLibroBusquedaGrande) {
+        this.tituloLibroBusquedaGrande = tituloLibroBusquedaGrande;
     }
 
     public List<LibroVirtual> getListaLibrosVirtuales() {
