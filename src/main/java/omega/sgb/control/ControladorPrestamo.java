@@ -97,8 +97,8 @@ public class ControladorPrestamo {
     }
     public Prestamo crearPrestamo(LibroFisico libroFisico, PersonaLector lectorActual){
         Prestamo prestamoAux = new Prestamo();
-        prestamoAux.setFechaPrestamo(procesarFecha.getFecha());
-        prestamoAux.setFechaDevolucion(procesarFecha.sumarDiasAFecha(procesarFecha.getFecha(), libroFisico.getLibroVirtual().getDuracionPrestamo()));
+        prestamoAux.setFechaPrestamo(procesarFecha.getFechaActual());
+        prestamoAux.setFechaDevolucion(procesarFecha.sumarDiasAFecha(procesarFecha.getFechaActual(), libroFisico.getLibroVirtual().getDuracionPrestamo()));
         prestamoAux.setPersona(lectorActual);
         prestamoAux.setEstadoPrestamoId(1);
         prestamoAux.setLibro(libroFisico);
