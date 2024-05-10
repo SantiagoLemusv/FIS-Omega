@@ -182,6 +182,7 @@ public class ControladorEstadoUsuario {
     }
 
     public LibroFisico traerLibroReservado(){
+        System.out.println("entra reservar librooooooooooooooooooo");
         try {
             // Prepare the SQL with a placeholder for the title search term
             String sql = "SELECT LIBROFISICOID FROM LIBROSRESERVADOS WHERE PERSONAID = ?";
@@ -193,7 +194,7 @@ public class ControladorEstadoUsuario {
 
             if (resultSet.next()) {
                 LibroFisico libroReservado = new LibroFisico();
-                traerLibroFisico(resultSet.getInt("LIBROFISICOID"));
+                libroReservado = traerLibroFisico(resultSet.getInt("LIBROFISICOID"));
                 return libroReservado;
             }
 

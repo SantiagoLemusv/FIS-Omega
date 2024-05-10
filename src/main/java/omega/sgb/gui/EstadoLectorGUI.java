@@ -49,6 +49,7 @@ public class EstadoLectorGUI implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if(controladorEstadoUsuario.traerLibroReservado() != null){
+            lblLibroSeleccionado.setText("Tiene un libro seleccionado");
             LibroFisico libroReservado = controladorEstadoUsuario.traerLibroReservado();
             imageViewLibroReservado.setImage(libroReservado.getLibroVirtual().getImagenLibro().getImage());
             lblTituloLibro.setText(libroReservado.getLibroVirtual().getTitulo());
