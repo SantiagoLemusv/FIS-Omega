@@ -38,7 +38,7 @@ class ControladorBusquedaLibroTest {
 
 
     @Test
-    void buscarLibrosFisicosExitoso() throws SQLException, IOException {
+    void buscarLibroTituloExitoso() throws SQLException, IOException {
 
         String fragmentoTituloloLibroBuscado = "el ";
 
@@ -51,7 +51,7 @@ class ControladorBusquedaLibroTest {
     }
     //
     @Test
-    void buscarLibrosFisicosFallido() throws SQLException{
+    void buscarLibrosTituloFallido() throws SQLException{
         String fragmentoTituloloLibroBuscado = "Confieso que ";
 
         controladorBusquedaLibro.buscarLibrosVirtuales(fragmentoTituloloLibroBuscado);
