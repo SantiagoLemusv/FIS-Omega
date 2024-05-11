@@ -15,9 +15,8 @@ public class PersonaLector extends Persona{
 
 
     // Constructor con atributos específicos
-    public PersonaLector(Integer id, Integer cedula, String nombre, String contrasena, List<Prestamo> prestamos) {
+    public PersonaLector(Integer id, Integer cedula, String nombre, String contrasena) {
         super(id, cedula, nombre, contrasena);
-        this.prestamos = prestamos;
     }
 
     // Getters y setters para el atributo 'prestamos'

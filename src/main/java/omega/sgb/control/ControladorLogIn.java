@@ -70,5 +70,11 @@ public class ControladorLogIn {
         }
     }
 
+    //Implementar método para validar que el campo de cédula sólo acepte números
+    public Boolean validarCaracteresValidos(String cedula){
+
+        return null;
+    }
+
 
 }

@@ -38,7 +38,7 @@ public class ControladorBusquedaLibro {
     }
 
     public List<LibroVirtual> getListaLibrosVirtuales() {
-        return listaLibrosVirtuales;
+        return this.listaLibrosVirtuales;
     }
 
     public LibroVirtual getLibroVirtualSeleccionado() {
@@ -61,6 +61,10 @@ public class ControladorBusquedaLibro {
             }
         }
         this.libroFisicoSeleccionado = libroNuevo;
+    }
+
+    public void setLibroFisicoSeleccionado(LibroFisico libroFisico){
+        this.libroFisicoSeleccionado = libroFisico;
     }
 
     public void buscarLibrosVirtuales(String tituloLibro) {
@@ -100,7 +104,6 @@ public class ControladorBusquedaLibro {
             // Close resources
             resultSet.close();
             statement.close();
-
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
@@ -306,5 +309,26 @@ public class ControladorBusquedaLibro {
             connection.commit(); // Commit the transaction if successful
         }
     }
+
+    public String validarSiPuedoReservar() throws SQLException {
+        String mensaje = "";
+
+        if (!SingletonControladores.getUsuarioActual().getMultas().isEmpty()) {
+            mensaje = "Usted tiene multas activas";
+        } else if (traerLibroReservado() != null) {
+            mensaje = "Usted ya tiene un libro reservado";
+        } else if(getLibroFisicoSeleccionado().getEstadoLibroFisicoId().equals(2)){
+            mensaje = "Este libro ya está prestado";
+        } else if(getLibroFisicoSeleccionado().getEstadoLibroFisicoId().equals(3)) {
+            mensaje = "Este libro ya está reservado";
+        }
+        if (mensaje.isEmpty()) {
+            reservarLibro(getLibroFisicoSeleccionado());
+            mensaje = "Reserva realizada exitosamente";
+        }
+
+        return mensaje;
+    }
+
 
 }

@@ -24,7 +24,7 @@ public class LibroVirtual {
     public LibroVirtual() {
     }
 
-    public LibroVirtual(Integer id, String isbn, String titulo, Integer cantidadCopias, String autor, Integer duracionPrestamo, Integer multaValorDia, List<LibroFisico> librosFisicosDisponibles, List<LibroFisico> librosFisicosAgotados) {
+    public LibroVirtual(Integer id, String isbn, String titulo, Integer cantidadCopias, String autor, Integer duracionPrestamo, Integer multaValorDia) {
         this.id = id;
         this.isbn = isbn;
         this.titulo = titulo;
@@ -32,8 +32,6 @@ public class LibroVirtual {
         this.autor = autor;
         this.duracionPrestamo = duracionPrestamo;
         this.multaValorDia = multaValorDia;
-        this.librosFisicosDisponibles = librosFisicosDisponibles;
-        this.librosFisicosAgotados = librosFisicosAgotados;
     }
 
     public LibroVirtual(String isbn, String titulo, Integer cantidadCopias, String autor, ImageView imagenLibro, Integer duracionPrestamo, Integer multaValorDia, List<LibroFisico> librosFisicosDisponibles, List<LibroFisico> librosFisicosAgotados) {
