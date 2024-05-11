@@ -45,7 +45,7 @@ public class SingletonControladores {
     //Traer Controladores-------------------------------------------------------------------------
     public static ControladorBusquedaLibro getInstanceControladorBusquedaLibro() throws SQLException {
         if (controladorBusquedaLibro == null) {
-            controladorBusquedaLibro = new ControladorBusquedaLibro(conexionGeneral, conversorImagen);
+            controladorBusquedaLibro = new ControladorBusquedaLibro(conexionGeneral, conversorImagen, procesarFecha);
         }
         return controladorBusquedaLibro;
     }
@@ -59,7 +59,7 @@ public class SingletonControladores {
 
     public static ControladorEstadoUsuario getInstanceControladorEstadoUsuario() throws SQLException {
         if (controladorEstadoUsuario == null) {
-            controladorEstadoUsuario = new ControladorEstadoUsuario(conexionGeneral, procesarFecha);
+            controladorEstadoUsuario = new ControladorEstadoUsuario(conexionGeneral, procesarFecha, conversorImagen);
         }
         return controladorEstadoUsuario;
     }

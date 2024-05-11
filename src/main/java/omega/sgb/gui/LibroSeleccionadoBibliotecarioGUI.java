@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import omega.sgb.SingletonControladores;
 import omega.sgb.SingletonPantallas;
@@ -30,6 +31,8 @@ public class LibroSeleccionadoBibliotecarioGUI {
     Label lblEstadoLibro;
     @FXML
     ComboBox cmbBoxCopias;
+    @FXML
+    TextField txtFieldTituloLibro;
     private ControladorBusquedaLibro controladorBusquedaLibro = SingletonControladores.getInstanceControladorBusquedaLibro();
     public LibroSeleccionadoBibliotecarioGUI() throws SQLException {
     }
@@ -55,7 +58,6 @@ public class LibroSeleccionadoBibliotecarioGUI {
         String valueAfterComma = splitStrings[1];
 
         controladorBusquedaLibro.setLibroFisicoSeleccionado(valueAfterComma);
-        System.out.println("libroooooo"+controladorBusquedaLibro.getLibroFisicoSeleccionado().getId());
         if(controladorBusquedaLibro.getLibroFisicoSeleccionado().getEstadoLibroFisicoId().equals(1)){
             lblEstadoLibro.setText("Libro disponible");
         }else if (controladorBusquedaLibro.getLibroFisicoSeleccionado().getEstadoLibroFisicoId().equals(2)) {
@@ -75,5 +77,10 @@ public class LibroSeleccionadoBibliotecarioGUI {
     }
     public void mBtnCerrarSesion(ActionEvent event) throws IOException {
         SingletonPantallas.toLogInViewSingleton(event);
+    }
+
+    public void mBtnLupa(ActionEvent event) throws IOException {
+        controladorBusquedaLibro.setTituloLibroBusquedaGrande(txtFieldTituloLibro.getText());
+        SingletonPantallas.toResultadosBibliotecarioViewSingleton(event);
     }
 }

@@ -69,10 +69,6 @@ public class ValidarLectorGUI implements Initializable {
 
         }
     }
-    public void mVolverCarrito(ActionEvent event) throws IOException {
-        SingletonPantallas.toCarritoViewSingleton(event);
-    }
-
     public void mBtnMiPerfil(ActionEvent event) throws IOException {
         SingletonPantallas.toEstadoBibliotecarioViewSingleton(event);
     }

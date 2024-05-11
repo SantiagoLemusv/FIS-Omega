@@ -17,7 +17,6 @@ public class ControladorLogIn {
     public Boolean validarCredenciales(String cedula, String contrasena) throws SQLException {
         Integer numCedula = Integer.parseInt(cedula);
             String sql = "SELECT ID, TIPOPERSONAID, NOMBRE FROM PERSONA WHERE CEDULA = ? AND CONTRASENA = ?";
-            System.out.println("ejecutó query");
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setInt(1, numCedula);
                 preparedStatement.setString(2, contrasena);

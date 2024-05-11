@@ -5,8 +5,10 @@ import omega.sgb.dominio.LibroFisico;
 import omega.sgb.dominio.LibroVirtual;
 import omega.sgb.dominio.Multa;
 import omega.sgb.dominio.Prestamo;
+import omega.sgb.integracion.ConversorImagen;
 import omega.sgb.integracion.ProcesarFecha;
 
+import java.io.IOException;
 import java.security.PublicKey;
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,9 +17,11 @@ import java.util.List;
 public class ControladorEstadoUsuario {
     private Connection connection;
     private ProcesarFecha procesarFecha;
-    public ControladorEstadoUsuario(Connection conexionGeneral, ProcesarFecha procesarFecha) {
+    private ConversorImagen conversorImagen;
+    public ControladorEstadoUsuario(Connection conexionGeneral, ProcesarFecha procesarFecha, ConversorImagen conversorImagen) {
         this.connection = conexionGeneral;
         this.procesarFecha = procesarFecha;
+        this.conversorImagen = conversorImagen;
     }
 
     public void traerPrestamos(){
@@ -106,17 +110,17 @@ public class ControladorEstadoUsuario {
                 libroVirtual.setMultaValorDia(resultSet.getInt("MULTAVALORDIA"));
                 libroVirtual.setDuracionPrestamo(resultSet.getInt("DURACIONPRESTAMO"));
 
-                /*// Get the image from the blob (assuming conversion logic remains the same)
+                // Get the image from the blob (assuming conversion logic remains the same)
                 Blob imagenBlob = resultSet.getBlob("IMAGENLIBRO");
                 libroVirtual.setImagenLibro(conversorImagen.blobToImageView(imagenBlob));
-                */
+
                 return libroVirtual;
             }
 
             // Close resources
             resultSet.close();
             statement.close();
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
         return null;
@@ -176,4 +180,31 @@ public class ControladorEstadoUsuario {
         }
         return listaString;
     }
+
+    public LibroFisico traerLibroReservado(){
+        try {
+            // Prepare the SQL with a placeholder for the title search term
+            String sql = "SELECT LIBROFISICOID FROM LIBROSRESERVADOS WHERE PERSONAID = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            statement.setInt(1, SingletonControladores.getUsuarioActual().getId());
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                LibroFisico libroReservado = new LibroFisico();
+                libroReservado = traerLibroFisico(resultSet.getInt("LIBROFISICOID"));
+                return libroReservado;
+            }
+
+            // Close resources
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }
