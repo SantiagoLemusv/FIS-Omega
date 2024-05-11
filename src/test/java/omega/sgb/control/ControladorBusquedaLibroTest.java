@@ -65,13 +65,17 @@ class ControladorBusquedaLibroTest {
 
     @Test
     void reservarLibroFisicoExitoso() throws Exception {
-        String tituloLibroBuscado = "Lady Masacre"; // Reemplazar con un título existente
+        String tituloLibroBuscado = "Lady Masacre";
 
-        // 1. Buscar libros virtuales
         controladorBusquedaLibro.buscarLibrosVirtuales(tituloLibroBuscado);
         List<LibroVirtual> librosVirtuales = new ArrayList<>();
         librosVirtuales = controladorBusquedaLibro.getListaLibrosVirtuales();
 
+        SingletonControladores.crearUsuarioActualLector();
+        SingletonControladores.getUsuarioActual().setId(22);
+        SingletonControladores.getUsuarioActual().setCedula(1000222333);
+        SingletonControladores.getUsuarioActual().setNombre("Mario Mendoza Zambrano");
+        SingletonControladores.getUsuarioActual().setContrasena("Fourier71");
 
     }
 

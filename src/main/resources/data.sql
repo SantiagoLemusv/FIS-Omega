@@ -45,7 +45,7 @@ CREATE TABLE Persona (
 CREATE TABLE Tarjeta (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     numero NUMERIC UNIQUE NOT NULL,
-    fechaVencimiento VARCHAR(20) NOT NULL,
+    fechaVencimiento DATE NOT NULL,
     entidadBancaria VARCHAR(50) NOT NULL,
     tipoTarjetaId INTEGER NOT NULL,
     personaId INTEGER NOT NULL,
@@ -79,27 +79,28 @@ CREATE TABLE LibroFisico (
 CREATE TABLE Pago (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     montoTotal NUMERIC NOT NULL,
-    fecha VARCHAR(20) NOT NULL,
+    fecha DATE NOT NULL,
     tarjetaId INTEGER NOT NULL,
     FOREIGN KEY (tarjetaId) REFERENCES Tarjeta(id)
 );
 
 CREATE TABLE Multa (
-    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
     montoPagar NUMERIC NOT NULL,
-    fechaEmision VARCHAR(20) NOT NULL,
-    pagoId INTEGER NOT NULL,
+    fechaEmision DATE NOT NULL,
+    pagoId INTEGER NULL,
+    diasPasados INTEGER NOT NULL,
     FOREIGN KEY (pagoId) REFERENCES Pago(id)
 );
 
 CREATE TABLE Prestamo (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
-    fechaPrestamo VARCHAR(20) NOT NULL,
-    fechaDevolucion VARCHAR(20) NOT NULL,
+    fechaPrestamo DATE NOT NULL,
+    fechaDevolucion DATE NOT NULL,
     personaId INTEGER NOT NULL,
     libroFisicoId INTEGER NOT NULL,
     estadoPrestamoId INTEGER NOT NULL,
-    multaId INTEGER NOT NULL,
+    multaId INTEGER NULL,
     FOREIGN KEY (personaId) REFERENCES Persona(id),
     FOREIGN KEY (libroFisicoId) REFERENCES LibroFisico(id),
     FOREIGN KEY (estadoPrestamoId) REFERENCES EstadoPrestamo(id),
@@ -140,7 +141,7 @@ INSERT INTO Persona (id, cedula, nombre, contrasena, tipoPersonaId) VALUES
 (41, 1013259208, 'Juan David Ramírez Juzga', 'luna', 1),
 (3, 1019983323, 'Sebastian Martinez Panesso', 'lavidaesbella24', 1),
 (4, 1019983324, 'Maria Rosario Castro Tijeras', 'contrasena123', 2),
-(5, 1019982313, 'Ana Cecilia de Armas Caso', 'MarylinMonroe24', 2),
+(5, 1019982313, 'Ana Cecilia de Armas Caso', 'MarilynMonroe24', 2),
 (22, 1000222333, 'Mario Mendoza Zambrano', 'Fourier71', 2),
 (23, 1000333444, 'Isaac Newton', 'Fourier72', 2),
 (42, 597816, 'Juanita', '123456789', 2),
@@ -183,11 +184,29 @@ INSERT INTO LibroFisico (id, ubicacion, numeroClasificacion, libroVirtualId, est
 (2, 'Piso 1', 'D123 Q46', 1, 1);
 
 INSERT INTO Tarjeta (numero, fechaVencimiento, entidadBancaria, tipoTarjetaId, personaId, titular) VALUES
-(5245896541254789, '09/05/25', 'Bancolombia', 1, 4, 'Maria Rosario Castro Tijeras'),
-(2351452635897452, '22/07/26', 'Bancolombia', 2, 5, 'Leonardo Dicaprio'),
-(2312365478965896, '19/04/27', 'Banco Bogotá', 1, 22, 'Mario Mendoza Zambrano'),
-(1254785698563214, '10/05/25', 'Banco Bogotá', 2, 4, 'Juanito Fulano Tijeras'),
-(1234567891234567, '19/08/28', 'BBVA', 1, 23, 'Isaac Newton');
+(5245896541254789, '2025-05-09', 'Bancolombia', 1, 4, 'Maria Rosario Castro Tijeras'),
+(2351452635897452, '2026-07-22', 'Bancolombia', 2, 5, 'Leonardo Dicaprio'),
+(2312365478965896, '2027-04-19', 'Banco Bogotá', 1, 22, 'Mario Mendoza Zambrano'),
+(1254785698563214, '2025-05-10', 'Banco Bogotá', 2, 4, 'Juanito Fulano Tijeras'),
+(1234567891234567, '2028-08-19', 'BBVA', 1, 23, 'Isaac Newton');
+
+
+INSERT INTO LibrosReservados(personaId,libroFisicoId,fechaReserva) VALUES
+(5,5,'2024-05-11');
+
+INSERT INTO Multa (id,montoPagar, fechaEmision,diasPasados) VALUES
+(22,15000, '2024-05-01', 6),
+(23,4000, '2024-05-06', 1);
+
+INSERT INTO Prestamo (fechaPrestamo, fechaDevolucion, personaId, libroFisicoId, estadoPrestamoId, multaId) VALUES
+('2024-05-01', '2024-05-15', 4, 3, 1, NULL),
+('2024-05-03', '2024-05-17', 4, 8, 1, NULL),
+('2024-04-26', '2024-05-10', 5, 1, 1, NULL),
+('2024-05-01', '2024-05-15', 5, 9, 1, NULL),
+('2024-04-16', '2024-04-30', 5, 4, 2, 22),
+('2024-04-23', '2024-05-07', 22, 7, 1, NULL),
+('2024-05-01', '2024-05-05', 23, 18, 2, 23);
+
 
 
 
