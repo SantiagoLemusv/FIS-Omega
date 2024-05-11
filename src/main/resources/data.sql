@@ -68,9 +68,10 @@ CREATE TABLE LibroVirtual (
     autor VARCHAR(50) NOT NULL,
     multaValorDia NUMERIC NOT NULL,
     duracionPrestamo NUMERIC NOT NULL,
-    imagenId INTEGER NULL,
+    imagenId INTEGER NOT NULL,
     FOREIGN KEY (imagenId) REFERENCES ImagenLibro(id)
 );
+
 
 CREATE TABLE LibroFisico (
     id DECIMAL(10,2) PRIMARY KEY,
