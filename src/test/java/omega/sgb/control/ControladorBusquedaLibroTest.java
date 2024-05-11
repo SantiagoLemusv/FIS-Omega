@@ -1,5 +1,6 @@
 package omega.sgb.control;
 
+import omega.sgb.dominio.LibroVirtual;
 import org.junit.jupiter.api.Test;
 import omega.sgb.SingletonControladores;
 import omega.sgb.integracion.DataBaseConnectionManager;
@@ -8,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,28 +36,25 @@ class ControladorBusquedaLibroTest {
 
 
     @Test
-    public void buscarLibroPorTituloExitoso() throws SQLException, IOException {
+    public void buscarLibrosFisicosExitoso() throws SQLException, IOException {
 
-        /*String tituloLibroBuscado = "El Padrino";
+        String tituloLibroBuscado = "El Padrino";
 
-
-
-        // Cuando (When)
-        List<LibroVirtual> libroFissEncontrados  = controladorBusquedaLibro.buscarLibrosFisicos(tituloLibroBuscado);
-
+        controladorBusquedaLibro.buscarLibrosFisicos(tituloLibroBuscado);
+        //controladorBusquedaLibro.
         // Entonces (Then)
         // Verificar que la lista no esté vacía
-        assertFalse(librosEncontrados.isEmpty());
+        //assertFalse(librosEncontrados.isEmpty());
 
         // Verificar que el primer libro encontrado tenga el título buscado
-        LibroVirtual libroVirtual = librosEncontrados.get(0);
-        assertEquals(tituloLibroBuscado, libroVirtual.getTitulo(), "El título del primer libro debería coincidir con el buscado");
-        */
+        //LibroVirtual libroVirtual = librosEncontrados.get(0);
+        //assertEquals(tituloLibroBuscado, libroVirtual.getTitulo(), "El título del primer libro debería coincidir con el buscado");
+
 
     }
 
     @Test
-    public void buscarLibroPorTituloFallido() throws SQLException{
+    public void buscarLibrosFisicosFallido() throws SQLException{
     }
 
 
