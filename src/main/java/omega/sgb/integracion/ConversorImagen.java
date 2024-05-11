@@ -35,6 +35,7 @@ public class ConversorImagen {
 
 
         return imageView;
+
     }
 
     // Helper method for image resizing
