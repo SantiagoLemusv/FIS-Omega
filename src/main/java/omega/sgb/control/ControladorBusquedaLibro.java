@@ -63,6 +63,9 @@ public class ControladorBusquedaLibro {
         this.libroFisicoSeleccionado = libroNuevo;
     }
 
+    public void setLibroFisicoSeleccionado(LibroFisico libroFisico){
+        this.libroFisicoSeleccionado = libroFisico;
+    }
     public void buscarLibrosVirtuales(String tituloLibro) {
         try {
             // Prepare the SQL with a placeholder for the title search term
