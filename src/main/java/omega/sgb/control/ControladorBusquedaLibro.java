@@ -63,7 +63,7 @@ public class ControladorBusquedaLibro {
         this.libroFisicoSeleccionado = libroNuevo;
     }
 
-    public void buscarLibrosFisicos(String tituloLibro) {
+    public void buscarLibrosVirtuales(String tituloLibro) {
         try {
             // Prepare the SQL with a placeholder for the title search term
             String sql = "SELECT * FROM LIBROVIRTUAL WHERE LOWER(TITULO) LIKE LOWER(?)";

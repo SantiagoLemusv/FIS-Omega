@@ -75,7 +75,7 @@ public class ResultadosBibliotecarioGUI implements Initializable {
 
     public void mBtnLupa(){
         tableViewResultadosLibros.getItems().clear();
-        controladorBusquedaLibro.buscarLibrosFisicos(txtFieldTitulo.getText());
+        controladorBusquedaLibro.buscarLibrosVirtuales(txtFieldTitulo.getText());
         observableLibrosVirtuales.addAll(controladorBusquedaLibro.getListaLibrosVirtuales());
         colPortada.setCellValueFactory(new PropertyValueFactory<>("imagenLibro"));
         colTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
