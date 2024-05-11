@@ -16,6 +16,7 @@ public class SingletonControladores {
     private static ConversorImagen conversorImagen = new ConversorImagen();
     private static ProcesarFecha procesarFecha = new ProcesarFecha();
     private static Persona usuarioActual;
+    private static ControladorActualizarApp controladorActualizarApp;
     private static ControladorBusquedaLibro controladorBusquedaLibro;
     private static ControladorCarrito controladorCarrito;
     private static ControladorEstadoUsuario controladorEstadoUsuario;
@@ -43,6 +44,13 @@ public class SingletonControladores {
     }
 
     //Traer Controladores-------------------------------------------------------------------------
+    public static ControladorActualizarApp getInstanceControladorActualizarApp() throws SQLException {
+        if (controladorActualizarApp == null) {
+            controladorActualizarApp = new ControladorActualizarApp(conexionGeneral, procesarFecha);
+        }
+        return controladorActualizarApp;
+    }
+
     public static ControladorBusquedaLibro getInstanceControladorBusquedaLibro() throws SQLException {
         if (controladorBusquedaLibro == null) {
             controladorBusquedaLibro = new ControladorBusquedaLibro(conexionGeneral, conversorImagen, procesarFecha);
