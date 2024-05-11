@@ -37,7 +37,7 @@ CREATE TABLE TipoTarjeta (
 
 CREATE TABLE ImagenLibro (
    id INTEGER AUTO_INCREMENT PRIMARY KEY,
-   imagen
+   imagen BLOB NULL
 );
 
 
@@ -70,8 +70,8 @@ CREATE TABLE LibroVirtual (
     cantidad NUMERIC NOT NULL,
     autor VARCHAR(50) NOT NULL,
     multaValorDia NUMERIC NOT NULL,
-    duracionPrestamo NUMERIC NOT NULL
-    imagenId INTEGER NOT NULL,
+    duracionPrestamo NUMERIC NOT NULL,
+    imagenId INTEGER NULL,
     FOREIGN KEY (imagenId) REFERENCES ImagenLibro(id)
 );
 
