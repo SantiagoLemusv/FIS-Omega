@@ -30,23 +30,47 @@ class ControladorPrestamoTest {
 
     }
 
+    //Esta prueba puede ser validada en confirmar Préstamo
+   /* @Test
+    void consultarLectorExitoso() {
+
+    }
+
+
     @Test
-    void consultarLector() {
+    void consultarLectorFallido() {
+
+    }*/
+    @Test
+    void agregarLibroCarritoExitoso() {
+
     }
 
     @Test
-    void agregarLibroCarrito() {
+    void agregarLibroCarritoFallido() {
+
     }
 
     @Test
-    void confirmarPrestamo() {
+    public void eliminarLibroCarritoExito(){
+
     }
 
     @Test
-    void crearPrestamo() {
+    public void eliminarLibroCarritoFallido(){
+
     }
 
     @Test
-    void actualizarPrestamoBD() {
+    public void confirmarPrestamoExitoso(){
+
     }
+
+    @Test
+    public void confirmarPrestamoFallido(){
+
+    }
+
+
+
 }

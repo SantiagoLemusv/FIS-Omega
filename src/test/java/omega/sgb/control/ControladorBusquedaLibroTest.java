@@ -1,5 +1,6 @@
 package omega.sgb.control;
 
+import omega.sgb.dominio.LibroFisico;
 import omega.sgb.dominio.LibroVirtual;
 import org.junit.jupiter.api.Test;
 import omega.sgb.SingletonControladores;
@@ -37,7 +38,7 @@ class ControladorBusquedaLibroTest {
 
 
     @Test
-    public void buscarLibrosFisicosExitoso() throws SQLException, IOException {
+    void buscarLibrosFisicosExitoso() throws SQLException, IOException {
 
         String fragmentoTituloloLibroBuscado = "el ";
 
@@ -48,9 +49,50 @@ class ControladorBusquedaLibroTest {
         // Check if the list contains at least one book
         assertFalse(librosVirtuales.isEmpty());
     }
+    //
+    @Test
+    void buscarLibrosFisicosFallido() throws SQLException{
+        String fragmentoTituloloLibroBuscado = "Confieso que ";
+
+        controladorBusquedaLibro.buscarLibrosVirtuales(fragmentoTituloloLibroBuscado);
+        List<LibroVirtual> librosVirtuales = new ArrayList<>();
+        librosVirtuales = controladorBusquedaLibro.getListaLibrosVirtuales();
+
+        // Check if the list contains at least one book
+        assertTrue(librosVirtuales.isEmpty());
+    }
+
 
     @Test
-    public void buscarLibrosFisicosFallido() throws SQLException{
+    void reservarLibroFisicoExitoso() throws Exception {
+        String tituloLibroBuscado = "Lady Masacre"; // Reemplazar con un título existente
+
+        // 1. Buscar libros virtuales
+        controladorBusquedaLibro.buscarLibrosVirtuales(tituloLibroBuscado);
+        List<LibroVirtual> librosVirtuales = new ArrayList<>();
+        librosVirtuales = controladorBusquedaLibro.getListaLibrosVirtuales();
+
+
+    }
+
+
+    @Test
+    void reservarLibroFisicoFallido() throws Exception {
+        String tituloLibroBuscado = "Lady Masacre"; // Reemplazar con un título existente
+
+        // 1. Buscar libros virtuales
+        controladorBusquedaLibro.buscarLibrosVirtuales(tituloLibroBuscado);
+        List<LibroVirtual> librosVirtuales = new ArrayList<>();
+        librosVirtuales = controladorBusquedaLibro.getListaLibrosVirtuales();
+        //2.Elegir un libro de las copias
+        //3. Confirmar la reserva y cambiar estado de libro físico
+
+    }
+
+    //Prueba de atributo de calidad del tiempo de búsqueda
+    @Test
+    void busquedaLibroTiempo(){
+
     }
 
 

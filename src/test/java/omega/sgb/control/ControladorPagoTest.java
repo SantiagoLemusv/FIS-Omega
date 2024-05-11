@@ -3,6 +3,7 @@ package omega.sgb.control;
 import omega.sgb.SingletonControladores;
 import omega.sgb.integracion.DataBaseConnectionManager;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 import java.sql.Connection;
@@ -27,5 +28,26 @@ class ControladorPagoTest {
         controladorPago = SingletonControladores.getInstanceControladorPago();
 
     }
+
+    @Test
+    void crearMetodoPagoExitoso(){
+
+    }
+
+    @Test
+    void crearMetodoPagoFallido(){
+
+    }
+
+    @Test
+    void PagarMultaExitoso(){
+
+    }
+
+    @Test
+    void PagarMultaFallido(){
+
+    }
+
 
 }

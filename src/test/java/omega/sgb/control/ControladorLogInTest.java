@@ -42,13 +42,14 @@ class ControladorLogInTest {
         //assertFalse(controladorLogIn.validarCaracteresValidos(cedula));
     }
 
+    //Prueba UAT
     @Test
     void ValidarCredencialesExito() throws SQLException {
         String cedula = "1019983323";
         String contrasena = "lavidaesbella24";
         assertTrue(controladorLogIn.validarCredenciales(cedula,contrasena));
     }
-
+    //Prueba UAT
     @Test
     void ValidarCredencialesFallido() throws SQLException {
         String cedula = "1019983328";

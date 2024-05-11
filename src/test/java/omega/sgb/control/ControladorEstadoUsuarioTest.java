@@ -30,19 +30,13 @@ class ControladorEstadoUsuarioTest {
 
     }
 
+    //Prueba para validar que se retorna la lista de préstamos, multas y el libro reservado de un lector
     @Test
-    void traerPrestamos() {
-    }
+    void obtenerEstadoCompletoLectorExitoso(){
 
-    @Test
-    void traerLibroFisico() {
     }
-
     @Test
-    void traerLibroVirtual() {
-    }
+    void obtenerEstadoCompletoLectorFallido(){
 
-    @Test
-    void traerMulta() {
     }
 }
