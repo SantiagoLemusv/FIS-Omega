@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,19 +39,14 @@ class ControladorBusquedaLibroTest {
     @Test
     public void buscarLibrosFisicosExitoso() throws SQLException, IOException {
 
-        String tituloLibroBuscado = "El Padrino";
+        String tituloLibroBuscado = " ";
 
-        controladorBusquedaLibro.buscarLibrosFisicos(tituloLibroBuscado);
-        //controladorBusquedaLibro.
-        // Entonces (Then)
-        // Verificar que la lista no esté vacía
-        //assertFalse(librosEncontrados.isEmpty());
+        controladorBusquedaLibro.buscarLibrosVirtuales(tituloLibroBuscado);
+        List<LibroVirtual> librosVirtuales = new ArrayList<>();
+        librosVirtuales = controladorBusquedaLibro.getListaLibrosVirtuales();
 
-        // Verificar que el primer libro encontrado tenga el título buscado
-        //LibroVirtual libroVirtual = librosEncontrados.get(0);
-        //assertEquals(tituloLibroBuscado, libroVirtual.getTitulo(), "El título del primer libro debería coincidir con el buscado");
-
-
+        // Check if the list contains at least one book
+        assertFalse(librosVirtuales.isEmpty());
     }
 
     @Test

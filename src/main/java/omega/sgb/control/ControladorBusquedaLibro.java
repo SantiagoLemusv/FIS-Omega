@@ -38,7 +38,7 @@ public class ControladorBusquedaLibro {
     }
 
     public List<LibroVirtual> getListaLibrosVirtuales() {
-        return listaLibrosVirtuales;
+        return this.listaLibrosVirtuales;
     }
 
     public LibroVirtual getLibroVirtualSeleccionado() {
@@ -100,7 +100,6 @@ public class ControladorBusquedaLibro {
             // Close resources
             resultSet.close();
             statement.close();
-
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
