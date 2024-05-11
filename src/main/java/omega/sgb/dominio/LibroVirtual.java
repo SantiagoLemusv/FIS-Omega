@@ -17,6 +17,7 @@ public class LibroVirtual {
     private Integer multaValorDia;//No tiene setValorMultaDia
     private List<LibroFisico> librosFisicosDisponibles;
     private List<LibroFisico> librosFisicosAgotados;
+    private List<LibroFisico> librosFisicosReservados;
     private List<LibroFisico> librosFisicosTotales;
 
     //Métodos constructores
@@ -128,6 +129,14 @@ public class LibroVirtual {
         this.librosFisicosAgotados = librosFisicosAgotados;
     }
 
+    public List<LibroFisico> getLibrosFisicosReservados() {
+        return librosFisicosReservados;
+    }
+
+    public void setLibrosFisicosReservados(List<LibroFisico> librosFisicosReservados) {
+        this.librosFisicosReservados = librosFisicosReservados;
+    }
+
     public List<LibroFisico> getLibrosFisicosTotales() {
         return librosFisicosTotales;
     }
@@ -136,6 +145,7 @@ public class LibroVirtual {
         List<LibroFisico> nuevaLista = new ArrayList<>();
         nuevaLista.addAll(librosFisicosAgotados);
         nuevaLista.addAll(librosFisicosDisponibles);
+        nuevaLista.addAll(librosFisicosReservados);
         this.librosFisicosTotales = nuevaLista;
     }
 }

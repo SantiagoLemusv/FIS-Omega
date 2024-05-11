@@ -38,6 +38,12 @@ public class EstadoLectorGUI implements Initializable {
     @FXML
     Label lblLibroSeleccionado;
     @FXML
+    Label lblTitulo;
+    @FXML
+    Label lblAutor;
+    @FXML
+    Label lblEstado;
+    @FXML
     ImageView imageViewLibroReservado;
     @FXML
     Label lblTituloLibro;
@@ -49,7 +55,7 @@ public class EstadoLectorGUI implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if(controladorEstadoUsuario.traerLibroReservado() != null){
-            lblLibroSeleccionado.setText("Tiene un libro seleccionado");
+            lblLibroSeleccionado.setText("Tiene un libro reservado");
             LibroFisico libroReservado = controladorEstadoUsuario.traerLibroReservado();
             imageViewLibroReservado.setImage(libroReservado.getLibroVirtual().getImagenLibro().getImage());
             lblTituloLibro.setText(libroReservado.getLibroVirtual().getTitulo());
@@ -57,6 +63,13 @@ public class EstadoLectorGUI implements Initializable {
             if(libroReservado.getEstadoLibroFisicoId() == 3) {
                 lblEstadoLibro.setText("Libro reservado");
             }
+            lblTitulo.setVisible(true);
+            lblAutor.setVisible(true);
+            lblEstado.setVisible(true);
+            imageViewLibroReservado.setVisible(true);
+            lblTituloLibro.setVisible(true);
+            lblAutorLibro.setVisible(true);
+            lblEstadoLibro.setVisible(true);
         }else{
             lblLibroSeleccionado.setText("No tiene libros reservados");
         }

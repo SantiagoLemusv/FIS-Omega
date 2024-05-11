@@ -119,7 +119,7 @@
                                         <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
                                     </HBox.margin>
                                 </Label>
-                                <TextField prefHeight="34.0" prefWidth="264.0" promptText="Titulo">
+                                <TextField fx:id="txtFieldTituloLibro" prefHeight="34.0" prefWidth="264.0" promptText="Titulo">
                                     <font>
                                         <Font size="14.0" />
                                     </font>
@@ -127,7 +127,7 @@
                                         <Insets left="10.0" top="10.0" />
                                     </HBox.margin>
                                 </TextField>
-                                <Button mnemonicParsing="false" onAction="#mBtnBusqueda" prefHeight="33.0" prefWidth="39.0" style="-fx-background-color: #7ec8e3;" textFill="WHITE">
+                                <Button fx:id="btnLupa" mnemonicParsing="false" onAction="#mBtnLupa" prefHeight="33.0" prefWidth="39.0" style="-fx-background-color: #7ec8e3;" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold" size="14.0" />
                                     </font>
@@ -313,7 +313,7 @@
                                                     <children>
                                                         <HBox alignment="CENTER" prefHeight="125.0" prefWidth="284.0">
                                                             <children>
-                                                                <Button alignment="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="83.0" style="-fx-background-color: #7ec8e3;" text="Volver" textAlignment="CENTER" textFill="WHITE">
+                                                                <Button alignment="CENTER" mnemonicParsing="false" onAction="#mBtnLupa" prefHeight="32.0" prefWidth="83.0" style="-fx-background-color: #7ec8e3;" text="Volver" textAlignment="CENTER" textFill="WHITE">
                                                                     <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                     </font>
@@ -322,11 +322,12 @@
                                                         </HBox>
                                                         <HBox alignment="CENTER" prefHeight="125.0" prefWidth="284.0">
                                                             <children>
-                                                                <Button fx:id="btnreservarLibro" alignment="CENTER" mnemonicParsing="false" prefHeight="31.0" prefWidth="97.0" style="-fx-background-color: #7ec8e3;" text="Reservar" textAlignment="CENTER" textFill="WHITE">
+                                                                <Button fx:id="btnreservarLibro" alignment="CENTER" mnemonicParsing="false" onAction="#mBtnReservar" prefHeight="31.0" prefWidth="97.0" style="-fx-background-color: #7ec8e3;" text="Reservar" textAlignment="CENTER" textFill="WHITE">
                                                                     <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                     </font>
                                                                 </Button>
+                                                <Label fx:id="lblEstadoReserva" text="Estado reserva" />
                                                             </children>
                                                         </HBox>
                                                     </children>

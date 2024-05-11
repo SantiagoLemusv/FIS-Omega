@@ -152,7 +152,7 @@
                         <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="307.0" prefWidth="278.0" spacing="10.0" style="-fx-background-radius: 20; -fx-background-color: white;">
                            <children>
                               <Label fx:id="lblLibroSeleccionado" text="Libro seleccionado" />
-                              <ImageView fx:id="imageViewLibroReservado" fitHeight="181.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageViewLibroReservado" fitHeight="181.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
                                     <Image url="@gui/imagenLibro.png" />
                                  </image>
@@ -163,12 +163,12 @@
                               <Separator prefWidth="200.0" />
                               <HBox alignment="BOTTOM_LEFT" prefHeight="6.0" prefWidth="238.0" spacing="5.0">
                                  <children>
-                                    <Label fx:id="txtNombre1" alignment="TOP_LEFT" prefHeight="6.0" prefWidth="61.0" text="Titulo:">
+                                    <Label fx:id="lblTitulo" alignment="TOP_LEFT" prefHeight="6.0" prefWidth="61.0" text="Titulo:" visible="false">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="lblTituloLibro" alignment="BOTTOM_LEFT" contentDisplay="CENTER" prefHeight="0.0" prefWidth="174.0" text="Titulo Libro">
+                                    <Label fx:id="lblTituloLibro" alignment="BOTTOM_LEFT" contentDisplay="CENTER" prefHeight="0.0" prefWidth="174.0" text="Titulo Libro" visible="false">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -177,12 +177,12 @@
                               </HBox>
                               <HBox alignment="BOTTOM_LEFT" prefHeight="6.0" prefWidth="238.0" spacing="5.0">
                                  <children>
-                                    <Label fx:id="txtNombre11" alignment="TOP_LEFT" prefHeight="6.0" prefWidth="61.0" text="Autor:">
+                                    <Label fx:id="lblAutor" alignment="TOP_LEFT" prefHeight="6.0" prefWidth="61.0" text="Autor:" visible="false">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="lblAutorLibro" alignment="BOTTOM_LEFT" contentDisplay="CENTER" prefHeight="0.0" prefWidth="174.0" text="Autor Libro">
+                                    <Label fx:id="lblAutorLibro" alignment="BOTTOM_LEFT" contentDisplay="CENTER" prefHeight="0.0" prefWidth="174.0" text="Autor Libro" visible="false">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -191,12 +191,12 @@
                               </HBox>
                               <HBox alignment="BOTTOM_LEFT" prefHeight="6.0" prefWidth="238.0" spacing="5.0">
                                  <children>
-                                    <Label fx:id="txtNombre11" alignment="TOP_LEFT" prefHeight="27.0" prefWidth="67.0" text="Estado:">
+                                    <Label fx:id="lblEstado" alignment="TOP_LEFT" prefHeight="27.0" prefWidth="67.0" text="Estado:" visible="false">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="lblEstadoLibro" alignment="BOTTOM_LEFT" contentDisplay="CENTER" prefHeight="0.0" prefWidth="174.0" text="Reservado">
+                                    <Label fx:id="lblEstadoLibro" alignment="BOTTOM_LEFT" contentDisplay="CENTER" prefHeight="0.0" prefWidth="174.0" text="Reservado" visible="false">
                                        <font>
                                           <Font size="16.0" />
                                        </font>

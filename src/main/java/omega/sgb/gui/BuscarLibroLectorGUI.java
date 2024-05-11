@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import omega.sgb.SingletonControladores;
 import omega.sgb.SingletonPantallas;
 import omega.sgb.control.ControladorBusquedaLibro;
@@ -17,6 +18,8 @@ import java.util.ResourceBundle;
 public class BuscarLibroLectorGUI implements Initializable {
     @FXML
     Label lblNombreU;
+    @FXML
+    TextField txtFieldTitulo;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lblNombreU.setText(SingletonControladores.getUsuarioActual().getNombre());
@@ -34,5 +37,9 @@ public class BuscarLibroLectorGUI implements Initializable {
     }
     public void mBtnCerrarSesion(ActionEvent event) throws IOException {
         SingletonPantallas.toLogInViewSingleton(event);
+    }
+    public void mBtnBuscarLibro(ActionEvent event) throws IOException{
+        controladorBusquedaLibro.setTituloLibroBusquedaGrande(txtFieldTitulo.getText());
+        SingletonPantallas.toResultadosLectorViewSingleton(event);
     }
 }

@@ -45,7 +45,7 @@ public class SingletonControladores {
     //Traer Controladores-------------------------------------------------------------------------
     public static ControladorBusquedaLibro getInstanceControladorBusquedaLibro() throws SQLException {
         if (controladorBusquedaLibro == null) {
-            controladorBusquedaLibro = new ControladorBusquedaLibro(conexionGeneral, conversorImagen);
+            controladorBusquedaLibro = new ControladorBusquedaLibro(conexionGeneral, conversorImagen, procesarFecha);
         }
         return controladorBusquedaLibro;
     }

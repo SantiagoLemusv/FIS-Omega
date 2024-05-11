@@ -182,7 +182,6 @@ public class ControladorEstadoUsuario {
     }
 
     public LibroFisico traerLibroReservado(){
-        System.out.println("entra reservar librooooooooooooooooooo");
         try {
             // Prepare the SQL with a placeholder for the title search term
             String sql = "SELECT LIBROFISICOID FROM LIBROSRESERVADOS WHERE PERSONAID = ?";
@@ -207,23 +206,5 @@ public class ControladorEstadoUsuario {
         return null;
     }
 
-    public boolean reservarLibro (LibroFisico libroParaReservar) throws SQLException {
-        if(traerLibroReservado() == null){
-            return false;
-        }
-        connection.setAutoCommit(false); // ... (remaining code within try block)
 
-        // Actualizar tabla LIBROS RESERVADOS
-        String updateEstadoPrestamoSql = "INSERT INTO LIBROSRESERVADOS (PERSONAID, LIBROFISICOID, FECHARESERVA) " +
-                "VALUES (?, ?, ?)";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(updateEstadoPrestamoSql)) {
-            preparedStatement.setInt(1, SingletonControladores.getUsuarioActual().getId());
-            preparedStatement.setInt(2, libroParaReservar.getId());
-            preparedStatement.setDate(1, procesarFecha.fechaJavaToFechaSql(procesarFecha.getFechaActual()));
-        }
-
-        connection.commit(); // Confirma los cambios si todas las actualizaciones son exitosas
-        System.out.println("Reserva realizada exitosamente");
-        return true;
-    }
 }

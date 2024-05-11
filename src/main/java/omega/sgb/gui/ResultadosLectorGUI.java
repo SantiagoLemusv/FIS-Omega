@@ -41,6 +41,10 @@ public class ResultadosLectorGUI implements Initializable {
     Label lblNombreU;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if(controladorBusquedaLibro.getTituloLibroBusquedaGrande() != null){
+            txtFieldTitulo.setText(controladorBusquedaLibro.getTituloLibroBusquedaGrande());
+            mBtnLupa();
+        }
         lblNombreU.setText(SingletonControladores.getUsuarioActual().getNombre());
     }
     private ControladorBusquedaLibro controladorBusquedaLibro = SingletonControladores.getInstanceControladorBusquedaLibro();
