@@ -67,15 +67,16 @@ class ControladorBusquedaLibroTest {
     void reservarLibroFisicoExitoso() throws Exception {
         String tituloLibroBuscado = "Lady Masacre";
 
-        controladorBusquedaLibro.buscarLibrosVirtuales(tituloLibroBuscado);
-        List<LibroVirtual> librosVirtuales = new ArrayList<>();
-        librosVirtuales = controladorBusquedaLibro.getListaLibrosVirtuales();
 
         SingletonControladores.crearUsuarioActualLector();
         SingletonControladores.getUsuarioActual().setId(22);
         SingletonControladores.getUsuarioActual().setCedula(1000222333);
         SingletonControladores.getUsuarioActual().setNombre("Mario Mendoza Zambrano");
         SingletonControladores.getUsuarioActual().setContrasena("Fourier71");
+
+        String textoValidar = controladorBusquedaLibro.validarSiPuedoReservar();
+        assertEquals("Reserva realizada exitosamente",textoValidar);
+
 
     }
 
