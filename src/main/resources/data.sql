@@ -64,12 +64,12 @@ CREATE TABLE LibroVirtual (
     cantidad NUMERIC NOT NULL,
     autor VARCHAR(50) NOT NULL,
     multaValorDia NUMERIC NOT NULL,
-    duracionPrestamo NUMERIC NOT NULL,
+    duracionPrestamo NUMERIC NOT NULL
 );
 
 CREATE TABLE LibroFisico (
     id DECIMAL(10,2) PRIMARY KEY,
-    ubicacion VARCHAR(20) UNIQUE NOT NULL,
+    ubicacion VARCHAR(20) NOT NULL,
     numeroClasificacion VARCHAR(20) NOT NULL,
     libroVirtualId INTEGER NOT NULL,
     estadoLibroFisicoId INTEGER NOT NULL,
@@ -189,7 +189,5 @@ INSERT INTO Tarjeta (numero, fechaVencimiento, entidadBancaria, tipoTarjetaId, p
 (1254785698563214, '10/05/25', 'Banco Bogotá', 2, 4, 'Juanito Fulano Tijeras'),
 (1234567891234567, '19/08/28', 'BBVA', 1, 23, 'Isaac Newton');
 
-INSERT INTO Multa (montoPagar, fechaEmision, pagoId) VALUES
-(15000, '01/05/24', 6),
-(4000, '06/05/24', 1);
+
 
