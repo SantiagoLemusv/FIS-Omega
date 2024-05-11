@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS Pago;
 DROP TABLE IF EXISTS Tarjeta;
 DROP TABLE IF EXISTS Persona;
 DROP TABLE IF EXISTS TipoPersona;
+DROP TABLE IF EXISTS ImagenLibro;
 DROP TABLE IF EXISTS TipoTarjeta;
 DROP TABLE IF EXISTS LibrosReservados;
 
@@ -33,6 +34,12 @@ CREATE TABLE TipoTarjeta (
     id DECIMAL(10,2) PRIMARY KEY,
     nombre VARCHAR NOT NULL UNIQUE
 );
+
+CREATE TABLE ImagenLibro (
+   id INTEGER AUTO_INCREMENT PRIMARY KEY,
+   imagen
+);
+
 
 CREATE TABLE Persona (
     id BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
@@ -64,6 +71,8 @@ CREATE TABLE LibroVirtual (
     autor VARCHAR(50) NOT NULL,
     multaValorDia NUMERIC NOT NULL,
     duracionPrestamo NUMERIC NOT NULL
+    imagenId INTEGER NOT NULL,
+    FOREIGN KEY (imagenId) REFERENCES ImagenLibro(id)
 );
 
 CREATE TABLE LibroFisico (
