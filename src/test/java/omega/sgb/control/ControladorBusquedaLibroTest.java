@@ -65,33 +65,33 @@ class ControladorBusquedaLibroTest {
 
     @Test
     void reservarLibroFisicoExitoso() throws Exception {
-        String tituloLibroBuscado = "Lady Masacre";
-
+        LibroVirtual libroVirtual = new LibroVirtual(4,"9780321572604","El Padrino",2,"Mario Puzo",15,2500);
+        LibroFisico libroFisico = new LibroFisico(5,"Piso 3","D234 Q57",libroVirtual, 1  );
 
         SingletonControladores.crearUsuarioActualLector();
         SingletonControladores.getUsuarioActual().setId(22);
         SingletonControladores.getUsuarioActual().setCedula(1000222333);
         SingletonControladores.getUsuarioActual().setNombre("Mario Mendoza Zambrano");
         SingletonControladores.getUsuarioActual().setContrasena("Fourier71");
-
+        controladorBusquedaLibro.setLibroFisicoSeleccionado(libroFisico);
         String textoValidar = controladorBusquedaLibro.validarSiPuedoReservar();
         assertEquals("Reserva realizada exitosamente",textoValidar);
-
-
     }
 
 
     @Test
     void reservarLibroFisicoFallido() throws Exception {
-        String tituloLibroBuscado = "Lady Masacre"; // Reemplazar con un título existente
+        LibroVirtual libroVirtual = new LibroVirtual(4,"9780321572604","El Padrino",2,"Mario Puzo",15,2500);
+        LibroFisico libroFisico = new LibroFisico(5,"Piso 3","D234 Q57",libroVirtual, 1  );
 
-        // 1. Buscar libros virtuales
-        controladorBusquedaLibro.buscarLibrosVirtuales(tituloLibroBuscado);
-        List<LibroVirtual> librosVirtuales = new ArrayList<>();
-        librosVirtuales = controladorBusquedaLibro.getListaLibrosVirtuales();
-        //2.Elegir un libro de las copias
-        //3. Confirmar la reserva y cambiar estado de libro físico
-
+        SingletonControladores.crearUsuarioActualLector();
+        SingletonControladores.getUsuarioActual().setId(5);
+        SingletonControladores.getUsuarioActual().setCedula(1019982313);
+        SingletonControladores.getUsuarioActual().setNombre("Ana Cecilia de Armas Caso");
+        SingletonControladores.getUsuarioActual().setContrasena("Marilynmonroe24");
+        controladorBusquedaLibro.setLibroFisicoSeleccionado(libroFisico);
+        String textoValidar = controladorBusquedaLibro.validarSiPuedoReservar();
+        assertNotEquals("Reserva realizada exitosamente",textoValidar);
     }
 
     //Prueba de atributo de calidad del tiempo de búsqueda
