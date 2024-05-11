@@ -307,4 +307,25 @@ public class ControladorBusquedaLibro {
         }
     }
 
+    public String validarSiPuedoReservar() throws SQLException {
+        String mensaje = "";
+
+        if (!SingletonControladores.getUsuarioActual().getMultas().isEmpty()) {
+            mensaje = "Usted tiene multas activas";
+        } else if (traerLibroReservado() != null) {
+            mensaje = "Usted ya tiene un libro reservado";
+        } else if(getLibroFisicoSeleccionado().getEstadoLibroFisicoId().equals(2)){
+            mensaje = "Este libro ya está prestado";
+        } else if(getLibroFisicoSeleccionado().getEstadoLibroFisicoId().equals(3)) {
+            mensaje = "Este libro ya está reservado";
+        }
+        if (mensaje.isEmpty()) {
+            reservarLibro(getLibroFisicoSeleccionado());
+            mensaje = "Reserva realizada exitosamente";
+        }
+
+        return mensaje;
+    }
+
+
 }
