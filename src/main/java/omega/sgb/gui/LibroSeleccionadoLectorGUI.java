@@ -69,8 +69,10 @@ public class LibroSeleccionadoLectorGUI {
     }
 
     public void mBtnReservar(ActionEvent event) throws IOException, SQLException {
-        if(controladorBusquedaLibro.traerLibroReservado() != null){
-            lblEstadoReserva.setText("Ya tiene un libro reservado");
+        if(!SingletonControladores.getUsuarioActual().getMultas().isEmpty()) {
+            lblEstadoReserva.setText("Usted tiene multas activas");
+        }else if(controladorBusquedaLibro.traerLibroReservado() != null){
+            lblEstadoReserva.setText("Usted ya tiene un libro reservado");
             System.out.println("ya tiene libro reservado");
 
         }else if(controladorBusquedaLibro.getLibroFisicoSeleccionado().getEstadoLibroFisicoId().equals(1)){
@@ -78,13 +80,13 @@ public class LibroSeleccionadoLectorGUI {
             System.out.println("llama a reservar libro");
             controladorBusquedaLibro.reservarLibro(controladorBusquedaLibro.getLibroFisicoSeleccionado());
         }else if (controladorBusquedaLibro.getLibroFisicoSeleccionado().getEstadoLibroFisicoId().equals(2)) {
-            lblEstadoReserva.setText("Este libro no está disponible");
+            lblEstadoReserva.setText("Este libro ya está prestado");
         }else if (controladorBusquedaLibro.getLibroFisicoSeleccionado().getEstadoLibroFisicoId().equals(3)) {
             lblEstadoReserva.setText("Este libro ya está reservado");
         }
     }
     public void mBtnMiPerfil(ActionEvent event) throws IOException {
-        SingletonPantallas.toEstadoBibliotecarioViewSingleton(event);
+        SingletonPantallas.toEstadoLectorViewSingleton(event);
     }
     public void mBtnBusqueda(ActionEvent event) throws IOException {
         SingletonPantallas.toBuscarLibroLectorViewSingleton(event);
