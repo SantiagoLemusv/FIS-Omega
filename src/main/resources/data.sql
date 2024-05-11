@@ -5,7 +5,6 @@ DROP TABLE IF EXISTS EstadoPrestamo;
 DROP TABLE IF EXISTS EstadoLibroFisico;
 DROP TABLE IF EXISTS LibroFisico;
 DROP TABLE IF EXISTS LibroVirtual;
-DROP TABLE IF EXISTS ImagenLibro;
 DROP TABLE IF EXISTS Pago;
 DROP TABLE IF EXISTS Tarjeta;
 DROP TABLE IF EXISTS Persona;
@@ -55,11 +54,6 @@ CREATE TABLE Tarjeta (
     FOREIGN KEY (tipoTarjetaId) REFERENCES TipoTarjeta(id)
 );
 
-CREATE TABLE ImagenLibro (
-    id INTEGER AUTO_INCREMENT PRIMARY KEY,
-    imagen BLOB NULL
-);
-
 CREATE TABLE LibroVirtual (
     id DECIMAL(10,2) PRIMARY KEY,
     isbn VARCHAR(20) UNIQUE NOT NULL,
@@ -68,8 +62,7 @@ CREATE TABLE LibroVirtual (
     autor VARCHAR(50) NOT NULL,
     multaValorDia NUMERIC NOT NULL,
     duracionPrestamo NUMERIC NOT NULL,
-    imagenId INTEGER NOT NULL,
-    FOREIGN KEY (imagenId) REFERENCES ImagenLibro(id)
+    imagenLibro INTEGER NULL
 );
 
 
@@ -155,7 +148,6 @@ INSERT INTO Persona (id, cedula, nombre, contrasena, tipoPersonaId) VALUES
 (61, 55621578, 'Juan Pedro', 'Contrasena1', 2),
 (81, 1234567890, 'Pepito Fulano', 'Hola1234', 2);
 
-
 INSERT INTO LibroVirtual (id, isbn, titulo, cantidad, autor, multaValorDia, duracionPrestamo) VALUES
 (3, '9780672328054', 'Esto no es vida', 1, 'Daniel Samper Pizano', 2500, 15),
 (4, '9780321572604', 'El Padrino', 2, 'Mario Puzo', 2500, 15),
@@ -166,6 +158,8 @@ INSERT INTO LibroVirtual (id, isbn, titulo, cantidad, autor, multaValorDia, dura
 (9, '9780735619678', 'Derecho Penal', 3, 'Luis Carlos Perez', 4000, 5),
 (1, '1541675453', 'Lady Masacre', 3, 'Mario Mendoza', 2500, 15),
 (2, '0674979857', 'Tratado de medicina interna', 2, 'Goldman Cecil', 4000, 5);
+
+
 
 INSERT INTO LibroFisico (id, ubicacion, numeroClasificacion, libroVirtualId, estadoLibroFisicoId) VALUES
 (3, 'Piso 1', 'D123 Q47', 1, 2),
@@ -194,6 +188,7 @@ INSERT INTO Tarjeta (numero, fechaVencimiento, entidadBancaria, tipoTarjetaId, p
 (2312365478965896, '19/04/27', 'Banco Bogotá', 1, 22, 'Mario Mendoza Zambrano'),
 (1254785698563214, '10/05/25', 'Banco Bogotá', 2, 4, 'Juanito Fulano Tijeras'),
 (1234567891234567, '19/08/28', 'BBVA', 1, 23, 'Isaac Newton');
+
 
 
 
