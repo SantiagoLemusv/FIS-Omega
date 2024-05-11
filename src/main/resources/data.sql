@@ -5,13 +5,12 @@ DROP TABLE IF EXISTS EstadoPrestamo;
 DROP TABLE IF EXISTS EstadoLibroFisico;
 DROP TABLE IF EXISTS LibroFisico;
 DROP TABLE IF EXISTS LibroVirtual;
+DROP TABLE IF EXISTS ImagenLibro;
 DROP TABLE IF EXISTS Pago;
 DROP TABLE IF EXISTS Tarjeta;
 DROP TABLE IF EXISTS Persona;
 DROP TABLE IF EXISTS TipoPersona;
-DROP TABLE IF EXISTS ImagenLibro;
 DROP TABLE IF EXISTS TipoTarjeta;
-DROP TABLE IF EXISTS LibrosReservados;
 
 -- Creación de tablas --
 
@@ -35,12 +34,6 @@ CREATE TABLE TipoTarjeta (
     nombre VARCHAR NOT NULL UNIQUE
 );
 
-CREATE TABLE ImagenLibro (
-   id INTEGER AUTO_INCREMENT PRIMARY KEY,
-   imagen BLOB NULL
-);
-
-
 CREATE TABLE Persona (
     id BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     cedula NUMERIC(38, 0) UNIQUE NOT NULL,
@@ -62,6 +55,10 @@ CREATE TABLE Tarjeta (
     FOREIGN KEY (tipoTarjetaId) REFERENCES TipoTarjeta(id)
 );
 
+CREATE TABLE ImagenLibro (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    imagen BLOB NULL
+);
 
 CREATE TABLE LibroVirtual (
     id DECIMAL(10,2) PRIMARY KEY,
@@ -78,7 +75,7 @@ CREATE TABLE LibroVirtual (
 CREATE TABLE LibroFisico (
     id DECIMAL(10,2) PRIMARY KEY,
     ubicacion VARCHAR(20) NOT NULL,
-    numeroClasificacion VARCHAR(20) NOT NULL,
+    numeroClasificacion VARCHAR(20) UNIQUE NOT NULL,
     libroVirtualId INTEGER NOT NULL,
     estadoLibroFisicoId INTEGER NOT NULL,
     FOREIGN KEY (libroVirtualId) REFERENCES LibroVirtual(id),
