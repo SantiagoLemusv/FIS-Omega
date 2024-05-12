@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import omega.sgb.SingletonControladores;
 import omega.sgb.SingletonPantallas;
+import omega.sgb.control.ControladorActualizarApp;
 import omega.sgb.control.ControladorEstadoUsuario;
 import omega.sgb.dominio.LibroFisico;
 
@@ -20,6 +21,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class EstadoLectorGUI implements Initializable {
+    private ControladorActualizarApp controladorActualizarApp = SingletonControladores.getInstanceControladorActualizarApp();
     private ControladorEstadoUsuario controladorEstadoUsuario = SingletonControladores.getInstanceControladorEstadoUsuario();
     public EstadoLectorGUI() throws SQLException {}
     public EstadoLectorGUI(ControladorEstadoUsuario controladorEstadoUsuario) throws SQLException {
@@ -89,8 +91,9 @@ public class EstadoLectorGUI implements Initializable {
     }
 
 
-    public void mBtnMiPerfil(ActionEvent event) throws IOException {
+    public void mBtnMiPerfil(ActionEvent event) throws IOException, SQLException {
         SingletonPantallas.toEstadoLectorViewSingleton(event);
+        controladorActualizarApp.validarReservasVencidas();
     }
     public void mBtnBusqueda(ActionEvent event) throws IOException {
         SingletonPantallas.toBuscarLibroLectorViewSingleton(event);

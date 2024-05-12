@@ -18,7 +18,7 @@ public class ControladorActualizarApp {
     }
 
     public void validarReservasVencidas() throws SQLException {
-        String sql = "SELECT ID FROM LIBROSRESERVADOS";
+        String sql = "SELECT * FROM LIBROSRESERVADOS";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
