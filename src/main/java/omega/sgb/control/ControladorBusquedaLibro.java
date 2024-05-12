@@ -94,9 +94,9 @@ public class ControladorBusquedaLibro {
                 // Get the image from the blob (assuming conversion logic remains the same)
                 Blob imagenBlob = resultSet.getBlob("IMAGENLIBRO");
                 libroAux.setImagenLibro(conversorImagen.blobToImageView(imagenBlob));
-                libroAux.setLibrosFisicosDisponibles(traerLibrosFisicos(libroAux, 1));
-                libroAux.setLibrosFisicosAgotados(traerLibrosFisicos(libroAux, 2));
-                libroAux.setLibrosFisicosReservados(traerLibrosFisicos(libroAux, 3));
+                libroAux.setLibrosFisicosDisponibles(traerLibrosVirtuales(libroAux, 1));
+                libroAux.setLibrosFisicosAgotados(traerLibrosVirtuales(libroAux, 2));
+                libroAux.setLibrosFisicosReservados(traerLibrosVirtuales(libroAux, 3));
                 libroAux.setLibrosFisicosTotales();
                 listaLibrosVirtuales.add(libroAux);
             }
@@ -109,7 +109,7 @@ public class ControladorBusquedaLibro {
         }
     }
 
-    public List<LibroFisico> traerLibrosFisicos(LibroVirtual libroVirtual, Integer disponibilidad) {
+    public List<LibroFisico> traerLibrosVirtuales(LibroVirtual libroVirtual, Integer disponibilidad) {
         List<LibroFisico> listaLibrosFisicos = new ArrayList<>();
         try {
             // Prepare the SQL with a placeholder for the title search term

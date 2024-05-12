@@ -12,6 +12,22 @@ public class ProcesarFecha {
         return fechaActual;
     }
 
+    public int calcularDiferenciaDias(Date fechaLlegada) {
+        // Obtener la fecha actual
+        Date fechaActual = new Date();
+
+        // Calcular la diferencia en milisegundos
+        long diferenciaMilisegundos = fechaActual.getTime() - fechaLlegada.getTime();
+
+        // Convertir milisegundos a días
+        double dias = diferenciaMilisegundos / (1000 * 60 * 60 * 24);
+
+        // Redondear hacia arriba para considerar el día de llegada completo
+        int diasRedondeados = (int) Math.ceil(dias);
+
+        return diasRedondeados+1;
+    }
+
     public String formatearFecha(Date fecha) {
         // Crear objeto SimpleDateFormat para el formato deseado
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
@@ -52,6 +68,31 @@ public class ProcesarFecha {
             return null;
         }
         return new java.util.Date(fechaSql.getTime());
+    }
+
+    public boolean haPasadoUnMinuto(Date fechaReferencia) {
+        // Obtener la fecha actual
+        Date fechaActual = new Date();
+
+        // Calcular la diferencia en milisegundos
+        long diferenciaEnMs = fechaActual.getTime() - fechaReferencia.getTime();
+
+        // Un minuto en milisegundos es 60.000 ms
+        long unMinutoEnMs = 60000;
+
+        // Devolver true si ha pasado un minuto o más
+        return diferenciaEnMs >= unMinutoEnMs;
+    }
+
+    public boolean haExpirado(Date fechaReferencia) {
+        // Obtener la fecha actual
+        Date fechaActual = new Date();
+
+        // Calcular la diferencia en milisegundos
+        long diferenciaEnMs = fechaActual.getTime() - fechaReferencia.getTime();
+
+        // Si la diferencia es mayor o igual a 0, la fecha ha expirado
+        return diferenciaEnMs >= 0;
     }
 
 

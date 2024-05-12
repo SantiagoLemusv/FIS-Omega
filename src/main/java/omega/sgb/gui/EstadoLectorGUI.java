@@ -94,6 +94,8 @@ public class EstadoLectorGUI implements Initializable {
     public void mBtnMiPerfil(ActionEvent event) throws IOException, SQLException {
         SingletonPantallas.toEstadoLectorViewSingleton(event);
         controladorActualizarApp.validarReservasVencidas();
+        controladorActualizarApp.validarPrestamosVencidos();
+        controladorActualizarApp.validarNuevoCostoDeMultas();
     }
     public void mBtnBusqueda(ActionEvent event) throws IOException {
         SingletonPantallas.toBuscarLibroLectorViewSingleton(event);
