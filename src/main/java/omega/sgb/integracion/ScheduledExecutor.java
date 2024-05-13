@@ -9,7 +9,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class ScheduledExecutor {
-    private static ControladorActualizarApp controladorActualizarApp;
+    private static final ControladorActualizarApp controladorActualizarApp;
 
     static {
         try {
