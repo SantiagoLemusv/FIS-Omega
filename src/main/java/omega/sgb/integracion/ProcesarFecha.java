@@ -1,5 +1,6 @@
 package omega.sgb.integracion;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -95,5 +96,25 @@ public class ProcesarFecha {
         return diferenciaEnMs >= 0;
     }
 
+    public static Date fechaStringToFechaJava(String fechaString) throws ParseException {
+        // Definimos el formato de la fecha de entrada (mes y año)
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("MM/yyyy");
+
+        // Obtenemos el calendario actual
+        Calendar calendario = Calendar.getInstance();
+
+        // Convertimos la cadena de fecha a un objeto Calendar
+        Calendar fechaCalendar = calendario.getInstance();
+        fechaCalendar.setTime(formatoFecha.parse(fechaString));
+
+        // Establecemos el día al primer día del mes
+        fechaCalendar.set(Calendar.DAY_OF_MONTH, 1);
+
+        // Convertimos el objeto Calendar a un objeto Date
+        Date fecha = fechaCalendar.getTime();
+
+        // Devolvemos la fecha convertida
+        return fecha;
+    }
 
 }
