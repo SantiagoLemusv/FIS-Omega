@@ -1,5 +1,6 @@
 package omega.sgb.gui;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -8,13 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import omega.sgb.SingletonControladores;
 import omega.sgb.SingletonPantallas;
 import omega.sgb.control.ControladorCarrito;
 import omega.sgb.dominio.LibroFisico;
-import omega.sgb.dominio.LibroVirtual;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,11 +26,11 @@ public class CarritoGUI implements Initializable {
     @FXML
     TableView<LibroFisico> tableViewCarrito;
     @FXML
-    TableColumn<LibroVirtual, ImageView> colPortada;
+    TableColumn<LibroFisico, ImageView> colPortada;
     @FXML
-    TableColumn<LibroVirtual, String> colTitulo;
+    TableColumn<LibroFisico, String> colTitulo;
     @FXML
-    TableColumn<LibroVirtual, String> colIsbn;
+    TableColumn<LibroFisico, String> colIsbn;
 
 
 
@@ -53,9 +52,21 @@ public class CarritoGUI implements Initializable {
         System.out.println(SingletonControladores.getUsuarioActual().getCarrito().size());
         observableLibrosFisicos.addAll(SingletonControladores.getUsuarioActual().getCarrito());
         System.out.println(observableLibrosFisicos);
-        //colPortada.setCellValueFactory(new PropertyValueFactory<>("imagenLibro"));
-        colTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-        colIsbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+        // codigo para mostrar la portada
+        colTitulo.setCellValueFactory(cellData -> {
+            // Obtener el libro fisico para la fila actual
+            LibroFisico libroFisico = cellData.getValue();
+
+            // Devolver el título del libro fisico
+            return new SimpleStringProperty(libroFisico.getLibroVirtual().getTitulo());
+        });
+        colIsbn.setCellValueFactory(cellData -> {
+            // Obtener el libro fisico para la fila actual
+            LibroFisico libroFisico = cellData.getValue();
+
+            // Devolver el título del libro fisico
+            return new SimpleStringProperty(libroFisico.getLibroVirtual().getIsbn());
+        });
         tableViewCarrito.setItems(observableLibrosFisicos);
     }
 
