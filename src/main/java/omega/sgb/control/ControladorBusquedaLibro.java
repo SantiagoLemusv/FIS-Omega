@@ -331,4 +331,11 @@ public class ControladorBusquedaLibro {
     }
 
 
+    public boolean agregarLibro() {
+        try {
+            return SingletonControladores.getInstanceControladorCarrito().agregarLibro(libroFisicoSeleccionado);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

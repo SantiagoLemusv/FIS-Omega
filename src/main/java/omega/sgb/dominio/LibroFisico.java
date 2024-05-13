@@ -1,6 +1,6 @@
 package omega.sgb.dominio;
 
-public class LibroFisico {
+public class LibroFisico extends LibroVirtual {
     //Atributos de instancia
     private Integer id;
     private String ubicacion;
