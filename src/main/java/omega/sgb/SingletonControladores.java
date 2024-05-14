@@ -5,6 +5,7 @@ import omega.sgb.dominio.Persona;
 import omega.sgb.dominio.PersonaBibliotecario;
 import omega.sgb.dominio.PersonaLector;
 import omega.sgb.integracion.ConversorImagen;
+import omega.sgb.integracion.ProcesarFecha;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -14,12 +15,14 @@ public class SingletonControladores {
     private static Connection conexionGeneral = null;
     private static ConversorImagen conversorImagen = new ConversorImagen();
     private static Persona usuarioActual;
+    private static ControladorAgregarMetodoPago controladorAgregarMetodoPago;
     private static ControladorBusquedaLibro controladorBusquedaLibro;
     private static ControladorCarrito controladorCarrito;
     private static ControladorEstadoUsuario controladorEstadoUsuario;
     private static ControladorLogIn controladorLogIn;
     private static ControladorPago controladorPago;
     private static ControladorPrestamo controladorPrestamo;
+    private static ProcesarFecha procesarFecha = new ProcesarFecha();
 
     public static void setConexionGeneral(Connection conexionGeneral) {
         SingletonControladores.conexionGeneral = conexionGeneral;
@@ -81,5 +84,11 @@ public class SingletonControladores {
             controladorPrestamo = new ControladorPrestamo(conexionGeneral);
         }
         return controladorPrestamo;
+    }
+    public static ControladorAgregarMetodoPago getInstanceControladorAgregarMetodoPago() throws SQLException {
+        if (controladorAgregarMetodoPago == null) {
+            controladorAgregarMetodoPago = new ControladorAgregarMetodoPago(conexionGeneral,procesarFecha);
+        }
+        return controladorAgregarMetodoPago;
     }
 }

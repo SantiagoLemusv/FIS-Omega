@@ -159,7 +159,7 @@
                                     <Insets left="15.0" top="5.0" />
                                  </VBox.margin>
                               </Label>
-                              <ComboBox prefHeight="27.0" prefWidth="199.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-radius: 10; -fx-border-radius: 10;">
+                              <ComboBox fx:id="cbxMetodoPago" prefHeight="27.0" prefWidth="199.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-radius: 10; -fx-border-radius: 10;">
                                  <VBox.margin>
                                     <Insets left="15.0" />
                                  </VBox.margin></ComboBox>
