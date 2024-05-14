@@ -91,7 +91,9 @@ public class CarritoGUI implements Initializable {
     }
 
     public void mBtnEliminarLibro(ActionEvent event) throws IOException {
-        //al libro seleccionado con el click lo elimina
+        LibroFisico libroFisicoSeleccionado = tableViewCarrito.getSelectionModel().getSelectedItem();
+        SingletonControladores.getUsuarioActual().getCarrito().remove(libroFisicoSeleccionado);
+        mBtnCarrito(event);
     }
 }
 

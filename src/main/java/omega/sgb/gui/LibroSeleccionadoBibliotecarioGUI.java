@@ -32,6 +32,8 @@ public class LibroSeleccionadoBibliotecarioGUI {
     ComboBox cmbBoxCopias;
     @FXML
     TextField txtFieldTituloLibro;
+    @FXML
+    Label lblAgregado;
     private ControladorBusquedaLibro controladorBusquedaLibro = SingletonControladores.getInstanceControladorBusquedaLibro();
     public LibroSeleccionadoBibliotecarioGUI() throws SQLException {
     }
@@ -70,9 +72,9 @@ public class LibroSeleccionadoBibliotecarioGUI {
         }
 
         if(agregado){
-            System.out.println("libro agregado");
+            lblAgregado.setText("Libro agregado");
         }else
-            System.out.println("Libro no agregado");
+            lblAgregado.setText("El libro ya fue agregado");
     }
 
     public void mBtnMiPerfil(ActionEvent event) throws IOException {

@@ -78,7 +78,7 @@ public class EstadoLectorGUI implements Initializable {
         txtNombre.setText(SingletonControladores.getUsuarioActual().getNombre());
         txtCedula.setText(String.valueOf(SingletonControladores.getUsuarioActual().getCedula()));
         txtTipoCuenta.setText("Lector");
-        controladorEstadoUsuario.traerPrestamos();
+        controladorEstadoUsuario.traerPrestamos(SingletonControladores.getUsuarioActual());
         ObservableList<String> observablePrestamos = FXCollections.observableArrayList(
                 controladorEstadoUsuario.listaStringPrestamos(SingletonControladores.getUsuarioActual().getPrestamos()));
 

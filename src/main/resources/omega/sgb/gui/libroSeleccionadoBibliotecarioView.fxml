@@ -351,6 +351,7 @@
                                                       <Font name="System Bold" size="14.0" />
                                                    </font>
                                                 </Button>
+                                                <Label fx:id="lblAgregado" prefHeight="18.0" prefWidth="92.0" />
                                              </children>
                                           </HBox>
                                        </children>

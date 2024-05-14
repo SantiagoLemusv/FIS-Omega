@@ -8,6 +8,7 @@ import omega.sgb.dominio.Prestamo;
 import omega.sgb.integracion.ProcesarFecha;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 //No debe tener dependencias a las pantallas
@@ -15,11 +16,22 @@ public class ControladorPrestamo {
     private PersonaLector lectorActual = new PersonaLector();
     private ProcesarFecha procesarFecha;
     private Connection connection;
+    private ControladorActualizarApp controladorActualizarApp = SingletonControladores.getInstanceControladorActualizarApp();
+
+    private ControladorEstadoUsuario controladorEstadoUsuario = SingletonControladores.getInstanceControladorEstadoUsuario();
+
     public ControladorPrestamo(Connection conexionGeneral, ProcesarFecha procesarFecha) throws SQLException {
         this.connection = conexionGeneral;
         this.procesarFecha = procesarFecha;
     }
 
+    public PersonaLector getLectorActual() {
+        return lectorActual;
+    }
+
+    public ControladorEstadoUsuario getControladorEstadoUsuario() {
+        return controladorEstadoUsuario;
+    }
 
     public void setLectorActual(Integer lectorActualCedula) throws SQLException {
         String sql =
@@ -36,8 +48,8 @@ public class ControladorPrestamo {
                 if (resultSet.next()) {
                     lectorActual.setId(resultSet.getInt("ID"));
                     lectorActual.setCedula(lectorActualCedula);
-                    lectorActual.setNombre("NOMBRE");
-                    lectorActual.setContrasena("CONTRASENA");
+                    controladorEstadoUsuario.traerPrestamos(lectorActual);
+
                 }
             }
         }
@@ -58,12 +70,12 @@ public class ControladorPrestamo {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    System.out.println("funciono consulta");
+                    System.out.println("Lector tiene conflictos");
                     return true;
                 }
             }
         }
-        System.out.println("no funciono consulta");
+        System.out.println("Lector no tiene problemas");
         return false;
     }
 
@@ -90,7 +102,8 @@ public class ControladorPrestamo {
     public void confirmarPrestamo(List<LibroFisico> carritoLibros) throws SQLException {
         for(LibroFisico libroAct : carritoLibros){
             Prestamo prestamoAux = crearPrestamo(libroAct, lectorActual);
-            //SingletonControladores.getUsuarioActual().getPrestamos().add(prestamoAux);
+            lectorActual.getPrestamos().add(prestamoAux);
+            controladorActualizarApp.cambiarEstadoLibro(libroAct.getId(),2);
             actualizarPrestamoBD(prestamoAux);
         }
 

@@ -70,8 +70,12 @@ public class ControladorCarrito {
     }
 
     public boolean agregarLibro(LibroFisico libroSeleccionado){
-        SingletonControladores.getUsuarioActual().getCarrito().add(libroSeleccionado);
-        return true;
+        List<LibroFisico> carrito= SingletonControladores.getUsuarioActual().getCarrito();
+        if(!carrito.contains(libroSeleccionado)){
+            carrito.add(libroSeleccionado);
+            return true;
+        }else
+        return false;
     }
 
 
