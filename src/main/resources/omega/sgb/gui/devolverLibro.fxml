@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="omega.sgb.gui.ValidarLectorGUI">
+<BorderPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="omega.sgb.gui.DevolverLibroGUI">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
@@ -193,12 +193,12 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <Label prefHeight="17.0" prefWidth="110.0" text="Lista de prestamos">
+                        <Label fx:id="lblListaPrestamos" prefHeight="17.0" prefWidth="110.0" text="Lista de prestamos" visible="false">
                            <VBox.margin>
                               <Insets bottom="10.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <ListView fx:id="listViewLibrosPrestados" prefHeight="400.0" prefWidth="436.0">
+                        <ListView fx:id="listViewLibrosPrestados" prefHeight="400.0" prefWidth="436.0" visible="false">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin></ListView>
