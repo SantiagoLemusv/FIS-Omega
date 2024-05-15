@@ -33,4 +33,7 @@ public class PersonaLector extends Persona{
         return null;
     }
 
+    public void setPrestamos(List<Prestamo> prestamosIniciales) {
+        this.prestamos=prestamosIniciales;
+    }
 }

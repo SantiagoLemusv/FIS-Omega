@@ -44,7 +44,7 @@ class ControladorEstadoUsuarioTest {
         SingletonControladores.getUsuarioActual().setCedula(1019982313);
         SingletonControladores.getUsuarioActual().setNombre("Ana Cecilia de Armas Caso");
         SingletonControladores.getUsuarioActual().setContrasena("MarilynMonroe24");
-        controladorEstadoUsuario.traerPrestamos();
+        controladorEstadoUsuario.traerPrestamos(SingletonControladores.getUsuarioActual());
         List<Prestamo> prestamoLista = SingletonControladores.getUsuarioActual().getPrestamos();
         List<Multa> multaLista = SingletonControladores.getUsuarioActual().getMultas();
         assertFalse(prestamoLista.isEmpty());
@@ -63,7 +63,7 @@ class ControladorEstadoUsuarioTest {
         SingletonControladores.getUsuarioActual().setCedula(1013259208);
         SingletonControladores.getUsuarioActual().setNombre("Juan David Ramírez Juzga");
         SingletonControladores.getUsuarioActual().setContrasena("luna");
-        controladorEstadoUsuario.traerPrestamos();
+        controladorEstadoUsuario.traerPrestamos(SingletonControladores.getUsuarioActual());
         List<Prestamo> prestamoLista = SingletonControladores.getUsuarioActual().getPrestamos();
         List<Multa> multaLista = SingletonControladores.getUsuarioActual().getMultas();
         assertTrue(prestamoLista.isEmpty());

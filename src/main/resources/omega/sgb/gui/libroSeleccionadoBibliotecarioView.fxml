@@ -346,11 +346,12 @@
                                           </HBox>
                                           <HBox alignment="CENTER" prefHeight="125.0" prefWidth="284.0">
                                              <children>
-                                                <Button alignment="CENTER" mnemonicParsing="false" prefHeight="31.0" prefWidth="97.0" style="-fx-background-color: #7ec8e3;" text="Agregar" textAlignment="CENTER" textFill="WHITE">
+                                                <Button alignment="CENTER" mnemonicParsing="false" onAction="#mBtnAgregar" prefHeight="31.0" prefWidth="97.0" style="-fx-background-color: #7ec8e3;" text="Agregar" textAlignment="CENTER" textFill="WHITE">
                                                    <font>
                                                       <Font name="System Bold" size="14.0" />
                                                    </font>
                                                 </Button>
+                                                <Label fx:id="lblAgregado" prefHeight="18.0" prefWidth="92.0" />
                                              </children>
                                           </HBox>
                                        </children>

@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="omega.sgb.gui.CarritoGUI">
+<BorderPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="omega.sgb.gui.CarritoGUI">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
@@ -151,11 +143,11 @@
                </VBox.margin>
             </Label>
             <Separator prefWidth="200.0" />
-            <TableView prefHeight="522.0" prefWidth="964.0" style="-fx-background-color: transparent;" VBox.vgrow="SOMETIMES">
+            <TableView fx:id="tableViewCarrito" prefHeight="522.0" prefWidth="964.0" style="-fx-background-color: transparent;" VBox.vgrow="SOMETIMES">
               <columns>
-                <TableColumn prefWidth="127.99996948242188" text="Portada" />
-                <TableColumn prefWidth="123.199951171875" text="Titulo" />
-                  <TableColumn prefWidth="121.60000610351562" text="ISBN" />
+                <TableColumn fx:id="colPortada" prefWidth="154.39996337890625" text="Portada" />
+                <TableColumn fx:id="colTitulo" prefWidth="123.199951171875" text="Titulo" />
+                  <TableColumn fx:id="colIsbn" prefWidth="121.60000610351562" text="ISBN" />
               </columns>
             </TableView>
             <HBox prefHeight="38.0" prefWidth="964.0">

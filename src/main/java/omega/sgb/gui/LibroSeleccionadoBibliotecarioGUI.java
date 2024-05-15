@@ -14,7 +14,6 @@ import omega.sgb.control.ControladorBusquedaLibro;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 public class LibroSeleccionadoBibliotecarioGUI {
     @FXML
@@ -33,11 +32,10 @@ public class LibroSeleccionadoBibliotecarioGUI {
     ComboBox cmbBoxCopias;
     @FXML
     TextField txtFieldTituloLibro;
+    @FXML
+    Label lblAgregado;
     private ControladorBusquedaLibro controladorBusquedaLibro = SingletonControladores.getInstanceControladorBusquedaLibro();
     public LibroSeleccionadoBibliotecarioGUI() throws SQLException {
-    }
-    public LibroSeleccionadoBibliotecarioGUI(ControladorBusquedaLibro controladorBusquedaLibro) throws SQLException {
-        this.controladorBusquedaLibro = controladorBusquedaLibro;
     }
     @FXML
     void initialize(){
@@ -66,6 +64,19 @@ public class LibroSeleccionadoBibliotecarioGUI {
             lblEstadoLibro.setText("Libro reservado");
         }
     }
+
+    public void mBtnAgregar(){
+        boolean agregado = false;
+        if(lblEstadoLibro.getText().equals("Libro disponible")){
+            agregado= controladorBusquedaLibro.agregarLibro();
+        }
+
+        if(agregado){
+            lblAgregado.setText("Libro agregado");
+        }else
+            lblAgregado.setText("El libro ya fue agregado");
+    }
+
     public void mBtnMiPerfil(ActionEvent event) throws IOException {
         SingletonPantallas.toEstadoBibliotecarioViewSingleton(event);
     }

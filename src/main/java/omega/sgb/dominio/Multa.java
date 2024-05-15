@@ -69,4 +69,5 @@ public class Multa  {
     public void setDiasPasados(Integer diasPasados) {
         this.diasPasados = diasPasados;
     }
+
 }

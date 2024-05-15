@@ -1,10 +1,7 @@
 package omega.sgb.control;
 
 import omega.sgb.SingletonControladores;
-import omega.sgb.dominio.LibroFisico;
-import omega.sgb.dominio.LibroVirtual;
-import omega.sgb.dominio.Multa;
-import omega.sgb.dominio.Prestamo;
+import omega.sgb.dominio.*;
 import omega.sgb.integracion.ConversorImagen;
 import omega.sgb.integracion.ProcesarFecha;
 
@@ -24,17 +21,17 @@ public class ControladorEstadoUsuario {
         this.conversorImagen = conversorImagen;
     }
 
-    public void traerPrestamos(){
+    public void traerPrestamos(Persona usuarioactual){
         try {
             // Prepare the SQL with a placeholder for the title search term
             String sql = "SELECT * FROM PRESTAMO WHERE PERSONAID = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
 
-            statement.setInt(1, SingletonControladores.getUsuarioActual().getId());
+            statement.setInt(1, usuarioactual.getId());
 
             ResultSet resultSet = statement.executeQuery();
 
-            SingletonControladores.getUsuarioActual().getPrestamos().clear(); // Clear the list before adding new results
+            usuarioactual.getPrestamos().clear(); // Clear the list before adding new results
 
             while (resultSet.next()) {
                 Prestamo prestamoAux = new Prestamo();
@@ -44,12 +41,12 @@ public class ControladorEstadoUsuario {
                 prestamoAux.setFechaPrestamo(procesarFecha.fechaSqlToFechaJava(fechaSqlAux));
                 fechaSqlAux = resultSet.getDate("FECHADEVOLUCION");
                 prestamoAux.setFechaDevolucion(procesarFecha.fechaSqlToFechaJava(fechaSqlAux));
-                prestamoAux.setPersona(SingletonControladores.getUsuarioActual());
+                prestamoAux.setPersona(usuarioactual);
                 prestamoAux.setLibro(traerLibroFisico(resultSet.getInt("LIBROFISICOID")));
                 prestamoAux.setEstadoPrestamoId(resultSet.getInt("ESTADOPRESTAMOID"));
                 Integer idMulta = resultSet.getInt("MULTAID");
-                prestamoAux.setMulta(traerMulta(idMulta));
-                SingletonControladores.getUsuarioActual().getPrestamos().add(prestamoAux);
+                prestamoAux.setMulta(traerMulta(idMulta,usuarioactual));
+                usuarioactual.getPrestamos().add(prestamoAux);
 
             }
 
@@ -126,7 +123,7 @@ public class ControladorEstadoUsuario {
         return null;
     }
 
-    public Multa traerMulta(Integer idMulta){
+    public Multa traerMulta(Integer idMulta, Persona usuario){
         try {
             // Prepare the SQL with a placeholder for the title search term
             String sql = "SELECT * FROM MULTA WHERE ID = ?";
@@ -146,7 +143,7 @@ public class ControladorEstadoUsuario {
                 multaAux.setPago(null);
                 multaAux.setDiasPasados(resultSet.getInt("DIASPASADOS"));
 
-                SingletonControladores.getUsuarioActual().getMultas().add(multaAux);
+                usuario.getMultas().add(multaAux);
                 return multaAux;
             }
 
@@ -174,7 +171,7 @@ public class ControladorEstadoUsuario {
         for(Prestamo prestamoAct : listaPrestamos){
             if(prestamoAct.getMulta() != null){
                 String aux;
-                aux = prestamoAct.getLibro().getLibroVirtual().getTitulo() + prestamoAct.getMulta().getDiasPasados();
+                aux = prestamoAct.getLibro().getLibroVirtual().getTitulo() + " "+ prestamoAct.getMulta().getDiasPasados()+ " día(s) vencido";
                 listaString.add(aux);
             }
         }
