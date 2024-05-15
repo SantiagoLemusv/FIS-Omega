@@ -5,7 +5,6 @@ import omega.sgb.dominio.Persona;
 import omega.sgb.dominio.PersonaBibliotecario;
 import omega.sgb.dominio.PersonaLector;
 import omega.sgb.integracion.ConversorImagen;
-import omega.sgb.integracion.ProcesarFecha;
 
 import java.sql.Connection;
 import java.sql.SQLException;

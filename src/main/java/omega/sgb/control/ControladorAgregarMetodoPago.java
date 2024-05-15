@@ -1,17 +1,8 @@
 package omega.sgb.control;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
 import omega.sgb.SingletonControladores;
-import omega.sgb.dominio.LibroFisico;
-import omega.sgb.dominio.LibroVirtual;
 import omega.sgb.dominio.Tarjeta;
-import omega.sgb.integracion.ConversorImagen;
-import omega.sgb.integracion.ProcesarFecha;
 
-import javax.swing.*;
-import java.io.IOException;
 import java.sql.*;
 import java.text.ParseException;
 import java.util.ArrayList;
