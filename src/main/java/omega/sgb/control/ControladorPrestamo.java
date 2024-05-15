@@ -17,7 +17,7 @@ public class ControladorPrestamo {
     private ProcesarFecha procesarFecha;
     private Connection connection;
     private ControladorActualizarApp controladorActualizarApp = SingletonControladores.getInstanceControladorActualizarApp();
-
+    private ControladorBusquedaLibro controladorBusquedaLibro = SingletonControladores.getInstanceControladorBusquedaLibro();
     private ControladorEstadoUsuario controladorEstadoUsuario = SingletonControladores.getInstanceControladorEstadoUsuario();
 
     public ControladorPrestamo(Connection conexionGeneral, ProcesarFecha procesarFecha) throws SQLException {
@@ -148,6 +148,11 @@ public class ControladorPrestamo {
 
         connection.commit(); // Confirma los cambios si todas las actualizaciones son exitosas
         System.out.println("Préstamo actualizado exitosamente");
+
+    }
+
+    //metodos devolver libro
+    public void actualizarEstadoPrestamo(){
 
     }
 
