@@ -15,6 +15,14 @@
 
   <dependencies>
 
+    <!-- https://mvnrepository.com/artifact/com.bea.wlplatform/commonj-twm -->
+    <dependency>
+      <groupId>com.bea.wlplatform</groupId>
+      <artifactId>commonj-twm</artifactId>
+      <version>1.1</version>
+    </dependency>
+
+
     <dependency>
       <groupId>com.oracle.ojdbc</groupId>
       <artifactId>ojdbc8</artifactId>
