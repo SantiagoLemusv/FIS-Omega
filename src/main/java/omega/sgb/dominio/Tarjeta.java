@@ -1,12 +1,13 @@
 package omega.sgb.dominio;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Tarjeta {
     //Atributos de instancia
     private Integer id;
     private Integer numero;
-    private String fechaVencimiento;
+    private Date fechaVencimiento;
     private String entidadBancaria;
     private String titular;
     private Integer tipoTarjetaId;//Debito (1), credito (2)
@@ -16,7 +17,7 @@ public class Tarjeta {
     public Tarjeta() {
     }
 
-    public Tarjeta(Integer id, Integer numero, String fechaVencimiento, String entidadBancaria, String titular, Integer tipoTarjetaId, Persona persona) {
+    public Tarjeta(Integer id, Integer numero, Date fechaVencimiento, String entidadBancaria, String titular, Integer tipoTarjetaId, Persona persona) {
         this.id = id;
         this.numero = numero;
         this.fechaVencimiento = fechaVencimiento;
@@ -26,7 +27,7 @@ public class Tarjeta {
         this.persona = persona;
     }
 
-    public Tarjeta(Integer numero, String fechaVencimiento, String entidadBancaria, String titular, Integer tipoTarjetaId, Persona persona) {
+    public Tarjeta(Integer numero, Date fechaVencimiento, String entidadBancaria, String titular, Integer tipoTarjetaId, Persona persona) {
         this.numero = numero;
         this.fechaVencimiento = fechaVencimiento;
         this.entidadBancaria = entidadBancaria;
@@ -52,11 +53,11 @@ public class Tarjeta {
         this.numero = numero;
     }
 
-    public String getFechaVencimiento() {
+    public Date getFechaVencimiento() {
         return fechaVencimiento;
     }
 
-    public void setFechaVencimiento(String fechaVencimiento) {
+    public void setFechaVencimiento(Date fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
     }
 

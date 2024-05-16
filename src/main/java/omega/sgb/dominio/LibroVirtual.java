@@ -2,6 +2,7 @@ package omega.sgb.dominio;
 
 import javafx.scene.image.ImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LibroVirtual {
@@ -16,12 +17,14 @@ public class LibroVirtual {
     private Integer multaValorDia;//No tiene setValorMultaDia
     private List<LibroFisico> librosFisicosDisponibles;
     private List<LibroFisico> librosFisicosAgotados;
+    private List<LibroFisico> librosFisicosReservados;
+    private List<LibroFisico> librosFisicosTotales;
 
     //Métodos constructores
     public LibroVirtual() {
     }
 
-    public LibroVirtual(Integer id, String isbn, String titulo, Integer cantidadCopias, String autor, Integer duracionPrestamo, Integer multaValorDia, List<LibroFisico> librosFisicosDisponibles, List<LibroFisico> librosFisicosAgotados) {
+    public LibroVirtual(Integer id, String isbn, String titulo, Integer cantidadCopias, String autor, Integer duracionPrestamo, Integer multaValorDia) {
         this.id = id;
         this.isbn = isbn;
         this.titulo = titulo;
@@ -29,8 +32,6 @@ public class LibroVirtual {
         this.autor = autor;
         this.duracionPrestamo = duracionPrestamo;
         this.multaValorDia = multaValorDia;
-        this.librosFisicosDisponibles = librosFisicosDisponibles;
-        this.librosFisicosAgotados = librosFisicosAgotados;
     }
 
     public LibroVirtual(String isbn, String titulo, Integer cantidadCopias, String autor, ImageView imagenLibro, Integer duracionPrestamo, Integer multaValorDia, List<LibroFisico> librosFisicosDisponibles, List<LibroFisico> librosFisicosAgotados) {
@@ -124,5 +125,25 @@ public class LibroVirtual {
 
     public void setLibrosFisicosAgotados(List<LibroFisico> librosFisicosAgotados) {
         this.librosFisicosAgotados = librosFisicosAgotados;
+    }
+
+    public List<LibroFisico> getLibrosFisicosReservados() {
+        return librosFisicosReservados;
+    }
+
+    public void setLibrosFisicosReservados(List<LibroFisico> librosFisicosReservados) {
+        this.librosFisicosReservados = librosFisicosReservados;
+    }
+
+    public List<LibroFisico> getLibrosFisicosTotales() {
+        return librosFisicosTotales;
+    }
+
+    public void setLibrosFisicosTotales() {
+        List<LibroFisico> nuevaLista = new ArrayList<>();
+        nuevaLista.addAll(librosFisicosAgotados);
+        nuevaLista.addAll(librosFisicosDisponibles);
+        nuevaLista.addAll(librosFisicosReservados);
+        this.librosFisicosTotales = nuevaLista;
     }
 }

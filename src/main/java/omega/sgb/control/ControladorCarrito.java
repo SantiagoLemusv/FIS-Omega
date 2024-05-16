@@ -1,5 +1,7 @@
 package omega.sgb.control;
 
+import omega.sgb.SingletonControladores;
+
 import omega.sgb.dominio.LibroFisico;
 
 import java.sql.*;
@@ -7,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ControladorCarrito {
-    private Connection connection;
-    public ControladorCarrito(Connection conexionGeneral) throws SQLException {
+    private final Connection connection;
+    public ControladorCarrito(Connection conexionGeneral){
         this.connection = conexionGeneral;
     }
     private List<LibroFisico> librosFisicosTotal = new ArrayList<LibroFisico>();
@@ -66,6 +68,17 @@ public class ControladorCarrito {
         }
         return null; // Return null if no image found
     }
+
+    public boolean agregarLibro(LibroFisico libroSeleccionado){
+        List<LibroFisico> carrito= SingletonControladores.getUsuarioActual().getCarrito();
+        if(!carrito.contains(libroSeleccionado)){
+            carrito.add(libroSeleccionado);
+            return true;
+        }else
+        return false;
+    }
+
+
 
 }
 

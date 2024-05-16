@@ -1,5 +1,7 @@
 package omega.sgb.gui;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +14,7 @@ import omega.sgb.SingletonPantallas;
 import omega.sgb.control.ControladorLogIn;
 import omega.sgb.control.ControladorPrestamo;
 import omega.sgb.dominio.LibroFisico;
+import omega.sgb.dominio.Multa;
 import omega.sgb.dominio.PersonaLector;
 
 import java.io.IOException;
@@ -23,11 +26,7 @@ import java.util.ResourceBundle;
 
 public class ValidarLectorGUI implements Initializable {
     private ControladorPrestamo controladorPrestamo = SingletonControladores.getInstanceControladorPrestamo();
-    private PersonaLector lectorActual = new PersonaLector();
     public ValidarLectorGUI() throws SQLException {}
-    public ValidarLectorGUI(ControladorPrestamo controladorPrestamo) throws SQLException {
-        this.controladorPrestamo = controladorPrestamo;
-    }
 
     @FXML
     TextField txtCedulaLector;
@@ -44,37 +43,44 @@ public class ValidarLectorGUI implements Initializable {
     @FXML
     Button btnVolver;
     @FXML
+    Label lblMulta;
+    @FXML
+    ListView listViewConflictos;
+    @FXML
     ListView listViewLibros;
     @FXML
     Label lblNombreU;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lblNombreU.setText(SingletonControladores.getUsuarioActual().getNombre());
+        ObservableList<LibroFisico> obsCarrito = FXCollections.observableArrayList(SingletonControladores.getUsuarioActual().getCarrito());
+        listViewLibros.setItems(obsCarrito);
     }
     public void mConsultarLector(ActionEvent event) throws SQLException {
         String cedulaLector = txtCedulaLector.getText();
         Integer numCedula = Integer.parseInt(cedulaLector);
-        lectorActual.setCedula(numCedula);
-        if(controladorPrestamo.consultarLector(lectorActual)){
+        lblMulta.setVisible(false);
+        listViewConflictos.setVisible(false);
+        controladorPrestamo.setLectorActual(numCedula);
+        if(controladorPrestamo.consultarLector()){
+            ObservableList<String> obsMultas = FXCollections.observableArrayList(controladorPrestamo.getControladorEstadoUsuario().listaStringMulta(controladorPrestamo.getLectorActual().getPrestamos()));
             lblEstadoLector.setText("El lector tiene conflictos");
+            lblMulta.setVisible(true);
+            listViewConflictos.setVisible(true);
+            listViewConflictos.setItems(obsMultas);
+
         }else{
             lblEstadoLector.setText("Estado lector correcto");
-            lectorActual.setId(controladorPrestamo.getIdLectorActual(numCedula));
         }
     }
     public void mConfirmarPrestamo(ActionEvent event) throws SQLException {
         if(lblEstadoLector.getText() == "Estado lector correcto"){
-            LibroFisico libroPrueba = controladorPrestamo.agregarLibroCarrito();//cambiar, esto es quemado
-            List<LibroFisico> listaPrueba = new ArrayList<LibroFisico>();
-            listaPrueba.add(libroPrueba);
-            controladorPrestamo.confirmarPrestamo(listaPrueba, lectorActual);
+            List<LibroFisico> listalibros = SingletonControladores.getUsuarioActual().getCarrito();
+            controladorPrestamo.confirmarPrestamo(listalibros);
+            listalibros.clear();
 
         }
     }
-    public void mVolverCarrito(ActionEvent event) throws IOException {
-        SingletonPantallas.toCarritoViewSingleton(event);
-    }
-
     public void mBtnMiPerfil(ActionEvent event) throws IOException {
         SingletonPantallas.toEstadoBibliotecarioViewSingleton(event);
     }

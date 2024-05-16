@@ -5,22 +5,37 @@ import omega.sgb.dominio.LibroFisico;
 import omega.sgb.dominio.LibroVirtual;
 import omega.sgb.dominio.PersonaLector;
 import omega.sgb.dominio.Prestamo;
-import omega.sgb.integracion.FechaActual;
+import omega.sgb.integracion.ProcesarFecha;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 //No debe tener dependencias a las pantallas
 public class ControladorPrestamo {
-
+    private PersonaLector lectorActual = new PersonaLector();
+    private ProcesarFecha procesarFecha;
     private Connection connection;
-    public ControladorPrestamo(Connection conexionGeneral) throws SQLException {
+    private ControladorActualizarApp controladorActualizarApp = SingletonControladores.getInstanceControladorActualizarApp();
+
+    private ControladorEstadoUsuario controladorEstadoUsuario = SingletonControladores.getInstanceControladorEstadoUsuario();
+
+    public ControladorPrestamo(Connection conexionGeneral, ProcesarFecha procesarFecha) throws SQLException {
         this.connection = conexionGeneral;
+        this.procesarFecha = procesarFecha;
     }
 
-    public Integer getIdLectorActual(Integer lectorActualCedula) throws SQLException {
+    public PersonaLector getLectorActual() {
+        return lectorActual;
+    }
+
+    public ControladorEstadoUsuario getControladorEstadoUsuario() {
+        return controladorEstadoUsuario;
+    }
+
+    public void setLectorActual(Integer lectorActualCedula) throws SQLException {
         String sql =
-                "SELECT ID "+
+                "SELECT * "+
                         "FROM PERSONA "+
                         "WHERE CEDULA = ?";
 
@@ -31,35 +46,36 @@ public class ControladorPrestamo {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    System.out.println("funciono consulta");
-                    return resultSet.getInt(1);
+                    lectorActual.setId(resultSet.getInt("ID"));
+                    lectorActual.setCedula(lectorActualCedula);
+                    controladorEstadoUsuario.traerPrestamos(lectorActual);
+
                 }
             }
         }
         System.out.println("no funciono consulta");
-        return -1;
     }
-    public Boolean consultarLector(PersonaLector lectorActual) throws SQLException {
+    public boolean consultarLector() throws SQLException {
         System.out.println("ENTRA CONSULTAR");
-            String sql =
-                    "SELECT PR.ESTADOPRESTAMOID "+
-                    "FROM PRESTAMO PR "+
-                    "INNER JOIN PERSONA PE ON PE.ID = PR.PERSONAID "+
-                    "WHERE PE.CEDULA = ? AND PR.ESTADOPRESTAMOID = 2";
+        String sql =
+                "SELECT PR.ESTADOPRESTAMOID "+
+                        "FROM PRESTAMO PR "+
+                        "INNER JOIN PERSONA PE ON PE.ID = PR.PERSONAID "+
+                        "WHERE PE.CEDULA = ? AND PR.ESTADOPRESTAMOID = 2";
 
-            System.out.println("ejecutó query prestamo");
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                System.out.println("cedula"+lectorActual.getCedula());
-                preparedStatement.setInt(1, lectorActual.getCedula());
+        System.out.println("ejecutó query prestamo");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            System.out.println("cedula"+lectorActual.getCedula());
+            preparedStatement.setInt(1, lectorActual.getCedula());
 
-                try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                    if (resultSet.next()) {
-                        System.out.println("funciono consulta");
-                        return true;
-                    }
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    System.out.println("Lector tiene conflictos");
+                    return true;
                 }
             }
-        System.out.println("no funciono consulta");
+        }
+        System.out.println("Lector no tiene problemas");
         return false;
     }
 
@@ -83,18 +99,19 @@ public class ControladorPrestamo {
         SingletonControladores.getUsuarioActual().getCarrito().add(libroTemp1);
         return libroTemp1;
     }
-    public void confirmarPrestamo(List<LibroFisico> carritoLibros, PersonaLector lectorActual) throws SQLException {
+    public void confirmarPrestamo(List<LibroFisico> carritoLibros) throws SQLException {
         for(LibroFisico libroAct : carritoLibros){
             Prestamo prestamoAux = crearPrestamo(libroAct, lectorActual);
-            //SingletonControladores.getUsuarioActual().getPrestamos().add(prestamoAux);
-            actualizarPrestamoBD(prestamoAux, lectorActual.getId());
+            lectorActual.getPrestamos().add(prestamoAux);
+            controladorActualizarApp.cambiarEstadoLibro(libroAct.getId(),2);
+            actualizarPrestamoBD(prestamoAux);
         }
 
     }
     public Prestamo crearPrestamo(LibroFisico libroFisico, PersonaLector lectorActual){
         Prestamo prestamoAux = new Prestamo();
-        prestamoAux.setFechaPrestamo(FechaActual.getFecha());
-        prestamoAux.setFechaDevolucion(FechaActual.sumarDiasFecha(FechaActual.getFecha(), libroFisico.getLibroVirtual().getDuracionPrestamo()));
+        prestamoAux.setFechaPrestamo(procesarFecha.getFechaActual());
+        prestamoAux.setFechaDevolucion(procesarFecha.sumarDiasAFecha(procesarFecha.getFechaActual(), libroFisico.getLibroVirtual().getDuracionPrestamo()));
         prestamoAux.setPersona(lectorActual);
         prestamoAux.setEstadoPrestamoId(1);
         prestamoAux.setLibro(libroFisico);
@@ -103,7 +120,7 @@ public class ControladorPrestamo {
     }
 
 
-    public void actualizarPrestamoBD(Prestamo prestamoAct, Integer lectorActualId) throws SQLException {
+    public void actualizarPrestamoBD(Prestamo prestamoAct) throws SQLException {
         // Remove the line creating a new connection
         // Connection connection = null;
         System.out.println("Prestamo:");
@@ -121,22 +138,17 @@ public class ControladorPrestamo {
                 "ESTADOPRESTAMOID, MULTAID) " +
                 "VALUES (?, ?, ?, ?, ?, NULL)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(updateEstadoPrestamoSql)) {
-            preparedStatement.setString(1, prestamoAct.getFechaPrestamo());
-            preparedStatement.setString(2, prestamoAct.getFechaDevolucion());
-            preparedStatement.setInt(3, lectorActualId);
+            preparedStatement.setDate(1, procesarFecha.fechaJavaToFechaSql(prestamoAct.getFechaPrestamo()));
+            preparedStatement.setDate(2, procesarFecha.fechaJavaToFechaSql(prestamoAct.getFechaDevolucion()));
+            preparedStatement.setInt(3, lectorActual.getId());
             preparedStatement.setInt(4, prestamoAct.getLibro().getId());
             preparedStatement.setInt(5, prestamoAct.getEstadoPrestamoId()); //1 activo, 2 vencido, 3 devuelto
             preparedStatement.executeUpdate();
         }
 
-        // (Opcional) Actualizar tablas adicionales según su lógica - modifique la consulta y los parámetros en consecuencia
-        // String updateAnotherTableSql = "...";
-        // ... (prepare y ejecute la actualización para otra tabla)
-
         connection.commit(); // Confirma los cambios si todas las actualizaciones son exitosas
         System.out.println("Préstamo actualizado exitosamente");
 
-        // No need for a finally block to close the connection as it's managed externally
     }
 
 }

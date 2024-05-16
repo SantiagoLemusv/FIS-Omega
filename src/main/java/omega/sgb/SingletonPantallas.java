@@ -10,7 +10,6 @@ import omega.sgb.gui.*;
 
 import java.io.IOException;
 
-import java.sql.SQLException;
 import java.util.Objects;
 
 public class SingletonPantallas {
@@ -23,7 +22,7 @@ public class SingletonPantallas {
     private static EstadoLectorGUI estadoLectorGUI;
     private static LogInGUI logInGUI;
     private static PagoGUI pagoGUI;
-    private static ResultadoLibroBibliotecarioGUI resultadoLibroBibliotecarioGUI;
+    private static LibroSeleccionadoBibliotecarioGUI libroSeleccionadoBibliotecarioGUI;
     private static ResultadosBibliotecarioGUI resultadosBibliotecarioGUI;
     private static ResultadosLectorGUI resultadosLectorGUI;
     private static ValidarLectorGUI validarLectorGUI;
@@ -110,8 +109,8 @@ public class SingletonPantallas {
         window.show();
     }
 
-    public static void toResultadoLibroBibliotecarioViewSingleton(ActionEvent event) throws IOException {
-        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/resultadoLibroBibliotecarioView.fxml")));
+    public static void toLibroSeleccionadoBibliotecarioViewSingleton(ActionEvent event) throws IOException {
+        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/libroSeleccionadoBibliotecarioView.fxml")));
         Scene InicioScene = new Scene(InicioParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.centerOnScreen();
@@ -119,8 +118,8 @@ public class SingletonPantallas {
         window.show();
     }
 
-    public static void toResultadoLibroLectorViewSingleton(ActionEvent event) throws IOException {
-        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/resultadoLibroLectorView.fxml")));
+    public static void toLibroSeleccionadoLectorViewSingleton(ActionEvent event) throws IOException {
+        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/libroSeleccionadoLectorView.fxml")));
         Scene InicioScene = new Scene(InicioParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.centerOnScreen();

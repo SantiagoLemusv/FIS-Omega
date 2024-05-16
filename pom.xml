@@ -15,6 +15,14 @@
 
   <dependencies>
 
+    <!-- https://mvnrepository.com/artifact/com.bea.wlplatform/commonj-twm -->
+    <dependency>
+      <groupId>com.bea.wlplatform</groupId>
+      <artifactId>commonj-twm</artifactId>
+      <version>1.1</version>
+    </dependency>
+
+
     <dependency>
       <groupId>com.oracle.ojdbc</groupId>
       <artifactId>ojdbc8</artifactId>
@@ -61,6 +69,18 @@
   <build>
     <plugins>
 
+
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.19</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-surefire-provider</artifactId>
+            <version>1.0.0</version>
+          </dependency>
+        </dependencies>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>

@@ -4,17 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PersonaBibliotecario extends Persona{
-    private List<LibroFisico> carrito = new ArrayList<LibroFisico>();
+    private List<LibroFisico> carrito ;
 
     public PersonaBibliotecario(){
         super();
         this.carrito = new ArrayList<>();
     }
 
-    public PersonaBibliotecario(Integer id, Integer cedula, String nombre, String contrasena, List<LibroFisico> carrito) {
-        super(id, cedula, nombre, contrasena);
-        this.carrito = carrito;
+    @Override
+    public List<Multa> getMultas() {
+        return null;
     }
+
 
     // Getters y setters para el atributo 'carrito'
     @Override

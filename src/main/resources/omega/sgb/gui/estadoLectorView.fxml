@@ -98,7 +98,7 @@
          <children>
             <HBox prefHeight="646.0" prefWidth="964.0" VBox.vgrow="SOMETIMES">
                <children>
-                  <VBox prefHeight="610.0" prefWidth="278.0">
+                  <VBox prefHeight="610.0" prefWidth="278.0" spacing="20.0">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
@@ -149,6 +149,65 @@
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </padding>
                         </VBox>
+                        <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="307.0" prefWidth="278.0" spacing="10.0" style="-fx-background-radius: 20; -fx-background-color: white;">
+                           <children>
+                              <Label fx:id="lblLibroSeleccionado" text="Libro seleccionado" />
+                              <ImageView fx:id="imageViewLibroReservado" fitHeight="181.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@gui/imagenLibro.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Separator prefWidth="200.0" />
+                              <HBox alignment="BOTTOM_LEFT" prefHeight="6.0" prefWidth="238.0" spacing="5.0">
+                                 <children>
+                                    <Label fx:id="lblTitulo" alignment="TOP_LEFT" prefHeight="6.0" prefWidth="61.0" text="Titulo:" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblTituloLibro" alignment="BOTTOM_LEFT" contentDisplay="CENTER" prefHeight="0.0" prefWidth="174.0" text="Titulo Libro" visible="false">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="BOTTOM_LEFT" prefHeight="6.0" prefWidth="238.0" spacing="5.0">
+                                 <children>
+                                    <Label fx:id="lblAutor" alignment="TOP_LEFT" prefHeight="6.0" prefWidth="61.0" text="Autor:" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblAutorLibro" alignment="BOTTOM_LEFT" contentDisplay="CENTER" prefHeight="0.0" prefWidth="174.0" text="Autor Libro" visible="false">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="BOTTOM_LEFT" prefHeight="6.0" prefWidth="238.0" spacing="5.0">
+                                 <children>
+                                    <Label fx:id="lblEstado" alignment="TOP_LEFT" prefHeight="27.0" prefWidth="67.0" text="Estado:" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblEstadoLibro" alignment="BOTTOM_LEFT" contentDisplay="CENTER" prefHeight="0.0" prefWidth="174.0" text="Reservado" visible="false">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+                           </padding>
+                        </VBox>
                      </children>
                   </VBox>
                   <VBox prefHeight="610.0" prefWidth="320.0" HBox.hgrow="ALWAYS">
@@ -164,7 +223,7 @@
                                  </font>
                               </Label>
                               <Separator prefWidth="200.0" />
-                              <ListView fx:id="ListPrestamos" prefHeight="607.0" prefWidth="320.0" style="-fx-background-radius: 20; -fx-background-color: rgba(255, 255, 255, 0);" VBox.vgrow="ALWAYS" />
+                              <ListView fx:id="listViewPrestamos" prefHeight="607.0" prefWidth="320.0" style="-fx-background-radius: 20; -fx-background-color: rgba(255, 255, 255, 0);" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                      </children>
@@ -173,19 +232,19 @@
                      <children>
                         <VBox prefHeight="614.0" prefWidth="315.0" style="-fx-background-color: white; -fx-background-radius: 20;" VBox.vgrow="SOMETIMES">
                            <children>
-                              <Label alignment="CENTER" prefHeight="18.0" prefWidth="498.0" text="Multas">
+                              <Label fx:id="txtMultas" alignment="CENTER" prefHeight="18.0" prefWidth="498.0" text="Multas">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </Label>
                               <Separator prefWidth="200.0" />
-                              <ListView fx:id="ListMultas" prefHeight="531.0" prefWidth="269.0" style="-fx-background-radius: 20; -fx-background-color: rgba(255, 255, 255, 0);" VBox.vgrow="SOMETIMES">
+                              <ListView fx:id="listViewMultas" prefHeight="531.0" prefWidth="269.0" style="-fx-background-radius: 20; -fx-background-color: rgba(255, 255, 255, 0);" VBox.vgrow="SOMETIMES">
                                  <cursor>
                                     <Cursor fx:constant="DEFAULT" />
                                  </cursor></ListView>
                               <HBox alignment="CENTER" prefHeight="50.0" prefWidth="315.0" style="-fx-background-radius: 20;">
                                  <children>
-                                    <Button fx:id="btnIrPago" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#mBtnIrPago" prefHeight="26.0" prefWidth="146.0" style="-fx-background-color: #7ec8e3;" text="Ir a pago" textFill="WHITE">
+                                    <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#mBtnIrPago" prefHeight="26.0" prefWidth="146.0" style="-fx-background-color: #7ec8e3;" text="Ir a pago" textFill="WHITE">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>

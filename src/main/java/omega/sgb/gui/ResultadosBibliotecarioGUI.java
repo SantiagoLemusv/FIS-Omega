@@ -28,7 +28,9 @@ public class ResultadosBibliotecarioGUI implements Initializable {
     @FXML
     TableColumn<LibroVirtual, String> colAutor;
     @FXML
-    TableColumn<LibroVirtual, Integer> colCopias;
+    TableColumn<LibroVirtual, Integer> colCopiasDisponibles;
+    @FXML
+    TableColumn<LibroVirtual, Integer> colCopiasTotales;
     @FXML
     TextField txtFieldTitulo;
     @FXML
@@ -39,6 +41,10 @@ public class ResultadosBibliotecarioGUI implements Initializable {
     Label lblNombreU;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if(controladorBusquedaLibro.getTituloLibroBusquedaGrande() != null){
+            txtFieldTitulo.setText(controladorBusquedaLibro.getTituloLibroBusquedaGrande());
+            mBtnLupa();
+        }
         lblNombreU.setText(SingletonControladores.getUsuarioActual().getNombre());
     }
     private ControladorBusquedaLibro controladorBusquedaLibro = SingletonControladores.getInstanceControladorBusquedaLibro();
@@ -63,23 +69,21 @@ public class ResultadosBibliotecarioGUI implements Initializable {
     public void mBtnVerDetalles(ActionEvent event) throws IOException {
         lblLibroDisponible.setVisible(false);
         LibroVirtual libroSeleccionado = tableViewResultadosLibros.getSelectionModel().getSelectedItem();
-        if(libroSeleccionado.getLibrosFisicosDisponibles().isEmpty()){
-            lblLibroDisponible.setVisible(true);
-        }else{
-            controladorBusquedaLibro.setLibroSeleccionado(libroSeleccionado);
-            SingletonPantallas.toResultadoLibroBibliotecarioViewSingleton(event);
-        }
+        controladorBusquedaLibro.setLibroVirtualSeleccionado(libroSeleccionado);
+        SingletonPantallas.toLibroSeleccionadoBibliotecarioViewSingleton(event);
     }
 
     public void mBtnLupa(){
         tableViewResultadosLibros.getItems().clear();
-        controladorBusquedaLibro.buscarLibrosFisicos(txtFieldTitulo.getText());
+        controladorBusquedaLibro.buscarLibrosVirtuales(txtFieldTitulo.getText());
         observableLibrosVirtuales.addAll(controladorBusquedaLibro.getListaLibrosVirtuales());
         colPortada.setCellValueFactory(new PropertyValueFactory<>("imagenLibro"));
         colTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         colAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));
-        colCopias.setCellValueFactory(cellData ->
+        colCopiasDisponibles.setCellValueFactory(cellData ->
                 new SimpleIntegerProperty(cellData.getValue().getLibrosFisicosDisponibles().size()).asObject());
+        colCopiasTotales.setCellValueFactory(cellData ->
+                new SimpleIntegerProperty(cellData.getValue().getLibrosFisicosTotales().size()).asObject());
         tableViewResultadosLibros.setItems(observableLibrosVirtuales);
     }
 }

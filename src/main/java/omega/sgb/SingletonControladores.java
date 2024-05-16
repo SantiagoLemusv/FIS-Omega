@@ -5,6 +5,7 @@ import omega.sgb.dominio.Persona;
 import omega.sgb.dominio.PersonaBibliotecario;
 import omega.sgb.dominio.PersonaLector;
 import omega.sgb.integracion.ConversorImagen;
+import omega.sgb.integracion.ProcesarFecha;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,7 +14,9 @@ public class SingletonControladores {
     private static SingletonControladores myself;
     private static Connection conexionGeneral = null;
     private static ConversorImagen conversorImagen = new ConversorImagen();
+    private static ProcesarFecha procesarFecha = new ProcesarFecha();
     private static Persona usuarioActual;
+    private static ControladorActualizarApp controladorActualizarApp;
     private static ControladorAgregarMetodoPago controladorAgregarMetodoPago;
     private static ControladorBusquedaLibro controladorBusquedaLibro;
     private static ControladorCarrito controladorCarrito;
@@ -43,9 +46,16 @@ public class SingletonControladores {
     }
 
     //Traer Controladores-------------------------------------------------------------------------
+    public static ControladorActualizarApp getInstanceControladorActualizarApp() throws SQLException {
+        if (controladorActualizarApp == null) {
+            controladorActualizarApp = new ControladorActualizarApp(conexionGeneral, procesarFecha);
+        }
+        return controladorActualizarApp;
+    }
+
     public static ControladorBusquedaLibro getInstanceControladorBusquedaLibro() throws SQLException {
         if (controladorBusquedaLibro == null) {
-            controladorBusquedaLibro = new ControladorBusquedaLibro(conexionGeneral, conversorImagen);
+            controladorBusquedaLibro = new ControladorBusquedaLibro(conexionGeneral, conversorImagen, procesarFecha);
         }
         return controladorBusquedaLibro;
     }
@@ -59,7 +69,7 @@ public class SingletonControladores {
 
     public static ControladorEstadoUsuario getInstanceControladorEstadoUsuario() throws SQLException {
         if (controladorEstadoUsuario == null) {
-            controladorEstadoUsuario = new ControladorEstadoUsuario(conexionGeneral);
+            controladorEstadoUsuario = new ControladorEstadoUsuario(conexionGeneral, procesarFecha, conversorImagen);
         }
         return controladorEstadoUsuario;
     }
@@ -80,7 +90,7 @@ public class SingletonControladores {
 
     public static ControladorPrestamo getInstanceControladorPrestamo() throws SQLException {
         if (controladorPrestamo == null) {
-            controladorPrestamo = new ControladorPrestamo(conexionGeneral);
+            controladorPrestamo = new ControladorPrestamo(conexionGeneral, procesarFecha);
         }
         return controladorPrestamo;
     }

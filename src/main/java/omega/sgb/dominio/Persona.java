@@ -60,10 +60,13 @@ public abstract class Persona {
         this.contrasena = contrasena;
     }
 
+    public abstract List<Multa> getMultas();
+
     // Getters y setters para el atributo 'carrito'
     public abstract List<LibroFisico> getCarrito();
 
     // Getters y setters para el atributo 'prestamos'
     public abstract List<Prestamo> getPrestamos();
+
 }
 

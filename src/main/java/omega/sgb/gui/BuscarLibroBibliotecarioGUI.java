@@ -45,6 +45,7 @@ public class BuscarLibroBibliotecarioGUI implements Initializable {
         SingletonPantallas.toLogInViewSingleton(event);
     }
     public void mBtnBuscarLibro(ActionEvent event) throws IOException{
+        controladorBusquedaLibro.setTituloLibroBusquedaGrande(txtFieldTitulo.getText());
         SingletonPantallas.toResultadosBibliotecarioViewSingleton(event);
     }
 }

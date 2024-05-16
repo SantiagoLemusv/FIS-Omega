@@ -42,18 +42,44 @@ class ControladorLogInTest {
         //assertFalse(controladorLogIn.validarCaracteresValidos(cedula));
     }
 
+    //Prueba UAT
     @Test
     void ValidarCredencialesExito() throws SQLException {
         String cedula = "1019983323";
         String contrasena = "lavidaesbella24";
         assertTrue(controladorLogIn.validarCredenciales(cedula,contrasena));
     }
-
+    //Prueba UAT
     @Test
     void ValidarCredencialesFallido() throws SQLException {
         String cedula = "1019983328";
         String contrasena = "lavidaesbella25";
         assertFalse(controladorLogIn.validarCredenciales(cedula,contrasena));
     }
+
+    @Test
+    void nuevoUsuarioCrearExitoso() throws SQLException {
+        String cedula = "123456789";
+        String contrasena = "contrasena123";
+        String contrasenaConfirmar = "contrasena123";
+        String nombreCompleto = "Juan Pérez";
+        boolean usuarioCreado = controladorLogIn.nuevoUsuarioCrear(cedula, contrasena, contrasenaConfirmar, nombreCompleto);
+
+        assertTrue(usuarioCreado);
+    }
+    @Test
+    void nuevoUsuarioCrearFallido() throws SQLException {
+        //La cuenta ya existe
+        String cedula = "1019982313";
+        String contrasena = "MarylinMonroe24";
+        String contrasenaConfirmar = "MarylinMonroe24";
+        String nombreCompleto = "Ana Cecilia de Armas Caso";
+        boolean usuarioCreado = controladorLogIn.nuevoUsuarioCrear(cedula, contrasena, contrasenaConfirmar, nombreCompleto);
+
+        // Verificar el resultado
+        assertFalse(usuarioCreado);
+    }
+
+
 
 }

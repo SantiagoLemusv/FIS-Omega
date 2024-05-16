@@ -1,7 +1,9 @@
 package omega.sgb.control;
+import omega.sgb.SingletonControladores;
 import omega.sgb.dominio.LibroFisico;
 import omega.sgb.dominio.LibroVirtual;
 import omega.sgb.integracion.ConversorImagen;
+import omega.sgb.integracion.ProcesarFecha;
 
 import java.io.IOException;
 import java.sql.Blob;
@@ -15,27 +17,57 @@ import java.util.List;
 public class ControladorBusquedaLibro {
     private Connection connection;
     private ConversorImagen conversorImagen;
+    private ProcesarFecha procesarFecha;
+    private String tituloLibroBusquedaGrande;
     List<LibroVirtual> listaLibrosVirtuales = new ArrayList<>();
-    LibroVirtual libroSeleccionado;
+    LibroVirtual libroVirtualSeleccionado = new LibroVirtual();
+    LibroFisico libroFisicoSeleccionado = new LibroFisico();
 
-    public ControladorBusquedaLibro(Connection conexionGeneral, ConversorImagen conversorImagen) {
+    public ControladorBusquedaLibro(Connection conexionGeneral, ConversorImagen conversorImagen, ProcesarFecha procesarFecha) {
         this.connection = conexionGeneral;
         this.conversorImagen = conversorImagen;
+        this.procesarFecha = procesarFecha;
+    }
+
+    public String getTituloLibroBusquedaGrande() {
+        return tituloLibroBusquedaGrande;
+    }
+
+    public void setTituloLibroBusquedaGrande(String tituloLibroBusquedaGrande) {
+        this.tituloLibroBusquedaGrande = tituloLibroBusquedaGrande;
     }
 
     public List<LibroVirtual> getListaLibrosVirtuales() {
-        return listaLibrosVirtuales;
+        return this.listaLibrosVirtuales;
     }
 
-    public LibroVirtual getLibroSeleccionado() {
-        return libroSeleccionado;
+    public LibroVirtual getLibroVirtualSeleccionado() {
+        return libroVirtualSeleccionado;
     }
 
-    public void setLibroSeleccionado(LibroVirtual libroSeleccionado) {
-        this.libroSeleccionado = libroSeleccionado;
+    public void setLibroVirtualSeleccionado(LibroVirtual libroSeleccionado) {
+        this.libroVirtualSeleccionado = libroSeleccionado;
     }
 
-    public void buscarLibrosFisicos(String tituloLibro) {
+    public LibroFisico getLibroFisicoSeleccionado() {
+        return libroFisicoSeleccionado;
+    }
+
+    public void setLibroFisicoSeleccionado(String clasificacion) {
+        LibroFisico libroNuevo = new LibroFisico();
+        for(LibroFisico libroFisico : libroVirtualSeleccionado.getLibrosFisicosTotales()){
+            if(libroFisico.getNumeroClasificacion().equals(clasificacion)){
+                libroNuevo = libroFisico;
+            }
+        }
+        this.libroFisicoSeleccionado = libroNuevo;
+    }
+
+    public void setLibroFisicoSeleccionado(LibroFisico libroFisico){
+        this.libroFisicoSeleccionado = libroFisico;
+    }
+
+    public void buscarLibrosVirtuales(String tituloLibro) {
         try {
             // Prepare the SQL with a placeholder for the title search term
             String sql = "SELECT * FROM LIBROVIRTUAL WHERE LOWER(TITULO) LIKE LOWER(?)";
@@ -62,27 +94,22 @@ public class ControladorBusquedaLibro {
                 // Get the image from the blob (assuming conversion logic remains the same)
                 Blob imagenBlob = resultSet.getBlob("IMAGENLIBRO");
                 libroAux.setImagenLibro(conversorImagen.blobToImageView(imagenBlob));
-                libroAux.setLibrosFisicosDisponibles(traerLibrosFisicos(libroAux, 1));
-                libroAux.setLibrosFisicosAgotados(traerLibrosFisicos(libroAux, 2));
+                libroAux.setLibrosFisicosDisponibles(traerLibrosVirtuales(libroAux, 1));
+                libroAux.setLibrosFisicosAgotados(traerLibrosVirtuales(libroAux, 2));
+                libroAux.setLibrosFisicosReservados(traerLibrosVirtuales(libroAux, 3));
+                libroAux.setLibrosFisicosTotales();
                 listaLibrosVirtuales.add(libroAux);
             }
 
             // Close resources
             resultSet.close();
             statement.close();
-
-            System.out.println("Búsqueda libros virtuales finalizada.");
-            if (listaLibrosVirtuales.isEmpty()) {
-                System.out.println("Ningún libro encontrado con el título especificado.");
-            } else {
-                System.out.println(listaLibrosVirtuales.size() + " libros encontrados.");
-            }
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
     }
 
-    public List<LibroFisico> traerLibrosFisicos(LibroVirtual libroVirtual, Integer disponibilidad) {
+    public List<LibroFisico> traerLibrosVirtuales(LibroVirtual libroVirtual, Integer disponibilidad) {
         List<LibroFisico> listaLibrosFisicos = new ArrayList<>();
         try {
             // Prepare the SQL with a placeholder for the title search term
@@ -111,13 +138,6 @@ public class ControladorBusquedaLibro {
             // Close resources
             resultSet.close();
             statement.close();
-
-            System.out.println("Búsqueda libros fisicos finalizada.");
-            if (listaLibrosFisicos.isEmpty()) {
-                System.out.println("Ningún libro fisico encontrado con el título especificado.");
-            } else {
-                System.out.println(listaLibrosVirtuales.size() + " libros fisicos encontrados.");
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -145,9 +165,177 @@ public class ControladorBusquedaLibro {
         List<String> listaClasificacion = getNumClasificacionLibrosFisicos(librosFisicos);
         List<String> listaCombinada = new ArrayList<>();
         for (int i = 0; i < listaPisos.size() && i < listaClasificacion.size(); i++) {
-            String combinado = listaPisos.get(i) + " , " + listaClasificacion.get(i);
+            String combinado = listaPisos.get(i) + "," + listaClasificacion.get(i);
             listaCombinada.add(combinado);
         }
         return listaCombinada;
+    }
+
+    //Proceso reservar libro---------------------------------------------------------
+    public LibroFisico traerLibroReservado(){
+        try {
+            // Prepare the SQL with a placeholder for the title search term
+            String sql = "SELECT LIBROFISICOID FROM LIBROSRESERVADOS WHERE PERSONAID = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            statement.setInt(1, SingletonControladores.getUsuarioActual().getId());
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                LibroFisico libroReservado = new LibroFisico();
+                libroReservado = traerLibroFisico(resultSet.getInt("LIBROFISICOID"));
+                return libroReservado;
+            }
+
+            // Close resources
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public LibroFisico traerLibroFisico (Integer idLibroFisico){
+        try {
+            // Prepare the SQL with a placeholder for the title search term
+            String sql = "SELECT * FROM LIBROFISICO WHERE ID = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            statement.setInt(1, idLibroFisico);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                LibroFisico libroFisico = new LibroFisico();
+                libroFisico.setId(resultSet.getInt("ID"));
+                libroFisico.setUbicacion(resultSet.getString("UBICACION"));
+                libroFisico.setNumeroClasificacion(resultSet.getString("NUMEROCLASIFICACION"));
+                libroFisico.setLibroVirtual(traerLibroVirtual(resultSet.getInt("LIBROVIRTUALID")));
+                libroFisico.setEstadoLibroFisicoId(resultSet.getInt("ESTADOLIBROFISICOID"));
+                return libroFisico;
+            }
+
+            // Close resources
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public LibroVirtual traerLibroVirtual (Integer idLibroVirtual){
+        try {
+            // Prepare the SQL with a placeholder for the title search term
+            String sql = "SELECT * FROM LIBROVIRTUAL WHERE ID = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            statement.setInt(1, idLibroVirtual);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                LibroVirtual libroVirtual = new LibroVirtual();
+                libroVirtual.setId(resultSet.getInt("ID"));
+                libroVirtual.setIsbn(resultSet.getString("ISBN"));
+                libroVirtual.setTitulo(resultSet.getString("TITULO"));
+                libroVirtual.setCantidadCopias(resultSet.getInt("CANTIDAD"));
+                libroVirtual.setAutor(resultSet.getString("AUTOR"));
+                libroVirtual.setMultaValorDia(resultSet.getInt("MULTAVALORDIA"));
+                libroVirtual.setDuracionPrestamo(resultSet.getInt("DURACIONPRESTAMO"));
+
+                // Get the image from the blob (assuming conversion logic remains the same)
+                Blob imagenBlob = resultSet.getBlob("IMAGENLIBRO");
+                libroVirtual.setImagenLibro(conversorImagen.blobToImageView(imagenBlob));
+
+                return libroVirtual;
+            }
+
+            // Close resources
+            resultSet.close();
+            statement.close();
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void reservarLibro(LibroFisico libroParaReservar) throws SQLException {
+        if (getLibroFisicoSeleccionado() == null) {
+            System.out.println("libro para reservar es null");
+            return;
+        }
+
+        connection.setAutoCommit(false); // Deshabilitar confirmación automática
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "INSERT INTO LIBROSRESERVADOS (PERSONAID, LIBROFISICOID, FECHARESERVA) VALUES (?, ?, ?)")) {
+            preparedStatement.setInt(1, SingletonControladores.getUsuarioActual().getId());
+            preparedStatement.setInt(2, libroParaReservar.getId());
+            preparedStatement.setDate(3, procesarFecha.fechaJavaToFechaSql(procesarFecha.getFechaActual()));
+            preparedStatement.executeUpdate(); // Ejecutar la sentencia preparada
+        } catch (SQLException e) {
+            throw e; // Volver a lanzar la excepción para su manejo
+        } finally {
+            connection.commit(); // Confirmar la transacción si es exitosa
+            System.out.println("Reserva realizada exitosamente");
+            cambiarEstadoLibro(libroParaReservar, 3);
+        }
+    }
+
+    public void cambiarEstadoLibro(LibroFisico libroFisico, Integer estadoId) throws SQLException {
+        if (libroFisico == null) {
+            throw new IllegalArgumentException("LibroFisico no puede ser null");
+        }
+        System.out.println("entra a cambiar estado con "+estadoId);
+        connection.setAutoCommit(false); // Deshabilitar confirmación automática
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "UPDATE LIBROFISICO SET ESTADOLIBROFISICOID = ? WHERE ID = ?")) {
+            preparedStatement.setInt(1, estadoId);
+            preparedStatement.setInt(2, libroFisico.getId());
+            int updatedRows = preparedStatement.executeUpdate();
+
+            if (updatedRows != 1) {
+                System.out.println("¡Error! No se actualizó ningún libro físico.");
+            } else {
+                System.out.println("Estado del libro físico actualizado exitosamente.");
+            }
+        } catch (SQLException e) {
+            throw e; // Re-throw the exception for handling
+        } finally {
+            connection.commit(); // Commit the transaction if successful
+        }
+    }
+
+    public String validarSiPuedoReservar() throws SQLException {
+        String mensaje = "";
+
+        if (!SingletonControladores.getUsuarioActual().getMultas().isEmpty()) {
+            mensaje = "Usted tiene multas activas";
+        } else if (traerLibroReservado() != null) {
+            mensaje = "Usted ya tiene un libro reservado";
+        } else if(getLibroFisicoSeleccionado().getEstadoLibroFisicoId().equals(2)){
+            mensaje = "Este libro ya está prestado";
+        } else if(getLibroFisicoSeleccionado().getEstadoLibroFisicoId().equals(3)) {
+            mensaje = "Este libro ya está reservado";
+        }
+        if (mensaje.isEmpty()) {
+            reservarLibro(getLibroFisicoSeleccionado());
+            mensaje = "Reserva realizada exitosamente";
+        }
+
+        return mensaje;
+    }
+
+
+    public boolean agregarLibro() {
+        try {
+            return SingletonControladores.getInstanceControladorCarrito().agregarLibro(libroFisicoSeleccionado);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
