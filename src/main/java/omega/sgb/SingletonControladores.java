@@ -18,6 +18,7 @@ public class SingletonControladores {
     private static Persona usuarioActual;
     private static ControladorActualizarApp controladorActualizarApp;
     private static ControladorAgregarMetodoPago controladorAgregarMetodoPago;
+    private static ControladorActualizarApp controladorActualizarApp;
     private static ControladorBusquedaLibro controladorBusquedaLibro;
     private static ControladorCarrito controladorCarrito;
     private static ControladorEstadoUsuario controladorEstadoUsuario;
