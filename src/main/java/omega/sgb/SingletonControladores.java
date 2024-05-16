@@ -18,14 +18,12 @@ public class SingletonControladores {
     private static Persona usuarioActual;
     private static ControladorActualizarApp controladorActualizarApp;
     private static ControladorAgregarMetodoPago controladorAgregarMetodoPago;
-    private static ControladorActualizarApp controladorActualizarApp;
     private static ControladorBusquedaLibro controladorBusquedaLibro;
     private static ControladorCarrito controladorCarrito;
     private static ControladorEstadoUsuario controladorEstadoUsuario;
     private static ControladorLogIn controladorLogIn;
     private static ControladorPago controladorPago;
     private static ControladorPrestamo controladorPrestamo;
-    private static ProcesarFecha procesarFecha = new ProcesarFecha();
 
     public static void setConexionGeneral(Connection conexionGeneral) {
         SingletonControladores.conexionGeneral = conexionGeneral;

@@ -2,6 +2,7 @@ package omega.sgb.control;
 
 import omega.sgb.SingletonControladores;
 import omega.sgb.dominio.Tarjeta;
+import omega.sgb.integracion.ProcesarFecha;
 
 import java.sql.*;
 import java.text.ParseException;

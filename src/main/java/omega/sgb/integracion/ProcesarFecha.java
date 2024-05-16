@@ -96,7 +96,7 @@ public class ProcesarFecha {
         return diferenciaEnMs >= 0;
     }
 
-    public static Date fechaStringToFechaJava(String fechaString) throws ParseException {
+    public static Date fechaStringtoFechaJava(String fechaString) throws ParseException {
         // Definimos el formato de la fecha de entrada (mes y año)
         SimpleDateFormat formatoFecha = new SimpleDateFormat("MM/yyyy");
 
