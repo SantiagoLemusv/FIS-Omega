@@ -105,6 +105,24 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="108.0" mnemonicParsing="false" onAction="#mBtnCarrito" prefHeight="39.0" prefWidth="196.0" style="-fx-background-color: white;" text="Devolver" textFill="#7ec8e3">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@gui/Flecha azul.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
                   <Separator prefWidth="200.0" />
                </children>
             </VBox>
@@ -140,7 +158,7 @@
                               <Font name="System Bold" size="21.0" />
                            </font>
                            <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
+                              <Insets bottom="10.0" left="15.0" right="5.0" top="10.0" />
                            </HBox.margin>
                         </Label>
                         <TextField fx:id="txtFieldTituloLibro" prefHeight="34.0" prefWidth="264.0" promptText="Titulo">
