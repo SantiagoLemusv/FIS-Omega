@@ -48,5 +48,9 @@ public class BuscarLibroBibliotecarioGUI implements Initializable {
         controladorBusquedaLibro.setTituloLibroBusquedaGrande(txtFieldTitulo.getText());
         SingletonPantallas.toResultadosBibliotecarioViewSingleton(event);
     }
+
+    public void mBtnDevolverLibro(ActionEvent event) throws IOException{
+        SingletonPantallas.toDevolverLibroViewSingleton(event);
+    }
 }
 
