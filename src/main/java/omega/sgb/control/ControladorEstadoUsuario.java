@@ -202,5 +202,28 @@ public class ControladorEstadoUsuario {
         return null;
     }
 
+    public void renovarPrestamo(Prestamo prestamoAct) throws SQLException {
+        connection.setAutoCommit(false); // Deshabilitar confirmación automática
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "UPDATE PRESTAMO SET FECHAPRESTAMO = ?, FECHADEVOLUCION = ? WHERE ID = ?")) {
+            preparedStatement.setDate(1, procesarFecha.fechaJavaToFechaSql(procesarFecha.getFechaActual()));
+            preparedStatement.setDate(2, procesarFecha.fechaJavaToFechaSql(procesarFecha.sumarDiasAFecha(procesarFecha.getFechaActual(), prestamoAct.getLibro().getLibroVirtual().getDuracionPrestamo())));
+            preparedStatement.setInt(3, prestamoAct.getId());
+            int updatedRows = preparedStatement.executeUpdate();
+
+            if (updatedRows != 1) {
+                System.out.println("¡Error! No se actualizó ningún prestamo.");
+            } else {
+                System.out.println("Estado del prestamo actualizado exitosamente.");
+            }
+        } catch (SQLException e) {
+            throw e; // Re-throw the exception for handling
+        } finally {
+            connection.commit(); // Commit the transaction if successful
+        }
+
+    }
+
 
 }

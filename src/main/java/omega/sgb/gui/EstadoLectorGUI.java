@@ -19,6 +19,8 @@ import omega.sgb.dominio.Prestamo;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class EstadoLectorGUI implements Initializable {
@@ -80,7 +82,13 @@ public class EstadoLectorGUI implements Initializable {
         txtCedula.setText(String.valueOf(SingletonControladores.getUsuarioActual().getCedula()));
         txtTipoCuenta.setText("Lector");
         controladorEstadoUsuario.traerPrestamos(SingletonControladores.getUsuarioActual());
-        ObservableList<Prestamo> observablePrestamos = FXCollections.observableArrayList(SingletonControladores.getUsuarioActual().getPrestamos());
+        List<Prestamo> prestamosSinMulta = new ArrayList<>();
+        for(Prestamo p : SingletonControladores.getUsuarioActual().getPrestamos()){
+            if(p.getMulta() == null){
+                prestamosSinMulta.add(p);
+            }
+        }
+        ObservableList<Prestamo> observablePrestamos = FXCollections.observableArrayList(prestamosSinMulta);
 
         ObservableList<String> observableMultas = FXCollections.observableArrayList(
                 controladorEstadoUsuario.listaStringMulta(SingletonControladores.getUsuarioActual().getPrestamos()));
@@ -90,6 +98,9 @@ public class EstadoLectorGUI implements Initializable {
 
     }
 
+    public void mBtnRenovarPrestamo() throws SQLException {
+        controladorEstadoUsuario.renovarPrestamo(listViewPrestamos.getSelectionModel().getSelectedItem());
+    }
 
     public void mBtnMiPerfil(ActionEvent event) throws IOException, SQLException {
         SingletonPantallas.toEstadoLectorViewSingleton(event);
