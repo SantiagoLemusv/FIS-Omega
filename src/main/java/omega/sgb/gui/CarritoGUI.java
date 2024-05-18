@@ -95,5 +95,9 @@ public class CarritoGUI implements Initializable {
         SingletonControladores.getUsuarioActual().getCarrito().remove(libroFisicoSeleccionado);
         mBtnCarrito(event);
     }
+
+    public void mBtnDevolverLibro(ActionEvent event) throws IOException{
+        SingletonPantallas.toDevolverLibroViewSingleton(event);
+    }
 }
 

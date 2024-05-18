@@ -62,4 +62,8 @@ public class EstadoBibliotecarioGUI implements Initializable {
     public void mBtnCerrarSesion(ActionEvent event) throws IOException {
         SingletonPantallas.toLogInViewSingleton(event);
     }
+
+    public void mBtnDevolverLibro(ActionEvent event) throws IOException{
+        SingletonPantallas.toDevolverLibroViewSingleton(event);
+    }
 }
