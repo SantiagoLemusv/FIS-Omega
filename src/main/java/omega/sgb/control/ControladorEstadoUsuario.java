@@ -24,7 +24,7 @@ public class ControladorEstadoUsuario {
     public void traerPrestamos(Persona usuarioactual){
         try {
             // Prepare the SQL with a placeholder for the title search term
-            String sql = "SELECT * FROM PRESTAMO WHERE PERSONAID = ?";
+            String sql = "SELECT * FROM PRESTAMO WHERE PERSONAID = ? AND ESTADOPRESTAMOID != 3";
             PreparedStatement statement = connection.prepareStatement(sql);
 
             statement.setInt(1, usuarioactual.getId());
@@ -47,7 +47,6 @@ public class ControladorEstadoUsuario {
                 Integer idMulta = resultSet.getInt("MULTAID");
                 prestamoAux.setMulta(traerMulta(idMulta,usuarioactual));
                 usuarioactual.getPrestamos().add(prestamoAux);
-
             }
 
             // Close resources

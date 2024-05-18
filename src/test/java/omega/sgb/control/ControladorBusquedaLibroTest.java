@@ -49,7 +49,7 @@ class ControladorBusquedaLibroTest {
         // Check if the list contains at least one book
         assertFalse(librosVirtuales.isEmpty());
     }
-    //
+
     @Test
     void buscarLibrosTituloFallido() throws SQLException{
         String fragmentoTituloloLibroBuscado = "Confieso que ";

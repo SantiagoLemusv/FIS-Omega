@@ -14,6 +14,7 @@ import omega.sgb.SingletonPantallas;
 import omega.sgb.control.ControladorActualizarApp;
 import omega.sgb.control.ControladorEstadoUsuario;
 import omega.sgb.dominio.LibroFisico;
+import omega.sgb.dominio.Prestamo;
 
 import java.io.IOException;
 import java.net.URL;
@@ -34,7 +35,7 @@ public class EstadoLectorGUI implements Initializable {
     @FXML
     Label txtNombre;
     @FXML
-    ListView<String> listViewPrestamos;
+    ListView<Prestamo> listViewPrestamos;
     @FXML
     ListView<String> listViewMultas;
     @FXML
@@ -79,8 +80,7 @@ public class EstadoLectorGUI implements Initializable {
         txtCedula.setText(String.valueOf(SingletonControladores.getUsuarioActual().getCedula()));
         txtTipoCuenta.setText("Lector");
         controladorEstadoUsuario.traerPrestamos(SingletonControladores.getUsuarioActual());
-        ObservableList<String> observablePrestamos = FXCollections.observableArrayList(
-                controladorEstadoUsuario.listaStringPrestamos(SingletonControladores.getUsuarioActual().getPrestamos()));
+        ObservableList<Prestamo> observablePrestamos = FXCollections.observableArrayList(SingletonControladores.getUsuarioActual().getPrestamos());
 
         ObservableList<String> observableMultas = FXCollections.observableArrayList(
                 controladorEstadoUsuario.listaStringMulta(SingletonControladores.getUsuarioActual().getPrestamos()));

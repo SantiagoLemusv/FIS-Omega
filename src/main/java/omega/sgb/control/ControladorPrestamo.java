@@ -7,6 +7,7 @@ import omega.sgb.dominio.PersonaLector;
 import omega.sgb.dominio.Prestamo;
 import omega.sgb.integracion.ProcesarFecha;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ public class ControladorPrestamo {
     private ProcesarFecha procesarFecha;
     private Connection connection;
     private ControladorActualizarApp controladorActualizarApp = SingletonControladores.getInstanceControladorActualizarApp();
-
+    private ControladorBusquedaLibro controladorBusquedaLibro = SingletonControladores.getInstanceControladorBusquedaLibro();
     private ControladorEstadoUsuario controladorEstadoUsuario = SingletonControladores.getInstanceControladorEstadoUsuario();
 
     public ControladorPrestamo(Connection conexionGeneral, ProcesarFecha procesarFecha) throws SQLException {
@@ -151,4 +152,50 @@ public class ControladorPrestamo {
 
     }
 
+    //metodos devolver libro
+    public void actualizarEstadoPrestamo(Prestamo prestamoAct) throws SQLException {
+        connection.setAutoCommit(false); // Deshabilitar confirmación automática
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "UPDATE PRESTAMO SET ESTADOPRESTAMOID = ? WHERE ID = ?")) {
+            preparedStatement.setInt(1, 3);
+            preparedStatement.setInt(2, prestamoAct.getId());
+            int updatedRows = preparedStatement.executeUpdate();
+
+            if (updatedRows != 1) {
+                System.out.println("¡Error! No se actualizó ningún prestamo.");
+            } else {
+                System.out.println("Estado del prestamo actualizado exitosamente.");
+            }
+        } catch (SQLException e) {
+            throw e; // Re-throw the exception for handling
+        } finally {
+            connection.commit(); // Commit the transaction if successful
+        }
+
+        actualizarLibroDevuelto(prestamoAct);
+    }
+
+
+    public void actualizarLibroDevuelto(Prestamo prestamoAct){
+        try {
+            // Prepare the SQL with a placeholder for the title search term
+            String sql = "SELECT * FROM PRESTAMO WHERE ID = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            statement.setInt(1, prestamoAct.getId());
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                controladorBusquedaLibro.cambiarEstadoLibro(controladorBusquedaLibro.traerLibroFisico(resultSet.getInt("LIBROFISICOID")), 1);
+            }
+
+            // Close resources
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
