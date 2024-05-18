@@ -5,23 +5,22 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import omega.sgb.SingletonControladores;
+import omega.sgb.SingletonPantallas;
 import omega.sgb.control.ControladorActualizarApp;
 import omega.sgb.control.ControladorEstadoUsuario;
 import omega.sgb.control.ControladorPrestamo;
 import omega.sgb.dominio.Prestamo;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class DevolverLibroGUI implements Initializable {
-    private ControladorPrestamo controladorPrestamo;
-    private ControladorEstadoUsuario controladorEstadoUsuario;
+    private ControladorPrestamo controladorPrestamo = SingletonControladores.getInstanceControladorPrestamo();
+    private ControladorEstadoUsuario controladorEstadoUsuario = SingletonControladores.getInstanceControladorEstadoUsuario();
     public DevolverLibroGUI() throws SQLException {}
     public DevolverLibroGUI(ControladorPrestamo controladorPrestamo, ControladorEstadoUsuario controladorEstadoUsuario) throws SQLException {
         this.controladorPrestamo = controladorPrestamo;
@@ -61,7 +60,24 @@ public class DevolverLibroGUI implements Initializable {
         }
     }
 
-    public void mBtnDevolver(ActionEvent event){
+    public void mBtnDevolver() throws SQLException {
+        controladorPrestamo.actualizarEstadoPrestamo((Prestamo) listViewLibrosPrestados.getSelectionModel().getSelectedItem());
+    }
 
+    public void mBtnMiPerfil(ActionEvent event) throws IOException {
+        SingletonPantallas.toEstadoBibliotecarioViewSingleton(event);
+    }
+    public void mBtnBusqueda(ActionEvent event) throws IOException {
+        SingletonPantallas.toBuscarLibroBibliotecarioViewSingleton(event);
+    }
+    public void mBtnCarrito(ActionEvent event) throws IOException {
+        SingletonPantallas.toCarritoViewSingleton(event);
+    }
+    public void mBtnCerrarSesion(ActionEvent event) throws IOException {
+        SingletonPantallas.toLogInViewSingleton(event);
+    }
+
+    public void mBtnDevolverLibro(ActionEvent event) throws IOException{
+        SingletonPantallas.toDevolverLibroViewSingleton(event);
     }
 }
