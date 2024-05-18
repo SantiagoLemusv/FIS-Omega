@@ -54,7 +54,6 @@ public class ControladorPrestamo {
                 }
             }
         }
-        System.out.println("no funciono consulta");
     }
     public boolean consultarLector() throws SQLException {
         System.out.println("ENTRA CONSULTAR");

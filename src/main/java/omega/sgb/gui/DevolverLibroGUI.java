@@ -16,6 +16,8 @@ import omega.sgb.dominio.Prestamo;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class DevolverLibroGUI implements Initializable {
@@ -53,8 +55,16 @@ public class DevolverLibroGUI implements Initializable {
         }else{
             lblListaPrestamos.setText("Lista de prestamos");
             lblListaPrestamos.setVisible(true);
-            ObservableList<Prestamo> obsStringPrestamos = FXCollections.observableArrayList(
-                    controladorPrestamo.getLectorActual().getPrestamos());
+
+            List<Prestamo> prestamosSinMulta = new ArrayList<>();
+            for(Prestamo p : controladorPrestamo.getLectorActual().getPrestamos()){
+                if(p.getMulta() == null){
+                    prestamosSinMulta.add(p);
+                    System.out.println("prestamo sin multaaaaaaaa");
+                    System.out.println(p);
+                }
+            }
+            ObservableList<Prestamo> obsStringPrestamos = FXCollections.observableArrayList(prestamosSinMulta);
             listViewLibrosPrestados.setItems(obsStringPrestamos);
             listViewLibrosPrestados.setVisible(true);
         }
