@@ -13,6 +13,7 @@ import omega.sgb.SingletonControladores;
 import omega.sgb.control.ControladorActualizarApp;
 import omega.sgb.control.ControladorEstadoUsuario;
 import omega.sgb.control.ControladorPrestamo;
+import omega.sgb.dominio.Prestamo;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -53,8 +54,8 @@ public class DevolverLibroGUI implements Initializable {
         }else{
             lblListaPrestamos.setText("Lista de prestamos");
             lblListaPrestamos.setVisible(true);
-            ObservableList<String> obsStringPrestamos = FXCollections.observableArrayList(
-                    controladorEstadoUsuario.listaStringPrestamos(controladorPrestamo.getLectorActual().getPrestamos()));
+            ObservableList<Prestamo> obsStringPrestamos = FXCollections.observableArrayList(
+                    controladorPrestamo.getLectorActual().getPrestamos());
             listViewLibrosPrestados.setItems(obsStringPrestamos);
             listViewLibrosPrestados.setVisible(true);
         }

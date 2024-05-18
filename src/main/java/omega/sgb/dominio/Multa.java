@@ -70,4 +70,9 @@ public class Multa  {
         this.diasPasados = diasPasados;
     }
 
+    @Override
+    public String toString() {
+        return String.format(this.getDiasPasados() + " dias pasados");
+    }
+
 }

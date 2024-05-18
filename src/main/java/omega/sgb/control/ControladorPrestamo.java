@@ -154,6 +154,7 @@ public class ControladorPrestamo {
     //metodos devolver libro
     public void actualizarEstadoPrestamo(){
 
+        //controladorBusquedaLibro.cambiarEstadoLibro(libroDevuelto, 1);
     }
 
 }
