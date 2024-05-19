@@ -55,6 +55,7 @@ public class ControladorPrestamo {
             }
         }
     }
+
     public boolean consultarLector() throws SQLException {
         System.out.println("ENTRA CONSULTAR");
         String sql =
@@ -196,5 +197,9 @@ public class ControladorPrestamo {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void validarCedulaLector() {
+
     }
 }

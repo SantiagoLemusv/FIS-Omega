@@ -1,6 +1,7 @@
 package omega.sgb.control;
 
 import omega.sgb.SingletonControladores;
+import omega.sgb.dominio.PersonaLector;
 import omega.sgb.integracion.DataBaseConnectionManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,8 +31,28 @@ class ControladorPrestamoTest {
 
     }
 
+    //Valida un lector que no tiene conflictos
+    @Test
+    void consultarLectorExitoso(){
+
+
+    }
+
+    //Valida un lector que tiene conflictos
+    @Test
+    void consultarLectorFallido1(){
+
+    }
+
+    //Valida cuando la entrada de la cédula tiene carácteres inválidos
+    @Test
+    void consultarLectorFallido2(){
+        controladorPrestamo.validarCedulaLector();
+    }
+
     @Test
     void agregarLibroCarritoExitoso() {
+
 
     }
 

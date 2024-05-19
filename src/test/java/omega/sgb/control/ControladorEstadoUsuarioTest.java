@@ -98,16 +98,15 @@ class ControladorEstadoUsuarioTest {
     //Valida que un lector con un préstamo activo pueda renovar su préstamo
     @Test
     void renovarPrestamoExitoso(){
-        //Prestamo prestamoActual = new Prestamo(('2024-05-19'), '2024-05-24', 21, 19, 1, NULL);
+        //Prestamo prestamoActual = new Prestamo("2024-05-19", "2024-05-24", 21, 19, 1, null);
         //controladorEstadoUsuario.renovarPrestamo(prestamoActual);
-
-
 
     }
 
     //Valida que un lector con un préstamo vencido no pueda renovar su préstamo
     @Test
-    void renovarPrestamoFallido(){
+    void renovarPrestamoFallido() {
 
     }
+
 }
