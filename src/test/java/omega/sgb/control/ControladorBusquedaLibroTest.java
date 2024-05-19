@@ -36,7 +36,7 @@ class ControladorBusquedaLibroTest {
 
     }
 
-
+    //Retorna los libros coincidentes del fragmento del título ingresado
     @Test
     void buscarLibroTituloExitoso() throws SQLException, IOException {
 
@@ -47,9 +47,10 @@ class ControladorBusquedaLibroTest {
         librosVirtuales = controladorBusquedaLibro.getListaLibrosVirtuales();
 
         // Check if the list contains at least one book
-        assertFalse(librosVirtuales.isEmpty());
+        assertFalse(librosVirtuales.isEmpty(),"Se encontró coincidencias");
     }
 
+    //No retorna ningún libro al fragmento ingresado
     @Test
     void buscarLibrosTituloFallido() throws SQLException{
         String fragmentoTituloloLibroBuscado = "Confieso que ";
@@ -59,10 +60,24 @@ class ControladorBusquedaLibroTest {
         librosVirtuales = controladorBusquedaLibro.getListaLibrosVirtuales();
 
         // Check if the list contains at least one book
-        assertTrue(librosVirtuales.isEmpty());
+        assertTrue(librosVirtuales.isEmpty(),"No se encotró coincidencias");
     }
 
+    //Retorna todos los libros existentes al presionar buscar sin escribir un fragmento
+    @Test
+    void buscarLibroTituloExitoso2() throws SQLException, IOException {
 
+        String fragmentoTituloloLibroBuscado = " ";
+
+        controladorBusquedaLibro.buscarLibrosVirtuales(fragmentoTituloloLibroBuscado);
+        List<LibroVirtual> librosVirtuales = new ArrayList<>();
+        librosVirtuales = controladorBusquedaLibro.getListaLibrosVirtuales();
+
+        // Check if the list contains at least one book
+        assertFalse(librosVirtuales.isEmpty(),"Se encontró coincidencias");
+    }
+
+    //Validar una reserva con un usuario que no tiene conflictos
     @Test
     void reservarLibroFisicoExitoso() throws Exception {
         LibroVirtual libroVirtual = new LibroVirtual(4,"9780321572604","El Padrino",2,"Mario Puzo",15,2500);
@@ -75,12 +90,12 @@ class ControladorBusquedaLibroTest {
         SingletonControladores.getUsuarioActual().setContrasena("Fourier71");
         controladorBusquedaLibro.setLibroFisicoSeleccionado(libroFisico);
         String textoValidar = controladorBusquedaLibro.validarSiPuedoReservar();
-        assertEquals("Reserva realizada exitosamente",textoValidar);
+        assertEquals("Reserva realizada exitosamente",textoValidar,"Reserva exitosa");
     }
 
-
+    //Validar una reserva con un usuario que tiene conflictos
     @Test
-    void reservarLibroFisicoFallido() throws Exception {
+    void reservarLibroFisicoFallido1() throws Exception {
         LibroVirtual libroVirtual = new LibroVirtual(4,"9780321572604","El Padrino",2,"Mario Puzo",15,2500);
         LibroFisico libroFisico = new LibroFisico(5,"Piso 3","D234 Q57",libroVirtual, 1  );
 
@@ -91,16 +106,40 @@ class ControladorBusquedaLibroTest {
         SingletonControladores.getUsuarioActual().setContrasena("Marilynmonroe24");
         controladorBusquedaLibro.setLibroFisicoSeleccionado(libroFisico);
         String textoValidar = controladorBusquedaLibro.validarSiPuedoReservar();
-        assertNotEquals("Reserva realizada exitosamente",textoValidar);
+        assertNotEquals("Reserva realizada exitosamente",textoValidar,"Reserva no exitosa, el usuario tiene multas");
     }
 
-    //Prueba de atributo de calidad del tiempo de búsqueda
+    //Validar una reserva con un libro que está prestado
     @Test
-    void busquedaLibroTiempo(){
+    void reservarLibroFisicoFallido2() throws Exception {
+        LibroVirtual libroVirtual = new LibroVirtual(4,"9780321572604","El Padrino",2,"Mario Puzo",15,2500);
+        LibroFisico libroFisico = new LibroFisico(5,"Piso 3","D234 Q57",libroVirtual, 2  );
 
+        SingletonControladores.crearUsuarioActualLector();
+        SingletonControladores.getUsuarioActual().setId(22);
+        SingletonControladores.getUsuarioActual().setCedula(1000222333);
+        SingletonControladores.getUsuarioActual().setNombre("Mario Mendoza Zambrano");
+        SingletonControladores.getUsuarioActual().setContrasena("Fourier71");
+        controladorBusquedaLibro.setLibroFisicoSeleccionado(libroFisico);
+        String textoValidar = controladorBusquedaLibro.validarSiPuedoReservar();
+        assertNotEquals("Reserva realizada exitosamente",textoValidar,"Reserva no exitosa, el libro está prestado");
     }
 
+    //Validar una reserva con un libro que está reservado
+    @Test
+    void reservarLibroFisicoFallido3() throws Exception {
+        LibroVirtual libroVirtual = new LibroVirtual(4,"9780321572604","El Padrino",2,"Mario Puzo",15,2500);
+        LibroFisico libroFisico = new LibroFisico(5,"Piso 3","D234 Q57",libroVirtual, 3  );
 
+        SingletonControladores.crearUsuarioActualLector();
+        SingletonControladores.getUsuarioActual().setId(22);
+        SingletonControladores.getUsuarioActual().setCedula(1000222333);
+        SingletonControladores.getUsuarioActual().setNombre("Mario Mendoza Zambrano");
+        SingletonControladores.getUsuarioActual().setContrasena("Fourier71");
+        controladorBusquedaLibro.setLibroFisicoSeleccionado(libroFisico);
+        String textoValidar = controladorBusquedaLibro.validarSiPuedoReservar();
+        assertNotEquals("Reserva realizada exitosamente",textoValidar,"Reserva no exitosa, el libro está reservado");
+    }
 
 
 }
