@@ -205,6 +205,10 @@ public class ControladorEstadoUsuario {
     }
 
     public void renovarPrestamo(Prestamo prestamoAct) throws SQLException {
+        if(prestamoAct.getMulta() != null){
+            return;
+        }
+
         connection.setAutoCommit(false); // Deshabilitar confirmación automática
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(
