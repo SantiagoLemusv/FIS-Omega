@@ -39,7 +39,6 @@ public class ControladorActualizarApp {
     }
 
     public void cambiarEstadoLibro(Integer idLibroFisico, Integer estadoId) throws SQLException {
-        System.out.println("entra a cambiar estado con "+estadoId);
         connection.setAutoCommit(false); // Deshabilitar confirmación automática
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(
@@ -48,11 +47,6 @@ public class ControladorActualizarApp {
             preparedStatement.setInt(2, idLibroFisico);
             int updatedRows = preparedStatement.executeUpdate();
 
-            if (updatedRows != 1) {
-                System.out.println("¡Error! No se actualizó ningún libro físico.");
-            } else {
-                System.out.println("Estado del libro físico actualizado exitosamente.");
-            }
         } catch (SQLException e) {
             throw e; // Re-throw the exception for handling
         } finally {
@@ -61,7 +55,6 @@ public class ControladorActualizarApp {
     }
 
     public void eliminarReserva(Integer idReserva) throws SQLException {
-        System.out.println("Eliminando reserva con ID: " + idReserva);
         connection.setAutoCommit(false); // Deshabilitar confirmación automática
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(
@@ -69,11 +62,6 @@ public class ControladorActualizarApp {
             preparedStatement.setInt(1, idReserva);
             int filasEliminadas = preparedStatement.executeUpdate();
 
-            if (filasEliminadas != 1) {
-                System.out.println("¡Advertencia! No se eliminó ninguna reserva.");
-            } else {
-                System.out.println("Reserva eliminada exitosamente.");
-            }
         } catch (SQLException e) {
             throw e; // Re-lanzar la excepción para su manejo
         } finally {
@@ -148,11 +136,6 @@ public class ControladorActualizarApp {
             preparedStatement.setInt(2, idPrestamo);
             int updatedRows = preparedStatement.executeUpdate();
 
-            if (updatedRows != 1) {
-                System.out.println("¡Error! No se actualizó ningún prestamo.");
-            } else {
-                System.out.println("La asignacion de multa a prestamo se realizo correctamente");
-            }
         } catch (SQLException e) {
             throw e; // Re-throw the exception for handling
         } finally {
@@ -164,6 +147,7 @@ public class ControladorActualizarApp {
 
     //Buscar multas pasadas de hoy sin pagar y actualizar monto a pagar---------------------------------------
     public void validarNuevoCostoDeMultas() throws SQLException {
+        System.out.println("10s");
         String sql = "SELECT * FROM MULTA";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -207,8 +191,6 @@ public class ControladorActualizarApp {
     }
 
     public void setNuevoCostoMulta(Integer idMulta, Integer nuevoCosto, Integer diasPasados) throws SQLException {
-        System.out.println("idMulta "+ idMulta);
-        System.out.println("nuevo costo "+nuevoCosto);
         connection.setAutoCommit(false);
         try (PreparedStatement preparedStatement = connection.prepareStatement(
                 "UPDATE MULTA SET MONTOPAGAR = ?, DIASPASADOS = ? WHERE ID = ?")) {
@@ -217,11 +199,6 @@ public class ControladorActualizarApp {
             preparedStatement.setInt(3, idMulta);
             int updatedRows = preparedStatement.executeUpdate();
 
-            if (updatedRows != 1) {
-                System.out.println("¡Error! No se actualizó el valor de niunguna multa.");
-            } else {
-                System.out.println("La asignacion de el nuevo costo de la multa fue exitosa");
-            }
         } catch (SQLException e) {
             throw e; // Re-throw the exception for handling
         } finally {

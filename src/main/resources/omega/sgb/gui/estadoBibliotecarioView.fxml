@@ -85,6 +85,24 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
+                  <Button fx:id="btnCarrito1" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="108.0" mnemonicParsing="false" onAction="#mBtnDevolverLibro" prefHeight="39.0" prefWidth="196.0" style="-fx-background-color: white;" text="Devolver" textFill="#7ec8e3">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@gui/Flecha azul.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
                   <Separator prefWidth="200.0" />
                </children>
             </VBox>

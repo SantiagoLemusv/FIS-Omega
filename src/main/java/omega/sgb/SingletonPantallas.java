@@ -55,6 +55,15 @@ public class SingletonPantallas {
         window.show();
     }
 
+    public static void toDevolverLibroViewSingleton(ActionEvent event) throws IOException{
+        Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/devolverLibroView.fxml")));
+        Scene InicioScene = new Scene(InicioParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.centerOnScreen();
+        window.setScene(InicioScene);
+        window.show();
+    }
+
     public static void toCarritoViewSingleton(ActionEvent event) throws IOException {
         Parent InicioParent = FXMLLoader.load(Objects.requireNonNull(SingletonPantallas.class.getResource("/omega/sgb/gui/carritoView.fxml")));
         Scene InicioScene = new Scene(InicioParent);

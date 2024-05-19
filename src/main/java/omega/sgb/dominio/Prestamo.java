@@ -1,5 +1,7 @@
 package omega.sgb.dominio;
 
+import omega.sgb.integracion.ProcesarFecha;
+
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -15,6 +17,7 @@ public class Prestamo {
     //Logica prestamo. Si son 15 dias de prestamo cuenta desde el dia que lo pide
     //Ejemplo, si lo pidio el 1 del mes, debe devolverlo maximo el 15 del mes
     //A partir del 16, el sistema crea la multa
+    private ProcesarFecha procesarFecha = new ProcesarFecha();
 
     //Métodos constructores
     public Prestamo() {
@@ -94,6 +97,14 @@ public class Prestamo {
 
     public void setMulta(Multa multa) {
         this.multa = multa;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(this.libro.getLibroVirtual().getTitulo() + " " + procesarFecha.formatearFecha(this.fechaPrestamo));
+    }
+    public String toStringMulta() {
+        return String.format(this.libro.getLibroVirtual().getTitulo() + " " + this.multa.toString());
     }
 
 }

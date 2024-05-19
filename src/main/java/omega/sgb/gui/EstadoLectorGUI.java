@@ -14,10 +14,13 @@ import omega.sgb.SingletonPantallas;
 import omega.sgb.control.ControladorActualizarApp;
 import omega.sgb.control.ControladorEstadoUsuario;
 import omega.sgb.dominio.LibroFisico;
+import omega.sgb.dominio.Prestamo;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class EstadoLectorGUI implements Initializable {
@@ -34,7 +37,7 @@ public class EstadoLectorGUI implements Initializable {
     @FXML
     Label txtNombre;
     @FXML
-    ListView<String> listViewPrestamos;
+    ListView<Prestamo> listViewPrestamos;
     @FXML
     ListView<String> listViewMultas;
     @FXML
@@ -79,8 +82,13 @@ public class EstadoLectorGUI implements Initializable {
         txtCedula.setText(String.valueOf(SingletonControladores.getUsuarioActual().getCedula()));
         txtTipoCuenta.setText("Lector");
         controladorEstadoUsuario.traerPrestamos(SingletonControladores.getUsuarioActual());
-        ObservableList<String> observablePrestamos = FXCollections.observableArrayList(
-                controladorEstadoUsuario.listaStringPrestamos(SingletonControladores.getUsuarioActual().getPrestamos()));
+        List<Prestamo> prestamosSinMulta = new ArrayList<>();
+        for(Prestamo p : SingletonControladores.getUsuarioActual().getPrestamos()){
+            if(p.getMulta() == null){
+                prestamosSinMulta.add(p);
+            }
+        }
+        ObservableList<Prestamo> observablePrestamos = FXCollections.observableArrayList(prestamosSinMulta);
 
         ObservableList<String> observableMultas = FXCollections.observableArrayList(
                 controladorEstadoUsuario.listaStringMulta(SingletonControladores.getUsuarioActual().getPrestamos()));
@@ -90,6 +98,9 @@ public class EstadoLectorGUI implements Initializable {
 
     }
 
+    public void mBtnRenovarPrestamo() throws SQLException {
+        controladorEstadoUsuario.renovarPrestamo(listViewPrestamos.getSelectionModel().getSelectedItem());
+    }
 
     public void mBtnMiPerfil(ActionEvent event) throws IOException, SQLException {
         SingletonPantallas.toEstadoLectorViewSingleton(event);
