@@ -32,31 +32,65 @@ class ControladorLogInTest {
     @Test
     void ValidarCaracteresValidosExito(){
         String cedula = "101998323";
-        //assertTrue(controladorLogIn.validarCaracteresValidos(cedula));
+        assertTrue(controladorLogIn.validarCaracteresValidos(cedula),"Cédula aceptada");
     }
 
-
+    //Verifica para una entrada alfanumérica
     @Test
-    void ValidarCaracteresValidosFallido(){
+    void ValidarCaracteresValidosFallido1(){
         String cedula = "df120192734";
-        //assertFalse(controladorLogIn.validarCaracteresValidos(cedula));
+        assertFalse(controladorLogIn.validarCaracteresValidos(cedula),"Cédula no aceptada por incluir letras");
     }
 
-    //Prueba UAT
+    //Falla con una longitud menor a 8
+    @Test
+    void ValidarCaracteresValidosFallido2(){
+        String cedula = "101998";
+        assertFalse(controladorLogIn.validarCaracteresValidos(cedula),"Cédula no aceptada por no tener al menos 8 carácteres");
+    }
+
+    //Falla con una longitud mayor a 10
+    @Test
+    void ValidarCaracteresValidosFallido3(){
+        String cedula = "1019983323231221";
+        assertFalse(controladorLogIn.validarCaracteresValidos(cedula),"Cédula no aceptada por tener más de 10 carácteres");
+    }
+
+
+    //Valida con un usuario existente en la base de datos
     @Test
     void ValidarCredencialesExito() throws SQLException {
         String cedula = "1019983323";
         String contrasena = "lavidaesbella24";
-        assertTrue(controladorLogIn.validarCredenciales(cedula,contrasena));
-    }
-    //Prueba UAT
-    @Test
-    void ValidarCredencialesFallido() throws SQLException {
-        String cedula = "1019983328";
-        String contrasena = "lavidaesbella25";
-        assertFalse(controladorLogIn.validarCredenciales(cedula,contrasena));
+        assertTrue(controladorLogIn.validarCredenciales(cedula,contrasena),"Autenticación exitosa");
     }
 
+    //Valida con datos de usuario que no existen en la base de datos
+    @Test
+    void ValidarCredencialesFallido1() throws SQLException {
+        String cedula = "1019983328";
+        String contrasena = "lavidaesbella25";
+        assertFalse(controladorLogIn.validarCredenciales(cedula,contrasena),"Usuario no existe");
+    }
+
+    //Valida con un número de cédula de usuario existente, pero contraseña equivocada
+    @Test
+    void ValidarCredencialesFallido2() throws SQLException {
+        String cedula = "1019983323";
+        String contrasena = "lavidaesbella25";
+        assertFalse(controladorLogIn.validarCredenciales(cedula,contrasena),"Contraseña incorrecta");
+    }
+
+    //Valida con un número de cédula que no existe, pero la contraseña pertenece a un usuario existente
+    @Test
+    void ValidarCredencialesFallido3() throws SQLException {
+        String cedula = "1019983321";
+        String contrasena = "lavidaesbella24";
+        assertFalse(controladorLogIn.validarCredenciales(cedula,contrasena),"Usuario no existe");
+    }
+
+
+    //Valida con datos aceptados de un usuario inexistente
     @Test
     void nuevoUsuarioCrearExitoso() throws SQLException {
         String cedula = "123456789";
@@ -65,10 +99,12 @@ class ControladorLogInTest {
         String nombreCompleto = "Juan Pérez";
         boolean usuarioCreado = controladorLogIn.nuevoUsuarioCrear(cedula, contrasena, contrasenaConfirmar, nombreCompleto);
 
-        assertTrue(usuarioCreado);
+        assertTrue(usuarioCreado,"Nuevo usuario creado");
     }
+
+    //Valida al ingresar todos los datos de un usuario existente
     @Test
-    void nuevoUsuarioCrearFallido() throws SQLException {
+    void nuevoUsuarioCrearFallido1() throws SQLException {
         //La cuenta ya existe
         String cedula = "1019982313";
         String contrasena = "MarylinMonroe24";
@@ -77,8 +113,61 @@ class ControladorLogInTest {
         boolean usuarioCreado = controladorLogIn.nuevoUsuarioCrear(cedula, contrasena, contrasenaConfirmar, nombreCompleto);
 
         // Verificar el resultado
-        assertFalse(usuarioCreado);
+        assertFalse(usuarioCreado,"El usuario ya existe");
     }
+
+    //Valida al no aceptar un usuario que tiene una cédula que ya existe en la base de datos, y los otros datos son diferentes
+    @Test
+    void nuevoUsuarioCrearFallido2() throws SQLException {
+        String cedula = "1019982313";
+        String contrasena = "Willsmith23";
+        String contrasenaConfirmar = "Willsmith23";
+        String nombreCompleto = "Elizabeth Simpson Boudie";
+        boolean usuarioCreado = controladorLogIn.nuevoUsuarioCrear(cedula, contrasena, contrasenaConfirmar, nombreCompleto);
+
+        // Verificar el resultado"
+        assertFalse(usuarioCreado,"El usuario ya existe");
+    }
+
+    //Valida al no aceptar un usuario que tiene una cédula con carácteres inválidos
+    @Test
+    void nuevoUsuarioCrearFallido3() throws SQLException {
+        String cedula = "3dghevbffhff";
+        String contrasena = "Bradpitt55";
+        String contrasenaConfirmar = "Bradpitt55";
+        String nombreCompleto = "Monica Velandia Roble";
+
+        assertFalse(controladorLogIn.validarCaracteresValidos(cedula));
+
+        boolean usuarioCreado = controladorLogIn.nuevoUsuarioCrear(cedula, contrasena, contrasenaConfirmar, nombreCompleto);
+        // Verificar el resultado
+        assertFalse(usuarioCreado, "No se pudo crear el usuairo, cédula contiene caracteres inválidos");
+    }
+
+    //Valida al no aceptar un usuario con la contraseña que no es la misma en ambos campos
+    @Test
+    void nuevoUsuarioCrearFallido4() throws SQLException {
+        String cedula = "1019983388";
+        String contrasena = "Tomcruise86";
+        String contrasenaConfirmar = "Tomcruise87";
+        String nombreCompleto = "Mario Valenzuela Oswaldo ";
+
+
+        assertFalse(controladorLogIn.validarContrasena(contrasena, contrasenaConfirmar));
+
+        boolean usuarioCreado = controladorLogIn.nuevoUsuarioCrear(cedula, contrasena, contrasenaConfirmar, nombreCompleto);
+        // Verificar el resultado
+        assertFalse(usuarioCreado, "No se pudo crear el usuario, las contraseñas no coinciden");
+    }
+
+
+
+
+
+
+
+
+
 
 
 
