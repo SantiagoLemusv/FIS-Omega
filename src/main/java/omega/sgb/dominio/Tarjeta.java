@@ -6,7 +6,7 @@ import java.util.Date;
 public class Tarjeta {
     //Atributos de instancia
     private Integer id;
-    private Integer numero;
+    private Long numero;
     private Date fechaVencimiento;
     private String entidadBancaria;
     private String titular;
@@ -17,7 +17,7 @@ public class Tarjeta {
     public Tarjeta() {
     }
 
-    public Tarjeta(Integer id, Integer numero, Date fechaVencimiento, String entidadBancaria, String titular, Integer tipoTarjetaId, Persona persona) {
+    public Tarjeta(Integer id, Long numero, Date fechaVencimiento, String entidadBancaria, String titular, Integer tipoTarjetaId, Persona persona) {
         this.id = id;
         this.numero = numero;
         this.fechaVencimiento = fechaVencimiento;
@@ -27,7 +27,7 @@ public class Tarjeta {
         this.persona = persona;
     }
 
-    public Tarjeta(Integer numero, Date fechaVencimiento, String entidadBancaria, String titular, Integer tipoTarjetaId, Persona persona) {
+    public Tarjeta(Long numero, Date fechaVencimiento, String entidadBancaria, String titular, Integer tipoTarjetaId, Persona persona) {
         this.numero = numero;
         this.fechaVencimiento = fechaVencimiento;
         this.entidadBancaria = entidadBancaria;
@@ -45,11 +45,11 @@ public class Tarjeta {
         this.id = id;
     }
 
-    public Integer getNumero() {
+    public Long getNumero() {
         return numero;
     }
 
-    public void setNumero(Integer numero) {
+    public void setNumero(Long numero) {
         this.numero = numero;
     }
 

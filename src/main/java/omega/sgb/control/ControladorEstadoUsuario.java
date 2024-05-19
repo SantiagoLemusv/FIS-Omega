@@ -192,25 +192,28 @@ public class ControladorEstadoUsuario {
 
     public void traerTarjetas(){
         Persona persona = SingletonControladores.getUsuarioActual();
+        persona.getTarjetas().clear();
         try{
             String sql = "SELECT * FROM TARJETA WHERE PERSONAID = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             System.out.println("ID PERSONA GET TARJETA: "+persona.getId());
             statement.setInt(1, persona.getId());
             ResultSet resultSet = statement.executeQuery();
-            persona.getTarjetas().clear();
+            System.out.println("Ejecuto query en traer tarjetas");
             while (resultSet.next()) {
-                Tarjeta TarjetaAux = new Tarjeta();
-                TarjetaAux.setId(resultSet.getInt("ID"));
-                TarjetaAux.setNumero(resultSet.getInt("NUMERO"));
+                System.out.println("entro al while");
+                Tarjeta tarjetaAux = new Tarjeta();
+                tarjetaAux.setId(resultSet.getInt("ID"));
+                tarjetaAux.setNumero(resultSet.getLong("NUMERO"));
                 System.out.println("NUMERO TARJETA"+(resultSet.getInt("ID")));
                 Date fechaSqlAux;
                 fechaSqlAux = resultSet.getDate("FECHAVENCIMIENTO");
-                TarjetaAux.setFechaVencimiento(procesarFecha.fechaSqlToFechaJava(fechaSqlAux));
-                TarjetaAux.setEntidadBancaria(resultSet.getString("ENTIDADBANCARIA"));
-                TarjetaAux.setTipoTarjetaId(resultSet.getInt("TIPOTARJETAID"));
-                TarjetaAux.setPersona(persona);
-                persona.getTarjetas().add(TarjetaAux);
+                tarjetaAux.setFechaVencimiento(procesarFecha.fechaSqlToFechaJava(fechaSqlAux));
+                tarjetaAux.setEntidadBancaria(resultSet.getString("ENTIDADBANCARIA"));
+                tarjetaAux.setTipoTarjetaId(resultSet.getInt("TIPOTARJETAID"));
+                tarjetaAux.setPersona(persona);
+                System.out.println(tarjetaAux);
+                persona.getTarjetas().add(tarjetaAux);
             }
             resultSet.close();
             statement.close();

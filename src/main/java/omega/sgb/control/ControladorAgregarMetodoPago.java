@@ -15,7 +15,7 @@ public class ControladorAgregarMetodoPago {
 
     private ProcesarFecha procesarFecha;
     private Connection connection;
-    List<Tarjeta> listaTiposTarjeta = new ArrayList<>();
+
 
     Tarjeta tarjeta;
 

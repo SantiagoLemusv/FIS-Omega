@@ -106,7 +106,7 @@ public class EstadoLectorGUI implements Initializable {
         SingletonPantallas.toEstadoLectorViewSingleton(event);
         controladorActualizarApp.validarReservasVencidas();
         controladorActualizarApp.validarPrestamosVencidos();
-        controladorActualizarApp.validarNuevoCostoDeMultas();
+        //controladorActualizarApp.validarNuevoCostoDeMultas();
     }
     public void mBtnBusqueda(ActionEvent event) throws IOException {
         SingletonPantallas.toBuscarLibroLectorViewSingleton(event);
