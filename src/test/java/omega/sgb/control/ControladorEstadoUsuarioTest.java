@@ -36,9 +36,9 @@ class ControladorEstadoUsuarioTest {
 
     }
 
-    //Prueba para validar que se retorna la lista de préstamos, multas y el libro reservado de un lector
+    //Validar que se retorna la lista de préstamos, multas y el libro reservado de un lector
     @Test
-    void obtenerEstadoCompletoLectorExitoso(){
+    void obtenerEstadoCompletoLectorExitoso1(){
         SingletonControladores.crearUsuarioActualLector();
         SingletonControladores.getUsuarioActual().setId(5);
         SingletonControladores.getUsuarioActual().setCedula(1019982313);
@@ -55,7 +55,27 @@ class ControladorEstadoUsuarioTest {
         assertNotNull(libroResrvado);
 
     }
+    //Validar que no retorna la lista de préstamos, multas y el libro reservado de un lector que no tiene ninguno de esos atributos
+    @Test
+    void obtenerEstadoCompletoLectorExitoso2(){
+        SingletonControladores.crearUsuarioActualLector();
+        SingletonControladores.getUsuarioActual().setId(22);
+        SingletonControladores.getUsuarioActual().setCedula(1000222333);
+        SingletonControladores.getUsuarioActual().setNombre("Mario Mendoza Zambrano");
+        SingletonControladores.getUsuarioActual().setContrasena("Fourier71");
+        controladorEstadoUsuario.traerPrestamos(SingletonControladores.getUsuarioActual());
+        List<Prestamo> prestamoLista = SingletonControladores.getUsuarioActual().getPrestamos();
+        List<Multa> multaLista = SingletonControladores.getUsuarioActual().getMultas();
+        assertFalse(prestamoLista.isEmpty());
 
+        assertFalse(multaLista.isEmpty());
+
+        LibroFisico libroResrvado = controladorEstadoUsuario.traerLibroReservado();
+        assertNotNull(libroResrvado);
+
+    }
+
+    //Valida para los usuarios bibliotecario no mostrar lista de préstamo, multas y libros reservados
     @Test
     void obtenerEstadoCompletoLectorFallido(){
         SingletonControladores.crearUsuarioActualLector();
@@ -72,6 +92,22 @@ class ControladorEstadoUsuarioTest {
 
         LibroFisico libroResrvado = controladorEstadoUsuario.traerLibroReservado();
         assertNull(libroResrvado);
+
+    }
+
+    //Valida que un lector con un préstamo activo pueda renovar su préstamo
+    @Test
+    void renovarPrestamoExitoso(){
+        //Prestamo prestamoActual = new Prestamo(('2024-05-19'), '2024-05-24', 21, 19, 1, NULL);
+        //controladorEstadoUsuario.renovarPrestamo(prestamoActual);
+
+
+
+    }
+
+    //Valida que un lector con un préstamo vencido no pueda renovar su préstamo
+    @Test
+    void renovarPrestamoFallido(){
 
     }
 }
