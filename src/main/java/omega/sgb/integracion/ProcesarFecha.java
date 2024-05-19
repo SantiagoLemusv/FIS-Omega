@@ -7,6 +7,17 @@ import java.util.Date;
 
 public class ProcesarFecha {
 
+    public Date getTodaysMidnightDate() {
+        Date currentDate = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(currentDate);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return calendar.getTime();
+    }
+
     public Date getFechaActual() {
         // Obtener la fecha actual
         Date fechaActual = new Date();

@@ -21,7 +21,7 @@ public class ControladorEstadoUsuario {
         this.conversorImagen = conversorImagen;
     }
 
-    public void traerPrestamos(Persona usuarioactual){
+    public List<Prestamo> traerPrestamos(Persona usuarioactual){
         try {
             // Prepare the SQL with a placeholder for the title search term
             String sql = "SELECT * FROM PRESTAMO WHERE PERSONAID = ? AND ESTADOPRESTAMOID != 3";
@@ -47,6 +47,7 @@ public class ControladorEstadoUsuario {
                 Integer idMulta = resultSet.getInt("MULTAID");
                 prestamoAux.setMulta(traerMulta(idMulta,usuarioactual));
                 usuarioactual.getPrestamos().add(prestamoAux);
+                return usuarioactual.getPrestamos();
             }
 
             // Close resources
@@ -55,6 +56,7 @@ public class ControladorEstadoUsuario {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     public LibroFisico traerLibroFisico (Integer idLibroFisico){
