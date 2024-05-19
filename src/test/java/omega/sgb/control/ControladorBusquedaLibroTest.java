@@ -38,7 +38,7 @@ class ControladorBusquedaLibroTest {
 
     //Retorna los libros coincidentes del fragmento del título ingresado
     @Test
-    void buscarLibroTituloExitoso() throws SQLException, IOException {
+    void buscarLibroTituloExistente() throws SQLException, IOException {
 
         String fragmentoTituloloLibroBuscado = "el ";
 
@@ -52,7 +52,7 @@ class ControladorBusquedaLibroTest {
 
     //No retorna ningún libro al fragmento ingresado
     @Test
-    void buscarLibrosTituloFallido() throws SQLException{
+    void buscarLibrosTituloInexistente() throws SQLException{
         String fragmentoTituloloLibroBuscado = "Confieso que ";
 
         controladorBusquedaLibro.buscarLibrosVirtuales(fragmentoTituloloLibroBuscado);
@@ -65,7 +65,7 @@ class ControladorBusquedaLibroTest {
 
     //Retorna todos los libros existentes al presionar buscar sin escribir un fragmento
     @Test
-    void buscarLibroTituloExitoso2() throws SQLException, IOException {
+    void buscarLibroSinTitulo() throws SQLException, IOException {
 
         String fragmentoTituloloLibroBuscado = " ";
 
@@ -79,7 +79,7 @@ class ControladorBusquedaLibroTest {
 
     //Validar una reserva con un usuario que no tiene conflictos
     @Test
-    void reservarLibroFisicoExitoso() throws Exception {
+    void reservarLibroFisicoUsuarioSinConflictos() throws Exception {
         LibroVirtual libroVirtual = new LibroVirtual(4,"9780321572604","El Padrino",2,"Mario Puzo",15,2500);
         LibroFisico libroFisico = new LibroFisico(5,"Piso 3","D234 Q57",libroVirtual, 1  );
 
@@ -95,7 +95,7 @@ class ControladorBusquedaLibroTest {
 
     //Validar una reserva con un usuario que tiene conflictos
     @Test
-    void reservarLibroFisicoFallido1() throws Exception {
+    void reservarLibroFisicoUsuarioConConflictos() throws Exception {
         LibroVirtual libroVirtual = new LibroVirtual(4,"9780321572604","El Padrino",2,"Mario Puzo",15,2500);
         LibroFisico libroFisico = new LibroFisico(5,"Piso 3","D234 Q57",libroVirtual, 1  );
 
@@ -111,7 +111,7 @@ class ControladorBusquedaLibroTest {
 
     //Validar una reserva con un libro que está prestado
     @Test
-    void reservarLibroFisicoFallido2() throws Exception {
+    void reservarLibroFisicoPrestado() throws Exception {
         LibroVirtual libroVirtual = new LibroVirtual(4,"9780321572604","El Padrino",2,"Mario Puzo",15,2500);
         LibroFisico libroFisico = new LibroFisico(5,"Piso 3","D234 Q57",libroVirtual, 2  );
 
@@ -127,7 +127,7 @@ class ControladorBusquedaLibroTest {
 
     //Validar una reserva con un libro que está reservado
     @Test
-    void reservarLibroFisicoFallido3() throws Exception {
+    void reservarLibroFisicoReservado() throws Exception {
         LibroVirtual libroVirtual = new LibroVirtual(4,"9780321572604","El Padrino",2,"Mario Puzo",15,2500);
         LibroFisico libroFisico = new LibroFisico(5,"Piso 3","D234 Q57",libroVirtual, 3  );
 

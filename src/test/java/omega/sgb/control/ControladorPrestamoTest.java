@@ -31,35 +31,7 @@ class ControladorPrestamoTest {
 
     }
 
-    //Valida un lector que no tiene conflictos
-    @Test
-    void consultarLectorExitoso(){
 
-
-    }
-
-    //Valida un lector que tiene conflictos
-    @Test
-    void consultarLectorFallido1(){
-
-    }
-
-    //Valida cuando la entrada de la cédula tiene carácteres inválidos
-    @Test
-    void consultarLectorFallido2(){
-        controladorPrestamo.validarCedulaLector();
-    }
-
-    @Test
-    void agregarLibroCarritoExitoso() {
-
-
-    }
-
-    @Test
-    void agregarLibroCarritoFallido() {
-
-    }
 
     @Test
     public void eliminarLibroCarritoExito(){

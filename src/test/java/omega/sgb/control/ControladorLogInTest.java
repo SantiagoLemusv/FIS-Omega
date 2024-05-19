@@ -92,7 +92,7 @@ class ControladorLogInTest {
 
     //Valida con datos aceptados de un usuario inexistente
     @Test
-    void nuevoUsuarioCrearExitoso() throws SQLException {
+    void nuevoUsuarioInexistente() throws SQLException {
         String cedula = "123456789";
         String contrasena = "contrasena123";
         String contrasenaConfirmar = "contrasena123";
@@ -104,7 +104,7 @@ class ControladorLogInTest {
 
     //Valida al ingresar todos los datos de un usuario existente
     @Test
-    void nuevoUsuarioCrearFallido1() throws SQLException {
+    void nuevoUsuarioExistente() throws SQLException {
         //La cuenta ya existe
         String cedula = "1019982313";
         String contrasena = "MarylinMonroe24";
@@ -118,7 +118,7 @@ class ControladorLogInTest {
 
     //Valida al no aceptar un usuario que tiene una cédula que ya existe en la base de datos, y los otros datos son diferentes
     @Test
-    void nuevoUsuarioCrearFallido2() throws SQLException {
+    void nuevoUsuarioCedulaExistente() throws SQLException {
         String cedula = "1019982313";
         String contrasena = "Willsmith23";
         String contrasenaConfirmar = "Willsmith23";
@@ -131,7 +131,7 @@ class ControladorLogInTest {
 
     //Valida al no aceptar un usuario que tiene una cédula con carácteres inválidos
     @Test
-    void nuevoUsuarioCrearFallido3() throws SQLException {
+    void nuevoUsuarioCedulaInvalida() throws SQLException {
         String cedula = "3dghevbffhff";
         String contrasena = "Bradpitt55";
         String contrasenaConfirmar = "Bradpitt55";
@@ -146,7 +146,7 @@ class ControladorLogInTest {
 
     //Valida al no aceptar un usuario con la contraseña que no es la misma en ambos campos
     @Test
-    void nuevoUsuarioCrearFallido4() throws SQLException {
+    void nuevoUsuarioContrasenaIncorrecta() throws SQLException {
         String cedula = "1019983388";
         String contrasena = "Tomcruise86";
         String contrasenaConfirmar = "Tomcruise87";

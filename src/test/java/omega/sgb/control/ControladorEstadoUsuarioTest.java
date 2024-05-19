@@ -128,7 +128,7 @@ class ControladorEstadoUsuarioTest {
 
     //Valida que un lector con un préstamo vencido no pueda renovar su préstamo
     @Test
-    void renovarPrestamoVencido() {
+    void renovarPrestamoVencido() throws ParseException, SQLException {
         String fechaString = "2024 May 15";
         String fechaDevolucion = "2024 May 19";
         String fechaVerificar  = "2024 May 23";
@@ -138,7 +138,7 @@ class ControladorEstadoUsuarioTest {
         Date fechaDate = format.parse(fechaString);
         Date fechaDev = format.parse(fechaDevolucion);
         Date fechaVer = format.parse(fechaVerificar);
-        Persona personaActual = new PersonaLector (21, 1000999888, "Miguel Angel Marquez Posso", "Fourier78");
+        Persona personaActual = new PersonaLector (5, 1019982313, "Ana Cecilia de Armas Caso", "MarilynMonroe24");
         LibroVirtual libroVirtualActual = new LibroVirtual(2, "0674979857", "Tratado de medicina interna", 2, "Goldman Cecil", 4000, 5);
         LibroFisico libroFisicoActual = new LibroFisico(19, "Piso 9", "D789 Q14", libroVirtualActual, 1);
         Prestamo prestamoActual = new Prestamo(101,fechaDate, fechaDev, personaActual, 1, libroFisicoActual, null);
@@ -152,9 +152,7 @@ class ControladorEstadoUsuarioTest {
                 prestamoVerificar = p;
             }
         }
-        assertEquals(procesarFecha.getTodaysMidnightDate(),prestamoVerificar.getFechaPrestamo());
-
-
+        assertNull(prestamoVerificar.getFechaPrestamo());
 
     }
 
