@@ -94,4 +94,8 @@ public class LibroSeleccionadoBibliotecarioGUI {
         controladorBusquedaLibro.setTituloLibroBusquedaGrande(txtFieldTituloLibro.getText());
         SingletonPantallas.toResultadosBibliotecarioViewSingleton(event);
     }
+
+    public void mBtnDevolverLibro(ActionEvent event) throws IOException{
+        SingletonPantallas.toDevolverLibroViewSingleton(event);
+    }
 }

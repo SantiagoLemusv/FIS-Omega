@@ -24,7 +24,7 @@ public class ControladorEstadoUsuario {
     public void traerPrestamos(Persona usuarioactual){
         try {
             // Prepare the SQL with a placeholder for the title search term
-            String sql = "SELECT * FROM PRESTAMO WHERE PERSONAID = ?";
+            String sql = "SELECT * FROM PRESTAMO WHERE PERSONAID = ? AND ESTADOPRESTAMOID != 3";
             PreparedStatement statement = connection.prepareStatement(sql);
 
             statement.setInt(1, usuarioactual.getId());
@@ -47,7 +47,6 @@ public class ControladorEstadoUsuario {
                 Integer idMulta = resultSet.getInt("MULTAID");
                 prestamoAux.setMulta(traerMulta(idMulta,usuarioactual));
                 usuarioactual.getPrestamos().add(prestamoAux);
-
             }
 
             // Close resources
@@ -201,6 +200,29 @@ public class ControladorEstadoUsuario {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void renovarPrestamo(Prestamo prestamoAct) throws SQLException {
+        connection.setAutoCommit(false); // Deshabilitar confirmación automática
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "UPDATE PRESTAMO SET FECHAPRESTAMO = ?, FECHADEVOLUCION = ? WHERE ID = ?")) {
+            preparedStatement.setDate(1, procesarFecha.fechaJavaToFechaSql(procesarFecha.getFechaActual()));
+            preparedStatement.setDate(2, procesarFecha.fechaJavaToFechaSql(procesarFecha.sumarDiasAFecha(procesarFecha.getFechaActual(), prestamoAct.getLibro().getLibroVirtual().getDuracionPrestamo())));
+            preparedStatement.setInt(3, prestamoAct.getId());
+            int updatedRows = preparedStatement.executeUpdate();
+
+            if (updatedRows != 1) {
+                System.out.println("¡Error! No se actualizó ningún prestamo.");
+            } else {
+                System.out.println("Estado del prestamo actualizado exitosamente.");
+            }
+        } catch (SQLException e) {
+            throw e; // Re-throw the exception for handling
+        } finally {
+            connection.commit(); // Commit the transaction if successful
+        }
+
     }
 
 

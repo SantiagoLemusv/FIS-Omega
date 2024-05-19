@@ -86,4 +86,8 @@ public class ResultadosBibliotecarioGUI implements Initializable {
                 new SimpleIntegerProperty(cellData.getValue().getLibrosFisicosTotales().size()).asObject());
         tableViewResultadosLibros.setItems(observableLibrosVirtuales);
     }
+
+    public void mBtnDevolverLibro(ActionEvent event) throws IOException{
+        SingletonPantallas.toDevolverLibroViewSingleton(event);
+    }
 }
