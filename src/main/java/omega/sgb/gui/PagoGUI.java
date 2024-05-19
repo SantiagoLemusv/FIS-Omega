@@ -12,14 +12,18 @@ import omega.sgb.SingletonControladores;
 import omega.sgb.SingletonPantallas;
 import omega.sgb.control.ControladorEstadoUsuario;
 import omega.sgb.control.ControladorPago;
+import omega.sgb.dominio.Tarjeta;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class PagoGUI implements Initializable {
     private ControladorPago controladorPago = SingletonControladores.getInstanceControladorPago();
+    private ControladorEstadoUsuario controladorEstadoUsuario = SingletonControladores.getInstanceControladorEstadoUsuario();
+
     public PagoGUI() throws SQLException {}
     public PagoGUI(ControladorPago controladorPago) throws SQLException {
         this.controladorPago = controladorPago;
@@ -34,7 +38,9 @@ public class PagoGUI implements Initializable {
     ListView<String> ListPrestamos;
     @FXML
     ListView<String> ListMultas;
-
+    @FXML
+    ComboBox<String> cbxMetodoPago;
+    List<String> Tarjetas;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -47,6 +53,20 @@ public class PagoGUI implements Initializable {
         }else {
             txtTipoCuenta.setText("Lector");
         }
+
+
+        controladorEstadoUsuario.traerTarjetas();
+
+        ObservableList <String> tarjetasString = FXCollections.observableArrayList(
+                controladorEstadoUsuario.listaStringTarjeta(SingletonControladores.getUsuarioActual().getTarjetas()));
+        cbxMetodoPago.setItems(tarjetasString);
+        /*
+        for(Prestamo p : SingletonControladores.getUsuarioActual().getPrestamos()){
+            if(p.getMulta() == null){
+                prestamosSinMulta.add(p);
+            }
+        }
+         */
     }
 
     public void mBtnMiPerfil(ActionEvent event) throws IOException {

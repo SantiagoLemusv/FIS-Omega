@@ -177,6 +177,48 @@ public class ControladorEstadoUsuario {
         return listaString;
     }
 
+    public List<String> listaStringTarjeta(List<Tarjeta> listaTarjetas){
+        List<String> listaString = new ArrayList<>();
+        for(Tarjeta i : listaTarjetas){
+            String aux;
+            String numero = i.getNumero().toString();
+            String ult4 = numero.substring(numero.length() - 4);
+            aux = i.getEntidadBancaria()+" "+"("+ult4+")";
+            listaString.add(aux);
+            System.out.println(aux);
+        }
+        return listaString;
+    }
+
+    public void traerTarjetas(){
+        Persona persona = SingletonControladores.getUsuarioActual();
+        try{
+            String sql = "SELECT * FROM TARJETA WHERE PERSONAID = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            System.out.println("ID PERSONA GET TARJETA: "+persona.getId());
+            statement.setInt(1, persona.getId());
+            ResultSet resultSet = statement.executeQuery();
+            persona.getTarjetas().clear();
+            while (resultSet.next()) {
+                Tarjeta TarjetaAux = new Tarjeta();
+                TarjetaAux.setId(resultSet.getInt("ID"));
+                TarjetaAux.setNumero(resultSet.getInt("NUMERO"));
+                System.out.println("NUMERO TARJETA"+(resultSet.getInt("ID")));
+                Date fechaSqlAux;
+                fechaSqlAux = resultSet.getDate("FECHAVENCIMIENTO");
+                TarjetaAux.setFechaVencimiento(procesarFecha.fechaSqlToFechaJava(fechaSqlAux));
+                TarjetaAux.setEntidadBancaria(resultSet.getString("ENTIDADBANCARIA"));
+                TarjetaAux.setTipoTarjetaId(resultSet.getInt("TIPOTARJETAID"));
+                TarjetaAux.setPersona(persona);
+                persona.getTarjetas().add(TarjetaAux);
+            }
+            resultSet.close();
+            statement.close();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public LibroFisico traerLibroReservado(){
         try {
             // Prepare the SQL with a placeholder for the title search term
@@ -224,6 +266,4 @@ public class ControladorEstadoUsuario {
         }
 
     }
-
-
 }

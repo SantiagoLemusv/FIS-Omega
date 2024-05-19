@@ -28,4 +28,7 @@ public class PersonaBibliotecario extends Persona{
         return null;
     }
 
+    @Override
+    public List<Tarjeta> getTarjetas() {return null;}
+
 }

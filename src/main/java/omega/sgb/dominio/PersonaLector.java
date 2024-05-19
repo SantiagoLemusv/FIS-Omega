@@ -5,6 +5,8 @@ import java.util.List;
 
 public class PersonaLector extends Persona{
     private List<Prestamo> prestamos = new ArrayList<Prestamo>();
+
+    private List<Tarjeta> tarjetas = new ArrayList<Tarjeta>();
     private List<Multa> multas = new ArrayList<Multa>();
 
 
@@ -24,6 +26,9 @@ public class PersonaLector extends Persona{
     public List<Prestamo> getPrestamos() {
         return this.prestamos;
     }
+
+    @Override
+    public List<Tarjeta> getTarjetas() {return this.tarjetas;}
 
     @Override
     public List<Multa> getMultas(){return this.multas;}

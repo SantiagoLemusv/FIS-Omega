@@ -68,5 +68,6 @@ public abstract class Persona {
     // Getters y setters para el atributo 'prestamos'
     public abstract List<Prestamo> getPrestamos();
 
+    public abstract List<Tarjeta> getTarjetas();
 }
 
