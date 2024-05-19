@@ -74,8 +74,9 @@ public class ControladorCarrito {
         if(!carrito.contains(libroSeleccionado)){
             carrito.add(libroSeleccionado);
             return true;
-        }else
-        return false;
+        }else {
+            return false;
+        }
     }
 
 
