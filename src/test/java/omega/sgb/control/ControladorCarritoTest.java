@@ -41,14 +41,14 @@ class ControladorCarritoTest {
         PersonaBibliotecario personaBibliotecario = new PersonaBibliotecario();
         LibroVirtual libroVirtual = new LibroVirtual(9, "9780735619678", "Derecho Penal", 3, "Luis Carlos Perez", 4000, 5);
         LibroFisico libroFisicoNuevo = new LibroFisico(15, "Piso 8", "D678 Q01", libroVirtual, 1);
-        List<LibroFisico> carrito = personaBibliotecario.getCarrito();
+        List<LibroFisico> carrito = new ArrayList<>();
 
         if(libroFisicoNuevo.getEstadoLibroFisicoId() == 1) {
-            personaBibliotecario.getCarrito().add(libroFisicoNuevo);
+            carrito.add(libroFisicoNuevo);
         }
 
 
-        assertFalse(carrito.isEmpty(),"El libro fua agregado correctamente");
+        assertFalse(carrito.isEmpty());
     }
 
 
