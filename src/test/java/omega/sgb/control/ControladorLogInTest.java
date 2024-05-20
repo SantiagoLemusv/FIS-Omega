@@ -37,21 +37,21 @@ class ControladorLogInTest {
 
     //Verifica para una entrada alfanumérica
     @Test
-    void ValidarCaracteresValidosFallido1(){
+    void ValidarCaracteresInvalidos(){
         String cedula = "df120192734";
         assertFalse(controladorLogIn.validarCaracteresValidos(cedula),"Cédula no aceptada por incluir letras");
     }
 
     //Falla con una longitud menor a 8
     @Test
-    void ValidarCaracteresValidosFallido2(){
+    void ValidarCaracteresLongitudMenor(){
         String cedula = "101998";
         assertFalse(controladorLogIn.validarCaracteresValidos(cedula),"Cédula no aceptada por no tener al menos 8 carácteres");
     }
 
     //Falla con una longitud mayor a 10
     @Test
-    void ValidarCaracteresValidosFallido3(){
+    void ValidarCaracteresLongitudMayor(){
         String cedula = "1019983323231221";
         assertFalse(controladorLogIn.validarCaracteresValidos(cedula),"Cédula no aceptada por tener más de 10 carácteres");
     }
@@ -59,7 +59,7 @@ class ControladorLogInTest {
 
     //Valida con un usuario existente en la base de datos
     @Test
-    void ValidarCredencialesExito() throws SQLException {
+    void ValidarCredencialesUsuarioExistente() throws SQLException {
         String cedula = "1019983323";
         String contrasena = "lavidaesbella24";
         assertTrue(controladorLogIn.validarCredenciales(cedula,contrasena),"Autenticación exitosa");
@@ -67,7 +67,7 @@ class ControladorLogInTest {
 
     //Valida con datos de usuario que no existen en la base de datos
     @Test
-    void ValidarCredencialesFallido1() throws SQLException {
+    void ValidarCredencialesUsuarioInexistente() throws SQLException {
         String cedula = "1019983328";
         String contrasena = "lavidaesbella25";
         assertFalse(controladorLogIn.validarCredenciales(cedula,contrasena),"Usuario no existe");
@@ -75,7 +75,7 @@ class ControladorLogInTest {
 
     //Valida con un número de cédula de usuario existente, pero contraseña equivocada
     @Test
-    void ValidarCredencialesFallido2() throws SQLException {
+    void ValidarCredencialesCedulaExistente() throws SQLException {
         String cedula = "1019983323";
         String contrasena = "lavidaesbella25";
         assertFalse(controladorLogIn.validarCredenciales(cedula,contrasena),"Contraseña incorrecta");
@@ -83,7 +83,7 @@ class ControladorLogInTest {
 
     //Valida con un número de cédula que no existe, pero la contraseña pertenece a un usuario existente
     @Test
-    void ValidarCredencialesFallido3() throws SQLException {
+    void ValidarCredencialesContrasenaExistente() throws SQLException {
         String cedula = "1019983321";
         String contrasena = "lavidaesbella24";
         assertFalse(controladorLogIn.validarCredenciales(cedula,contrasena),"Usuario no existe");
