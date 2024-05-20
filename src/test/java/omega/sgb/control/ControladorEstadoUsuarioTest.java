@@ -140,7 +140,7 @@ class ControladorEstadoUsuarioTest {
         Date fechaVer = format.parse(fechaVerificar);
         Persona personaActual = new PersonaLector (5, 1019982313, "Ana Cecilia de Armas Caso", "MarilynMonroe24");
         LibroVirtual libroVirtualActual = new LibroVirtual(2, "0674979857", "Tratado de medicina interna", 2, "Goldman Cecil", 4000, 5);
-        LibroFisico libroFisicoActual = new LibroFisico(19, "Piso 9", "D789 Q14", libroVirtualActual, 1);
+        LibroFisico libroFisicoActual = new LibroFisico(19, "Piso 9", "D789 Q14", libroVirtualActual, 2);
         Prestamo prestamoActual = new Prestamo(101,fechaDate, fechaDev, personaActual, 1, libroFisicoActual, null);
 
         controladorEstadoUsuario.renovarPrestamo(prestamoActual);
@@ -148,11 +148,11 @@ class ControladorEstadoUsuarioTest {
 
         Prestamo prestamoVerificar = new Prestamo();
         for(Prestamo p: prestamoList){
-            if(p.getLibro().getLibroVirtual().getTitulo().equals("Tratado de medicina interna")){
+            if(p.getEstadoPrestamoId().equals(1)){
                 prestamoVerificar = p;
             }
         }
-        assertNull(prestamoVerificar.getFechaPrestamo());
+        assertNull(prestamoVerificar.getId(),"Prestamo vencido");
 
     }
 

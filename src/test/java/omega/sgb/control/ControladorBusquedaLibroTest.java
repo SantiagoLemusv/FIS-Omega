@@ -36,9 +36,23 @@ class ControladorBusquedaLibroTest {
 
     }
 
+    //Retorna los libros coincidentes del título completo
+    @Test
+    void buscarLibroTituloExistenteTitulo() throws SQLException, IOException {
+
+        String fragmentoTituloloLibroBuscado = "El padrino";
+
+        controladorBusquedaLibro.buscarLibrosVirtuales(fragmentoTituloloLibroBuscado);
+        List<LibroVirtual> librosVirtuales = new ArrayList<>();
+        librosVirtuales = controladorBusquedaLibro.getListaLibrosVirtuales();
+
+        //Revisa si la lista contiene al menos un libro
+        assertFalse(librosVirtuales.isEmpty());
+    }
+
     //Retorna los libros coincidentes del fragmento del título ingresado
     @Test
-    void buscarLibroTituloExistente() throws SQLException, IOException {
+    void buscarLibroTituloExistenteTituloFragmento() throws SQLException, IOException {
 
         String fragmentoTituloloLibroBuscado = "el ";
 
@@ -46,8 +60,8 @@ class ControladorBusquedaLibroTest {
         List<LibroVirtual> librosVirtuales = new ArrayList<>();
         librosVirtuales = controladorBusquedaLibro.getListaLibrosVirtuales();
 
-        // Check if the list contains at least one book
-        assertFalse(librosVirtuales.isEmpty(),"Se encontró coincidencias");
+        //Revisa si la lista contiene al menos un libro
+        assertFalse(librosVirtuales.isEmpty());
     }
 
     //No retorna ningún libro al fragmento ingresado
