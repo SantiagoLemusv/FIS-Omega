@@ -1,6 +1,7 @@
 package omega.sgb.control;
 
 import omega.sgb.SingletonControladores;
+import omega.sgb.dominio.PersonaLector;
 import omega.sgb.integracion.DataBaseConnectionManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,18 +28,9 @@ class ControladorPrestamoTest {
         inicializarBD.initDB();
         SingletonControladores.setConexionGeneral(connectionH2);
         controladorPrestamo = SingletonControladores.getInstanceControladorPrestamo();
-
     }
 
-    @Test
-    void agregarLibroCarritoExitoso() {
 
-    }
-
-    @Test
-    void agregarLibroCarritoFallido() {
-
-    }
 
     @Test
     public void eliminarLibroCarritoExito(){
@@ -52,6 +44,7 @@ class ControladorPrestamoTest {
 
     @Test
     public void confirmarPrestamoExitoso(){
+
 
     }
 

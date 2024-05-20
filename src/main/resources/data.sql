@@ -94,7 +94,7 @@ CREATE TABLE Multa (
 );
 
 CREATE TABLE Prestamo (
-    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    id DECIMAL(10,2) PRIMARY KEY,
     fechaPrestamo DATE NOT NULL,
     fechaDevolucion DATE NOT NULL,
     personaId INTEGER NOT NULL,
@@ -194,18 +194,31 @@ INSERT INTO Tarjeta (numero, fechaVencimiento, entidadBancaria, tipoTarjetaId, p
 INSERT INTO LibrosReservados(personaId,libroFisicoId,fechaReserva) VALUES
 (5,5,'2024-05-11');
 
-INSERT INTO Multa (id,montoPagar, fechaEmision,diasPasados) VALUES
-(22,15000, '2024-05-01', 6),
-(23,4000, '2024-05-06', 1);
+INSERT INTO Multa (id, montoPagar, fechaEmision, pagoId, diasPasados) VALUES
+(101, 5000, '2024-05-17', NULL, 2),
+(103, 2500, '2024-05-17', NULL, 1),
+(102, 2500, '2024-05-17', NULL, 1),
+(83, 10000, '2024-05-15', NULL, 4),
+(84, 2500, '2024-05-15', NULL, 1),
+(104, 25, '2024-05-17', NULL, 4),
+(50, 35000, '2024-05-01', NULL, 14),
+(51, 36000, '2024-05-06', NULL, 9);
 
-INSERT INTO Prestamo (fechaPrestamo, fechaDevolucion, personaId, libroFisicoId, estadoPrestamoId, multaId) VALUES
-('2024-05-01', '2024-05-15', 4, 3, 1, NULL),
-('2024-05-03', '2024-05-17', 4, 8, 1, NULL),
-('2024-04-26', '2024-05-10', 5, 1, 1, NULL),
-('2024-05-01', '2024-05-15', 5, 9, 1, NULL),
-('2024-04-16', '2024-04-30', 5, 4, 2, 22),
-('2024-04-23', '2024-05-07', 22, 7, 1, NULL),
-('2024-05-01', '2024-05-05', 23, 18, 2, 23);
+
+
+INSERT INTO Prestamo (id, fechaPrestamo, fechaDevolucion, personaId, libroFisicoId, estadoPrestamoId, multaId) VALUES
+(101, '2024-05-19', '2024-05-24', 21, 19, 1, NULL),
+(41, '2024-05-01', '2024-05-15', 4, 3, 2, 101),
+(42, '2024-05-17', '2024-06-01', 4, 8, 2, 101),
+(43, '2024-04-26', '2024-05-10', 5, 1, 2, 83),
+(44, '2024-05-01', '2024-05-15', 5, 9, 2, 101),
+(45, '2024-04-16', '2024-04-30', 5, 4, 2, 50),
+(46, '2024-04-23', '2024-05-07', 22, 7, 3, 83),
+(47, '2024-05-01', '2024-05-05', 23, 18, 2, 51),
+(81, '2024-05-17', '2024-05-24', 81, 5, 3, NULL),
+(82, '2024-05-01', '2024-05-04', 81, 14, 2, 104);
+
+
 
 
 

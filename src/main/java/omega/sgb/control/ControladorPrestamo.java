@@ -55,6 +55,7 @@ public class ControladorPrestamo {
             }
         }
     }
+
     public boolean consultarLector() throws SQLException {
         System.out.println("ENTRA CONSULTAR");
         String sql =
@@ -79,7 +80,7 @@ public class ControladorPrestamo {
         return false;
     }
 
-    public LibroFisico agregarLibroCarrito(){//cambiar, no deberia retornar un libro
+    public LibroFisico agregarLibroCarrito(){
         //el usuario mete los libros que quiera en carritoLibros
         LibroVirtual libroVirtualTemp1 = new LibroVirtual();
         libroVirtualTemp1.setId(1);
@@ -99,6 +100,7 @@ public class ControladorPrestamo {
         SingletonControladores.getUsuarioActual().getCarrito().add(libroTemp1);
         return libroTemp1;
     }
+
     public void confirmarPrestamo(List<LibroFisico> carritoLibros) throws SQLException {
         for(LibroFisico libroAct : carritoLibros){
             Prestamo prestamoAux = crearPrestamo(libroAct, lectorActual);
@@ -196,5 +198,10 @@ public class ControladorPrestamo {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void validarCedulaLector() {
+
+
     }
 }
