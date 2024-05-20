@@ -28,7 +28,6 @@ class ControladorPrestamoTest {
         inicializarBD.initDB();
         SingletonControladores.setConexionGeneral(connectionH2);
         controladorPrestamo = SingletonControladores.getInstanceControladorPrestamo();
-
     }
 
 
@@ -45,6 +44,7 @@ class ControladorPrestamoTest {
 
     @Test
     public void confirmarPrestamoExitoso(){
+
 
     }
 

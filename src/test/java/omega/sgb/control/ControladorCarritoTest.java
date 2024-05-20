@@ -2,6 +2,7 @@ package omega.sgb.control;
 
 import omega.sgb.dominio.LibroFisico;
 import omega.sgb.dominio.LibroVirtual;
+import omega.sgb.dominio.PersonaBibliotecario;
 import omega.sgb.integracion.InicializadorBD;
 import org.junit.jupiter.api.Test;
 import omega.sgb.SingletonControladores;
@@ -36,22 +37,18 @@ class ControladorCarritoTest {
     }
 
     @Test
-    void agregarLibroLista(){
-        boolean resultado = false;
+    void agregarLibroCarrito(){
+        PersonaBibliotecario personaBibliotecario = new PersonaBibliotecario();
         LibroVirtual libroVirtual = new LibroVirtual(9, "9780735619678", "Derecho Penal", 3, "Luis Carlos Perez", 4000, 5);
         LibroFisico libroFisicoNuevo = new LibroFisico(15, "Piso 8", "D678 Q01", libroVirtual, 1);
-        SingletonControladores.crearUsuarioActualLector();
-        SingletonControladores.getUsuarioActual().setId(22);
-        SingletonControladores.getUsuarioActual().setCedula(1000222333);
-        SingletonControladores.getUsuarioActual().setNombre("Mario Mendoza Zambrano");
-        SingletonControladores.getUsuarioActual().setContrasena("Fourier71");
-        List<LibroFisico> libroFisicos = SingletonControladores.getUsuarioActual().getCarrito();
+        List<LibroFisico> carrito = personaBibliotecario.getCarrito();
 
         if(libroFisicoNuevo.getEstadoLibroFisicoId() == 1) {
-            resultado = controladorCarrito.agregarLibro(libroFisicoNuevo);
+            personaBibliotecario.getCarrito().add(libroFisicoNuevo);
         }
 
-        assertTrue(resultado,"El libro fua agregado correctamente");
+
+        assertFalse(carrito.isEmpty(),"El libro fua agregado correctamente");
     }
 
 
