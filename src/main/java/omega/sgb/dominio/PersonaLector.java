@@ -5,7 +5,6 @@ import java.util.List;
 
 public class PersonaLector extends Persona{
     private List<Prestamo> prestamos = new ArrayList<Prestamo>();
-
     private List<Tarjeta> tarjetas = new ArrayList<Tarjeta>();
     private List<Multa> multas = new ArrayList<Multa>();
 
