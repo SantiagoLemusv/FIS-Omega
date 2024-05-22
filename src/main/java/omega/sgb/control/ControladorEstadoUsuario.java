@@ -50,12 +50,9 @@ public class ControladorEstadoUsuario {
                 Integer idMulta = resultSet.getInt("MULTAID");
                 prestamoAux.setMulta(traerMulta(idMulta, usuarioactual));
                 usuarioactual.getPrestamos().add(prestamoAux);
-                return usuarioactual.getPrestamos();
             }
+            return usuarioactual.getPrestamos();
 
-            // Close resources
-            resultSet.close();
-            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
