@@ -49,6 +49,7 @@ public class PagoGUI implements Initializable {
         txtCedula.setText(String.valueOf(SingletonControladores.getUsuarioActual().getCedula()));
         txtTipoCuenta.setText("Lector");
         controladorEstadoUsuario.traerPrestamos(SingletonControladores.getUsuarioActual());
+        controladorEstadoUsuario.traerTarjetas();
         ObservableList <String> tarjetasString = FXCollections.observableArrayList(
                 controladorEstadoUsuario.listaStringTarjeta(SingletonControladores.getUsuarioActual().getTarjetas()));
         ObservableList<String> observableMultas = FXCollections.observableArrayList(

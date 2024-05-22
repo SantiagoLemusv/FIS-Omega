@@ -15,7 +15,7 @@ import java.util.Date;
 public class ControladorPago {
     private Connection connection;
     private final ProcesarFecha procesarFecha;
-    Tarjeta tarjetaSeleccionada;
+    Tarjeta tarjetaSeleccionada = new Tarjeta();
     Prestamo prestamoSeleccionado = new Prestamo();
 
     public ControladorPago(Connection conexionGeneral, ProcesarFecha procesarFecha) throws SQLException {
@@ -24,6 +24,9 @@ public class ControladorPago {
     }
 
     public String nombreLibroMulta(String datoMulta) throws SQLException {
+        if(datoMulta == null){
+            return null;
+        }
         int indiceComa = datoMulta.indexOf(",");
 
         // Si no se encontró una coma, devolver null
@@ -37,6 +40,9 @@ public class ControladorPago {
     }
 
     public String numeroTarjetaMulta(String datoMetodoPago) throws SQLException {
+        if(datoMetodoPago == null) {
+            return null;
+        }
         int indiceDosPuntos = datoMetodoPago.indexOf(":");
 
         // Si no se encontraron los dos puntos, devolver null
@@ -146,11 +152,12 @@ public class ControladorPago {
         return null;
     }
 
-    public boolean pagarMulta() throws SQLException {
+    public void pagarMulta() throws SQLException {
         Integer precioMulta = prestamoSeleccionado.getMulta().getMontoPagar();
         Date fechaEmision = procesarFecha.getFechaActual();
         Pago pago = new Pago();
 
+        System.out.println("Insertar el pago de la multa en la tabla pago");
         //Insertar el pago de la multa en la tabla pago
         String sqlInsertarPago = "INSERT INTO PAGO (MONTOTOTAL, FECHAEMISION, TARJETAID) VALUES (?, ?, ?)";
         connection.setAutoCommit(false);
@@ -160,7 +167,7 @@ public class ControladorPago {
             insertStatement.setInt(3, tarjetaSeleccionada.getId());
             int filasAfectadas = insertStatement.executeUpdate();
             if (filasAfectadas < 1) {
-                return false;
+                return;
             }
             pago.setMontoTotal(precioMulta);
             pago.setFecha(fechaEmision);
@@ -169,9 +176,10 @@ public class ControladorPago {
         }catch (SQLException e) {
             connection.rollback();
             e.printStackTrace();
-            return false;
+            return;
         }
 
+        System.out.println("Obtener el id del pago previamente creado para actualizar el objeto de dicho pago");
         //Obtener el id del pago previamente creado para actualizar el objeto de dicho pago
         String sqlObtenerIdPago = "SELECT P.ID "+
                 "FROM PAGO P "+
@@ -185,24 +193,26 @@ public class ControladorPago {
                 if (resultSet.next()) {
                     pago.setId(resultSet.getInt("ID"));
                 }else{
-                    return false;
+                    return;
                 }
             }catch (SQLException e) {
                 connection.rollback();
                 e.printStackTrace();
-                return false;
+                return;
             }
             connection.commit();
         }catch (SQLException e) {
             connection.rollback();
             e.printStackTrace();
-            return false;
+            return;
         }
 
+        System.out.println("Actulizar la multa, asociando el pago previamente creado");
         //Actulizar la multa, asociando el pago previamente creado
         prestamoSeleccionado.getMulta().setPago(pago);
-        pago.getMultas().add(prestamoSeleccionado.getMulta());
+        //pago.getMultas().add(prestamoSeleccionado.getMulta());
 
+        System.out.println("Actualizar la multa de la tabla multa, asociando el pago previamente creado");
         //Actualizar la multa de la tabla multa, asociando el pago previamente creado
         String sqlActualizarMulta = "UPDATE MULTA SET PAGOID = ? WHERE ID = ?";
         connection.setAutoCommit(false);
@@ -211,14 +221,14 @@ public class ControladorPago {
             insertStatement.setInt(2, prestamoSeleccionado.getMulta().getId());
             int filasAfectadas = insertStatement.executeUpdate();
             if (filasAfectadas < 1) {
-                return false;
+                return;
             }
             connection.commit();
         }catch (SQLException e) {
             connection.rollback();
             e.printStackTrace();
-            return false;
+            return;
         }
-        return true;
+        return;
     }
 }

@@ -174,7 +174,7 @@ public class ControladorEstadoUsuario {
     public List<String> listaStringMulta(List<Prestamo> listaPrestamos) {
         List<String> listaString = new ArrayList<>();
         for (Prestamo prestamoAct : listaPrestamos) {
-            if (prestamoAct.getMulta() != null) {
+            if (prestamoAct.getMulta() != null && prestamoAct.getMulta().getPago() == null) {
                 String aux;
                 aux = prestamoAct.getLibro().getLibroVirtual().getTitulo() + ", " + prestamoAct.getMulta().getDiasPasados() + " día(s) vencido";
                 listaString.add(aux);
@@ -281,16 +281,14 @@ public class ControladorEstadoUsuario {
 
     public Tarjeta traerTarjeta(Integer idTarjeta, Persona usuario) {
         try {
-            String sqlObtenerTarjeta = "SELECT * " +
-                    "FROM TARJETA T " +
-                    "WHERE T.ID = ?";
+            String sqlObtenerTarjeta = "SELECT * FROM TARJETA T WHERE T.ID = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sqlObtenerTarjeta);
             preparedStatement.setInt(1, idTarjeta);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 Tarjeta tarjetaAux = new Tarjeta();
                 tarjetaAux.setId(resultSet.getInt("ID"));
-                tarjetaAux.setNumero(Long.valueOf(resultSet.getInt("NUMERO")));
+                tarjetaAux.setNumero(resultSet.getLong("NUMERO"));
                 Date fechaSqlAux;
                 fechaSqlAux = resultSet.getDate("FECHAVENCIMIENTO");
                 tarjetaAux.setFechaVencimiento(procesarFecha.fechaSqlToFechaJava(fechaSqlAux));
@@ -312,16 +310,14 @@ public class ControladorEstadoUsuario {
 
     public Pago traerPago(Integer idPago, Persona usuario){
         try{
-            String sqlObtenerPago = "SELECT * "+
-                    "FROM PAGO P "+
-                    "WHERE P.ID = ?";
+            String sqlObtenerPago = "SELECT * FROM PAGO P WHERE P.ID = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sqlObtenerPago);
             preparedStatement.setInt(1, idPago);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 Pago pago = new Pago();
                 pago.setId(resultSet.getInt("ID"));
-                pago.setId(resultSet.getInt("MONTOTOTAL"));
+                pago.setMontoTotal(resultSet.getInt("MONTOTOTAL"));
                 Date fechaSqlAux;
                 fechaSqlAux = resultSet.getDate("FECHAEMISION");
                 pago.setFecha(procesarFecha.fechaSqlToFechaJava(fechaSqlAux));
