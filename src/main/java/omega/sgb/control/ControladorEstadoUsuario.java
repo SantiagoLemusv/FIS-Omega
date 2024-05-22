@@ -15,13 +15,14 @@ public class ControladorEstadoUsuario {
     private Connection connection;
     private ProcesarFecha procesarFecha;
     private ConversorImagen conversorImagen;
+
     public ControladorEstadoUsuario(Connection conexionGeneral, ProcesarFecha procesarFecha, ConversorImagen conversorImagen) {
         this.connection = conexionGeneral;
         this.procesarFecha = procesarFecha;
         this.conversorImagen = conversorImagen;
     }
 
-    public List<Prestamo> traerPrestamos(Persona usuarioactual){
+    public List<Prestamo> traerPrestamos(Persona usuarioactual) {
         try {
             // Prepare the SQL with a placeholder for the title search term
             String sql = "SELECT * FROM PRESTAMO WHERE PERSONAID = ? AND ESTADOPRESTAMOID != 3";
@@ -32,6 +33,8 @@ public class ControladorEstadoUsuario {
             ResultSet resultSet = statement.executeQuery();
 
             usuarioactual.getPrestamos().clear(); // Clear the list before adding new results
+            usuarioactual.getTarjetas().clear();
+            usuarioactual.getMultas().clear();
 
             while (resultSet.next()) {
                 Prestamo prestamoAux = new Prestamo();
@@ -45,7 +48,7 @@ public class ControladorEstadoUsuario {
                 prestamoAux.setLibro(traerLibroFisico(resultSet.getInt("LIBROFISICOID")));
                 prestamoAux.setEstadoPrestamoId(resultSet.getInt("ESTADOPRESTAMOID"));
                 Integer idMulta = resultSet.getInt("MULTAID");
-                prestamoAux.setMulta(traerMulta(idMulta,usuarioactual));
+                prestamoAux.setMulta(traerMulta(idMulta, usuarioactual));
                 usuarioactual.getPrestamos().add(prestamoAux);
                 return usuarioactual.getPrestamos();
             }
@@ -59,7 +62,7 @@ public class ControladorEstadoUsuario {
         return null;
     }
 
-    public LibroFisico traerLibroFisico (Integer idLibroFisico){
+    public LibroFisico traerLibroFisico(Integer idLibroFisico) {
         try {
             // Prepare the SQL with a placeholder for the title search term
             String sql = "SELECT * FROM LIBROFISICO WHERE ID = ?";
@@ -88,7 +91,7 @@ public class ControladorEstadoUsuario {
         return null;
     }
 
-    public LibroVirtual traerLibroVirtual (Integer idLibroVirtual){
+    public LibroVirtual traerLibroVirtual(Integer idLibroVirtual) {
         try {
             // Prepare the SQL with a placeholder for the title search term
             String sql = "SELECT * FROM LIBROVIRTUAL WHERE ID = ?";
@@ -124,7 +127,7 @@ public class ControladorEstadoUsuario {
         return null;
     }
 
-    public Multa traerMulta(Integer idMulta, Persona usuario){
+    public Multa traerMulta(Integer idMulta, Persona usuario) {
         try {
             // Prepare the SQL with a placeholder for the title search term
             String sql = "SELECT * FROM MULTA WHERE ID = ?";
@@ -141,7 +144,8 @@ public class ControladorEstadoUsuario {
                 Date fechaSqlAux;
                 fechaSqlAux = resultSet.getDate("FECHAEMISION");
                 multaAux.setFechaEmision(procesarFecha.fechaSqlToFechaJava(fechaSqlAux));
-                multaAux.setPago(null);
+                Integer idPago = resultSet.getInt("PAGOID");
+                multaAux.setPago(traerPago(idPago, usuario));
                 multaAux.setDiasPasados(resultSet.getInt("DIASPASADOS"));
 
                 usuario.getMultas().add(multaAux);
@@ -157,9 +161,9 @@ public class ControladorEstadoUsuario {
         return null;
     }
 
-    public List<String> listaStringPrestamos(List<Prestamo> listaPrestamos){
+    public List<String> listaStringPrestamos(List<Prestamo> listaPrestamos) {
         List<String> listaString = new ArrayList<>();
-        for(Prestamo prestamoAct : listaPrestamos){
+        for (Prestamo prestamoAct : listaPrestamos) {
             String aux;
             aux = prestamoAct.getLibro().getLibroVirtual().getTitulo() + prestamoAct.getFechaDevolucion();
             listaString.add(aux);
@@ -167,38 +171,37 @@ public class ControladorEstadoUsuario {
         return listaString;
     }
 
-    public List<String> listaStringMulta(List<Prestamo> listaPrestamos){
+    public List<String> listaStringMulta(List<Prestamo> listaPrestamos) {
         List<String> listaString = new ArrayList<>();
-        for(Prestamo prestamoAct : listaPrestamos){
-            if(prestamoAct.getMulta() != null){
+        for (Prestamo prestamoAct : listaPrestamos) {
+            if (prestamoAct.getMulta() != null) {
                 String aux;
-                aux = prestamoAct.getLibro().getLibroVirtual().getTitulo() + " "+ prestamoAct.getMulta().getDiasPasados()+ " día(s) vencido";
+                aux = prestamoAct.getLibro().getLibroVirtual().getTitulo() + ", " + prestamoAct.getMulta().getDiasPasados() + " día(s) vencido";
                 listaString.add(aux);
             }
         }
         return listaString;
     }
 
-    public List<String> listaStringTarjeta(List<Tarjeta> listaTarjetas){
+    public List<String> listaStringTarjeta(List<Tarjeta> listaTarjetas) {
         List<String> listaString = new ArrayList<>();
-        for(Tarjeta i : listaTarjetas){
+        for (Tarjeta i : listaTarjetas) {
             String aux;
             String numero = i.getNumero().toString();
-            String ult4 = numero.substring(numero.length() - 4);
-            aux = i.getEntidadBancaria()+" "+"("+ult4+")";
+            aux = i.getEntidadBancaria() + ": " + numero;
             listaString.add(aux);
             System.out.println(aux);
         }
         return listaString;
     }
 
-    public void traerTarjetas(){
+    public void traerTarjetas() {
         Persona persona = SingletonControladores.getUsuarioActual();
         persona.getTarjetas().clear();
-        try{
+        try {
             String sql = "SELECT * FROM TARJETA WHERE PERSONAID = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            System.out.println("ID PERSONA GET TARJETA: "+persona.getId());
+            System.out.println("ID PERSONA GET TARJETA: " + persona.getId());
             statement.setInt(1, persona.getId());
             ResultSet resultSet = statement.executeQuery();
             System.out.println("Ejecuto query en traer tarjetas");
@@ -207,7 +210,7 @@ public class ControladorEstadoUsuario {
                 Tarjeta tarjetaAux = new Tarjeta();
                 tarjetaAux.setId(resultSet.getInt("ID"));
                 tarjetaAux.setNumero(resultSet.getLong("NUMERO"));
-                System.out.println("NUMERO TARJETA"+(resultSet.getInt("ID")));
+                System.out.println("NUMERO TARJETA" + (resultSet.getInt("ID")));
                 Date fechaSqlAux;
                 fechaSqlAux = resultSet.getDate("FECHAVENCIMIENTO");
                 tarjetaAux.setFechaVencimiento(procesarFecha.fechaSqlToFechaJava(fechaSqlAux));
@@ -219,12 +222,12 @@ public class ControladorEstadoUsuario {
             }
             resultSet.close();
             statement.close();
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public LibroFisico traerLibroReservado(){
+    public LibroFisico traerLibroReservado() {
         try {
             // Prepare the SQL with a placeholder for the title search term
             String sql = "SELECT LIBROFISICOID FROM LIBROSRESERVADOS WHERE PERSONAID = ?";
@@ -250,7 +253,7 @@ public class ControladorEstadoUsuario {
     }
 
     public void renovarPrestamo(Prestamo prestamoAct) throws SQLException {
-        if(prestamoAct.getMulta() != null){
+        if (prestamoAct.getMulta() != null) {
             return;
         }
 
@@ -274,5 +277,64 @@ public class ControladorEstadoUsuario {
             connection.commit(); // Commit the transaction if successful
         }
 
+    }
+
+    public Tarjeta traerTarjeta(Integer idTarjeta, Persona usuario) {
+        try {
+            String sqlObtenerTarjeta = "SELECT * " +
+                    "FROM TARJETA T " +
+                    "WHERE T.ID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlObtenerTarjeta);
+            preparedStatement.setInt(1, idTarjeta);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                Tarjeta tarjetaAux = new Tarjeta();
+                tarjetaAux.setId(resultSet.getInt("ID"));
+                tarjetaAux.setNumero(Long.valueOf(resultSet.getInt("NUMERO")));
+                Date fechaSqlAux;
+                fechaSqlAux = resultSet.getDate("FECHAVENCIMIENTO");
+                tarjetaAux.setFechaVencimiento(procesarFecha.fechaSqlToFechaJava(fechaSqlAux));
+                tarjetaAux.setEntidadBancaria(resultSet.getString("ENTIDADBANCARIA"));
+                tarjetaAux.setTipoTarjetaId(resultSet.getInt("TIPOTARJETAID"));
+                tarjetaAux.setPersona(usuario);
+                tarjetaAux.setTitular(resultSet.getString("TITULAR"));
+                usuario.getTarjetas().add(tarjetaAux);
+                return tarjetaAux;
+            }
+            // Close resources
+            resultSet.close();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Pago traerPago(Integer idPago, Persona usuario){
+        try{
+            String sqlObtenerPago = "SELECT * "+
+                    "FROM PAGO P "+
+                    "WHERE P.ID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlObtenerPago);
+            preparedStatement.setInt(1, idPago);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                Pago pago = new Pago();
+                pago.setId(resultSet.getInt("ID"));
+                pago.setId(resultSet.getInt("MONTOTOTAL"));
+                Date fechaSqlAux;
+                fechaSqlAux = resultSet.getDate("FECHAEMISION");
+                pago.setFecha(procesarFecha.fechaSqlToFechaJava(fechaSqlAux));
+                Integer idTarjeta = resultSet.getInt("TARJETAID");
+                pago.setTarjeta(traerTarjeta(idTarjeta, usuario));
+                return pago;
+            }
+            // Close resources
+            resultSet.close();
+            preparedStatement.close();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

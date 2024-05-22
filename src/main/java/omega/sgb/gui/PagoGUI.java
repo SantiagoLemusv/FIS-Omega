@@ -35,38 +35,26 @@ public class PagoGUI implements Initializable {
     @FXML
     Label txtNombre;
     @FXML
-    ListView<String> ListPrestamos;
+    Label txtValorTotal;
+    @FXML
+    Label txtMetododePago;
     @FXML
     ListView<String> ListMultas;
     @FXML
     ComboBox<String> cbxMetodoPago;
-    List<String> Tarjetas;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         txtNombre.setText(SingletonControladores.getUsuarioActual().getNombre());
-
         txtCedula.setText(String.valueOf(SingletonControladores.getUsuarioActual().getCedula()));
-
-        if(SingletonControladores.getUsuarioActual().getClass().toString().equals("PerosnaBibliotecario")){
-            txtTipoCuenta.setText("Bibliotecario");
-        }else {
-            txtTipoCuenta.setText("Lector");
-        }
-
-
-        controladorEstadoUsuario.traerTarjetas();
-
+        txtTipoCuenta.setText("Lector");
+        controladorEstadoUsuario.traerPrestamos(SingletonControladores.getUsuarioActual());
         ObservableList <String> tarjetasString = FXCollections.observableArrayList(
                 controladorEstadoUsuario.listaStringTarjeta(SingletonControladores.getUsuarioActual().getTarjetas()));
+        ObservableList<String> observableMultas = FXCollections.observableArrayList(
+                controladorEstadoUsuario.listaStringMulta(SingletonControladores.getUsuarioActual().getPrestamos()));
+        ListMultas.setItems(observableMultas);
         cbxMetodoPago.setItems(tarjetasString);
-        /*
-        for(Prestamo p : SingletonControladores.getUsuarioActual().getPrestamos()){
-            if(p.getMulta() == null){
-                prestamosSinMulta.add(p);
-            }
-        }
-         */
     }
 
     public void mBtnMiPerfil(ActionEvent event) throws IOException {
@@ -78,13 +66,23 @@ public class PagoGUI implements Initializable {
     public void mBtnCerrarSesion(ActionEvent event) throws IOException {
         SingletonPantallas.toLogInViewSingleton(event);
     }
-    public void mBtnIrPago(ActionEvent event) throws IOException {
-        SingletonPantallas.toPagoViewSingleton(event);
-    }
-    public void mBtnConfirmarPago(ActionEvent event) throws IOException{
+
+    public void mBtnConfirmarPago(ActionEvent event) throws IOException, SQLException {
         /*
         Codigo que se asegure que se selecciona un metodo de pago, que hay multas por pagar etc.
          */
+        String datoMetodoPago = (String) cbxMetodoPago.getValue();
+        String numeroTarjeta = controladorPago.numeroTarjetaMulta(datoMetodoPago);
+        String datoMulta = ListMultas.getSelectionModel().getSelectedItem();
+        String nombreLibro = controladorPago.nombreLibroMulta(datoMulta);
+
+        if(controladorPago.validarDatos(numeroTarjeta, nombreLibro)){
+            controladorPago.setTarjetaSeleccionada(numeroTarjeta);
+            controladorPago.setPrestamoSeleccionado(nombreLibro);
+            txtValorTotal.setText(String.valueOf(controladorPago.calcularPrecioMulta()));
+            txtMetododePago.setText(controladorPago.metodoPago());
+            controladorPago.pagarMulta();
+        }
         SingletonPantallas.toEstadoLectorViewSingleton(event);
     }
     public void mBtnNuevoMetodoPago(ActionEvent event) throws IOException{

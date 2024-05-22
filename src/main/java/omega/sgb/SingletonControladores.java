@@ -83,7 +83,7 @@ public class SingletonControladores {
 
     public static ControladorPago getInstanceControladorPago() throws SQLException {
         if (controladorPago == null) {
-            controladorPago = new ControladorPago(conexionGeneral);
+            controladorPago = new ControladorPago(conexionGeneral, procesarFecha);
         }
         return controladorPago;
     }
