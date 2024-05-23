@@ -7,9 +7,8 @@ import omega.sgb.dominio.PersonaLector;
 import omega.sgb.dominio.Prestamo;
 import omega.sgb.integracion.ProcesarFecha;
 
-import java.io.IOException;
+
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 //No debe tener dependencias a las pantallas
@@ -17,13 +16,16 @@ public class ControladorPrestamo {
     private PersonaLector lectorActual = new PersonaLector();
     private ProcesarFecha procesarFecha;
     private Connection connection;
-    private ControladorActualizarApp controladorActualizarApp = SingletonControladores.getInstanceControladorActualizarApp();
-    private ControladorBusquedaLibro controladorBusquedaLibro = SingletonControladores.getInstanceControladorBusquedaLibro();
-    private ControladorEstadoUsuario controladorEstadoUsuario = SingletonControladores.getInstanceControladorEstadoUsuario();
+    private ControladorActualizarApp controladorActualizarApp ;
+    private ControladorBusquedaLibro controladorBusquedaLibro ;
+    private ControladorEstadoUsuario controladorEstadoUsuario ;
 
-    public ControladorPrestamo(Connection conexionGeneral, ProcesarFecha procesarFecha) throws SQLException {
+    public ControladorPrestamo(Connection conexionGeneral, ProcesarFecha procesarFecha, ControladorActualizarApp controladorActualizarApp, ControladorBusquedaLibro controladorBusquedaLibro, ControladorEstadoUsuario controladorEstadoUsuario) {
         this.connection = conexionGeneral;
         this.procesarFecha = procesarFecha;
+        this.controladorActualizarApp=controladorActualizarApp;
+        this.controladorBusquedaLibro= controladorBusquedaLibro;
+        this.controladorEstadoUsuario=controladorEstadoUsuario;
     }
 
     public PersonaLector getLectorActual() {

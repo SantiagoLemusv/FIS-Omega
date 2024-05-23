@@ -90,7 +90,7 @@ public class SingletonControladores {
 
     public static ControladorPrestamo getInstanceControladorPrestamo() throws SQLException {
         if (controladorPrestamo == null) {
-            controladorPrestamo = new ControladorPrestamo(conexionGeneral, procesarFecha);
+            controladorPrestamo = new ControladorPrestamo(conexionGeneral, procesarFecha, controladorActualizarApp,controladorBusquedaLibro,controladorEstadoUsuario);
         }
         return controladorPrestamo;
     }
