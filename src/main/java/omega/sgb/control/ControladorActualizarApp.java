@@ -19,9 +19,10 @@ public class ControladorActualizarApp {
         this.procesarFecha = procesarFecha;
     }
 
-    //Borrar reservas cada minuto------------------------------------------------------------------
+    //Borrar reservas cada minuto------------------------- -----------------------------------------
 
     public void validarReservasVencidas() throws SQLException {
+        System.out.println("10s");
         String sql = "SELECT * FROM LIBROSRESERVADOS";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -147,7 +148,6 @@ public class ControladorActualizarApp {
 
     //Buscar multas pasadas de hoy sin pagar y actualizar monto a pagar---------------------------------------
     public void validarNuevoCostoDeMultas() throws SQLException {
-        System.out.println("10s");
         String sql = "SELECT * FROM MULTA";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -170,7 +170,7 @@ public class ControladorActualizarApp {
     public Integer buscarLibroIdEnPrestamoConMulta(Integer idMulta){
         try {
             // Prepare the SQL with a placeholder for the title search term
-            String sql = "SELECT LIBROFISICOID FROM PRESTAMO WHERE MULTAID = ?";
+            String sql = "SELECT * FROM PRESTAMO WHERE MULTAID = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
 
             statement.setInt(1, idMulta);

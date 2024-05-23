@@ -42,9 +42,12 @@ public class PagoGUI implements Initializable {
     ListView<String> ListMultas;
     @FXML
     ComboBox<String> cbxMetodoPago;
+    @FXML
+    Label lblEstadoPago;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        lblEstadoPago.setVisible(false);
         txtNombre.setText(SingletonControladores.getUsuarioActual().getNombre());
         txtCedula.setText(String.valueOf(SingletonControladores.getUsuarioActual().getCedula()));
         txtTipoCuenta.setText("Lector");
@@ -69,22 +72,27 @@ public class PagoGUI implements Initializable {
     }
 
     public void mBtnConfirmarPago(ActionEvent event) throws IOException, SQLException {
-        /*
-        Codigo que se asegure que se selecciona un metodo de pago, que hay multas por pagar etc.
-         */
-        String datoMetodoPago = (String) cbxMetodoPago.getValue();
-        String numeroTarjeta = controladorPago.numeroTarjetaMulta(datoMetodoPago);
-        String datoMulta = ListMultas.getSelectionModel().getSelectedItem();
-        String nombreLibro = controladorPago.nombreLibroMulta(datoMulta);
+        if(cbxMetodoPago.getSelectionModel().isEmpty()){
+            lblEstadoPago.setText("Seleccione un método de pago");
+            lblEstadoPago.setVisible(true);
+        }else if(ListMultas.getSelectionModel().isEmpty()){
+            lblEstadoPago.setText("Seleccione una multa a pagar");
+            lblEstadoPago.setVisible(true);
+        }else{
+            String datoMetodoPago = (String) cbxMetodoPago.getValue();
+            String numeroTarjeta = controladorPago.numeroTarjetaMulta(datoMetodoPago);
+            String datoMulta = ListMultas.getSelectionModel().getSelectedItem();
+            String nombreLibro = controladorPago.nombreLibroMulta(datoMulta);
 
-        if(controladorPago.validarDatos(numeroTarjeta, nombreLibro)){
-            controladorPago.setTarjetaSeleccionada(numeroTarjeta);
-            controladorPago.setPrestamoSeleccionado(nombreLibro);
-            txtValorTotal.setText(String.valueOf(controladorPago.calcularPrecioMulta()));
-            txtMetododePago.setText(controladorPago.metodoPago());
-            controladorPago.pagarMulta();
+            if(controladorPago.validarDatos(numeroTarjeta, nombreLibro)){
+                controladorPago.setTarjetaSeleccionada(numeroTarjeta);
+                controladorPago.setPrestamoSeleccionado(nombreLibro);
+                txtValorTotal.setText(String.valueOf(controladorPago.calcularPrecioMulta()));
+                txtMetododePago.setText(controladorPago.metodoPago());
+                controladorPago.pagarMulta();
+            }
+            SingletonPantallas.toEstadoLectorViewSingleton(event);
         }
-        SingletonPantallas.toEstadoLectorViewSingleton(event);
     }
     public void mBtnNuevoMetodoPago(ActionEvent event) throws IOException{
         SingletonPantallas.toAgregarMetodoPagoViewSingleton(event);
