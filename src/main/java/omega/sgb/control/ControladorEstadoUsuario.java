@@ -158,15 +158,6 @@ public class ControladorEstadoUsuario {
         return null;
     }
 
-    public List<String> listaStringPrestamos(List<Prestamo> listaPrestamos) {
-        List<String> listaString = new ArrayList<>();
-        for (Prestamo prestamoAct : listaPrestamos) {
-            String aux;
-            aux = prestamoAct.getLibro().getLibroVirtual().getTitulo() + prestamoAct.getFechaDevolucion();
-            listaString.add(aux);
-        }
-        return listaString;
-    }
 
     public List<String> listaStringMulta(List<Prestamo> listaPrestamos) {
         List<String> listaString = new ArrayList<>();
