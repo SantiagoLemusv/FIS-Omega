@@ -72,7 +72,11 @@ public class PagoGUI implements Initializable {
     }
 
     public void mBtnConfirmarPago(ActionEvent event) throws IOException, SQLException {
-        if(cbxMetodoPago.getSelectionModel().isEmpty()){
+        if(cbxMetodoPago.getSelectionModel().isEmpty() && ListMultas.getSelectionModel().isEmpty()){
+            lblEstadoPago.setText("Debe seleccionar alguna multa y método de pago");
+            lblEstadoPago.setVisible(true);
+        }
+        else if(cbxMetodoPago.getSelectionModel().isEmpty()){
             lblEstadoPago.setText("Seleccione un método de pago");
             lblEstadoPago.setVisible(true);
         }else if(ListMultas.getSelectionModel().isEmpty()){
